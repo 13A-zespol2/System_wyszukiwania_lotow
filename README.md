@@ -6,3 +6,4 @@
 - historia zakupu biletów dla użytkownika
 - edycja konta użytkownika
 - utworzenie administratora, który będzie zarządzał systemem
+-
