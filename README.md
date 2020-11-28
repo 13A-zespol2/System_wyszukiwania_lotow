@@ -1,5 +1,7 @@
 # System_wyszukiwania_lotow
 
+LISTA FUNKCJONALNOŚCI:
+
 1.	Rejestracja użytkownika:
       - Użytkownik po włączeniu aplikacji będzie miał możliwość założenia konta. Do założenia konta będą potrzebne dane osobowe takie jak: Imię, Nazwisko, e-mail, hasło, adres zamieszkania.
       - Po założeniu konta użytkownik będzie miał dodatkowe opcje czyli rezerwacja biletu na lot, historia odbytych lotów oraz edycja swoich danych.
