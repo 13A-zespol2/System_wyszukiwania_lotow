@@ -26,9 +26,9 @@ public class ClientApplication {
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
 
-            User user = new User(1, "Wojtek" + 1, "wojtek" + 1 + "gmail.com");
+            User user = new User(1, "Wojtek" + 20, "wojtek123456789" + 20 + "gmail.com");
             CreateUserRequest createUserRequest = new CreateUserRequest(user);
-            myService.send(createUserRequest);
+            Object send = myService.send(createUserRequest);
         };
     }
 

@@ -49,6 +49,13 @@
             <version>2.0-SNAPSHOT</version>
         </dependency>
 
+
+        <!--javafx -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>15.0.1</version>
+        </dependency>
     </dependencies>
 
     <build>
