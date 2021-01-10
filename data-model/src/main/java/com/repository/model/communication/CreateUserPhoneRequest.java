@@ -5,21 +5,20 @@ import com.repository.model.database.UserPhone;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 
-public class CreateUserPhoneRequest {
+public class CreateUserPhoneRequest implements Serializable {
     private UserPhone userPhone;
     private int phoneId;
     private int countryCallingCode;
     private int phoneNumber;
     private String deviceType;
 
-    public CreateUserPhoneRequest(int phoneId, int countryCallingCode, int phoneNumber, String deviceType) {
-        this.phoneId = phoneId;
-        this.countryCallingCode = countryCallingCode;
-        this.phoneNumber = phoneNumber;
-        this.deviceType = deviceType;
+    public CreateUserPhoneRequest() {
+
     }
 
     public CreateUserPhoneRequest(UserPhone userPhone) {
