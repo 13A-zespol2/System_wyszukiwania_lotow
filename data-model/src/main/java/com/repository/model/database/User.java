@@ -1,5 +1,6 @@
 package com.repository.model.database;
 
+import com.repository.model.builder.user.BuilderUser;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,14 +13,19 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-public class User implements Serializable {
+public class User implements Serializable, BuilderUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String name;
 
+    private String surname;
+
     private String email;
+
+    private String dateOfBirth;
+
 
     public User(Integer id, String name, String email) {
         this.id = id;
@@ -31,4 +37,44 @@ public class User implements Serializable {
     }
 
 
+    @Override
+    public void setIdTraveler(int idTraveler) {
+        this.id = idTraveler;
+    }
+
+
+    @Override
+    public void setNumber(String phoneNumber) {
+
+    }
+
+    @Override
+    public void setCountryCallCode(String countryCallCode) {
+
+    }
+
+    @Override
+    public void setDocumentType(String documentType) {
+
+    }
+
+    @Override
+    public void setDocumentNumber(String documentNumber) {
+
+    }
+
+    @Override
+    public void setIssuanceCountry(String issuanceCountry) {
+
+    }
+
+    @Override
+    public void setNationality(String nationality) {
+
+    }
+
+    @Override
+    public void setHolder(boolean holder) {
+
+    }
 }
