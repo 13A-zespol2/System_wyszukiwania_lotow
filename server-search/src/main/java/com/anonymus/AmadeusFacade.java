@@ -8,6 +8,9 @@ import com.repository.model.communication.CreateFlightReservationRequest;
 import com.repository.model.communication.SearchFlightRequest;
 
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class AmadeusFacade {
@@ -40,7 +43,7 @@ public class AmadeusFacade {
     }
 
 
-    public Optional<Object> searchFlight(SearchFlightRequest searchFlightRequest) {
+    public Optional<List<FlightOfferSearch>> searchFlight(SearchFlightRequest searchFlightRequest) {
         FlightOfferSearch[] flightOfferSearches = null;
         amadeusFlightSearch.setOriginLocationCode(searchFlightRequest.getOriginLocationCode());
         amadeusFlightSearch.setDestinationLocationCode(searchFlightRequest.getDestinationLocationCode());
@@ -57,6 +60,6 @@ public class AmadeusFacade {
         } catch (ResponseException e) {
             throw new ServerException("Api error search flight: " + e);
         }
-        return flightOfferSearches != null ? Optional.of(flightOfferSearches) : Optional.empty();
+        return flightOfferSearches != null ? Optional.of(List.of(flightOfferSearches)) : Optional.empty();
     }
 }
