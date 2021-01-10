@@ -3,10 +3,7 @@ package com.repository.model.database;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Getter
@@ -18,14 +15,19 @@ public class User implements Serializable {
     private Integer id;
     private String name;
     private String email;
-    private String email1;
+    private String dateOfBirth;
+    private Integer phoneId;
+    private Integer documentId;
 
 
-    public User(Integer id, String name, String email, String email1) {
+
+    public User(Integer id, String name, String email, String dateOfBirth, Integer phoneId, Integer documentId) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.email1 = email1;
+        this.dateOfBirth = dateOfBirth;
+        this.phoneId = phoneId;
+        this.documentId = documentId;
 
     }
 

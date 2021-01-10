@@ -58,7 +58,7 @@
     <orderEntry type="library" name="Maven: org.yaml:snakeyaml:1.27" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.18.16" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: mysql:mysql-connector-java:8.0.22" level="project" />
-    <orderEntry type="module" module-name="data-model-fligth" />
+    <orderEntry type="module" module-name="data-model-flight" />
     <orderEntry type="library" name="Maven: org.hibernate.orm:hibernate-core:6.0.0.Alpha6" level="project" />
     <orderEntry type="library" name="Maven: javax.persistence:javax.persistence-api:2.2" level="project" />
     <orderEntry type="library" name="Maven: org.antlr:antlr4:4.8-1" level="project" />

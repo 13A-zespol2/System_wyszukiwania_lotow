@@ -1,8 +1,10 @@
 package com;
 
+import com.repository.model.communication.CreateUserPhoneRequest;
 import com.repository.model.communication.CreateUserRequest;
 import com.repository.model.communication.CreateUserResponse;
 import com.repository.model.database.User;
+import com.repository.model.database.UserPhone;
 import com.server.ClientControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -26,9 +28,14 @@ public class ClientApplication {
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
 
-            User user = new User(1, "Wojtek" + 20, "wojtek123456789" + 20 + "gmail.com");
+            User user = new User(1, "Wojtek", "wojtek123456789" + 20 + "gmail.com", "01.01.1990", 1, 1);
+            UserPhone userPhone = new UserPhone(48, 123456789, "MOBILE");
             CreateUserRequest createUserRequest = new CreateUserRequest(user);
-            Object send = myService.send(createUserRequest);
+            CreateUserPhoneRequest createUserPhoneRequest = new CreateUserPhoneRequest(userPhone);
+
+            Object sendUser = myService.send(createUserRequest);
+            Object sendPhone = myService.send(createUserPhoneRequest);
+
         };
     }
 
