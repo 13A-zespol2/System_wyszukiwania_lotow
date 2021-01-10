@@ -16,18 +16,21 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
     private String name;
-
     private String email;
+    private String email1;
 
-    public User(Integer id, String name, String email) {
+
+    public User(Integer id, String name, String email, String email1) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.email1 = email1;
+
     }
 
     public User() {
+
     }
 
 
