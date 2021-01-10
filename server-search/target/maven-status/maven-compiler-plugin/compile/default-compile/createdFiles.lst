@@ -1,0 +1,5 @@
+com\server\MyService.class
+com\MainServer.class
+com\ServerException.class
+com\repository\UserRepository.class
+com\server\ClientHandler.class
