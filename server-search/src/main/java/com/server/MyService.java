@@ -2,11 +2,12 @@ package com.server;
 
 
 import com.ServerException;
+
 import com.repository.UserPhoneRepository;
 import com.repository.UserRepository;
-import com.repository.model.communication.CreateUserRequest;
-import com.repository.model.communication.CreateUserResponse;
+import com.repository.model.communication.*;
 import com.repository.model.database.User;
+import com.repository.model.database.UserPhone;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,8 @@ public class MyService implements Serializable {
     private ServerSocket serverSocket;
     @Autowired
     private UserRepository userRepository;
+    private UserPhoneRepository userPhoneRepository;
+
 
 
 
@@ -52,11 +55,16 @@ public class MyService implements Serializable {
                         CreateUserRequest createUserRequest = (CreateUserRequest) request;
 
                         User user = createUserRequest.getUser();
+
                         userRepository.save(user);
+
                         CreateUserResponse createUserResponse = new CreateUserResponse();
                         createUserResponse.setStatus("status");
                         out.writeObject(createUserResponse);
+
+
                     }
+
 
                 } catch (IOException | ClassNotFoundException e) {
                     throw new ServerException("Client Handler : " + e);

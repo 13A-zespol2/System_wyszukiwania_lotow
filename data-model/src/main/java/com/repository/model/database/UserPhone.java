@@ -3,6 +3,7 @@ package com.repository.model.database;
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
 public class UserPhone implements Serializable {
     @Id
     @GeneratedValue
@@ -20,5 +21,9 @@ public class UserPhone implements Serializable {
         this.countryCallingCode = countryCallingCode;
         this.phoneNumber = phoneNumber;
         this.deviceType = deviceType;
+    }
+
+    public UserPhone(){
+
     }
 }
