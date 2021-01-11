@@ -1,7 +1,7 @@
 package com.repository.model.communication;
 
 import com.repository.model.database.UserDocument;
-import com.repository.model.database.UserPhone;
+
 import lombok.Getter;
 import lombok.Setter;
 

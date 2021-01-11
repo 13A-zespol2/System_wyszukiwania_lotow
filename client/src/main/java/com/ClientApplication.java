@@ -30,7 +30,7 @@ public class ClientApplication {
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
 
-            User user = new User(1, "Wojtek", "wojtek123456789" + 20 + "gmail.com", "01.01.1990", 1, 1);
+            User user = new User(1, "Wojtek", "wojtek123456789" + 20 + "gmail.com", "01.01.1990", 1, 1, 1);
             UserPhone userPhone = new UserPhone(48, 123456789, "MOBILE");
             UserDocument userDocument = new UserDocument(1, "PASPORT", "12.12.2022", "PL", "PL", "true");
             CreateUserRequest createUserRequest = new CreateUserRequest(user);
