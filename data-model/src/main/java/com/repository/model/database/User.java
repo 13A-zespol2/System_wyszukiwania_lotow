@@ -12,27 +12,14 @@ import java.io.Serializable;
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    private String name;
+    private int id;
     private String email;
-    private String dateOfBirth;
-    private Integer phoneId;
-    private Integer documentId;
-    private Integer creditCardId;
+    private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "user", referencedColumnName = "id")
-    private User user;
-
-    public User(Integer id, String name, String email, String dateOfBirth, Integer phoneId, Integer documentId, Integer creditCardId) {
+    public User(int id, String email, String password) {
         this.id = id;
-        this.name = name;
         this.email = email;
-        this.dateOfBirth = dateOfBirth;
-        this.phoneId = phoneId;
-        this.documentId = documentId;
-        this.creditCardId = creditCardId;
-
+        this.password = password;
     }
 
     public User() {
