@@ -1,43 +1,46 @@
 package com;
 
-import com.repository.model.communication.CreateUserRequest;
-import com.repository.model.database.User;
-import com.server.ClientControl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Configuration;
+
+import java.io.IOException;
 
 
-@SpringBootApplication()
-public class ClientApplication {
-    @Autowired(required = true)
-    ClientControl myService;
+@Configuration
+@SpringBootApplication
+public class ClientApplication extends Application {
+    private Parent parent;
 
     public static void main(String[] args) {
-        SpringApplication.run(ClientApplication.class, args);
+        launch(args);
     }
 
-
-    @Bean
-    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-        return args -> {
-
-            User user = new User(1, "Wojtek", "wojtek123456789" + 20 + "gmail.com", "01.01.1990", 1, 1);
-            UserPhone userPhone = new UserPhone(1, 48, 123456789, "MOBILE");
-            userPhone.setUser(user);
-            UserDocument userDocument = new UserDocument(1, "PASPORT", "12.12.2022", "PL", "PL", "true");
-            CreateUserRequest createUserRequest = new CreateUserRequest(user);
-            CreateUserPhoneRequest createUserPhoneRequest = new CreateUserPhoneRequest(userPhone);
-            CreateUserDocumentRequest createUserDocumentRequest = new CreateUserDocumentRequest(userDocument);
-            Object userObje = myService.send(createUserRequest);
-
-            Object sendPhone = myService.send(createUserPhoneRequest);
-
-
-        };
+    @Override
+    public void start(Stage stage) throws Exception {
+        Scene scene = new Scene(parent, 1024, 768);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.sizeToScene();
+        stage.show();
     }
+
+    @Override
+    public void init() throws IOException {
+        ConfigurableApplicationContext configurableWebApplicationContext = SpringApplication.run(ClientApplication.class);
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(configurableWebApplicationContext::getBean);
+        fxmlLoader.setLocation((getClass().getResource("/LogIn.fxml")));
+        parent = fxmlLoader.load();
+    }
+
 
 }

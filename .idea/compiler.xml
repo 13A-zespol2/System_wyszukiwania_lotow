@@ -13,7 +13,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="client-search-flight" target="14" />
+      <module name="client-search-flight" target="15" />
       <module name="data-model-flight" target="14" />
       <module name="demo" target="14" />
       <module name="server-search-flight" target="14" />
