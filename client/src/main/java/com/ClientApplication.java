@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.springframework.boot.SpringApplication;
@@ -16,28 +17,37 @@ import java.io.IOException;
 @Configuration
 @SpringBootApplication
 public class ClientApplication extends Application {
-    private Parent parent;
     private ConfigurableApplicationContext springContext;
+    private AnchorPane rootNode;
+
 
     public static void main(String[] args) {
         launch(args);
     }
 
-    @Override
-    public void start(Stage stage) {
-      Scene scene = new Scene(parent, 960, 640);
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(scene);
-        stage.setResizable(true);
-        stage.sizeToScene();
-        stage.show();
-    }
+
     @Override
     public void init() throws IOException {
-        ConfigurableApplicationContext configurableWebApplicationContext = SpringApplication.run(ClientApplication.class);
+        springContext = SpringApplication.run(ClientApplication.class);
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(configurableWebApplicationContext::getBean);
+        fxmlLoader.setControllerFactory(springContext::getBean);
         fxmlLoader.setLocation((getClass().getResource("/LogIn.fxml")));
-        parent = fxmlLoader.load();
+        rootNode = fxmlLoader.load();
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        Scene scene = new Scene(rootNode, 960, 768);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.sizeToScene();
+        primaryStage.show();
+
+    }
+
+    @Override
+    public void stop() {
+        springContext.stop();
     }
 }

@@ -42,7 +42,13 @@
             <scope>runtime</scope>
         </dependency>
 
-
+        <!-- loombook -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>com.spring</groupId>
             <artifactId>data-model-flight</artifactId>
@@ -107,9 +113,9 @@
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.3</version>
+                <version>0.0.5</version>
                 <configuration>
-                    <mainClass>org.openjfx.App</mainClass>
+                    <mainClass>ClientApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

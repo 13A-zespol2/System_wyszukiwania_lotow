@@ -1,10 +1,9 @@
 package com.client;
 
 
-import com.ServerException;
 import com.repository.UserRepository;
-import com.repository.model.communication.CreateUserRequest;
-import com.repository.model.communication.CreateUserResponse;
+import com.repository.model.communication.LoginUserRequest;
+import com.repository.model.communication.LoginUserResponse;
 import com.repository.model.database.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,65 +21,46 @@ import java.net.Socket;
 @Service
 
 public class MyService implements Serializable {
-
-    private ServerSocket serverSocket;
     @Autowired
     private UserRepository userRepository;
 
 
-    public void start(int port) {
-        try {
-            serverSocket = new ServerSocket(port);
-            Object request = null;
-            ObjectOutputStream out = null;
-            ObjectInputStream in = null;
-            while (true) {
-
-                log.info("<Wait for connection>");
-                Socket clientSocket = serverSocket.accept();
-
-                try {
-                    out = new ObjectOutputStream(clientSocket.getOutputStream());
-                    log.info("<Wait to in>");
-                    in = new ObjectInputStream(clientSocket.getInputStream());
-                    log.info("<Wait to out>");
-                    request = in.readObject();
-                    if (request instanceof CreateUserRequest) {
-                        log.info("<Wait to dasd>");
-                        CreateUserRequest createUserRequest = (CreateUserRequest) request;
-
-                        User user = createUserRequest.getUser();
-
-                        userRepository.save(user);
-
-                        CreateUserResponse createUserResponse = new CreateUserResponse();
-                        createUserResponse.setStatus("status");
-                        out.writeObject(createUserResponse);
+    public void start(int port) throws IOException, ClassNotFoundException {
+        ServerSocket serverSocket = new ServerSocket(port);
+        log.info("START SERVER");
+        while (true) {
+            Socket clientSocket = serverSocket.accept();
+            ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
+            Object request = in.readObject();
 
 
-                    }
-
-
-                } catch (IOException | ClassNotFoundException e) {
-                    throw new ServerException("Client Handler : " + e);
-                }
-
+            if (request instanceof LoginUserRequest) {
+                LoginUserResponse loginUserResponse = findUserToLogin((LoginUserRequest) request);
+                out.writeObject(loginUserResponse);
             }
 
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (serverSocket != null)
-                try {
-                    serverSocket.close();
-                } catch (IOException e) {
-                    throw new ServerException("Server close exception: " + e);
-                }
+            close(clientSocket, out, in);
+        }
+    }
 
+
+    private LoginUserResponse findUserToLogin(LoginUserRequest loginUserRequest) {
+        User user = userRepository.findUserByEmailAndPassword(loginUserRequest.getEmail(), loginUserRequest.getPassword());
+        if (user != null) {
+            log.info("znaleziono");
+            return new LoginUserResponse(user, "ZALOGOWANO");
         }
 
+        return new LoginUserResponse("BLEDNY UZYTKOWNIK");
 
     }
 
+
+    private void close(Socket clientSocket, ObjectOutputStream out, ObjectInputStream in) throws IOException {
+        out.close();
+        in.close();
+        clientSocket.close();
+    }
 }

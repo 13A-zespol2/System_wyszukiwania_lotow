@@ -1,6 +1,8 @@
 package com.client;
 
 
+import com.repository.model.communication.LoginUserRequest;
+import com.repository.model.communication.LoginUserResponse;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -14,7 +16,12 @@ public class ClientControl {
     private final static int SERVER_PORT = 8892;
 
 
-    public Object send(Object request) {
+    public LoginUserResponse loginUserCommunication(LoginUserRequest loginUserRequest) {
+        return (LoginUserResponse) send(loginUserRequest);
+    }
+
+
+    private Object send(Object request) {
         Socket clientSocket = null;
         ObjectOutputStream out = null;
         ObjectInputStream in = null;
@@ -34,7 +41,6 @@ public class ClientControl {
         } finally {
             closeConnection(clientSocket, out, in);
         }
-
         return null;
     }
 
