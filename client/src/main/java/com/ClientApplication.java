@@ -13,26 +13,25 @@ import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
 
-
 @Configuration
 @SpringBootApplication
 public class ClientApplication extends Application {
     private Parent parent;
+    private ConfigurableApplicationContext springContext;
 
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
-        Scene scene = new Scene(parent, 1024, 768);
+    public void start(Stage stage) {
+      Scene scene = new Scene(parent, 960, 640);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.sizeToScene();
         stage.show();
     }
-
     @Override
     public void init() throws IOException {
         ConfigurableApplicationContext configurableWebApplicationContext = SpringApplication.run(ClientApplication.class);
@@ -41,6 +40,4 @@ public class ClientApplication extends Application {
         fxmlLoader.setLocation((getClass().getResource("/LogIn.fxml")));
         parent = fxmlLoader.load();
     }
-
-
 }

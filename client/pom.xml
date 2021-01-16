@@ -49,6 +49,12 @@
             <version>2.0-SNAPSHOT</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/de.jensd/fontawesomefx -->
+        <dependency>
+            <groupId>de.jensd</groupId>
+            <artifactId>fontawesomefx</artifactId>
+            <version>8.2</version>
+        </dependency>
 
         <!--javafx -->
         <dependency>
@@ -74,7 +80,6 @@
             <artifactId>charm-glisten</artifactId>
             <version>6.0.6</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.openjfx</groupId>

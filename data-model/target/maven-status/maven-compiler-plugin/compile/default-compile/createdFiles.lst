@@ -1,8 +1,10 @@
 com\repository\model\database\Reservation.class
+com\repository\model\database\MyTraveler.class
 com\repository\model\database\User.class
-com\repository\model\database\Flight.class
 com\repository\model\builder\user\BuilderUser.class
 com\repository\model\communication\SearchFlightRequest.class
 com\repository\model\communication\CreateUserRequest.class
 com\repository\model\communication\CreateUserResponse.class
+com\repository\model\database\TravelerPhone.class
 com\repository\model\communication\CreateFlightReservationRequest.class
+com\repository\model\database\TravelerDocument.class
