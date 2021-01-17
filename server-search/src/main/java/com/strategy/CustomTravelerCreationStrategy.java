@@ -1,9 +1,11 @@
 package com.strategy;
 
 import com.amadeus.resources.Traveler;
+import lombok.Getter;
 import lombok.Setter;
 
 @Setter
+@Getter
 public class CustomTravelerCreationStrategy implements TravelerCreationStrategy {
     private int countryCallingCode;
     private int phoneNumber;

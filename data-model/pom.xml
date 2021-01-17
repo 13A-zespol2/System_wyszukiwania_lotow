@@ -52,6 +52,12 @@
             <version>1.18.16</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.amadeus</groupId>
+            <artifactId>amadeus-java</artifactId>
+            <version>5.6.0</version>
+        </dependency>
+
     </dependencies>
 
 

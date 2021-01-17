@@ -3,9 +3,11 @@ package com.repository.model.communication;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
-public class SearchFlightRequest {
+public class SearchFlightRequest implements Serializable {
 
     private String originLocationCode;
     private String destinationLocationCode;

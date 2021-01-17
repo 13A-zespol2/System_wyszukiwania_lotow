@@ -3,9 +3,9 @@ package com.amadeus;
 import com.ServerException;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightOfferSearch;
+import com.amadeus.resources.Traveler;
 import com.repository.model.communication.CreateFlightReservationRequest;
 import com.repository.model.communication.SearchFlightRequest;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -28,11 +28,16 @@ public class AmadeusFacade {
     }
 
 
-    public Optional<Object> createOrderFlight(CreateFlightReservationRequest createFlightReservation) {
-        //TODO
-        return null;
+    public Optional<String> createOrderFlight(CreateFlightReservationRequest createFlightReservation) {
+        String flightOrder;
+        try {
 
+            flightOrder = amadeusCreateOrder.createFlightOrder((Traveler[]) createFlightReservation.getTravelers().toArray(), createFlightReservation.getFlightOfferSearch());
+        } catch (ResponseException e) {
+            throw new ServerException("Api error create order flight: " + e);
+        }
 
+        return flightOrder == null ? Optional.empty() : Optional.of(flightOrder);
     }
 
     public Optional<Object> getOrderedFlight(String idOrder) {
@@ -41,7 +46,7 @@ public class AmadeusFacade {
 
 
     public Optional<List<FlightOfferSearch>> searchFlight(SearchFlightRequest searchFlightRequest) {
-        FlightOfferSearch[] flightOfferSearches = null;
+        FlightOfferSearch[] flightOfferSearches;
         amadeusFlightSearch.setOriginLocationCode(searchFlightRequest.getOriginLocationCode());
         amadeusFlightSearch.setDestinationLocationCode(searchFlightRequest.getDestinationLocationCode());
         amadeusFlightSearch.setDepartureDate(searchFlightRequest.getDepartureDate());

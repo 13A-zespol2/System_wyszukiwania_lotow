@@ -4,6 +4,7 @@ package com.client;
 import com.repository.UserRepository;
 import com.repository.model.communication.LoginUserRequest;
 import com.repository.model.communication.LoginUserResponse;
+import com.repository.model.data.AirportCode;
 import com.repository.model.database.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Map;
 
 
 @Slf4j
@@ -28,18 +30,24 @@ public class MyService implements Serializable {
     public void start(int port) throws IOException, ClassNotFoundException {
         ServerSocket serverSocket = new ServerSocket(port);
         log.info("START SERVER");
+        //TODO obsluga enuma
+  /*      for (Map.Entry<String, AirportCode> entry : AirportCode.getByIata().entrySet())
+        {
+            log.info(entry.getKey());
+            log.info(entry.getValue().name());
+        }
+        AirportCode warsaw = AirportCode.valueOf("WARSAW");
+     */
         while (true) {
             Socket clientSocket = serverSocket.accept();
             ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
             Object request = in.readObject();
 
-
             if (request instanceof LoginUserRequest) {
                 LoginUserResponse loginUserResponse = findUserToLogin((LoginUserRequest) request);
                 out.writeObject(loginUserResponse);
             }
-
 
             close(clientSocket, out, in);
         }
