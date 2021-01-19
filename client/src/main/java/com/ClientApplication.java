@@ -2,10 +2,7 @@ package com;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -21,6 +18,7 @@ import java.io.IOException;
 public class ClientApplication extends Application {
     private ConfigurableApplicationContext springContext;
     private AnchorPane rootNode;
+
 
 
     public static void main(String[] args) {
@@ -41,6 +39,7 @@ public class ClientApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
         Scene scene = new Scene(rootNode, 960, 640);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.sizeToScene();
@@ -52,9 +51,5 @@ public class ClientApplication extends Application {
         springContext.stop();
     }
 
-    public void minimize_btn(MouseEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setIconified(true);
-    }
 
 }

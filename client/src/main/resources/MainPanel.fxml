@@ -27,7 +27,7 @@
       </font>
    </Button>
    <Button fx:id="search_button" layoutX="380.0" layoutY="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#searchFlights" prefHeight="50.0" prefWidth="200.0" styleClass="_button" stylesheets="@styles.css" text="Search Flights" />
-   <HBox fx:id="parent" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragEntered="#dragScene" prefHeight="30.0" prefWidth="960.0" style="-fx-background-color: #dedede;">
+   <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="960.0" style="-fx-background-color: #dedede;">
       <children>
          <Label fx:id="minimize_btn" alignment="TOP_CENTER" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#minimize_btn" prefHeight="30.0" prefWidth="30.0" styleClass="min_btn" text="_" textAlignment="RIGHT">
             <font>

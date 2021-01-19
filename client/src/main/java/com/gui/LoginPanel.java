@@ -115,8 +115,4 @@ public class LoginPanel implements InitializingBean, LoginListener, FxmlLoader {
         topbar.minimize_btn(event);
     }
 
-    public void dragScene(MouseEvent event) {
-        TopBar topbar = new TopBar();
-        topbar.dragScene(event);
-    }
 }

@@ -40,8 +40,4 @@ public class RegisterPanel implements FxmlLoader{
         return (AnchorPane) springFxmlLoader.load(ui + ".fxml");
     }
 
-    public void dragScene(MouseEvent event) {
-        TopBar topbar = new TopBar();
-        topbar.dragScene(event);
-    }
 }

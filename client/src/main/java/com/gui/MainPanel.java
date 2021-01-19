@@ -5,10 +5,13 @@ import com.observer.LoginListener;
 import com.observer.UserLoginObserver;
 import com.repository.model.database.User;
 import com.gluonhq.charm.glisten.control.Icon;
+import com.sun.xml.bind.v2.model.core.NonElementRef;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -34,9 +37,10 @@ public class MainPanel implements FxmlLoader, LoginListener {
 
     @FXML
     private Icon icon;
+    private HBox parent;
 
-
-
+    private static double xOffset = 0;
+    private static double yOffset = 0;
 
     public void searchFlights(MouseEvent mouseEvent) {
         if (!mainLoad.getChildren().isEmpty()) {
@@ -85,9 +89,4 @@ public class MainPanel implements FxmlLoader, LoginListener {
 
     }
 
-
-    public void dragScene(MouseEvent event) {
-        TopBar topbar = new TopBar();
-        topbar.dragScene(event);
-    }
 }
