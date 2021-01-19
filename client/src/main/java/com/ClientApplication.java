@@ -39,7 +39,7 @@ public class ClientApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
         Scene scene = new Scene(rootNode, 960, 640);
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+        //primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.sizeToScene();

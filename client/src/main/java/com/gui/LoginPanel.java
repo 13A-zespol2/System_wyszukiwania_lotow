@@ -52,24 +52,7 @@ public class LoginPanel implements InitializingBean, LoginListener, FxmlLoader {
 
 
 
-/*    public void validPassword(){
-        String passRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20}$";
 
-        if(logPassw.getText().matches(passRegEx))
-            log.info("zacha mowi ze powinno dzialac");
-        else
-
-        log.info("zacha mowi ze nie powinno dzialac!");
-    }*/
-
-/*    public void validEmail(){
-        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-        if(emailLabel.getText().matches(regex))
-            log.info("EMAIL PRAWIDLOWY");
-        else
-            log.info("EMAIL NIEPRAWIDLOWY");
-
-    }*/
 
     public void logButton(MouseEvent mouseEvent) {
         if (emailLabel.getText().isEmpty())
