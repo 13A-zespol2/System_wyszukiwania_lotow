@@ -1,6 +1,7 @@
 package com.gui;
 
 import com.client.ClientControl;
+import com.gluonhq.charm.glisten.control.Icon;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -22,7 +23,8 @@ public class SearchPanel implements FxmlLoader{
     private SpringFxmlLoader springFxmlLoader;
 
 
-
+    @FXML
+    private Icon icon;
 
     @FXML
     private ComboBox<?> originLocationCode;
