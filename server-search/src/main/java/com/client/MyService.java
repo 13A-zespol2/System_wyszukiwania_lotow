@@ -2,6 +2,7 @@ package com.client;
 
 
 import com.amadeus.AmadeusFacade;
+import com.amadeus.resources.FlightOfferSearch;
 import com.repository.ReservationRepository;
 import com.repository.UserRepository;
 import com.repository.model.communication.*;
@@ -16,18 +17,20 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
+import java.util.Optional;
 
 
 @Slf4j
 @Service
 
 public class MyService implements Serializable {
+    private final AmadeusFacade amadeusFacade = new AmadeusFacade();
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private ReservationRepository reservationRepository;
 
-    private final AmadeusFacade amadeusFacade = new AmadeusFacade();
     public void start(int port) throws IOException, ClassNotFoundException {
         ServerSocket serverSocket = new ServerSocket(port);
         log.info("START SERVER");
@@ -51,14 +54,12 @@ public class MyService implements Serializable {
             }
 
 
-
-
             if (request instanceof SearchFlightRequest) {
-                SearchFlightResponse searchFlightResponse = findSearch((SearchFlightRequest)request);
+                SearchFlightResponse searchFlightResponse = findSearch((SearchFlightRequest) request);
                 out.writeObject(searchFlightResponse);
             }
 
-            if (request instanceof RegisterUserRequest){
+            if (request instanceof RegisterUserRequest) {
                 RegisterUserResponse registerUserResponse = userToRegister((RegisterUserRequest) request);
                 out.writeObject(registerUserResponse);
             }
@@ -68,10 +69,12 @@ public class MyService implements Serializable {
     }
 
     private SearchFlightResponse findSearch(SearchFlightRequest request) {
-        amadeusFacade.searchFlight(request);
-        System.out.println("sda");
+        Optional<List<FlightOfferSearch>> flightOfferSearches = amadeusFacade.searchFlight(request);
+        if (flightOfferSearches.isEmpty())
+            return new SearchFlightResponse("Nie znaleziono lotu");
 
-        return null;
+
+        return new SearchFlightResponse("Zanaleziono",null );
     }
 
 
@@ -93,7 +96,7 @@ public class MyService implements Serializable {
         user = userRepository.save(user);
 
 
-        return user == null ? new RegisterUserResponse("NIE ZAREJESTROWANO"): new RegisterUserResponse("ZAREJESTROWANO");
+        return user == null ? new RegisterUserResponse("NIE ZAREJESTROWANO") : new RegisterUserResponse("ZAREJESTROWANO");
     }
 
 

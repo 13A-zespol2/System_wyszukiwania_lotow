@@ -59,8 +59,8 @@ public class AmadeusFacade {
             flightOfferSearches = amadeusFlightSearch.searchFlight();
 
         } catch (ResponseException e) {
-            throw new ServerException("Api error search flight: " + e);
+            return Optional.empty();
         }
-        return flightOfferSearches != null ? Optional.of(List.of(flightOfferSearches)) : Optional.empty();
+        return Optional.of(List.of(flightOfferSearches));
     }
 }

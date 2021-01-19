@@ -13,4 +13,14 @@ public class SearchFlightResponse implements Serializable {
 
     private String status;
     private List<FlightOfferSearch> tList;
+
+
+    public SearchFlightResponse(String status, List<FlightOfferSearch> tList) {
+        this.status = status;
+        this.tList = tList;
+    }
+
+    public SearchFlightResponse(String status) {
+        this.status = status;
+    }
 }

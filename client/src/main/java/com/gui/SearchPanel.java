@@ -1,10 +1,13 @@
 package com.gui;
 
+import com.amadeus.resources.FlightOfferSearch;
 import com.client.ClientControl;
 import com.gluonhq.charm.glisten.control.Icon;
 import com.repository.model.communication.SearchFlightRequest;
 import com.repository.model.communication.SearchFlightResponse;
 import com.repository.model.data.AirportCode;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -63,7 +67,26 @@ public class SearchPanel implements FxmlLoader, Initializable {
 
     @FXML
     private Button search_SB;
+    @FXML
+    private TableColumn<FlightOfferSearch, String> col1;
 
+    @FXML
+    private TableColumn<?, ?> col2;
+
+    @FXML
+    private TableColumn<?, ?> col3;
+
+    @FXML
+    private TableColumn<?, ?> col4;
+
+    @FXML
+    private TableColumn<?, ?> col5;
+
+    @FXML
+    private TableColumn<?, ?> col6;
+
+    @FXML
+    private TableColumn<?, ?> col7;
 
 
     public void homeFunc(MouseEvent event) {
@@ -98,13 +121,18 @@ public class SearchPanel implements FxmlLoader, Initializable {
             createSearchFlightRequest.setAdults(adults.getText());
         createSearchFlightRequest.setTravelClass(travelClass.getValue());
 
-        SearchFlightRequest createUserRequest = new SearchFlightRequest("PAR","NYC","2021-01-21","1", "ECONOMY","0",false,"");
+        SearchFlightRequest createUserRequest = new SearchFlightRequest("PAR", "NYC", "2021-01-21", "1", "ECONOMY", "0", false, "");
 
 
         SearchFlightResponse searchFlightResponse = clientControl.searchFlight(createUserRequest);
 
+        if (searchFlightResponse != null) {
+            List<FlightOfferSearch> tList = searchFlightResponse.getTList();
+            showFlights(tList);
+        }
+
         System.out.println("Sad");
-       // if(searchFlightResponse != null)
+        // if(searchFlightResponse != null)
 
 
     }
@@ -136,5 +164,24 @@ public class SearchPanel implements FxmlLoader, Initializable {
         }
         return true;
     }
+
+    private void showFlights(List<FlightOfferSearch> tList) {
+        ObservableList<FlightOfferSearch> list = FXCollections.observableArrayList();
+        list.addAll(tList);
+
+        col1.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FlightOfferSearch, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<FlightOfferSearch, String> param) {
+                return new ReadOnlyStringWrapper(param.getValue().getId());
+            }
+        });
+        System.out.println("dsa");
+
+
+
+
+    }
+
+
 
 }
