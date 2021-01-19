@@ -50,7 +50,8 @@ public class AmadeusFacade {
         amadeusFlightSearch.setOriginLocationCode(searchFlightRequest.getOriginLocationCode());
         amadeusFlightSearch.setDestinationLocationCode(searchFlightRequest.getDestinationLocationCode());
         amadeusFlightSearch.setDepartureDate(searchFlightRequest.getDepartureDate());
-        amadeusFlightSearch.setReturnDate(searchFlightRequest.getReturnDate());
+        if (searchFlightRequest.getReturnDate().isEmpty())
+            amadeusFlightSearch.setReturnDate(searchFlightRequest.getReturnDate());
         amadeusFlightSearch.setAdults(String.valueOf(searchFlightRequest.getAdults()));
         amadeusFlightSearch.setTravelClass(searchFlightRequest.getTravelClass());
         amadeusFlightSearch.setChildren(String.valueOf(searchFlightRequest.getChildren()));

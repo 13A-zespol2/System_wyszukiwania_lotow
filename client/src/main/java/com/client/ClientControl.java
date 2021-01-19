@@ -2,9 +2,7 @@ package com.client;
 
 
 import com.observer.UserLoginObserver;
-import com.repository.model.communication.LoginUserRequest;
-import com.repository.model.communication.LoginUserResponse;
-import com.repository.model.communication.RegisterUserResponse;
+import com.repository.model.communication.*;
 import lombok.Getter;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +23,10 @@ public class ClientControl {
         return (RegisterUserResponse) send(registerUserResponse);
     }
 
+    public SearchFlightResponse  searchFlight(SearchFlightRequest searchFlightRequest)
+    {
+        return (SearchFlightResponse) send(searchFlightRequest);
+    }
 
     private Object send(Object request) {
         Socket clientSocket = null;

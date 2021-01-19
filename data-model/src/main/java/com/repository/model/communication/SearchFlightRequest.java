@@ -12,24 +12,22 @@ public class SearchFlightRequest implements Serializable {
     private String originLocationCode;
     private String destinationLocationCode;
     private String departureDate;
-    private int adults;
+    private String adults;
     private String travelClass;
-    private int infants;
-    private int children;
+    private String children;
     private boolean returnFlight;
     private String returnDate;
-    private boolean nonStop;
+
 
     public SearchFlightRequest() {
     }
 
-    public SearchFlightRequest(String originLocationCode, String destinationLocationCode, String departureDate, int adults, String travelClass, int infants, int children, boolean returnFlight, String returnDate) {
+    public SearchFlightRequest(String originLocationCode, String destinationLocationCode, String departureDate, String adults, String travelClass,String children, boolean returnFlight, String returnDate) {
         this.originLocationCode = originLocationCode;
         this.destinationLocationCode = destinationLocationCode;
         this.departureDate = departureDate;
         this.adults = adults;
         this.travelClass = travelClass;
-        this.infants = infants;
         this.children = children;
         this.returnFlight = returnFlight;
         this.returnDate = returnDate;

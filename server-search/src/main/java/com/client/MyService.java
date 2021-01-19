@@ -1,12 +1,10 @@
 package com.client;
 
 
+import com.amadeus.AmadeusFacade;
 import com.repository.ReservationRepository;
 import com.repository.UserRepository;
-import com.repository.model.communication.LoginUserRequest;
-import com.repository.model.communication.LoginUserResponse;
-import com.repository.model.communication.RegisterUserRequest;
-import com.repository.model.communication.RegisterUserResponse;
+import com.repository.model.communication.*;
 import com.repository.model.database.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +27,7 @@ public class MyService implements Serializable {
     @Autowired
     private ReservationRepository reservationRepository;
 
+    private final AmadeusFacade amadeusFacade = new AmadeusFacade();
     public void start(int port) throws IOException, ClassNotFoundException {
         ServerSocket serverSocket = new ServerSocket(port);
         log.info("START SERVER");
@@ -51,8 +50,23 @@ public class MyService implements Serializable {
                 out.writeObject(loginUserResponse);
             }
 
+
+
+
+            if (request instanceof SearchFlightRequest) {
+                SearchFlightResponse searchFlightResponse = findSearch((SearchFlightRequest)request);
+                out.writeObject(searchFlightResponse);
+            }
+
             close(clientSocket, out, in);
         }
+    }
+
+    private SearchFlightResponse findSearch(SearchFlightRequest request) {
+        amadeusFacade.searchFlight(request);
+        System.out.println("sda");
+
+        return null;
     }
 
 
@@ -67,15 +81,12 @@ public class MyService implements Serializable {
 
     }
 
-    private RegisterUserResponse userToRegister(RegisterUserRequest registerUserRequest){
+    private RegisterUserResponse userToRegister(RegisterUserRequest registerUserRequest) {
         User user = new User();
         user.setEmail(registerUserRequest.getEmail());
         user.setPassword(registerUserRequest.getPassword());
-        user = userRepository.save(user);
-
-        return user == null ? new RegisterUserResponse("NIE ZAREJESTROWANO"): new RegisterUserResponse("ZAREJESTROWANO");
-
-
+        User createdUser = userRepository.save(user);
+        return createdUser == null ? new RegisterUserResponse("NIE ZAREJESTROWANO") : new RegisterUserResponse("ZAREJESTROWANO");
     }
 
 
