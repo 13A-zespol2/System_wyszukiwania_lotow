@@ -4,6 +4,7 @@ package com.client;
 import com.observer.UserLoginObserver;
 import com.repository.model.communication.LoginUserRequest;
 import com.repository.model.communication.LoginUserResponse;
+import com.repository.model.communication.RegisterUserRequest;
 import com.repository.model.communication.RegisterUserResponse;
 import lombok.Getter;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,8 @@ public class ClientControl {
     public LoginUserResponse loginUserCommunication(LoginUserRequest loginUserRequest) {
         return (LoginUserResponse) send(loginUserRequest);
     }
-    public RegisterUserResponse registerUserResponse(RegisterUserResponse registerUserResponse){
-        return (RegisterUserResponse) send(registerUserResponse);
+    public RegisterUserResponse registerUserCommunication(RegisterUserRequest registerUserRequest){
+        return (RegisterUserResponse) send(registerUserRequest);
     }
 
 

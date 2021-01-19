@@ -23,7 +23,7 @@
          <TextField fx:id="emailInput" layoutX="355.0" layoutY="220.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="250.0" promptText="E-mail" styleClass="log_input" stylesheets="@styles.css" />
       <PasswordField fx:id="passwordInput" layoutX="355.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="250.0" promptText="Password" styleClass="log_input" stylesheets="@styles.css" />
       <PasswordField fx:id="repeatpasswordInput" layoutX="355.0" layoutY="380.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="250.0" promptText="Repeat Password" styleClass="log_input" stylesheets="@styles.css" />
-      <Button id="register_button" layoutX="380.0" layoutY="470.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#validate" prefHeight="60.0" prefWidth="200.0" styleClass="_button" stylesheets="@styles.css" text="Register" textAlignment="CENTER" textFill="WHITE">
+      <Button id="register_button" layoutX="380.0" layoutY="470.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#regButton" prefHeight="60.0" prefWidth="200.0" styleClass="_button" stylesheets="@styles.css" text="Register" textAlignment="CENTER" textFill="WHITE">
          <font>
                <Font name="Berlin Sans FB Bold" size="14.0" />
             </font>

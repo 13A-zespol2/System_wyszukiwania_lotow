@@ -1,6 +1,8 @@
 package com.gui;
 
 import com.client.ClientControl;
+import com.repository.model.communication.RegisterUserRequest;
+import com.repository.model.communication.RegisterUserResponse;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -8,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.type.filter.RegexPatternTypeFilter;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
@@ -51,29 +54,48 @@ public class RegisterPanel implements FxmlLoader{
     }
 
 
-    public void validPassword(){
+    public boolean validPassword(){
         String passRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!^&*().]).{8,20}$";
 
         if(passwordInput.getText().matches(passRegEx)){
             if(repeatpasswordInput.getText().equals(passwordInput.getText())) {
-                log.info("zacha mowi ze powinno dzialac");
+                log.info("HASLO PRAWIDLOWE");
+                return true;
             }
         }
-        else {
-            log.info("zacha mowi ze nie powinno dzialac!");
-        }
+        log.info("HASLO NIEPRAWIDLOWE");
+        return false;
     }
 
-   public void validEmail(){
+   public boolean validEmail(){
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-        if(emailInput.getText().matches(regex))
+        if(emailInput.getText().matches(regex)) {
             log.info("EMAIL PRAWIDLOWY");
-        else
+            return true;
+        }
+
             log.info("EMAIL NIEPRAWIDLOWY");
+            return false;
+
     }
 
-    public void validate(){
-        validEmail();
-        validPassword();
+    public void regButton(){
+
+
+        if(validPassword() && validEmail()){
+            RegisterUserRequest registerUserRequest = new RegisterUserRequest(emailInput.getText(), passwordInput.getText());
+            RegisterUserResponse registerUserResponse = clientControl.registerUserCommunication(registerUserRequest);
+            log.info(registerUserResponse.getStatus());
+        }
+        else{
+
+            log.info("NIEPRAWIDLOWE DANE");
+
+        }
+
+
+
+
+
     }
 }

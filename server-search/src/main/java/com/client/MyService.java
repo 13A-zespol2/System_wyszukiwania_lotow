@@ -51,6 +51,11 @@ public class MyService implements Serializable {
                 out.writeObject(loginUserResponse);
             }
 
+            if (request instanceof RegisterUserRequest){
+                RegisterUserResponse registerUserResponse = userToRegister((RegisterUserRequest) request);
+                out.writeObject(registerUserResponse);
+            }
+
             close(clientSocket, out, in);
         }
     }
@@ -72,6 +77,7 @@ public class MyService implements Serializable {
         user.setEmail(registerUserRequest.getEmail());
         user.setPassword(registerUserRequest.getPassword());
         user = userRepository.save(user);
+
 
         return user == null ? new RegisterUserResponse("NIE ZAREJESTROWANO"): new RegisterUserResponse("ZAREJESTROWANO");
 
