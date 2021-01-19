@@ -94,10 +94,6 @@ public class MyService implements Serializable {
 
 
         return user == null ? new RegisterUserResponse("NIE ZAREJESTROWANO"): new RegisterUserResponse("ZAREJESTROWANO");
-
-
-        User createdUser = userRepository.save(user);
-        return createdUser == null ? new RegisterUserResponse("NIE ZAREJESTROWANO") : new RegisterUserResponse("ZAREJESTROWANO");
     }
 
 

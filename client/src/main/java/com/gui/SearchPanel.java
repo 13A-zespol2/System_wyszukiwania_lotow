@@ -2,6 +2,11 @@ package com.gui;
 
 import com.client.ClientControl;
 import com.gluonhq.charm.glisten.control.Icon;
+import com.repository.model.communication.SearchFlightRequest;
+import com.repository.model.communication.SearchFlightResponse;
+import com.repository.model.data.AirportCode;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
