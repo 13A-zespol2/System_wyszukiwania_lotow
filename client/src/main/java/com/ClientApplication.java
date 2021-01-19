@@ -31,14 +31,13 @@ public class ClientApplication extends Application {
         springContext = SpringApplication.run(ClientApplication.class);
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(springContext::getBean);
-        fxmlLoader.setLocation((getClass().getResource("/LogIn.fxml")));
+        fxmlLoader.setLocation((getClass().getResource("/MainPanel.fxml")));
         rootNode = fxmlLoader.load();
     }
 
     @Override
     public void start(Stage primaryStage) {
-        Scene scene = new Scene(rootNode, 960, 768);
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+        Scene scene = new Scene(rootNode, 960, 640);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.sizeToScene();

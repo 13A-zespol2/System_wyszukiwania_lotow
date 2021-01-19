@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import org.springframework.stereotype.Controller;
 @Slf4j
 @Controller
 @Component
-public class LoginPanel implements InitializingBean, LoginListener {
+public class LoginPanel implements InitializingBean, LoginListener, FxmlLoader {
 
     @Autowired
     private ClientControl clientControl;
@@ -28,9 +29,13 @@ public class LoginPanel implements InitializingBean, LoginListener {
     @Autowired
     private UserLoginObserver userLoginObserver;
 
+    @Autowired
+    private MainPanel mainPanel;
+    @Autowired
+    private SpringFxmlLoader springFxmlLoader;
+
     @FXML
     private PasswordField logPassw;
-
     @FXML
     private TextField emailLabel;
 
@@ -49,20 +54,25 @@ public class LoginPanel implements InitializingBean, LoginListener {
         //TODO walidacja hasla osobna metoda do walidacji hasla
 
         //TODO dodanie labela do wyswietlania informacji o bledzie lub
-
-        LoginUserRequest loginUserRequest = new LoginUserRequest(emailLabel.getText(), logPassw.getText());
+        mainPanel.getMainLoad().getChildren().add(loadUi("/Register"));
+        System.out.println("Dsa");
+     /*   LoginUserRequest loginUserRequest = new LoginUserRequest(emailLabel.getText(), logPassw.getText());
         LoginUserResponse loginUserResponse = clientControl.loginUserCommunication(loginUserRequest);
         log.info(loginUserResponse.getStatus());
         if (loginUserResponse.getUser() != null) {
             update(loginUserResponse.getUser());
-        }
+        }*/
 
-        System.out.println("Dsa");
     }
 
 
     @Override
     public void update(User user) {
         userLoginObserver.loginNotify(user);
+    }
+
+    @Override
+    public AnchorPane loadUi(String ui) {
+        return (AnchorPane) springFxmlLoader.load(ui + ".fxml");
     }
 }
