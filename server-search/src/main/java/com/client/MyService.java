@@ -63,7 +63,7 @@ public class MyService implements Serializable {
             return new LoginUserResponse(user, "ZALOGOWANO");
         }
 
-        return new LoginUserResponse("BLEDNY UZYTKOWNIK");
+        return new LoginUserResponse("BLEDNY LOGIN LUB HASLO");
 
     }
 

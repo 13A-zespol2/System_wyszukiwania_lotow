@@ -13,7 +13,7 @@ public class CustomTravelerCreationStrategy implements TravelerCreationStrategy 
     private String documentType;
     private String numberDocument;
     private String expireDate;
-    private String issuanceCountry;
+    private String issuanceCountry ;
     private String nationality;
     private int idMyTraveler;
     private String name;

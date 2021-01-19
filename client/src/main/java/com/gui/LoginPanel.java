@@ -39,30 +39,56 @@ public class LoginPanel implements InitializingBean, LoginListener, FxmlLoader {
     @FXML
     private TextField emailLabel;
 
-
     @Override
     public void afterPropertiesSet() {
 
     }
 
 
+
+/*    public void validPassword(){
+        String passRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20}$";
+
+        if(logPassw.getText().matches(passRegEx))
+            log.info("zacha mowi ze powinno dzialac");
+        else
+
+        log.info("zacha mowi ze nie powinno dzialac!");
+    }*/
+
+/*    public void validEmail(){
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        if(emailLabel.getText().matches(regex))
+            log.info("EMAIL PRAWIDLOWY");
+        else
+            log.info("EMAIL NIEPRAWIDLOWY");
+
+    }*/
+
     public void logButton(MouseEvent mouseEvent) {
+
         if (emailLabel.getText().isEmpty())
             log.error("Pole email puste");
         if (logPassw.getText().isEmpty())
             log.error("Pole password puste");
+
+
+
+
+
         //TODO walidacja hasla osobna metoda do walidacji hasla
 
         //TODO dodanie labela do wyswietlania informacji o bledzie lub
-        mainPanel.getMainLoad().getChildren().add(loadUi("/Register"));
-        System.out.println("Dsa");
-     /*   LoginUserRequest loginUserRequest = new LoginUserRequest(emailLabel.getText(), logPassw.getText());
+/*        System.out.println("Dsa");
+        LoginUserRequest loginUserRequest = new LoginUserRequest(emailLabel.getText(), logPassw.getText());
         LoginUserResponse loginUserResponse = clientControl.loginUserCommunication(loginUserRequest);
+
+
         log.info(loginUserResponse.getStatus());
         if (loginUserResponse.getUser() != null) {
             update(loginUserResponse.getUser());
+            mainPanel.getMainLoad().getChildren().add(loadUi("/Register"));
         }*/
-
     }
 
 
