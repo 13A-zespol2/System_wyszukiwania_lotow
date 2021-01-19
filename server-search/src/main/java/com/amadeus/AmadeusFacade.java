@@ -54,8 +54,6 @@ public class AmadeusFacade {
         amadeusFlightSearch.setAdults(String.valueOf(searchFlightRequest.getAdults()));
         amadeusFlightSearch.setTravelClass(searchFlightRequest.getTravelClass());
         amadeusFlightSearch.setChildren(String.valueOf(searchFlightRequest.getChildren()));
-        amadeusFlightSearch.setInfants(String.valueOf(searchFlightRequest.getInfants()));
-        amadeusFlightSearch.setNonStop(String.valueOf(searchFlightRequest.isNonStop()));
         try {
             flightOfferSearches = amadeusFlightSearch.searchFlight();
 
