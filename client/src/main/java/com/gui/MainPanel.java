@@ -4,6 +4,7 @@ import com.client.ClientControl;
 import com.observer.LoginListener;
 import com.observer.UserLoginObserver;
 import com.repository.model.database.User;
+import com.gluonhq.charm.glisten.control.Icon;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -30,23 +31,37 @@ public class MainPanel implements FxmlLoader, LoginListener {
     @Getter
     @FXML
     private AnchorPane mainLoad;
-    private Button login_button;
-    private Button register_button;
-    private Button search_button;
-    private HBox parent;
-    private Label minimize_btn;
+
+    @FXML
+    private Icon icon;
+
+
 
 
     public void searchFlights(MouseEvent mouseEvent) {
+        if (!mainLoad.getChildren().isEmpty()) {
+            mainLoad.getChildren().clear();
+        }
+        AnchorPane root = loadUi("/searchPanel");
+        mainLoad.getChildren().add(root);
+
     }
 
     public void exit_btn(MouseEvent mouseEvent) {
+        System.exit(0);
     }
 
-    public void minimize_btn(MouseEvent mouseEvent) {
+    public void minimize_btn(MouseEvent event) {
+        TopBar topbar = new TopBar();
+        topbar.minimize_btn(event);
     }
 
     public void register(MouseEvent mouseEvent) {
+        if (!mainLoad.getChildren().isEmpty()) {
+            mainLoad.getChildren().clear();
+        }
+        AnchorPane root = loadUi("/Register");
+        mainLoad.getChildren().add(root);
     }
 
     public void login(MouseEvent mouseEvent) {
@@ -68,5 +83,11 @@ public class MainPanel implements FxmlLoader, LoginListener {
     @Override
     public void update(User user) {
 
+    }
+
+
+    public void dragScene(MouseEvent event) {
+        TopBar topbar = new TopBar();
+        topbar.dragScene(event);
     }
 }

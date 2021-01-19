@@ -11,11 +11,9 @@ import org.springframework.stereotype.Controller;
 @Slf4j
 @Controller
 @Component
-public class ClientPanel implements FxmlLoader{
-
+public class SearchPanel implements FxmlLoader{
     @Autowired
     private ClientControl clientControl;
-
     @Autowired
     private MainPanel mainPanel;
 
@@ -28,7 +26,7 @@ public class ClientPanel implements FxmlLoader{
     }
 
     public void exit_btn(MouseEvent event) {
-        System.exit(0);
+         System.exit(0);
     }
 
     public void minimize_btn(MouseEvent event) {
