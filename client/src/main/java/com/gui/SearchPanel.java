@@ -1,12 +1,7 @@
 package com.gui;
 
 import com.client.ClientControl;
-import com.repository.model.communication.CreateUserRequest;
-import com.repository.model.communication.SearchFlightRequest;
-import com.repository.model.communication.SearchFlightResponse;
-import com.repository.model.data.AirportCode;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import com.gluonhq.charm.glisten.control.Icon;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -35,6 +30,9 @@ public class SearchPanel implements FxmlLoader, Initializable {
 
 
     @FXML
+    private Icon icon;
+
+    @FXML
     private ComboBox<String> originLocationCode;
 
     @FXML
@@ -60,6 +58,7 @@ public class SearchPanel implements FxmlLoader, Initializable {
 
     @FXML
     private Button search_SB;
+
 
 
     public void homeFunc(MouseEvent event) {
