@@ -57,7 +57,8 @@ public class LoginPanel implements InitializingBean, LoginListener {
             update(loginUserResponse.getUser());
         }
 
-        System.out.println("Dsa");
+        System.out.println("asa");
+
     }
 
 

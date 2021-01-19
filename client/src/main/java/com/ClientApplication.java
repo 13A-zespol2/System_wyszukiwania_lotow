@@ -46,6 +46,7 @@ public class ClientApplication extends Application {
 
     }
 
+
     @Override
     public void stop() {
         springContext.stop();
