@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/client/client-search-flight.iml" filepath="$PROJECT_DIR$/client/client-search-flight.iml" />
+      <module fileurl="file://$PROJECT_DIR$/data-model/data-model-flight.iml" filepath="$PROJECT_DIR$/data-model/data-model-flight.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo.iml" filepath="$PROJECT_DIR$/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server-search/server-search-flight.iml" filepath="$PROJECT_DIR$/server-search/server-search-flight.iml" />
+    </modules>
+  </component>
+</project>

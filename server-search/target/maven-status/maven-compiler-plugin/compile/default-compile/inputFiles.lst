@@ -1,0 +1,14 @@
+C:\Users\Paweł\Desktop\Moje materialy\Semestr 5\Podstawy inżynierii programowania\Projekt\System_wyszukiwania_lotow\server-search\src\main\java\com\MainServer.java
+C:\Users\Paweł\Desktop\Moje materialy\Semestr 5\Podstawy inżynierii programowania\Projekt\System_wyszukiwania_lotow\server-search\src\main\java\com\strategy\TravelerCreationStrategy.java
+C:\Users\Paweł\Desktop\Moje materialy\Semestr 5\Podstawy inżynierii programowania\Projekt\System_wyszukiwania_lotow\server-search\src\main\java\com\repository\MyTravelerRepository.java
+C:\Users\Paweł\Desktop\Moje materialy\Semestr 5\Podstawy inżynierii programowania\Projekt\System_wyszukiwania_lotow\server-search\src\main\java\com\ServerException.java
+C:\Users\Paweł\Desktop\Moje materialy\Semestr 5\Podstawy inżynierii programowania\Projekt\System_wyszukiwania_lotow\server-search\src\main\java\com\client\MyService.java
+C:\Users\Paweł\Desktop\Moje materialy\Semestr 5\Podstawy inżynierii programowania\Projekt\System_wyszukiwania_lotow\server-search\src\main\java\com\strategy\CustomTravelerCreationStrategy.java
+C:\Users\Paweł\Desktop\Moje materialy\Semestr 5\Podstawy inżynierii programowania\Projekt\System_wyszukiwania_lotow\server-search\src\main\java\com\repository\UserRepository.java
+C:\Users\Paweł\Desktop\Moje materialy\Semestr 5\Podstawy inżynierii programowania\Projekt\System_wyszukiwania_lotow\server-search\src\main\java\com\amadeus\AmadeusFlightSearch.java
+C:\Users\Paweł\Desktop\Moje materialy\Semestr 5\Podstawy inżynierii programowania\Projekt\System_wyszukiwania_lotow\server-search\src\main\java\com\amadeus\AmadeusCreateOrder.java
+C:\Users\Paweł\Desktop\Moje materialy\Semestr 5\Podstawy inżynierii programowania\Projekt\System_wyszukiwania_lotow\server-search\src\main\java\com\amadeus\AmadeusFacade.java
+C:\Users\Paweł\Desktop\Moje materialy\Semestr 5\Podstawy inżynierii programowania\Projekt\System_wyszukiwania_lotow\server-search\src\main\java\com\repository\ReservationRepository.java
+C:\Users\Paweł\Desktop\Moje materialy\Semestr 5\Podstawy inżynierii programowania\Projekt\System_wyszukiwania_lotow\server-search\src\main\java\com\repository\TravelerDocumentRepository.java
+C:\Users\Paweł\Desktop\Moje materialy\Semestr 5\Podstawy inżynierii programowania\Projekt\System_wyszukiwania_lotow\server-search\src\main\java\com\strategy\UserBasedTravelerCreationStrategy.java
+C:\Users\Paweł\Desktop\Moje materialy\Semestr 5\Podstawy inżynierii programowania\Projekt\System_wyszukiwania_lotow\server-search\src\main\java\com\amadeus\AmadeusOrderManagement.java

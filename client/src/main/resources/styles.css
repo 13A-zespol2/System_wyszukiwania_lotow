@@ -1,0 +1,200 @@
+/*LOGIN SCENE*/
+.login_bg{
+	-fx-background-image: url("bg3.jpg");
+	-fx-background-size:cover;
+	-fx-background-repeat: no-repeat;
+}
+
+
+.login_blur{
+	-fx-background-color: #00AEEF;
+	-fx-background-radius: 20px;
+}
+
+
+.logo_view{
+	-fx-background-image: url("logo.png");
+	-fx-background-position:top center;
+	-fx-background-repeat: no-repeat;
+}
+
+
+.log_input{
+	-fx-background-color: #ffffff;
+	-fx-background-radius: 5px;
+	-fx-opacity:0.75;
+}
+
+._button {
+   -fx-background-color: 
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        linear-gradient(#20262b, #191d22),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Arial";
+    -fx-text-fill: #fff;
+    -fx-font-size: 18px;
+    -fx-padding: 10 20 10 20;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*REGISTER SCENE*/
+
+
+
+.reg_input{
+	-fx-background-color: #ffffff;
+	-fx-background-radius: 5px;
+	-fx-opacity:0.85;
+}
+
+
+#register_button {
+   -fx-background-color: 
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        linear-gradient(#20262b, #191d22),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Helvetica";
+    -fx-text-fill: #fff;
+    -fx-font-size: 18px;
+    -fx-padding: 10 20 10 20;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*FLIGHT SEARCH SCENE*/
+
+.top_hbox{
+	-fx-background-color: #ffffff;
+	 -fx-border-style: hidden hidden solid hidden;
+  -fx-border-color: #00AEEF;
+  -fx-border-width: 1;
+}
+
+
+.hbox_logo{
+	-fx-background-image: url("small_logo.png");
+	-fx-background-position:top center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size:contain;
+}
+
+
+.pane_label{
+	-fx-font-family: "Montserrat";
+    -fx-text-fill: black;
+	-fx-opacity:0.7;
+    -fx-font-size: 22px;
+	-fx-letter-spacing:20px;
+    -fx-padding: 10 20 10 20;
+}
+
+
+
+.search_box_top{
+	-fx-background-color: #fff;
+	-fx-opacity:1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*CLIENT SCENE*/
+
+.panel_bg{
+	-fx-background-image: url("bg3.jpg");
+	-fx-background-size:cover;
+	-fx-background-repeat: no-repeat;
+	-fx-opacity:0.99;
+}
+
+
+
+.client_main{
+	-fx-background-color: #fcfcfc;
+	-fx-opacity:0.65;
+}
+
+
+
+
+.left_panel{
+	-fx-background-color: #ffffff;
+	-fx-border-style: hidden solid hidden hidden;
+	-fx-border-color: #00AEEF;
+	-fx-border-width: 1;
+}
+
+
+.def_icon{
+	-fx-border-style: hidden hidden solid hidden;
+	-fx-border-color: #dbdbdb;
+	-fx-border-width: 1;
+	-fx-background-color: #00AEEF;
+}
+
+
+.thin_label{
+	-fx-font-family: "Verdana";
+    -fx-text-fill: black;
+	-fx-opacity:0.7;
+    -fx-font-size: 18px;
+	-fx-letter-spacing:20px;
+    -fx-padding: 10 20 10 20;
+	-fx-text-align:center;
+	-fx-border-style: hidden hidden solid hidden;
+	-fx-border-color: #dbdbdb;
+	-fx-border-width: 1;
+}
+
+
+
+.data_vbox{
+	-fx-background-color: rgba(255,255,255,0.4);
+	-fx-border-style: hidden solid hidden hidden;
+	-fx-border-color: #00AEEF;;
+	-fx-border-width: 1;
+}
+
+.activated{
+	-fx-background-color: #00AEEF;
+}
+
+
+
