@@ -54,15 +54,15 @@ public class LoginPanel implements InitializingBean, LoginListener, FxmlLoader {
         //TODO walidacja hasla osobna metoda do walidacji hasla
 
         //TODO dodanie labela do wyswietlania informacji o bledzie lub
-        mainPanel.getMainLoad().getChildren().add(loadUi("/Register"));
-        System.out.println("Dsa");
-     /*   LoginUserRequest loginUserRequest = new LoginUserRequest(emailLabel.getText(), logPassw.getText());
+        LoginUserRequest loginUserRequest = new LoginUserRequest(emailLabel.getText(), logPassw.getText());
         LoginUserResponse loginUserResponse = clientControl.loginUserCommunication(loginUserRequest);
         log.info(loginUserResponse.getStatus());
         if (loginUserResponse.getUser() != null) {
             update(loginUserResponse.getUser());
-        }*/
-
+            mainPanel.getMainLoad().getChildren().add(loadUi("/clientPanel"));
+            System.out.println("Dsa");
+            //TODO Jestes zalogowany jako:
+        }
     }
 
 

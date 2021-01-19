@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 @Slf4j
 @Controller
 @Component
-public class SerachPanel {
+public class SearchPanel {
     @Autowired
     private ClientControl clientControl;
 
