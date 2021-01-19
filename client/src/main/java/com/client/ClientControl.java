@@ -1,8 +1,10 @@
 package com.client;
 
 
+import com.observer.UserLoginObserver;
 import com.repository.model.communication.LoginUserRequest;
 import com.repository.model.communication.LoginUserResponse;
+import lombok.Getter;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -14,7 +16,6 @@ import java.net.Socket;
 public class ClientControl {
     private final static String IP_ADDRESS = "127.0.0.1";
     private final static int SERVER_PORT = 8892;
-
 
     public LoginUserResponse loginUserCommunication(LoginUserRequest loginUserRequest) {
         return (LoginUserResponse) send(loginUserRequest);

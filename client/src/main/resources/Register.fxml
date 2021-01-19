@@ -9,17 +9,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-      <AnchorPane disable="true" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="login_bg" stylesheets="@styles.css">
-         <children>
-            <Layer autoHide="false" layoutX="180.0" layoutY="70.0" opacity="0.4" prefHeight="500.0" prefWidth="600.0" styleClass="login_blur" stylesheets="@styles.css">
-               <effect>
-                  <BoxBlur height="10.0" iterations="3" width="10.0" />
-               </effect>
-            </Layer>
-            <Layer layoutX="255.0" layoutY="40.0" prefHeight="150.0" prefWidth="450.0" styleClass="logo_view" stylesheets="@styles.css" />
-            <Button id="register_button" layoutX="380.0" layoutY="444.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" stylesheets="@styles.css" text="Register" textAlignment="CENTER" textFill="WHITE">
-               <font>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="com.gui.RegisterPanel">
+   <AnchorPane disable="true" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+               minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="login_bg"
+               stylesheets="@styles.css">
+      <children>
+         <Layer autoHide="false" layoutX="180.0" layoutY="70.0" opacity="0.4" prefHeight="500.0" prefWidth="600.0"
+                styleClass="login_blur" stylesheets="@styles.css">
+            <effect>
+               <BoxBlur height="10.0" iterations="3" width="10.0"/>
+            </effect>
+         </Layer>
+         <Layer layoutX="255.0" layoutY="40.0" prefHeight="150.0" prefWidth="450.0" styleClass="logo_view"
+                stylesheets="@styles.css"/>
+         <Button id="register_button" layoutX="380.0" layoutY="444.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                 minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0"
+                 stylesheets="@styles.css" text="Register" textAlignment="CENTER" textFill="WHITE">
+            <font>
                   <Font name="Berlin Sans FB Bold" size="14.0" />
                </font>
             </Button>

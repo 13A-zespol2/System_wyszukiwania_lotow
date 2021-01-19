@@ -1,8 +1,11 @@
 package com.gui;
 
 import com.client.ClientControl;
+import com.observer.LoginListener;
+import com.observer.UserLoginObserver;
 import com.repository.model.communication.LoginUserRequest;
 import com.repository.model.communication.LoginUserResponse;
+import com.repository.model.database.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -17,11 +20,13 @@ import org.springframework.stereotype.Controller;
 @Slf4j
 @Controller
 @Component
-public class LoginPanel implements InitializingBean {
+public class LoginPanel implements InitializingBean, LoginListener {
 
     @Autowired
-    ClientControl clientControl;
+    private ClientControl clientControl;
 
+    @Autowired
+    private UserLoginObserver userLoginObserver;
 
     @FXML
     private PasswordField logPassw;
@@ -42,12 +47,22 @@ public class LoginPanel implements InitializingBean {
         if (logPassw.getText().isEmpty())
             log.error("Pole password puste");
         //TODO walidacja hasla osobna metoda do walidacji hasla
-        //TODO podpiecie dekoratora
+
         //TODO dodanie labela do wyswietlania informacji o bledzie lub
 
         LoginUserRequest loginUserRequest = new LoginUserRequest(emailLabel.getText(), logPassw.getText());
         LoginUserResponse loginUserResponse = clientControl.loginUserCommunication(loginUserRequest);
         log.info(loginUserResponse.getStatus());
+        if (loginUserResponse.getUser() != null) {
+            update(loginUserResponse.getUser());
+        }
+
         System.out.println("Dsa");
+    }
+
+
+    @Override
+    public void update(User user) {
+        userLoginObserver.loginNotify(user);
     }
 }

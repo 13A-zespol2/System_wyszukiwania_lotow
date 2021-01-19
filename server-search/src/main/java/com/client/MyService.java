@@ -1,10 +1,10 @@
 package com.client;
 
 
+import com.repository.ReservationRepository;
 import com.repository.UserRepository;
 import com.repository.model.communication.LoginUserRequest;
 import com.repository.model.communication.LoginUserResponse;
-import com.repository.model.data.AirportCode;
 import com.repository.model.database.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Map;
 
 
 @Slf4j
@@ -25,7 +24,8 @@ import java.util.Map;
 public class MyService implements Serializable {
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
+    private ReservationRepository reservationRepository;
 
     public void start(int port) throws IOException, ClassNotFoundException {
         ServerSocket serverSocket = new ServerSocket(port);

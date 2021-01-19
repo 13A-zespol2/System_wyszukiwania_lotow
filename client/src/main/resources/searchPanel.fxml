@@ -11,17 +11,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-      <AnchorPane disable="true" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="panel_bg" stylesheets="@styles.css">
-         <children>
-            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="960.0" styleClass="top_hbox" stylesheets="@styles.css" />
-            <Layer accessibleRole="IMAGE_VIEW" layoutX="24.0" layoutY="14.0" prefHeight="45.0" prefWidth="130.0" styleClass="hbox_logo" stylesheets="@styles.css" />
-            <Separator layoutX="888.0" layoutY="3.0" orientation="VERTICAL" prefHeight="64.0" stylesheets="@styles.css">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Separator>
-            <Label layoutX="200.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label" stylesheets="@styles.css" text="Wyszukaj lot">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="com.gui.SearchPanel">
+   <AnchorPane disable="true" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+               minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="panel_bg"
+               stylesheets="@styles.css">
+      <children>
+         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+               prefHeight="70.0" prefWidth="960.0" styleClass="top_hbox" stylesheets="@styles.css"/>
+         <Layer accessibleRole="IMAGE_VIEW" layoutX="24.0" layoutY="14.0" prefHeight="45.0" prefWidth="130.0"
+                styleClass="hbox_logo" stylesheets="@styles.css"/>
+         <Separator layoutX="888.0" layoutY="3.0" orientation="VERTICAL" prefHeight="64.0" stylesheets="@styles.css">
+            <opaqueInsets>
+               <Insets/>
+            </opaqueInsets>
+         </Separator>
+         <Label layoutX="200.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label" stylesheets="@styles.css"
+                text="Wyszukaj lot">
                <font>
                   <Font name="Bell MT Bold" size="13.0" />
                </font>
