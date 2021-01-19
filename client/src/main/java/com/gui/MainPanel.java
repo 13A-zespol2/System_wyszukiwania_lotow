@@ -35,13 +35,6 @@ public class MainPanel implements FxmlLoader, LoginListener {
     @FXML
     private AnchorPane mainLoad;
 
-    @FXML
-    private Icon icon;
-    private HBox parent;
-
-    private static double xOffset = 0;
-    private static double yOffset = 0;
-
     public void searchFlights(MouseEvent mouseEvent) {
         if (!mainLoad.getChildren().isEmpty()) {
             mainLoad.getChildren().clear();
