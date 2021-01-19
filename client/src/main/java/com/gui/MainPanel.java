@@ -48,9 +48,12 @@ public class MainPanel implements FxmlLoader, LoginListener {
     }
 
     public void exit_btn(MouseEvent mouseEvent) {
+        System.exit(0);
     }
 
-    public void minimize_btn(MouseEvent mouseEvent) {
+    public void minimize_btn(MouseEvent event) {
+        TopBar topbar = new TopBar();
+        topbar.minimize_btn(event);
     }
 
     public void register(MouseEvent mouseEvent) {
@@ -59,7 +62,6 @@ public class MainPanel implements FxmlLoader, LoginListener {
         }
         AnchorPane root = loadUi("/Register");
         mainLoad.getChildren().add(root);
-
     }
 
     public void login(MouseEvent mouseEvent) {
@@ -81,5 +83,11 @@ public class MainPanel implements FxmlLoader, LoginListener {
     @Override
     public void update(User user) {
 
+    }
+
+
+    public void dragScene(MouseEvent event) {
+        TopBar topbar = new TopBar();
+        topbar.dragScene(event);
     }
 }

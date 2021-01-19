@@ -2,8 +2,10 @@ package com;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -29,6 +31,7 @@ public class ClientApplication extends Application {
     @Override
     public void init() throws IOException {
         springContext = SpringApplication.run(ClientApplication.class);
+
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(springContext::getBean);
         fxmlLoader.setLocation((getClass().getResource("/MainPanel.fxml")));
@@ -42,11 +45,16 @@ public class ClientApplication extends Application {
         primaryStage.setResizable(false);
         primaryStage.sizeToScene();
         primaryStage.show();
-
     }
 
     @Override
     public void stop() {
         springContext.stop();
     }
+
+    public void minimize_btn(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
+
 }

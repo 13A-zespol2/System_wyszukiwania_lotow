@@ -4,6 +4,7 @@
 <?import com.gluonhq.charm.glisten.layout.Layer?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,71 +12,93 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1"
-            fx:controller="com.gui.ClientPanel">
-   <AnchorPane disable="true" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-               minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="panel_bg"
-               stylesheets="@styles.css">
-      <children>
-         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-               prefHeight="70.0" prefWidth="960.0" styleClass="top_hbox" stylesheets="@styles.css"/>
-         <Layer accessibleRole="IMAGE_VIEW" layoutX="24.0" layoutY="14.0" prefHeight="45.0" prefWidth="130.0"
-                styleClass="hbox_logo" stylesheets="@styles.css"/>
-         <Separator layoutX="888.0" layoutY="3.0" orientation="VERTICAL" prefHeight="64.0" stylesheets="@styles.css">
-            <opaqueInsets>
-               <Insets/>
-            </opaqueInsets>
-         </Separator>
-         <Label layoutX="200.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label" stylesheets="@styles.css"
-                text="Panel Klienta">
-            <font>
-               <Font name="Bell MT Bold" size="13.0"/>
+<AnchorPane disable="true" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="panel_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.ClientPanel">
+   <children>
+      <HBox alignment="CENTER" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="960.0" styleClass="top_hbox" stylesheets="@styles.css" />
+      <Layer accessibleRole="IMAGE_VIEW" layoutX="24.0" layoutY="44.0" prefHeight="45.0" prefWidth="130.0" styleClass="hbox_logo" stylesheets="@styles.css" />
+      <Separator layoutX="888.0" layoutY="30.0" orientation="VERTICAL" prefHeight="64.0" stylesheets="@styles.css">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Separator>
+      <Label layoutX="200.0" layoutY="30.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label" stylesheets="@styles.css" text="Panel Klienta">
+         <font>
+            <Font name="Bell MT Bold" size="13.0" />
+            </font>
+         </Label>
+         <Icon content="POWER_SETTINGS_NEW" layoutX="895.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0" />
+         <HBox layoutX="280.0" layoutY="100.0" prefHeight="540.0" prefWidth="681.0" styleClass="client_main" stylesheets="@styles.css" />
+         <VBox layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="80.0" styleClass="left_panel" stylesheets="@styles.css">
+            <children>
+               <Icon content="HOME" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="def_icon" stylesheets="@styles.css">
+                  <VBox.margin>
+                     <Insets top="50.0" />
+                  </VBox.margin>
+               </Icon>
+               <Icon content="PERSON" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="def_icon" stylesheets="@styles.css">
+                  <VBox.margin>
+                     <Insets top="15.0" />
+                  </VBox.margin>
+               </Icon>
+               <Icon content="SEARCH" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="def_icon" stylesheets="@styles.css">
+                  <VBox.margin>
+                     <Insets top="15.0" />
+                  </VBox.margin>
+               </Icon>
+            </children>
+            <padding>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+         </VBox>
+         <VBox layoutX="80.0" layoutY="100.0" prefHeight="540.0" prefWidth="200.0" styleClass="data_vbox" stylesheets="@styles.css">
+            <children>
+               <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" stylesheets="@styles.css" text="Dane" textAlignment="CENTER">
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+                  <styleClass>
+                     <String fx:value="thin_label" />
+                     <String fx:value="activated" />
+                  </styleClass>
+               </Label>
+               <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="thin_label" stylesheets="@styles.css" text="Loty" textAlignment="CENTER" />
+               <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="thin_label" stylesheets="@styles.css" text="Wyszukiwania" textAlignment="CENTER" />
+               <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="thin_label" stylesheets="@styles.css" text="Bilety" textAlignment="CENTER" />
+            </children>
+            <padding>
+               <Insets right="1.0" />
+            </padding>
+         </VBox>
+      <HBox fx:id="parent" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onDragEntered="#dragScene" prefHeight="30.0" prefWidth="960.0" style="-fx-background-color: #dedede; -fx-opacity: 1;">
+         <children>
+            <Label fx:id="minimize_btn" alignment="TOP_CENTER" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#minimize_btn" prefHeight="30.0" prefWidth="30.0" style="-fx-opacity: 1;" styleClass="min_btn" text="_" textAlignment="RIGHT">
+               <font>
+                  <Font name="Agency FB Bold" size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
-            <Icon content="POWER_SETTINGS_NEW" layoutX="895.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0" />
-            <HBox layoutX="280.0" layoutY="70.0" prefHeight="570.0" prefWidth="681.0" styleClass="client_main" stylesheets="@styles.css" />
-            <VBox layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="80.0" styleClass="left_panel" stylesheets="@styles.css">
-               <children>
-                  <Icon content="HOME" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="def_icon" stylesheets="@styles.css">
-                     <VBox.margin>
-                        <Insets top="50.0" />
-                     </VBox.margin>
-                  </Icon>
-                  <Icon content="PERSON" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="def_icon" stylesheets="@styles.css">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                  </Icon>
-                  <Icon content="SEARCH" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="def_icon" stylesheets="@styles.css">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                  </Icon>
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </VBox>
-            <VBox layoutX="80.0" layoutY="70.0" prefHeight="570.0" prefWidth="200.0" styleClass="data_vbox" stylesheets="@styles.css">
-               <children>
-                  <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" stylesheets="@styles.css" text="Dane" textAlignment="CENTER">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <styleClass>
-                        <String fx:value="thin_label" />
-                        <String fx:value="activated" />
-                     </styleClass>
-                  </Label>
-                  <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="thin_label" stylesheets="@styles.css" text="Loty" textAlignment="CENTER" />
-                  <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="thin_label" stylesheets="@styles.css" text="Wyszukiwania" textAlignment="CENTER" />
-                  <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="thin_label" stylesheets="@styles.css" text="Bilety" textAlignment="CENTER" />
-               </children>
-               <padding>
-                  <Insets right="1.0" />
-               </padding>
-            </VBox>
+            <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#exit_btn" prefHeight="30.0" prefWidth="30.0" style="-fx-opacity: 1;" styleClass="exit_btn" text="x">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
          </children>
-      </AnchorPane>
-</AnchorPane>
+         <cursor>
+            <Cursor fx:constant="MOVE" />
+         </cursor>
+      </HBox>
+      <Label layoutY="-3.0" onMouseClicked="#homeFunc" style="-fx-opacity: 1;" text="&lt;">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <padding>
+            <Insets left="5.0" right="5.0" />
+         </padding>
+      </Label>
+      </children>
+   </AnchorPane>
