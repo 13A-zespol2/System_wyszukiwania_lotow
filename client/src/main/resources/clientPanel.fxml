@@ -69,7 +69,7 @@
                <Insets right="1.0" />
             </padding>
          </VBox>
-      <HBox fx:id="parent" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onDragEntered="#dragScene" prefHeight="30.0" prefWidth="960.0" style="-fx-background-color: #dedede; -fx-opacity: 1;">
+      <HBox fx:id="parent" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="960.0" style="-fx-background-color: #dedede; -fx-opacity: 1;">
          <children>
             <Label fx:id="minimize_btn" alignment="TOP_CENTER" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#minimize_btn" prefHeight="30.0" prefWidth="30.0" style="-fx-opacity: 1;" styleClass="min_btn" text="_" textAlignment="RIGHT">
                <font>
