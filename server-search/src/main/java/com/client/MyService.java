@@ -5,6 +5,8 @@ import com.repository.ReservationRepository;
 import com.repository.UserRepository;
 import com.repository.model.communication.LoginUserRequest;
 import com.repository.model.communication.LoginUserResponse;
+import com.repository.model.communication.RegisterUserRequest;
+import com.repository.model.communication.RegisterUserResponse;
 import com.repository.model.database.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +64,17 @@ public class MyService implements Serializable {
         }
 
         return new LoginUserResponse("BLEDNY UZYTKOWNIK");
+
+    }
+
+    private RegisterUserResponse userToRegister(RegisterUserRequest registerUserRequest){
+        User user = new User();
+        user.setEmail(registerUserRequest.getEmail());
+        user.setPassword(registerUserRequest.getPassword());
+        user = userRepository.save(user);
+
+        return user == null ? new RegisterUserResponse("NIE ZAREJESTROWANO"): new RegisterUserResponse("ZAREJESTROWANO");
+
 
     }
 
