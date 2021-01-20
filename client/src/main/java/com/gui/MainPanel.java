@@ -1,62 +1,49 @@
 package com.gui;
 
-import com.client.ClientControl;
-import com.observer.LoginListener;
-import com.observer.UserLoginObserver;
 import com.repository.model.database.User;
-import com.gluonhq.charm.glisten.control.Icon;
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
-import java.awt.*;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Controller
 @Component
-public class MainPanel implements FxmlLoader, LoginListener {
+public class MainPanel extends GuiPanel {
 
-    @Autowired
-    private ClientControl clientControl;
+    public Button login_button;
 
-    @Autowired
-    private SpringFxmlLoader springFxmlLoader;
+    public Button register_button;
 
-    @Autowired
-    private UserLoginObserver userLoginObserver;
+    public Button clientPanelBtn;
+
     @Getter
+
     @FXML
     private AnchorPane mainLoad;
+    private User user;
 
-    @FXML
-    private Icon icon;
+    public void searchFlights() {
 
-
-
-
-    public void searchFlights(MouseEvent mouseEvent) {
         if (!mainLoad.getChildren().isEmpty()) {
             mainLoad.getChildren().clear();
         }
         AnchorPane root = loadUi("/searchPanel");
         mainLoad.getChildren().add(root);
 
+
     }
 
-    public void exit_btn(MouseEvent mouseEvent) {
+    public void exit_btn() {
         System.exit(0);
     }
 
-    public void minimize_btn(MouseEvent event) {
-        TopBar topbar = new TopBar();
-        topbar.minimize_btn(event);
-    }
 
-    public void register(MouseEvent mouseEvent) {
+    public void register() {
         if (!mainLoad.getChildren().isEmpty()) {
             mainLoad.getChildren().clear();
         }
@@ -64,30 +51,35 @@ public class MainPanel implements FxmlLoader, LoginListener {
         mainLoad.getChildren().add(root);
     }
 
-    public void login(MouseEvent mouseEvent) {
 
-        if (!mainLoad.getChildren().isEmpty()) {
-            mainLoad.getChildren().clear();
+    public void login() {
+
+        if (user == null) {
+            if (!mainLoad.getChildren().isEmpty()) {
+                mainLoad.getChildren().clear();
+            }
+            AnchorPane root = loadUi("/LogIn");
+            mainLoad.getChildren().add(root);
+            userLoginObserver.deleteObserver(this);
+
         }
-        AnchorPane root = loadUi("/LogIn");
-        mainLoad.getChildren().add(root);
 
     }
 
-
-    @Override
-    public AnchorPane loadUi(String ui) {
-        return (AnchorPane) springFxmlLoader.load(ui + ".fxml");
-    }
 
     @Override
     public void update(User user) {
-
+        this.user = user;
     }
 
-
-    public void dragScene(MouseEvent event) {
-        TopBar topbar = new TopBar();
-        topbar.dragScene(event);
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        if (userLoginObserver.getUser() != null) {
+            login_button.setVisible(false);
+            register_button.setVisible(false);
+            clientPanelBtn.setVisible(true);
+        }
     }
 }
+
+

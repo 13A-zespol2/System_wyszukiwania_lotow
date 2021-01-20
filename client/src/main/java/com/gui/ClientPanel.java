@@ -1,48 +1,88 @@
 package com.gui;
 
-import com.client.ClientControl;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import com.repository.model.communication.ClientDataRequest;
+import com.repository.model.communication.ClientDataResponse;
+import com.repository.model.database.MyTraveler;
+import com.repository.model.database.User;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Slf4j
 @Controller
 @Component
-public class ClientPanel implements FxmlLoader{
+public class ClientPanel extends GuiPanel {
 
-    @Autowired
-    private ClientControl clientControl;
+    private User user;
+    private MyTraveler myTraveler;
 
-    @Autowired
-    private MainPanel mainPanel;
 
-    @Autowired
-    private SpringFxmlLoader springFxmlLoader;
+    @FXML
+    private Label loggedname;
 
-    public void homeFunc(MouseEvent event) {
-        mainPanel.getMainLoad().getChildren().clear();
-        mainPanel.getMainLoad().getChildren().add(loadUi("/MainPanel"));
-    }
+    @FXML
+    private Label nameSurname;
 
-    public void exit_btn(MouseEvent event) {
-        System.exit(0);
-    }
+    @FXML
+    private Label email;
 
-    public void minimize_btn(MouseEvent event) {
-        TopBar topbar = new TopBar();
-        topbar.minimize_btn(event);
-    }
+    @FXML
+    private Label phoneNumber;
+
+    @FXML
+    private Label birthDate;
+
+    @FXML
+    private Label nationality;
+
+    @FXML
+    private Label docType;
+
+    @FXML
+    private Label expiryDate;
+
+    @FXML
+    private Label docNumber;
 
     @Override
-    public AnchorPane loadUi(String ui) {
-        return (AnchorPane) springFxmlLoader.load(ui + ".fxml");
+    public void initialize(URL location, ResourceBundle resources) {
+        userLoginObserver.addObserver(this);
+        loggedname.setText(userLoginObserver.getUser().getEmail());
+        email.setText(userLoginObserver.getUser().getEmail());
+
+
+        ClientDataResponse clientDataResponse = clientControl.clientDataComunication(new ClientDataRequest(userLoginObserver.getUser()));
+
+        if (clientDataResponse.getMyTraveler() != null) {
+            String name = clientDataResponse.getMyTraveler().getName();
+            String surname = clientDataResponse.getMyTraveler().getSurname();
+            nameSurname.setText(name + " " + surname);
+            phoneNumber.setText(String.valueOf(clientDataResponse.getMyTraveler().getTravelerPhone().getPhoneNumber()));
+            birthDate.setText(clientDataResponse.getMyTraveler().getDateOfBirth());
+            docType.setText(clientDataResponse.getTravelerDocument().getDocumentType());
+            nationality.setText(clientDataResponse.getTravelerDocument().getNationality());
+            expiryDate.setText(clientDataResponse.getTravelerDocument().getExpireDate());
+            docNumber.setText(clientDataResponse.getTravelerDocument().getNumberDocument());
+
+
+        }
     }
 
-    public void dragScene(MouseEvent event) {
-        TopBar topbar = new TopBar();
-        topbar.dragScene(event);
+    public void toClientData() {
+        mainPanel.getMainLoad().getChildren().clear();
+        mainPanel.getMainLoad().getChildren().add(loadUi("/clientPanel"));
     }
+
+
+    @Override
+    public void update(User user) {
+        this.user = user;
+    }
+
+
 }

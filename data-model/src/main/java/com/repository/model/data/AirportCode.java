@@ -4,7 +4,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum AirportCode {
-    WARSAW("WAW");
+    WARSAW("WAW"),
+    LISBON("LIS"),
+    ZURICH("ZRH"),
+    BERLIN("BER"),
+    CRACOW("KRK"),
+    LONDON("LON"),
+    RADOM("RDO"),
+    GDANSK("GDN"),
+    NEW_YORK("NYC"),
+    PARIS("PAR"),
+    MADRID("MAD"),
+    MOSCOW("MOW"),
+    LODZ("LCJ");
+
+
     private static final Map<String, AirportCode> BY_IATA = new HashMap<>();
 
     static {

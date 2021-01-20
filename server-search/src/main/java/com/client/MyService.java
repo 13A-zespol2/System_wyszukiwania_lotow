@@ -1,12 +1,14 @@
 package com.client;
 
 
-import com.repository.ReservationRepository;
-import com.repository.UserRepository;
-import com.repository.model.communication.LoginUserRequest;
-import com.repository.model.communication.LoginUserResponse;
-import com.repository.model.communication.RegisterUserRequest;
-import com.repository.model.communication.RegisterUserResponse;
+import com.amadeus.AmadeusFacade;
+import com.amadeus.resources.FlightOfferSearch;
+import com.google.gson.Gson;
+import com.repository.*;
+import com.repository.model.communication.*;
+import com.repository.model.database.MyTraveler;
+import com.repository.model.database.TravelerDocument;
+import com.repository.model.database.TravelerPhone;
 import com.repository.model.database.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +20,24 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Slf4j
 @Service
 
 public class MyService implements Serializable {
+    private final AmadeusFacade amadeusFacade = new AmadeusFacade();
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private MyTravelerRepository myTravelerRepository;
+    @Autowired
+    private TravelerDocumentRepository travelerDocumentRepository;
+    @Autowired
+    private TravelerPhoneRepository travelerPhoneRepository;
     @Autowired
     private ReservationRepository reservationRepository;
 
@@ -51,31 +63,89 @@ public class MyService implements Serializable {
                 out.writeObject(loginUserResponse);
             }
 
+
+            if (request instanceof SearchFlightRequest) {
+                SearchFlightResponse searchFlightResponse = findSearch((SearchFlightRequest) request);
+                out.writeObject(searchFlightResponse);
+            }
+
+            if (request instanceof RegisterUserRequest) {
+                RegisterUserResponse registerUserResponse = userToRegister((RegisterUserRequest) request);
+                out.writeObject(registerUserResponse);
+            }
+
+            if (request instanceof ClientDataRequest) {
+                ClientDataResponse clientDataResponse = dataToShow((ClientDataRequest) request);
+                out.writeObject(clientDataResponse);
+            }
+
             close(clientSocket, out, in);
         }
+    }
+
+    private SearchFlightResponse findSearch(SearchFlightRequest request) {
+        Optional<List<FlightOfferSearch>> flightOfferSearches = Optional.ofNullable(amadeusFacade.searchFlight(request));
+        if (flightOfferSearches.isEmpty())
+            return new SearchFlightResponse("Nie znaleziono lotu");
+
+        List<FlightOfferSearch> flightOfferSearches1 = flightOfferSearches.get();
+
+
+        List<String> collect = flightOfferSearches1.stream()
+                .map(e -> new Gson().toJson(e))
+                .collect(Collectors.toList());
+        return new SearchFlightResponse("Zanaleziono", collect);
     }
 
 
     private LoginUserResponse findUserToLogin(LoginUserRequest loginUserRequest) {
         User user = userRepository.findUserByEmailAndPassword(loginUserRequest.getEmail(), loginUserRequest.getPassword());
+
+
         if (user != null) {
             log.info("znaleziono");
-            return new LoginUserResponse(user, "ZALOGOWANO");
+            //System.out.println(myTraveler.getDateOfBirth());
+            return new LoginUserResponse("Zalogowano", user);
+
         }
 
-        return new LoginUserResponse("BLEDNY UZYTKOWNIK");
+        return new LoginUserResponse("BLEDNY LOGIN LUB HASLO");
 
     }
 
-    private RegisterUserResponse userToRegister(RegisterUserRequest registerUserRequest){
+
+    private RegisterUserResponse userToRegister(RegisterUserRequest registerUserRequest) {
         User user = new User();
         user.setEmail(registerUserRequest.getEmail());
         user.setPassword(registerUserRequest.getPassword());
-        user = userRepository.save(user);
+        User user1 = null;
+        try {
+            user1 = userRepository.save(user);
+        } catch (Exception e) {
+            return new RegisterUserResponse("TAKI EMAIL JEST JUZ UZYWANY", false);
+        }
 
-        return user == null ? new RegisterUserResponse("NIE ZAREJESTROWANO"): new RegisterUserResponse("ZAREJESTROWANO");
+        return new RegisterUserResponse("ZAREJESTROWANO", true);
+    }
 
+    private ClientDataResponse dataToShow(ClientDataRequest clientDataRequest) {
+        User user = clientDataRequest.getUser();
 
+        MyTraveler myTraveler = myTravelerRepository.findByUserId(user.getId());
+        if (myTraveler == null) {
+            return new ClientDataResponse("NIE DZIALA");
+        }
+        TravelerDocument travelerDocument = travelerDocumentRepository.findByMyTravelerId(myTraveler.getId());
+
+        if (travelerDocument == null) {
+            return new ClientDataResponse("NIE DZIALA");
+        }
+
+        Optional<TravelerPhone> travelerPhone = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId());
+        if (travelerPhone == null) {
+            return new ClientDataResponse("NIE DZIALA");
+        }
+        return new ClientDataResponse("DZIALA", user, myTraveler, travelerDocument, travelerPhone.get());
     }
 
 

@@ -1,47 +1,95 @@
 package com.gui;
 
-import com.client.ClientControl;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import com.repository.model.communication.RegisterUserRequest;
+import com.repository.model.communication.RegisterUserResponse;
+import com.repository.model.database.User;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Slf4j
 @Controller
 @Component
-public class RegisterPanel implements FxmlLoader{
-    @Autowired
-    private ClientControl clientControl;
+public class RegisterPanel extends GuiPanel {
+    @FXML
+    private PasswordField passwordInput;
+    @FXML
+    private PasswordField repeatpasswordInput;
+    @FXML
+    private TextField emailInput;
+    @FXML
+    private Label registerError;
+    @FXML
+    private Label loginAfterReg;
 
-    @Autowired
-    private MainPanel mainPanel;
 
-    @Autowired
-    private SpringFxmlLoader springFxmlLoader;
+    public boolean validPassword() {
+        String passRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!^&*().]).{8,20}$";
 
-    public void homeFunc(MouseEvent event) {
-        mainPanel.getMainLoad().getChildren().clear();
-        mainPanel.getMainLoad().getChildren().add(loadUi("/MainPanel"));
+        if ((passwordInput.getText().matches(passRegEx)) && (repeatpasswordInput.getText().equals(passwordInput.getText()))) {
+            return true;
+        } else {
+            registerError.setText("Nieprawidłowe hasło!");
+        }
+
+        if (passwordInput.getText().isEmpty() || repeatpasswordInput.getText().isEmpty()) {
+            registerError.setText("Wypełnij puste pola!");
+            return false;
+        }
+
+        if (!repeatpasswordInput.getText().equals(passwordInput.getText())) {
+            registerError.setText("Hasła są niezgodne!");
+            return false;
+        }
+        return false;
     }
 
-    public void exit_btn(MouseEvent event) {
-        System.exit(0);
+    public boolean validEmail() {
+        String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
+        if (emailInput.getText().matches(regex)) {
+            return true;
+        } else {
+            registerError.setText("Nieprawidłowy e-mail!");
+        }
+
+        if (emailInput.getText().isEmpty()) {
+            registerError.setText("Wypełnij puste pola!");
+
+            return false;
+        }
+        return false;
     }
 
-    public void minimize_btn(MouseEvent event) {
-        TopBar topbar = new TopBar();
-        topbar.minimize_btn(event);
+    public boolean regButton() {
+
+        if (validPassword() && validEmail()) {
+/*            registerError.setVisible(false);
+            loginAfterReg.setText("Rejestracja przebiegła pomyślnie. Zaloguj się.");*/
+            RegisterUserRequest registerUserRequest = new RegisterUserRequest(emailInput.getText(), passwordInput.getText());
+            RegisterUserResponse registerUserResponse = clientControl.registerUserCommunication(registerUserRequest);
+            if (!registerUserResponse.isRegister()) {
+                registerError.setText("Podany e-mail istnieje w bazie!");
+                return false;
+            }
+            toLoginPanel();
+        }
+        return true;
     }
 
     @Override
-    public AnchorPane loadUi(String ui) {
-        return (AnchorPane) springFxmlLoader.load(ui + ".fxml");
+    public void update(User user) {
+
     }
 
-    public void dragScene(MouseEvent event) {
-        TopBar topbar = new TopBar();
-        topbar.dragScene(event);
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

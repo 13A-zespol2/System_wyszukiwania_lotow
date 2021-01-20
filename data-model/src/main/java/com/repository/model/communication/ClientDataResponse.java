@@ -9,31 +9,25 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
-@Setter
 @Getter
-public class LoginUserResponse implements Serializable {
-    private final String status;
+@Setter
+public class ClientDataResponse implements Serializable {
+    private String status;
     private User user;
     private MyTraveler myTraveler;
-    private TravelerPhone travelerPhone;
     private TravelerDocument travelerDocument;
+    private TravelerPhone travelerPhone;
 
-    public LoginUserResponse(String status, User user) {
-        this.status = status;
-        this.user = user;
-
-    }
-
-    public LoginUserResponse(String status, User user, MyTraveler myTraveler, TravelerPhone travelerPhone, TravelerDocument travelerDocument) {
+    public ClientDataResponse(String status, User user, MyTraveler myTraveler, TravelerDocument travelerDocument, TravelerPhone travelerPhone) {
         this.status = status;
         this.user = user;
         this.myTraveler = myTraveler;
-        this.travelerPhone = travelerPhone;
         this.travelerDocument = travelerDocument;
+        this.travelerPhone = travelerPhone;
     }
 
-
-    public LoginUserResponse(String status) {
+    public ClientDataResponse(String status) {
         this.status = status;
     }
+
 }

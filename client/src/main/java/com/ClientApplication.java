@@ -2,10 +2,7 @@ package com;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -22,6 +19,9 @@ public class ClientApplication extends Application {
     private ConfigurableApplicationContext springContext;
     private AnchorPane rootNode;
 
+    private double xOffset = 0;
+    private double yOffset = 0;
+
 
     public static void main(String[] args) {
         launch(args);
@@ -31,20 +31,30 @@ public class ClientApplication extends Application {
     @Override
     public void init() throws IOException {
         springContext = SpringApplication.run(ClientApplication.class);
-
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(springContext::getBean);
         fxmlLoader.setLocation((getClass().getResource("/MainPanel.fxml")));
         rootNode = fxmlLoader.load();
     }
 
+
     @Override
-    public void start(Stage primaryStage) {
+    public void start(final Stage primaryStage) {
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+
+
         Scene scene = new Scene(rootNode, 960, 640);
+        scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.sizeToScene();
         primaryStage.show();
+        rootNode.setOnMousePressed(pressEvent -> {
+            rootNode.setOnMouseDragged(dragEvent -> {
+                primaryStage.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+                primaryStage.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+            });
+        });
     }
 
     @Override
@@ -52,9 +62,5 @@ public class ClientApplication extends Application {
         springContext.stop();
     }
 
-    public void minimize_btn(MouseEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setIconified(true);
-    }
 
 }

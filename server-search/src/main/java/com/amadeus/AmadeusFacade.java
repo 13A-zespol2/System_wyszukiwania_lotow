@@ -39,29 +39,29 @@ public class AmadeusFacade {
 
         return flightOrder == null ? Optional.empty() : Optional.of(flightOrder);
     }
-
+    //TODO !!!!
     public Optional<Object> getOrderedFlight(String idOrder) {
         return Optional.empty();
     }
 
 
-    public Optional<List<FlightOfferSearch>> searchFlight(SearchFlightRequest searchFlightRequest) {
+    public List<FlightOfferSearch> searchFlight(SearchFlightRequest searchFlightRequest) {
         FlightOfferSearch[] flightOfferSearches;
         amadeusFlightSearch.setOriginLocationCode(searchFlightRequest.getOriginLocationCode());
         amadeusFlightSearch.setDestinationLocationCode(searchFlightRequest.getDestinationLocationCode());
         amadeusFlightSearch.setDepartureDate(searchFlightRequest.getDepartureDate());
-        amadeusFlightSearch.setReturnDate(searchFlightRequest.getReturnDate());
+//        if (searchFlightRequest.getReturnDate().isEmpty())
+//            amadeusFlightSearch.setReturnDate(searchFlightRequest.getReturnDate());
         amadeusFlightSearch.setAdults(String.valueOf(searchFlightRequest.getAdults()));
         amadeusFlightSearch.setTravelClass(searchFlightRequest.getTravelClass());
-        amadeusFlightSearch.setChildren(String.valueOf(searchFlightRequest.getChildren()));
-        amadeusFlightSearch.setInfants(String.valueOf(searchFlightRequest.getInfants()));
-        amadeusFlightSearch.setNonStop(String.valueOf(searchFlightRequest.isNonStop()));
+        /*amadeusFlightSearch.setChildren(String.valueOf(searchFlightRequest.getChildren()));*/
         try {
             flightOfferSearches = amadeusFlightSearch.searchFlight();
+            System.out.println("Dsa");
 
         } catch (ResponseException e) {
-            throw new ServerException("Api error search flight: " + e);
+            return null;
         }
-        return flightOfferSearches != null ? Optional.of(List.of(flightOfferSearches)) : Optional.empty();
+        return List.of(flightOfferSearches);
     }
 }

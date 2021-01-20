@@ -20,7 +20,7 @@ public class TravelerDocument implements Serializable {
     private String nationality;
 
     @OneToOne
-    @JoinColumn(name = "myTraveler", referencedColumnName = "idMyTraveler")
+    @JoinColumn(name = "myTraveler", referencedColumnName = "id")
     private MyTraveler myTraveler;
 
     public TravelerDocument(int id, String documentType, String numberDocument, String expireDate, String issuanceCountry, String nationality, MyTraveler myTraveler) {
@@ -31,5 +31,9 @@ public class TravelerDocument implements Serializable {
         this.issuanceCountry = issuanceCountry;
         this.nationality = nationality;
         this.myTraveler = myTraveler;
+    }
+
+    public TravelerDocument() {
+
     }
 }

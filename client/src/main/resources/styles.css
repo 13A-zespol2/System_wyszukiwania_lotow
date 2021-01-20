@@ -40,23 +40,18 @@
 }
 
 
-
-
-
-
-
-
-
-
-
 /*REGISTER SCENE*/
 
 
 
 .reg_input{
-	-fx-background-color: #ffffff;
+	-fx-background-color: rgba(222, 222, 222,0.6);
 	-fx-background-radius: 5px;
 	-fx-opacity:0.85;
+	-fx-border-style: solid solid solid solid;
+	-fx-border-color: #aaaaaa;
+	-fx-border-width: 1;
+	-fx-border-radius: 10px;
 }
 
 
@@ -117,8 +112,7 @@
 
 
 .search_box_top{
-	-fx-background-color: #fff;
-	-fx-opacity:1;
+    -fx-background-color: rgba(0, 174, 239, 0.10);
 }
 
 
@@ -146,11 +140,9 @@
 
 
 
-.client_main{
-	-fx-background-color: #fcfcfc;
-	-fx-opacity:0.65;
+.client_main {
+    -fx-background-color: rgba(0, 174, 239, 0.10);
 }
-
 
 
 
@@ -162,12 +154,6 @@
 }
 
 
-.def_icon{
-	-fx-border-style: hidden hidden solid hidden;
-	-fx-border-color: #dbdbdb;
-	-fx-border-width: 1;
-	-fx-background-color: #00AEEF;
-}
 
 
 .thin_label{
@@ -187,14 +173,69 @@
 
 .data_vbox{
 	-fx-background-color: rgba(255,255,255,0.4);
-	-fx-border-style: hidden solid hidden hidden;
-	-fx-border-color: #00AEEF;;
-	-fx-border-width: 1;
+    -fx-border-style: hidden solid hidden hidden;
+    -fx-border-color: #00AEEF;;
+    -fx-border-width: 1;
 }
 
-.activated{
-	-fx-background-color: #00AEEF;
+.activated {
+    -fx-background-color: #00AEEF;
 }
 
 
+.greenLabel {
+    -fx-text-fill: green;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-font-family: Monsterrat;
+    -fx-text-align: center;
+    -fx-text-alignment: center;
+}
 
+
+.errorLabel {
+    -fx-text-fill: red;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-font-family: Monsterrat;
+    -fx-text-align: center;
+    -fx-text-alignment: center;
+}
+
+
+/*Imie, nazwisko, telefon, haslo, powtorz haslo, typ dokumentu, numer dokumentu.*/
+
+
+.data_label {
+    /*-fx-background-color:  rgba(0,0,0,0.5);*/
+    -fx-background-color: #00AEEF;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-font-family: "Verdana";
+    -fx-font-weight: 900;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-letter-spacing: 15px;
+    -fx-padding: 10 10 10 10;
+    -fx-text-align: center;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-color: #dbdbdb;
+    -fx-border-width: 1;
+}
+
+
+.clientPanelLabel {
+    -fx-background-color: rgba(255, 255, 255, 0.7);
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-font-family: "Verdana";
+    -fx-text-fill: #666666;
+    -fx-font-weight: 900;
+    -fx-font-size: 12px;
+    -fx-letter-spacing: 15px;
+    -fx-padding: 10 10 10 10;
+    -fx-text-align: center;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-color: #dbdbdb;
+    -fx-border-width: 1;
+}
