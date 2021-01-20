@@ -1,5 +1,6 @@
 package com.gui;
 
+import com.repository.model.communication.ClientDataRequest;
 import com.repository.model.database.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -40,5 +41,7 @@ public class ClientPanel extends GuiPanel {
     public void initialize(URL location, ResourceBundle resources) {
         userLoginObserver.addObserver(this);
         log.info("JESTES ZALOGOWANY JAKO " + userLoginObserver.getUser().getEmail());
+
+        clientControl.clientDataComunication(new ClientDataRequest(userLoginObserver.getUser(), null, null, null));
     }
 }

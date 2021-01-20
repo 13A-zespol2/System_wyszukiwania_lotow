@@ -26,6 +26,10 @@ public class ClientControl {
         return (SearchFlightResponse) send(searchFlightRequest);
     }
 
+    public ClientDataResponse clientDataComunication(ClientDataRequest clientDataRequest){
+        return (ClientDataResponse)  send(clientDataRequest);
+    }
+
     private Object send(Object request) {
         Socket clientSocket = null;
         ObjectOutputStream out = null;

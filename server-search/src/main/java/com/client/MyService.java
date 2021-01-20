@@ -4,9 +4,11 @@ package com.client;
 import com.amadeus.AmadeusFacade;
 import com.amadeus.resources.FlightOfferSearch;
 import com.google.gson.Gson;
-import com.repository.ReservationRepository;
-import com.repository.UserRepository;
+import com.repository.*;
 import com.repository.model.communication.*;
+import com.repository.model.database.MyTraveler;
+import com.repository.model.database.TravelerDocument;
+import com.repository.model.database.TravelerPhone;
 import com.repository.model.database.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,12 @@ public class MyService implements Serializable {
     private final AmadeusFacade amadeusFacade = new AmadeusFacade();
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private MyTravelerRepository myTravelerRepository;
+    @Autowired
+    private TravelerDocumentRepository travelerDocumentRepository;
+    @Autowired
+    private TravelerPhoneRepository travelerPhoneRepository;
     @Autowired
     private ReservationRepository reservationRepository;
 
@@ -66,6 +74,11 @@ public class MyService implements Serializable {
                 out.writeObject(registerUserResponse);
             }
 
+            if(request instanceof ClientDataRequest){
+                ClientDataResponse clientDataResponse = dataToShow((ClientDataRequest) request);
+                out.writeObject(clientDataResponse);
+            }
+
             close(clientSocket, out, in);
         }
     }
@@ -87,14 +100,21 @@ public class MyService implements Serializable {
 
     private LoginUserResponse findUserToLogin(LoginUserRequest loginUserRequest) {
         User user = userRepository.findUserByEmailAndPassword(loginUserRequest.getEmail(), loginUserRequest.getPassword());
+
+
+
         if (user != null) {
             log.info("znaleziono");
-            return new LoginUserResponse(user, "ZALOGOWANO");
+            //System.out.println(myTraveler.getDateOfBirth());
+            return new LoginUserResponse("Zalogowano", user);
+
         }
 
         return new LoginUserResponse("BLEDNY LOGIN LUB HASLO");
 
     }
+
+
 
     private RegisterUserResponse userToRegister(RegisterUserRequest registerUserRequest) {
         User user = new User();
@@ -104,6 +124,24 @@ public class MyService implements Serializable {
 
 
         return user1 == null ? new RegisterUserResponse("NIE ZAREJESTROWANO") : new RegisterUserResponse("ZAREJESTROWANO");
+    }
+
+    private ClientDataResponse dataToShow(ClientDataRequest clientDataRequest){
+        User user = clientDataRequest.getUser();
+        MyTraveler myTraveler = myTravelerRepository.findByUserId(user.getId());
+        if(myTraveler==null){
+            return new ClientDataResponse("NIE DZIALA");
+        }
+/*        TravelerDocument travelerDocument = travelerDocumentRepository.findByMyTravelerId(myTraveler.getIdMyTraveler());
+        if(travelerDocument==null){
+            return new ClientDataResponse("NIE DZIALA");
+        }*/
+        Optional<TravelerPhone> travelerPhone = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId());
+        if(travelerPhone==null){
+            return new ClientDataResponse("NIE DZIALA");
+        }
+
+        return new ClientDataResponse("DZIALA", user, myTraveler, null, travelerPhone.get());
     }
 
 
