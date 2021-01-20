@@ -64,8 +64,4 @@ public class ClientEdit implements FxmlLoader {
         mainPanel.getMainLoad().getChildren().add(loadUi("/tickets"));
     }
 
-    public void toClientEdit(MouseEvent event) {
-        mainPanel.getMainLoad().getChildren().clear();
-        mainPanel.getMainLoad().getChildren().add(loadUi("/editData"));
-    }
 }

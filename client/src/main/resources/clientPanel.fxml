@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.*?>
 <?import java.lang.String?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity"
             minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="panel_bg"
@@ -24,16 +24,15 @@
       <Label layoutX="200.0" layoutY="30.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity"
              minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label" text="Panel Klienta">
          <font>
-            <Font name="Bell MT Bold" size="13.0" />
-            </font>
-         </Label>
-         <HBox layoutX="280.0" layoutY="100.0" prefHeight="540.0" prefWidth="681.0" styleClass="client_main" />
+            <Font name="Bell MT Bold" size="13.0"/>
+         </font>
+      </Label>
       <VBox focusTraversable="true" layoutX="80.0" layoutY="100.0" prefHeight="540.0" prefWidth="200.0"
             styleClass="data_vbox">
          <children>
             <Label fx:id="clientData" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
-                   minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#toClientData" prefHeight="50.0"
-                   prefWidth="200.0" text="Dane" textAlignment="CENTER">
+                   minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" text="Dane"
+                   textAlignment="CENTER">
                <VBox.margin>
                   <Insets/>
                </VBox.margin>
@@ -96,15 +95,83 @@
                   <Insets left="10.0" top="20.0" />
                </VBox.margin>
             </AnchorPane>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #00AEEF;">
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                        prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #00AEEF;">
                <children>
-                  <FontAwesomeIcon glyphName="SEARCH" layoutX="8.0" layoutY="37.0" size="35px" stroke="BLACK" strokeWidth="0.0" wrappingWidth="40.0" />
+                  <FontAwesomeIcon glyphName="SEARCH" layoutX="8.0" layoutY="37.0" size="35px" stroke="BLACK"
+                                   strokeWidth="0.0" wrappingWidth="40.0"/>
                </children>
                <VBox.margin>
-                  <Insets left="10.0" top="20.0" />
+                  <Insets left="10.0" top="20.0"/>
                </VBox.margin>
             </AnchorPane>
          </children>
       </VBox>
-      </children>
+      <AnchorPane layoutX="283.0" layoutY="100.0" prefHeight="540.0" prefWidth="677.0">
+         <children>
+            <Label layoutX="246.0" layoutY="14.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                   minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label"
+                   text="Dane osobowe">
+               <font>
+                  <Font name="Bell MT Bold" size="13.0"/>
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="84.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="data_label" text="Imię i nazwisko:" textAlignment="CENTER"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="124.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="data_label" text="E-mail" textAlignment="CENTER"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="164.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="data_label" text="Numer telefonu" textAlignment="CENTER"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="374.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="data_label" text="Typ dokumentu" textAlignment="CENTER"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="414.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="data_label" text="Data ważności" textAlignment="CENTER"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="204.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="data_label" text="Data urodzenia" textAlignment="CENTER"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="244.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="data_label" text="Narodowość" textAlignment="CENTER"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="454.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="data_label" text="Numer dokumentu" textAlignment="CENTER"/>
+            <Label layoutX="241.0" layoutY="302.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                   minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label"
+                   text="Dane dokumentu">
+               <font>
+                  <Font name="Bell MT Bold" size="13.0"/>
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="359.0" layoutY="84.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="clientPanelLabel" textAlignment="CENTER"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="359.0" layoutY="124.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="clientPanelLabel" textAlignment="CENTER"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="359.0" layoutY="164.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="clientPanelLabel" textAlignment="CENTER"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="359.0" layoutY="204.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="clientPanelLabel" textAlignment="CENTER"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="359.0" layoutY="244.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="clientPanelLabel" textAlignment="CENTER"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="359.0" layoutY="374.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="clientPanelLabel" textAlignment="CENTER"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="359.0" layoutY="414.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="clientPanelLabel" textAlignment="CENTER"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="359.0" layoutY="454.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="clientPanelLabel" textAlignment="CENTER"/>
+         </children>
+      </AnchorPane>
+   </children>
    </AnchorPane>

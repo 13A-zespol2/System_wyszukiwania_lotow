@@ -10,7 +10,7 @@
 <?import java.lang.String?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity"
             minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="panel_bg"
-            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.gui.ClientPanel">
+            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.gui.ClientEdit">
    <children>
       <HBox alignment="CENTER" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="70.0" prefWidth="960.0" styleClass="top_hbox"/>
@@ -24,9 +24,9 @@
       <Label layoutX="200.0" layoutY="30.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity"
              minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label" text="Panel Klienta">
          <font>
-            <Font name="Bell MT Bold" size="13.0" />
-            </font>
-         </Label>
+            <Font name="Bell MT Bold" size="13.0"/>
+         </font>
+      </Label>
          <VBox layoutX="80.0" layoutY="100.0" prefHeight="540.0" prefWidth="200.0" styleClass="data_vbox">
             <children>
                <Label fx:id="clientData" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
@@ -40,8 +40,8 @@
                       minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#toClientTickets" prefHeight="50.0"
                       prefWidth="200.0" styleClass="thin_label" text="Bilety" textAlignment="CENTER"/>
                <Label fx:id="clientEdit" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
-                      minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#toClientEdit" prefHeight="50.0"
-                      prefWidth="200.0" text="Edycja" textAlignment="CENTER">
+                      minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" text="Edycja"
+                      textAlignment="CENTER">
                   <styleClass>
                      <String fx:value="thin_label"/>
                      <String fx:value="activated"/>
@@ -107,15 +107,57 @@
       </VBox>
       <AnchorPane layoutX="283.0" layoutY="100.0" prefHeight="540.0" prefWidth="679.0">
          <children>
-            <TextField layoutX="131.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="reg_input" />
-            <TextField layoutX="348.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="reg_input" />
-            <TextField layoutX="348.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="reg_input" />
-            <TextField layoutX="131.0" layoutY="179.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="reg_input" />
-            <TextField layoutX="348.0" layoutY="179.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="reg_input" />
-            <TextField layoutX="131.0" layoutY="265.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="reg_input" />
-            <TextField layoutX="348.0" layoutY="265.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="reg_input" />
-            <TextField layoutX="131.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="reg_input" />
-            <Button layoutX="248.0" layoutY="438.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="_button" text="Dodaj" />
+            <Button layoutX="240.0" layoutY="432.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                    minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0"
+                    styleClass="_button" text="Edytuj"/>
+            <Label layoutX="199.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                   minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label" text="Edytuj dane osobowe">
+               <font>
+                  <Font name="Bell MT Bold" size="13.0"/>
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="170.0" layoutY="70.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="data_label" text="Imię" textAlignment="CENTER"/>
+            <TextField alignment="CENTER" layoutX="360.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                       minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                       styleClass="clientPanelLabel"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="170.0" layoutY="120.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="data_label" text="Nazwisko" textAlignment="CENTER"/>
+            <TextField alignment="CENTER" layoutX="360.0" layoutY="120.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                       minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                       styleClass="clientPanelLabel"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="170.0" layoutY="170.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="data_label" text="Numer telefonu" textAlignment="CENTER"/>
+            <TextField alignment="CENTER" layoutX="360.0" layoutY="170.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                       minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                       styleClass="clientPanelLabel"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="170.0" layoutY="220.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="data_label" text="Typ dokumentu" textAlignment="CENTER"/>
+            <TextField alignment="CENTER" layoutX="360.0" layoutY="220.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                       minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                       styleClass="clientPanelLabel"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="170.0" layoutY="270.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="data_label" text="Numer dokumentu" textAlignment="CENTER"/>
+            <TextField alignment="CENTER" layoutX="360.0" layoutY="270.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                       minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                       styleClass="clientPanelLabel"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="170.0" layoutY="320.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="data_label" text="Hasło" textAlignment="CENTER"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="170.0" layoutY="370.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                   styleClass="data_label" text="Powtórz hasło" textAlignment="CENTER"/>
+            <PasswordField alignment="CENTER" layoutX="360.0" layoutY="320.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                           minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                           styleClass="clientPanelLabel"/>
+            <PasswordField alignment="CENTER" layoutX="360.0" layoutY="370.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                           minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
+                           styleClass="clientPanelLabel"/>
          </children>
       </AnchorPane>
       </children>

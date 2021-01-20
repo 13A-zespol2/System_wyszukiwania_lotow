@@ -59,10 +59,6 @@ public class ClientTickets implements FxmlLoader {
         mainPanel.getMainLoad().getChildren().add(loadUi("/clientPanel"));
     }
 
-    public void toClientTickets(MouseEvent event) {
-        mainPanel.getMainLoad().getChildren().clear();
-        mainPanel.getMainLoad().getChildren().add(loadUi("/tickets"));
-    }
 
     public void toClientEdit(MouseEvent event) {
         mainPanel.getMainLoad().getChildren().clear();

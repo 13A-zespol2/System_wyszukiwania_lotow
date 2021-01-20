@@ -10,7 +10,7 @@
 <?import java.lang.String?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity"
             minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="panel_bg"
-            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.gui.ClientPanel">
+            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.gui.ClientTickets">
    <children>
       <HBox alignment="CENTER" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="70.0" prefWidth="960.0" styleClass="top_hbox"/>
@@ -24,9 +24,9 @@
       <Label layoutX="200.0" layoutY="30.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity"
              minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label" text="Panel Klienta">
          <font>
-            <Font name="Bell MT Bold" size="13.0" />
-            </font>
-         </Label>
+            <Font name="Bell MT Bold" size="13.0"/>
+         </font>
+      </Label>
          <HBox layoutX="280.0" layoutY="100.0" prefHeight="540.0" prefWidth="681.0" styleClass="client_main" />
          <VBox layoutX="80.0" layoutY="100.0" prefHeight="540.0" prefWidth="200.0" styleClass="data_vbox">
             <children>
@@ -38,8 +38,8 @@
                   </VBox.margin>
                </Label>
                <Label fx:id="clientTickets" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
-                      minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#toClientTickets" prefHeight="50.0"
-                      prefWidth="200.0" text="Bilety" textAlignment="CENTER">
+                      minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" text="Bilety"
+                      textAlignment="CENTER">
                   <styleClass>
                      <String fx:value="thin_label"/>
                      <String fx:value="activated"/>

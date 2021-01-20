@@ -50,17 +50,12 @@ public class ClientPanel implements FxmlLoader{
         return (AnchorPane) springFxmlLoader.load(ui + ".fxml");
     }
 
-    public void toClientData() {
-        mainPanel.getMainLoad().getChildren().clear();
-        mainPanel.getMainLoad().getChildren().add(loadUi("/clientPanel"));
-    }
-
-    public void toClientTickets() {
+    public void toClientTickets(MouseEvent event) {
         mainPanel.getMainLoad().getChildren().clear();
         mainPanel.getMainLoad().getChildren().add(loadUi("/tickets"));
     }
 
-    public void toClientEdit() {
+    public void toClientEdit(MouseEvent event) {
         mainPanel.getMainLoad().getChildren().clear();
         mainPanel.getMainLoad().getChildren().add(loadUi("/editData"));
     }
