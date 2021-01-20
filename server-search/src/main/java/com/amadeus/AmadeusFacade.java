@@ -45,7 +45,7 @@ public class AmadeusFacade {
     }
 
 
-    public Optional<List<FlightOfferSearch>> searchFlight(SearchFlightRequest searchFlightRequest) {
+    public List<FlightOfferSearch> searchFlight(SearchFlightRequest searchFlightRequest) {
         FlightOfferSearch[] flightOfferSearches;
         amadeusFlightSearch.setOriginLocationCode(searchFlightRequest.getOriginLocationCode());
         amadeusFlightSearch.setDestinationLocationCode(searchFlightRequest.getDestinationLocationCode());
@@ -59,8 +59,8 @@ public class AmadeusFacade {
             flightOfferSearches = amadeusFlightSearch.searchFlight();
 
         } catch (ResponseException e) {
-            return Optional.empty();
+            return null;
         }
-        return Optional.of(List.of(flightOfferSearches));
+        return List.of(flightOfferSearches);
     }
 }
