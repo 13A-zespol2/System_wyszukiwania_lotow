@@ -34,6 +34,12 @@ public class MainPanel extends GuiPanel {
         }
         AnchorPane root = loadUi("/searchPanel");
         mainLoad.getChildren().add(root);
+
+
+    }
+
+    public void exit_btn() {
+        System.exit(0);
     }
 
 
@@ -55,7 +61,9 @@ public class MainPanel extends GuiPanel {
             AnchorPane root = loadUi("/LogIn");
             mainLoad.getChildren().add(root);
             userLoginObserver.deleteObserver(this);
+
         }
+
     }
 
 
@@ -73,3 +81,5 @@ public class MainPanel extends GuiPanel {
         }
     }
 }
+
+

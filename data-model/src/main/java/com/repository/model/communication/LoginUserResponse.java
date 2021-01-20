@@ -14,7 +14,9 @@ import java.io.Serializable;
 public class LoginUserResponse implements Serializable {
     private final String status;
     private User user;
-
+    private MyTraveler myTraveler;
+    private TravelerPhone travelerPhone;
+    private TravelerDocument travelerDocument;
 
     public LoginUserResponse(String status, User user) {
         this.status = status;
@@ -22,6 +24,13 @@ public class LoginUserResponse implements Serializable {
 
     }
 
+    public LoginUserResponse(String status, User user, MyTraveler myTraveler, TravelerPhone travelerPhone, TravelerDocument travelerDocument) {
+        this.status = status;
+        this.user = user;
+        this.myTraveler = myTraveler;
+        this.travelerPhone = travelerPhone;
+        this.travelerDocument = travelerDocument;
+    }
 
 
     public LoginUserResponse(String status) {

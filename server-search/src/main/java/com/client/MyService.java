@@ -129,22 +129,23 @@ public class MyService implements Serializable {
         return new RegisterUserResponse("ZAREJESTROWANO", true);
     }
 
-    private ClientDataResponse dataToShow(ClientDataRequest clientDataRequest){
+    private ClientDataResponse dataToShow(ClientDataRequest clientDataRequest) {
         User user = clientDataRequest.getUser();
+
         MyTraveler myTraveler = myTravelerRepository.findByUserId(user.getId());
-        if(myTraveler==null){
+        if (myTraveler == null) {
             return new ClientDataResponse("NIE DZIALA");
         }
-/*        TravelerDocument travelerDocument = travelerDocumentRepository.findByMyTravelerId(myTraveler.getIdMyTraveler());
-        if(travelerDocument==null){
+        travelerDocumentRepository.findByMyTravelerId(myTraveler.getId());
+       /* if(travelerDocument==null){
             return new ClientDataResponse("NIE DZIALA");
         }*/
-        Optional<TravelerPhone> travelerPhone = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId());
+       /* Optional<TravelerPhone> travelerPhone = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId());
         if(travelerPhone==null){
             return new ClientDataResponse("NIE DZIALA");
         }
-
-        return new ClientDataResponse("DZIALA", user, myTraveler, null, travelerPhone.get());
+*/
+        return new ClientDataResponse("DZIALA", user, myTraveler, null, null);
     }
 
 

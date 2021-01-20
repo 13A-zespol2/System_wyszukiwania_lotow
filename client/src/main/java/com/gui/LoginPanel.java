@@ -21,13 +21,13 @@ import java.util.ResourceBundle;
 public class LoginPanel extends GuiPanel {
 
     @FXML
+    public Label loginAfterReg;
+    @FXML
     private PasswordField logPassw;
     @FXML
     private TextField emailLabel;
     @FXML
     private Label loginError;
-    @FXML
-    public Label loginAfterReg;
 
     public LoginPanel() {
         super();
