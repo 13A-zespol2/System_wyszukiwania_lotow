@@ -51,9 +51,9 @@ public class LoginPanel implements InitializingBean, LoginListener, FxmlLoader {
             log.error("Pole email puste");
         if (logPassw.getText().isEmpty())
             log.error("Pole password puste");
-        //TODO walidacja hasla osobna metoda do walidacji hasla
 
         //TODO dodanie labela do wyswietlania informacji o bledzie lub
+
         LoginUserRequest loginUserRequest = new LoginUserRequest(emailLabel.getText(), logPassw.getText());
         LoginUserResponse loginUserResponse = clientControl.loginUserCommunication(loginUserRequest);
         log.info(loginUserResponse.getStatus());
