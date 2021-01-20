@@ -72,7 +72,7 @@ public class MyService implements Serializable {
     }
 
     private SearchFlightResponse findSearch(SearchFlightRequest request) {
-        Optional<List<FlightOfferSearch>> flightOfferSearches = amadeusFacade.searchFlight(request);
+        Optional<List<FlightOfferSearch>> flightOfferSearches = Optional.ofNullable(amadeusFacade.searchFlight(request));
         if (flightOfferSearches.isEmpty())
             return new SearchFlightResponse("Nie znaleziono lotu");
 

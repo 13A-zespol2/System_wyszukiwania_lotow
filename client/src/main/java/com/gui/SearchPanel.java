@@ -7,21 +7,20 @@ import com.google.gson.Gson;
 import com.repository.model.communication.SearchFlightRequest;
 import com.repository.model.communication.SearchFlightResponse;
 import com.repository.model.data.AirportCode;
-import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Callback;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +30,8 @@ import java.util.stream.Collectors;
 @Slf4j
 @Controller
 @Component
-public class SearchPanel implements FxmlLoader, Initializable {
+public class SearchPanel implements FxmlLoader, Initializable, Serializable {
+
     @Autowired
     private ClientControl clientControl;
     @Autowired
@@ -42,6 +42,9 @@ public class SearchPanel implements FxmlLoader, Initializable {
 
     @FXML
     private Icon icon;
+
+    @FXML
+    public TableView tableView;
 
     @FXML
     private ComboBox<String> originLocationCode;
@@ -73,10 +76,10 @@ public class SearchPanel implements FxmlLoader, Initializable {
     private TableColumn<FlightOfferSearch, String> col1;
 
     @FXML
-    private TableColumn<?, ?> col2;
+    private TableColumn<FlightOfferSearch, String> col2;
 
     @FXML
-    private TableColumn<?, ?> col3;
+    private TableColumn<FlightOfferSearch, String> col3;
 
     @FXML
     private TableColumn<?, ?> col4;
@@ -133,14 +136,31 @@ public class SearchPanel implements FxmlLoader, Initializable {
             List<FlightOfferSearch> collect = tList.stream()
                     .map(e -> new Gson().fromJson(e, FlightOfferSearch.class))
                     .collect(Collectors.toList());
-            System.out.println("dsa");
+            showFlights(collect);
 
         }
-
-        System.out.println("Sad");
-        // if(searchFlightResponse != null)
+    }
 
 
+    private void showFlights(List<FlightOfferSearch> tList) {
+        ObservableList<FlightOfferSearch> list = FXCollections.observableArrayList();
+        list.addAll(tList);
+        col1.setCellValueFactory(new PropertyValueFactory<FlightOfferSearch, String>("id"));
+        col2.setCellValueFactory(new PropertyValueFactory<FlightOfferSearch, String>("source"));
+        col3.setCellValueFactory(new PropertyValueFactory<FlightOfferSearch, String>("price"));
+        col1.getColumns().clear();
+        col2.getColumns().clear();
+        col3.getColumns().clear();
+        col1.getColumns().addAll();
+        col2.getColumns().addAll();
+        col3.getColumns().addAll();
+        tableView.setItems(list);
+        //col1.setCellValueFactory(new PropertyValueFactory<FlightOfferSearch, String>("id"));
+           /* @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<FlightOfferSearch, String> param) {
+                return new ReadOnlyStringWrapper(param.getValue().getId());
+            }
+        });*/
     }
 
 
@@ -171,22 +191,7 @@ public class SearchPanel implements FxmlLoader, Initializable {
         return true;
     }
 
-    private void showFlights(List<FlightOfferSearch> tList) {
-        ObservableList<FlightOfferSearch> list = FXCollections.observableArrayList();
-        list.addAll(tList);
 
-        col1.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FlightOfferSearch, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<FlightOfferSearch, String> param) {
-                return new ReadOnlyStringWrapper(param.getValue().getId());
-            }
-        });
-        System.out.println("dsa");
-
-
-
-
-    }
 
 
 
