@@ -17,7 +17,12 @@ public class MainPanel extends GuiPanel {
 
     public Button login_button;
 
+    public Button register_button;
+
+    public Button clientPanelBtn;
+
     @Getter
+
     @FXML
     private AnchorPane mainLoad;
     private User user;
@@ -46,6 +51,7 @@ public class MainPanel extends GuiPanel {
         mainLoad.getChildren().add(root);
     }
 
+
     public void login() {
 
         if (user == null) {
@@ -71,10 +77,10 @@ public class MainPanel extends GuiPanel {
         userLoginObserver.addObserver(this);
         if (userLoginObserver.getUser() != null)
             login_button.setVisible(false);
+            register_button.setVisible(false);
+            clientPanelBtn.setVisible(true);
+        }
     }
 
-    public AnchorPane getMainLoad() {
-        return mainLoad;
-    }
 
 }

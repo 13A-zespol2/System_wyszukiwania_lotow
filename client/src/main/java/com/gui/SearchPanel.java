@@ -75,6 +75,10 @@ public class SearchPanel extends GuiPanel {
 
     @FXML
     private TableColumn<FlightOfferSearch, String> col7;
+
+    @FXML
+    private Label loggedname;
+
     private User user;
 
 
@@ -106,18 +110,17 @@ public class SearchPanel extends GuiPanel {
             System.out.println("dsa");
             showFlights(collect);
         }
-
-        System.out.println("Sad");
-        // if(searchFlightResponse != null)
-
-
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        userLoginObserver.addObserver(this);
+        if (userLoginObserver.getUser().getEmail() != null) {
+            loggedname.setText(userLoginObserver.getUser().getEmail());
+        }
+
+
         ObservableList<String> listCity = FXCollections.observableArrayList();
         for (Map.Entry<String, AirportCode> entry : AirportCode.getByIata().entrySet()) {
             listCity.add(entry.getValue().IATACode);
@@ -129,6 +132,8 @@ public class SearchPanel extends GuiPanel {
 
         ObservableList<String> classList = FXCollections.observableArrayList(List.of("ECONOMY", "PREMIUM_ECONOMY", "BUSINESS", "FIRST"));
         travelClass.setItems(classList);
+
+
     }
 
     private boolean isNumeric(String strNum) {
@@ -161,12 +166,7 @@ public class SearchPanel extends GuiPanel {
 
         col7.setCellValueFactory(param -> new ReadOnlyStringWrapper(Arrays.stream(Arrays.stream(param.getValue().getTravelerPricings()).findFirst().get().getFareDetailsBySegment()).findFirst().get().getCabin()));
 
-
-        System.out.println("dsa");
-
         tableView.setItems(list);
-
-
     }
 
 

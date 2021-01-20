@@ -23,6 +23,7 @@ public abstract class GuiPanel implements Initializable, LoginObserver {
     @Autowired
     protected SpringFxmlLoader springFxmlLoader;
 
+
     protected GuiPanel() {
     }
 
@@ -45,5 +46,28 @@ public abstract class GuiPanel implements Initializable, LoginObserver {
         mainPanel.getMainLoad().getChildren().add(loadUi("/MainPanel"));
     }
 
+    public void toLoginPanel() {
+        mainPanel.getMainLoad().getChildren().clear();
+        mainPanel.getMainLoad().getChildren().add(loadUi("/LogIn"));
+    }
 
+    public void toClientData() {
+        mainPanel.getMainLoad().getChildren().clear();
+        mainPanel.getMainLoad().getChildren().add(loadUi("/clientPanel"));
+    }
+
+    public void toClientTickets() {
+        mainPanel.getMainLoad().getChildren().clear();
+        mainPanel.getMainLoad().getChildren().add(loadUi("/tickets"));
+    }
+
+    public void toClientEdit() {
+        mainPanel.getMainLoad().getChildren().clear();
+        mainPanel.getMainLoad().getChildren().add(loadUi("/editData"));
+    }
+
+    public void toSearch() {
+        mainPanel.getMainLoad().getChildren().clear();
+        mainPanel.getMainLoad().getChildren().add(loadUi("/searchPanel"));
+    }
 }

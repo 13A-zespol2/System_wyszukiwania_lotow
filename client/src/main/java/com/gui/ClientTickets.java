@@ -24,6 +24,9 @@ public class ClientTickets extends GuiPanel {
     private Label clientTickets;
     @FXML
     private Label clientEdit;
+    @FXML
+    private Label loggedname;
+
 
     @Override
     public AnchorPane loadUi(String ui) {
@@ -31,8 +34,7 @@ public class ClientTickets extends GuiPanel {
     }
 
     public void toClientData() {
-        mainPanel.
-                mainPanel.getMainLoad().getChildren().clear();
+        mainPanel.getMainLoad().getChildren().clear();
         mainPanel.getMainLoad().getChildren().add(loadUi("/clientPanel"));
     }
 
@@ -53,6 +55,7 @@ public class ClientTickets extends GuiPanel {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        userLoginObserver.addObserver(this);
+        loggedname.setText(userLoginObserver.getUser().getEmail());
     }
 }
