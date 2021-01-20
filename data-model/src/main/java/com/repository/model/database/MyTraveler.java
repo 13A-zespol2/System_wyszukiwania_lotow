@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class MyTraveler implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idMyTraveler;
+    private int id;
     private String name;
     private String surname;
     private String dateOfBirth;
@@ -25,14 +25,14 @@ public class MyTraveler implements Serializable {
     private TravelerPhone travelerPhone;
 
     public MyTraveler(int idMyTraveler, String name, String surname, String dateOfBirth) {
-        this.idMyTraveler = idMyTraveler;
+        this.id = idMyTraveler;
         this.name = name;
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
     }
 
     public MyTraveler(int idMyTraveler, String name, String surname, User user) {
-        this.idMyTraveler = idMyTraveler;
+        this.id = idMyTraveler;
         this.name = name;
         this.surname = surname;
         this.user = user;

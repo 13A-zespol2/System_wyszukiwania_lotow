@@ -75,11 +75,12 @@ public class MainPanel extends GuiPanel {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         userLoginObserver.addObserver(this);
-        if (userLoginObserver.getUser() != null)
+        if (userLoginObserver.getUser() != null) {
             login_button.setVisible(false);
             register_button.setVisible(false);
             clientPanelBtn.setVisible(true);
         }
     }
+}
 
 

@@ -16,7 +16,7 @@ public class Reservation implements Serializable {
     private int id;
     private String reservationApiCode;
     @ManyToOne
-    @JoinColumn(name = "myTraveler", referencedColumnName = "idMyTraveler")
+    @JoinColumn(name = "myTraveler", referencedColumnName = "id")
     private MyTraveler myTraveler;
 
 
@@ -26,5 +26,6 @@ public class Reservation implements Serializable {
         this.myTraveler = myTraveler;
     }
 
-
+    public Reservation() {
+    }
 }

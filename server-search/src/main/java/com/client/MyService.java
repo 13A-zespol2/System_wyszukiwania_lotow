@@ -118,21 +118,25 @@ public class MyService implements Serializable {
         User user = new User();
         user.setEmail(registerUserRequest.getEmail());
         user.setPassword(registerUserRequest.getPassword());
-        User user1 = userRepository.save(user);
+        User user1 = null;
+        try {
+            user1 = userRepository.save(user);
+        } catch (Exception e) {
+            return new RegisterUserResponse("TAKI EMAIL JEST JUZ UZYWANY");
+        }
 
-
-        return user1 == null ? new RegisterUserResponse("NIE ZAREJESTROWANO") : new RegisterUserResponse("ZAREJESTROWANO");
+        return new RegisterUserResponse("ZAREJESTROWANO");
     }
 
-    private ClientDataResponse dataToShow(ClientDataRequest clientDataRequest){
+    private ClientDataResponse dataToShow(ClientDataRequest clientDataRequest) {
         User user = clientDataRequest.getUser();
 
-        MyTraveler myTraveler = null;
+        MyTraveler myTraveler = myTravelerRepository.findByUserId(user.getId());
         if (myTraveler == null) {
             return new ClientDataResponse("NIE DZIALA");
         }
-/*        TravelerDocument travelerDocument = travelerDocumentRepository.findByMyTravelerId(myTraveler.getIdMyTraveler());
-        if(travelerDocument==null){
+        travelerDocumentRepository.findByMyTravelerId(myTraveler.getId());
+       /* if(travelerDocument==null){
             return new ClientDataResponse("NIE DZIALA");
         }*/
        /* Optional<TravelerPhone> travelerPhone = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId());
