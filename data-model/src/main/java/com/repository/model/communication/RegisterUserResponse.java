@@ -1,6 +1,5 @@
 package com.repository.model.communication;
 
-import com.repository.model.database.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,9 +9,10 @@ import java.io.Serializable;
 @Getter
 public class RegisterUserResponse implements Serializable {
     private final String status;
-    private User user;
+    private final boolean register;
 
-    public RegisterUserResponse(String status) {
+    public RegisterUserResponse(String status, boolean register) {
         this.status = status;
+        this.register = register;
     }
 }

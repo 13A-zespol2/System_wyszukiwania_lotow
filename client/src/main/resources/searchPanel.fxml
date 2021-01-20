@@ -13,7 +13,7 @@
          <HBox alignment="CENTER" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
                minWidth="-Infinity" prefHeight="70.0" prefWidth="960.0" styleClass="top_hbox">
             <children>
-               <Label lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+               <Label fx:id="lias" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
                       minWidth="-Infinity" prefHeight="40.0" styleClass="data_label" text="Logged in as:">
                   <font>
                      <Font name="Bell MT Bold" size="13.0"/>
@@ -46,14 +46,17 @@
                <Font name="Bell MT Bold" size="13.0"/>
             </font>
          </Label>
-            <HBox layoutX="75.0" layoutY="190.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="885.0" styleClass="client_main">
-               <padding>
-                  <Insets left="40.0" right="40.0" />
-               </padding>
-               <children>
-                  <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="805.0">
+         <HBox layoutX="75.0" layoutY="245.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+               minWidth="-Infinity" prefHeight="395.0" prefWidth="885.0" styleClass="client_main">
+            <padding>
+               <Insets left="40.0" right="40.0"/>
+            </padding>
+            <children>
+               <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                           prefHeight="395.0" prefWidth="805.0">
                   <content>
-                     <TableView fx:id="tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="805.0">
+                     <TableView fx:id="tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                                minWidth="-Infinity" prefHeight="390.0" prefWidth="805.0">
                         <columns>
                            <TableColumn fx:id="col1" prefWidth="40.0" text="ID"/>
                            <TableColumn fx:id="col2" prefWidth="120.0" text="Departure"/>
@@ -67,27 +70,33 @@
                   </content>
                   </ScrollPane>
                </children></HBox>
-            <HBox fillHeight="false" layoutX="75.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="99.0" prefWidth="885.0" styleClass="search_box_top" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0">
-               <padding>
-                  <Insets left="40.0" right="40.0" />
-               </padding>
+         <HBox fillHeight="false" layoutX="75.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity"
+               minHeight="-Infinity" minWidth="-Infinity" prefHeight="157.0" prefWidth="885.0"
+               styleClass="search_box_top" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0">
+            <padding>
+               <Insets left="40.0" right="40.0"/>
+            </padding>
             <children>
-               <AnchorPane prefHeight="80.0" prefWidth="919.0">
+               <AnchorPane prefHeight="161.0" prefWidth="805.0">
                   <children>
-                     <ComboBox fx:id="originLocationCode" layoutY="7.0" prefHeight="25.0" prefWidth="149.0"
-                               promptText="Departure"/>
-                     <ComboBox fx:id="destinationLocationCode" layoutX="160.0" layoutY="7.0" prefWidth="150.0"
-                               promptText="Destination"/>
-                     <DatePicker fx:id="departureDate" layoutX="321.0" layoutY="7.0" promptText="Departure date"/>
-                     <DatePicker fx:id="returnDate" layoutX="513.0" layoutY="7.0" promptText="Date ///"/>
-                     <CheckBox fx:id="returnCheckbox" layoutX="693.0" layoutY="11.0" mnemonicParsing="false"
-                               text="Ticekt ///"/>
-                     <ComboBox fx:id="travelClass" layoutX="321.0" layoutY="45.0" prefHeight="25.0" prefWidth="174.0"
-                               promptText="Flight class"/>
-                     <TextField fx:id="children" layoutX="161.0" layoutY="45.0" promptText="Children"/>
-                     <TextField fx:id="adults" layoutY="45.0" promptText="Adults"/>
-                     <Button fx:id="search_SB" layoutX="509.0" layoutY="45.0" mnemonicParsing="false"
-                             onMouseClicked="#searchFlights" prefHeight="25.0" prefWidth="181.0" text="Search"/>
+                     <ComboBox fx:id="originLocationCode" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                               minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="150.0"
+                               promptText="Departure" styleClass="clientPanelLabel"/>
+                     <ComboBox fx:id="destinationLocationCode" layoutX="170.0" layoutY="23.0" maxHeight="-Infinity"
+                               maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0"
+                               prefWidth="150.0" promptText="Destination" styleClass="clientPanelLabel"/>
+                     <DatePicker fx:id="departureDate" layoutX="340.0" layoutY="23.0" maxHeight="-Infinity"
+                                 maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0"
+                                 prefWidth="150.0" promptText="Departure date" styleClass="clientPanelLabel"/>
+                     <ComboBox fx:id="travelClass" layoutX="170.0" layoutY="78.0" maxHeight="-Infinity"
+                               maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0"
+                               prefWidth="150.0" promptText="Flight class" styleClass="clientPanelLabel"/>
+                     <TextField fx:id="adults" layoutY="78.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                                minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="150.0"
+                                promptText="Ticket quantity" styleClass="clientPanelLabel"/>
+                     <Button fx:id="search_SB" layoutX="340.0" layoutY="78.0" mnemonicParsing="false"
+                             onMouseClicked="#searchFlights" prefHeight="45.0" prefWidth="150.0" styleClass="data_label"
+                             text="Search"/>
 
                   </children>
                </AnchorPane>
@@ -156,5 +165,6 @@
          </AnchorPane>
       </children>
    </VBox>
-   <FontAwesomeIcon glyphName="POWER_OFF" layoutX="910.0" layoutY="70.0" selectionFill="BLACK" size="30px" />
+   <FontAwesomeIcon glyphName="POWER_OFF" layoutX="910.0" layoutY="70.0" onMouseClicked="#logOut" selectionFill="BLACK"
+                    size="30px"/>
 </AnchorPane>

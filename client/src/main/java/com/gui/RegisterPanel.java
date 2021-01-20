@@ -67,16 +67,20 @@ public class RegisterPanel extends GuiPanel {
         return false;
     }
 
-    public void regButton() throws InterruptedException {
+    public boolean regButton() {
 
         if (validPassword() && validEmail()) {
 /*            registerError.setVisible(false);
             loginAfterReg.setText("Rejestracja przebiegła pomyślnie. Zaloguj się.");*/
             RegisterUserRequest registerUserRequest = new RegisterUserRequest(emailInput.getText(), passwordInput.getText());
             RegisterUserResponse registerUserResponse = clientControl.registerUserCommunication(registerUserRequest);
-
+            if (!registerUserResponse.isRegister()) {
+                registerError.setText("Podany e-mail istnieje w bazie!");
+                return false;
+            }
             toLoginPanel();
         }
+        return true;
     }
 
     @Override

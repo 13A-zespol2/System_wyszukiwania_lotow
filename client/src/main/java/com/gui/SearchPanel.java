@@ -79,6 +79,9 @@ public class SearchPanel extends GuiPanel {
     @FXML
     private Label loggedname;
 
+    @FXML
+    private Label lias;
+
     private User user;
 
 
@@ -87,19 +90,12 @@ public class SearchPanel extends GuiPanel {
         createSearchFlightRequest.setDestinationLocationCode(destinationLocationCode.getValue());
         createSearchFlightRequest.setOriginLocationCode(originLocationCode.getValue());
         createSearchFlightRequest.setDepartureDate(String.valueOf(departureDate.getValue()));
-        if (returnCheckbox.isSelected())
-            createSearchFlightRequest.setReturnDate(String.valueOf(returnDate.getValue()));
-        else
-            createSearchFlightRequest.setReturnDate("");
-
-        if (isNumeric(children.getText()))
-            createSearchFlightRequest.setChildren(children.getText());
         if (isNumeric(adults.getText()))
             createSearchFlightRequest.setAdults(adults.getText());
         createSearchFlightRequest.setTravelClass(travelClass.getValue());
 
-        SearchFlightRequest createUserRequest = new SearchFlightRequest("BER", "LIS", "2021-02-21", "1", "ECONOMY", "0", false, "");
-        SearchFlightResponse searchFlightResponse = clientControl.searchFlight(createUserRequest);
+        /*SearchFlightRequest createUserRequest = new SearchFlightRequest("BER", "LIS", "2021-02-21", "1", "ECONOMY", "0", false, "");*/
+        SearchFlightResponse searchFlightResponse = clientControl.searchFlight(createSearchFlightRequest);
 
 
         if (searchFlightResponse != null) {
@@ -107,7 +103,6 @@ public class SearchPanel extends GuiPanel {
             List<FlightOfferSearch> collect = tList.stream()
                     .map(e -> new Gson().fromJson(e, FlightOfferSearch.class))
                     .collect(Collectors.toList());
-            System.out.println("dsa");
             showFlights(collect);
         }
     }
@@ -116,8 +111,10 @@ public class SearchPanel extends GuiPanel {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        if (userLoginObserver.getUser().getEmail() != null) {
+        if (userLoginObserver.getUser() != null) {
             loggedname.setText(userLoginObserver.getUser().getEmail());
+        } else {
+            lias.setText("Not logged in");
         }
 
 

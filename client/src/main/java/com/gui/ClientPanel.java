@@ -36,7 +36,6 @@ public class ClientPanel extends GuiPanel {
     public void initialize(URL location, ResourceBundle resources) {
         userLoginObserver.addObserver(this);
         loggedname.setText(userLoginObserver.getUser().getEmail());
-
         clientControl.clientDataComunication(new ClientDataRequest(userLoginObserver.getUser(), null, null, null));
     }
 }

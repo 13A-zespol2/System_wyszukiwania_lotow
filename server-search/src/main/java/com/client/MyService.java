@@ -7,7 +7,6 @@ import com.google.gson.Gson;
 import com.repository.*;
 import com.repository.model.communication.*;
 import com.repository.model.database.MyTraveler;
-import com.repository.model.database.TravelerDocument;
 import com.repository.model.database.TravelerPhone;
 import com.repository.model.database.User;
 import lombok.extern.slf4j.Slf4j;
@@ -94,7 +93,7 @@ public class MyService implements Serializable {
         List<String> collect = flightOfferSearches1.stream()
                 .map(e -> new Gson().toJson(e))
                 .collect(Collectors.toList());
-        return new SearchFlightResponse("Zanaleziono", collect);
+        return new SearchFlightResponse("Znaleziono", collect);
     }
 
 
@@ -120,10 +119,14 @@ public class MyService implements Serializable {
         User user = new User();
         user.setEmail(registerUserRequest.getEmail());
         user.setPassword(registerUserRequest.getPassword());
-        User user1 = userRepository.save(user);
+        User user1 = null;
+        try {
+            user1 = userRepository.save(user);
+        } catch (Exception e) {
+            return new RegisterUserResponse("TAKI EMAIL JEST JUZ UZYWANY", false);
+        }
 
-
-        return user1 == null ? new RegisterUserResponse("NIE ZAREJESTROWANO") : new RegisterUserResponse("ZAREJESTROWANO");
+        return new RegisterUserResponse("ZAREJESTROWANO", true);
     }
 
     private ClientDataResponse dataToShow(ClientDataRequest clientDataRequest){

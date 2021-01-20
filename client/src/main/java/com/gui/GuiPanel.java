@@ -52,8 +52,12 @@ public abstract class GuiPanel implements Initializable, LoginObserver {
     }
 
     public void toClientData() {
-        mainPanel.getMainLoad().getChildren().clear();
-        mainPanel.getMainLoad().getChildren().add(loadUi("/clientPanel"));
+        if (userLoginObserver.getUser() != null) {
+            mainPanel.getMainLoad().getChildren().clear();
+            mainPanel.getMainLoad().getChildren().add(loadUi("/clientPanel"));
+        } else {
+            toLoginPanel();
+        }
     }
 
     public void toClientTickets() {
@@ -69,5 +73,12 @@ public abstract class GuiPanel implements Initializable, LoginObserver {
     public void toSearch() {
         mainPanel.getMainLoad().getChildren().clear();
         mainPanel.getMainLoad().getChildren().add(loadUi("/searchPanel"));
+    }
+
+    public void logOut() {
+        if (userLoginObserver.getUser() != null) {
+            userLoginObserver.loginNotify(null);
+        }
+        homeFunc();
     }
 }

@@ -112,8 +112,7 @@
 
 
 .search_box_top{
-	-fx-background-color: #fff;
-	-fx-opacity:1;
+    -fx-background-color: rgba(0, 174, 239, 0.10);
 }
 
 
@@ -141,9 +140,8 @@
 
 
 
-.client_main{
-	-fx-background-color: #fcfcfc;
-	-fx-opacity:0.65;
+.client_main {
+    -fx-background-color: rgba(0, 174, 239, 0.10);
 }
 
 
