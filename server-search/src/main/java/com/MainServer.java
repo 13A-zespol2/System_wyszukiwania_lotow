@@ -21,8 +21,6 @@ public class MainServer {
 
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-
-
         return args -> myService.start(8892);
     }
 

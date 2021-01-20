@@ -7,8 +7,6 @@ import com.google.gson.Gson;
 import com.repository.*;
 import com.repository.model.communication.*;
 import com.repository.model.database.MyTraveler;
-import com.repository.model.database.TravelerDocument;
-import com.repository.model.database.TravelerPhone;
 import com.repository.model.database.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,20 +126,21 @@ public class MyService implements Serializable {
 
     private ClientDataResponse dataToShow(ClientDataRequest clientDataRequest){
         User user = clientDataRequest.getUser();
-        MyTraveler myTraveler = myTravelerRepository.findByUserId(user.getId());
-        if(myTraveler==null){
+
+        MyTraveler myTraveler = null;
+        if (myTraveler == null) {
             return new ClientDataResponse("NIE DZIALA");
         }
 /*        TravelerDocument travelerDocument = travelerDocumentRepository.findByMyTravelerId(myTraveler.getIdMyTraveler());
         if(travelerDocument==null){
             return new ClientDataResponse("NIE DZIALA");
         }*/
-        Optional<TravelerPhone> travelerPhone = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId());
+       /* Optional<TravelerPhone> travelerPhone = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId());
         if(travelerPhone==null){
             return new ClientDataResponse("NIE DZIALA");
         }
-
-        return new ClientDataResponse("DZIALA", user, myTraveler, null, travelerPhone.get());
+*/
+        return new ClientDataResponse("DZIALA", user, myTraveler, null, null);
     }
 
 

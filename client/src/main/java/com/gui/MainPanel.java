@@ -73,5 +73,8 @@ public class MainPanel extends GuiPanel {
             login_button.setVisible(false);
     }
 
+    public AnchorPane getMainLoad() {
+        return mainLoad;
+    }
 
 }

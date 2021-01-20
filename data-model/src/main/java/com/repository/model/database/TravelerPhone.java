@@ -17,13 +17,17 @@ public class TravelerPhone implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private int countryCallingCode;
-    private int phoneNumber;
+    private String phoneNumber;
     private String deviceType;
 
-    public TravelerPhone(int id, int countryCallingCode, int phoneNumber, String deviceType) {
+    public TravelerPhone(int id, int countryCallingCode, String phoneNumber, String deviceType) {
         this.id = id;
         this.countryCallingCode = countryCallingCode;
         this.phoneNumber = phoneNumber;
         this.deviceType = deviceType;
+    }
+
+
+    public TravelerPhone() {
     }
 }

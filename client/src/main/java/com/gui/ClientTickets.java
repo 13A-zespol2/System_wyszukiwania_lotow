@@ -31,7 +31,8 @@ public class ClientTickets extends GuiPanel {
     }
 
     public void toClientData() {
-        mainPanel.getMainLoad().getChildren().clear();
+        mainPanel.
+                mainPanel.getMainLoad().getChildren().clear();
         mainPanel.getMainLoad().getChildren().add(loadUi("/clientPanel"));
     }
 

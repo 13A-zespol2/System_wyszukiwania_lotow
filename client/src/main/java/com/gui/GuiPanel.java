@@ -44,4 +44,6 @@ public abstract class GuiPanel implements Initializable, LoginObserver {
         mainPanel.getMainLoad().getChildren().clear();
         mainPanel.getMainLoad().getChildren().add(loadUi("/MainPanel"));
     }
+
+
 }
