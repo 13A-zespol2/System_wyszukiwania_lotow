@@ -54,9 +54,13 @@
 
 
 .reg_input{
-	-fx-background-color: #dedede;
+	-fx-background-color: rgba(222, 222, 222,0.6);
 	-fx-background-radius: 5px;
 	-fx-opacity:0.85;
+	-fx-border-style: solid solid solid solid;
+	-fx-border-color: #aaaaaa;
+	-fx-border-width: 1;
+	-fx-border-radius: 10px;
 }
 
 
@@ -151,10 +155,6 @@
 	-fx-opacity:0.65;
 }
 
-.client_main2{
-	-fx-background-color: #000;
-	-fx-opacity:0.15;
-}
 
 
 .left_panel{
