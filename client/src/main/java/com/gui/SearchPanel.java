@@ -32,14 +32,15 @@ import java.util.stream.Collectors;
 @Controller
 @Component
 public class SearchPanel implements FxmlLoader, Initializable {
+
+    @FXML
+    public TableView<FlightOfferSearch> tableView;
     @Autowired
     private ClientControl clientControl;
     @Autowired
     private MainPanel mainPanel;
     @Autowired
     private SpringFxmlLoader springFxmlLoader;
-
-
     @FXML
     private Icon icon;
 
@@ -134,7 +135,7 @@ public class SearchPanel implements FxmlLoader, Initializable {
                     .map(e -> new Gson().fromJson(e, FlightOfferSearch.class))
                     .collect(Collectors.toList());
             System.out.println("dsa");
-
+            showFlights(collect);
         }
 
         System.out.println("Sad");
@@ -178,16 +179,17 @@ public class SearchPanel implements FxmlLoader, Initializable {
         col1.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FlightOfferSearch, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<FlightOfferSearch, String> param) {
-                return new ReadOnlyStringWrapper(param.getValue().getId());
+                return new ReadOnlyStringWrapper(String.valueOf(param.getValue().getPrice().getTotal()));
             }
         });
+
+
         System.out.println("dsa");
 
-
+        tableView.setItems(list);
 
 
     }
-
 
 
 }

@@ -80,7 +80,9 @@ public class MyService implements Serializable {
 
 
 
-        List<String> collect = flightOfferSearches1.stream().map(e -> new Gson().toJson(e)).collect(Collectors.toList());
+        List<String> collect = flightOfferSearches1.stream()
+                .map(e -> new Gson().toJson(e))
+                .collect(Collectors.toList());
         return new SearchFlightResponse("Zanaleziono",collect );
     }
 
