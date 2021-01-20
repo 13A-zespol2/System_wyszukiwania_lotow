@@ -1,24 +1,17 @@
 package com.gui;
 
 import com.amadeus.resources.FlightOfferSearch;
-import com.client.ClientControl;
-import com.gluonhq.charm.glisten.control.Icon;
 import com.google.gson.Gson;
 import com.repository.model.communication.SearchFlightRequest;
 import com.repository.model.communication.SearchFlightResponse;
 import com.repository.model.data.AirportCode;
+import com.repository.model.database.User;
 import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.util.Callback;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
@@ -32,18 +25,10 @@ import java.util.stream.Collectors;
 @Slf4j
 @Controller
 @Component
-public class SearchPanel implements FxmlLoader, Initializable {
+public class SearchPanel extends GuiPanel {
 
     @FXML
     public TableView<FlightOfferSearch> tableView;
-    @Autowired
-    private ClientControl clientControl;
-    @Autowired
-    private MainPanel mainPanel;
-    @Autowired
-    private SpringFxmlLoader springFxmlLoader;
-    @FXML
-    private Icon icon;
 
     @FXML
     private ComboBox<String> originLocationCode;
@@ -69,8 +54,7 @@ public class SearchPanel implements FxmlLoader, Initializable {
     @FXML
     private TextField adults;
 
-    @FXML
-    private Button search_SB;
+
     @FXML
     private TableColumn<FlightOfferSearch, String> col1;
 
@@ -91,37 +75,19 @@ public class SearchPanel implements FxmlLoader, Initializable {
 
     @FXML
     private TableColumn<FlightOfferSearch, String> col7;
+    private User user;
 
-
-    public void homeFunc(MouseEvent event) {
-        mainPanel.getMainLoad().getChildren().clear();
-        mainPanel.getMainLoad().getChildren().add(loadUi("/MainPanel"));
-    }
-
-    public void exit_btn(MouseEvent event) {
-        System.exit(0);
-    }
-
-    public void minimize_btn(MouseEvent event) {
-        TopBar topbar = new TopBar();
-        topbar.minimize_btn(event);
-    }
-
-    @Override
-    public AnchorPane loadUi(String ui) {
-        return (AnchorPane) springFxmlLoader.load(ui + ".fxml");
-    }
 
     public void searchFlights() {
         SearchFlightRequest createSearchFlightRequest = new SearchFlightRequest();
         createSearchFlightRequest.setDestinationLocationCode(destinationLocationCode.getValue());
         createSearchFlightRequest.setOriginLocationCode(originLocationCode.getValue());
         createSearchFlightRequest.setDepartureDate(String.valueOf(departureDate.getValue()));
-        if (returnCheckbox.isSelected()) {
+        if (returnCheckbox.isSelected())
             createSearchFlightRequest.setReturnDate(String.valueOf(returnDate.getValue()));
-        } else {
+        else
             createSearchFlightRequest.setReturnDate("");
-        }
+
         if (isNumeric(children.getText()))
             createSearchFlightRequest.setChildren(children.getText());
         if (isNumeric(adults.getText()))
@@ -150,6 +116,8 @@ public class SearchPanel implements FxmlLoader, Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        userLoginObserver.addObserver(this);
         ObservableList<String> listCity = FXCollections.observableArrayList();
         for (Map.Entry<String, AirportCode> entry : AirportCode.getByIata().entrySet()) {
             listCity.add(entry.getValue().IATACode);
@@ -191,6 +159,7 @@ public class SearchPanel implements FxmlLoader, Initializable {
 
         col6.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(param.getValue().getPrice().getTotal())));
 
+        col7.setCellValueFactory(param -> new ReadOnlyStringWrapper(Arrays.stream(Arrays.stream(param.getValue().getTravelerPricings()).findFirst().get().getFareDetailsBySegment()).findFirst().get().getCabin()));
 
 
         System.out.println("dsa");
@@ -201,4 +170,8 @@ public class SearchPanel implements FxmlLoader, Initializable {
     }
 
 
+    @Override
+    public void update(User user) {
+        this.user = user;
+    }
 }

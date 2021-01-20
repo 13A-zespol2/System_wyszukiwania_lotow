@@ -12,11 +12,6 @@ public class RegisterUserResponse implements Serializable {
     private final String status;
     private User user;
 
-    public RegisterUserResponse(User user, String status) {
-        this.status = status;
-        this.user = user;
-    }
-
     public RegisterUserResponse(String status) {
         this.status = status;
     }

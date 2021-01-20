@@ -1,6 +1,5 @@
 package com.repository.model.communication;
 
-import com.amadeus.resources.FlightOfferSearch;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,13 +1,7 @@
 package com.client;
 
 
-import com.observer.UserLoginObserver;
 import com.repository.model.communication.*;
-import com.repository.model.communication.LoginUserRequest;
-import com.repository.model.communication.LoginUserResponse;
-import com.repository.model.communication.RegisterUserRequest;
-import com.repository.model.communication.RegisterUserResponse;
-import lombok.Getter;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -23,12 +17,12 @@ public class ClientControl {
     public LoginUserResponse loginUserCommunication(LoginUserRequest loginUserRequest) {
         return (LoginUserResponse) send(loginUserRequest);
     }
-    public RegisterUserResponse registerUserCommunication(RegisterUserRequest registerUserRequest){
+
+    public RegisterUserResponse registerUserCommunication(RegisterUserRequest registerUserRequest) {
         return (RegisterUserResponse) send(registerUserRequest);
     }
 
-    public SearchFlightResponse  searchFlight(SearchFlightRequest searchFlightRequest)
-    {
+    public SearchFlightResponse searchFlight(SearchFlightRequest searchFlightRequest) {
         return (SearchFlightResponse) send(searchFlightRequest);
     }
 

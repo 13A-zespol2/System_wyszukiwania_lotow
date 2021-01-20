@@ -1,12 +1,10 @@
 package com;
 
-import com.gui.MainPanel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -19,7 +17,6 @@ import java.io.IOException;
 public class ClientApplication extends Application {
     private ConfigurableApplicationContext springContext;
     private AnchorPane rootNode;
-
 
 
     public static void main(String[] args) {
