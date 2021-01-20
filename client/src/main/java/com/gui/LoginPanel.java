@@ -1,23 +1,17 @@
 package com.gui;
 
-import com.ClientApplication;
 import com.client.ClientControl;
 import com.observer.LoginListener;
 import com.observer.UserLoginObserver;
 import com.repository.model.communication.LoginUserRequest;
 import com.repository.model.communication.LoginUserResponse;
 import com.repository.model.database.User;
-import javafx.css.Stylesheet;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import jdk.jfr.Event;
 import lombok.extern.slf4j.Slf4j;
-import org.jboss.jandex.Main;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -52,10 +46,7 @@ public class LoginPanel implements InitializingBean, LoginListener, FxmlLoader {
     }
 
 
-
-
-
-    public void logButton(MouseEvent mouseEvent) {
+    public void logButton() {
         if (emailLabel.getText().isEmpty())
             log.error("Pole email puste");
         if (logPassw.getText().isEmpty())
@@ -85,12 +76,12 @@ public class LoginPanel implements InitializingBean, LoginListener, FxmlLoader {
         return (AnchorPane) springFxmlLoader.load(ui + ".fxml");
     }
 
-    public void homeFunc(MouseEvent event) {
+    public void homeFunc() {
         mainPanel.getMainLoad().getChildren().clear();
         mainPanel.getMainLoad().getChildren().add(loadUi("/MainPanel"));
     }
 
-    public void exit_btn(MouseEvent event) {
+    public void exit_btn() {
         System.exit(0);
     }
 

@@ -39,7 +39,7 @@ public class AmadeusFacade {
 
         return flightOrder == null ? Optional.empty() : Optional.of(flightOrder);
     }
-
+    //TODO !!!!
     public Optional<Object> getOrderedFlight(String idOrder) {
         return Optional.empty();
     }
@@ -57,6 +57,7 @@ public class AmadeusFacade {
         amadeusFlightSearch.setChildren(String.valueOf(searchFlightRequest.getChildren()));
         try {
             flightOfferSearches = amadeusFlightSearch.searchFlight();
+            System.out.println("Dsa");
 
         } catch (ResponseException e) {
             return null;

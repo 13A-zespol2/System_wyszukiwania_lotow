@@ -22,12 +22,12 @@ public class ClientPanel implements FxmlLoader{
     @Autowired
     private SpringFxmlLoader springFxmlLoader;
 
-    public void homeFunc(MouseEvent event) {
+    public void homeFunc() {
         mainPanel.getMainLoad().getChildren().clear();
         mainPanel.getMainLoad().getChildren().add(loadUi("/MainPanel"));
     }
 
-    public void exit_btn(MouseEvent event) {
+    public void exit_btn() {
         System.exit(0);
     }
 

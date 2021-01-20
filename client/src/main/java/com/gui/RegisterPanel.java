@@ -34,12 +34,12 @@ public class RegisterPanel implements FxmlLoader{
     @FXML
     private TextField emailInput;
 
-    public void homeFunc(MouseEvent event) {
+    public void homeFunc() {
         mainPanel.getMainLoad().getChildren().clear();
         mainPanel.getMainLoad().getChildren().add(loadUi("/MainPanel"));
     }
 
-    public void exit_btn(MouseEvent event) {
+    public void exit_btn() {
         System.exit(0);
     }
 
@@ -68,7 +68,7 @@ public class RegisterPanel implements FxmlLoader{
     }
 
    public boolean validEmail(){
-        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
         if(emailInput.getText().matches(regex)) {
             log.info("EMAIL PRAWIDLOWY");
             return true;

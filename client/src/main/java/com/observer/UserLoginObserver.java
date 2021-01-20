@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 public class UserLoginObserver {
     private User user;
 
-
+        //TODO OBSERWER
     public User loginNotify(User user) {
         this.user = user;
         return this.user;

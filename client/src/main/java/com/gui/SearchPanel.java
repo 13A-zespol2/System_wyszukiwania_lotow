@@ -119,8 +119,7 @@ public class SearchPanel implements FxmlLoader, Initializable {
         createSearchFlightRequest.setDepartureDate(String.valueOf(departureDate.getValue()));
         if (returnCheckbox.isSelected()) {
             createSearchFlightRequest.setReturnDate(String.valueOf(returnDate.getValue()));
-        }
-        else{
+        } else {
             createSearchFlightRequest.setReturnDate("");
         }
         if (isNumeric(children.getText()))
@@ -169,7 +168,7 @@ public class SearchPanel implements FxmlLoader, Initializable {
             return false;
         }
         try {
-            double d = Double.parseDouble(strNum);
+            Double.parseDouble(strNum);
         } catch (NumberFormatException nfe) {
             return false;
         }
@@ -180,61 +179,20 @@ public class SearchPanel implements FxmlLoader, Initializable {
         ObservableList<FlightOfferSearch> list = FXCollections.observableArrayList();
         list.addAll(tList);
 
-            col1.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FlightOfferSearch, String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<FlightOfferSearch, String> param) {
-                    return new ReadOnlyStringWrapper(param.getValue().getId());
-                }
-            });
+        col1.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getId()));
 
-            col2.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FlightOfferSearch, String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<FlightOfferSearch, String> param) {
-                    return new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getIataCode()));
-                }
-            });
+        col2.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getIataCode())));
 
-            col3.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FlightOfferSearch, String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<FlightOfferSearch, String> param) {
-                    return new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getIataCode()));
-                }
-            });
+        col3.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getIataCode())));
 
-            col4.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FlightOfferSearch, String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<FlightOfferSearch, String> param) {
-                    return new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getAt()));
-                }
-            });
+        col4.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getAt())));
 
-            col5.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FlightOfferSearch, String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<FlightOfferSearch, String> param) {
-                    return new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getAt()));
-                }
-            });
+        col5.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getAt())));
 
-            col6.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FlightOfferSearch, String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<FlightOfferSearch, String> param) {
-                    return new ReadOnlyStringWrapper(String.valueOf(param.getValue().getPrice().getTotal()));
-                }
-            });
-
-            col7.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FlightOfferSearch, String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<FlightOfferSearch, String> param) {
-                    return new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getTravelerPricings()).findFirst().get().getFareDetailsBySegment()).findFirst().get().getCabin()));
-                }
-            });
+        col6.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(param.getValue().getPrice().getTotal())));
 
 
-
-
-
-
-
+        System.out.println("dsa");
 
         tableView.setItems(list);
 

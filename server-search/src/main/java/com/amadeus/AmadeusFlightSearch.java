@@ -24,6 +24,7 @@ class AmadeusFlightSearch {
                 Params.with("originLocationCode", originLocationCode)
                         .and("destinationLocationCode", destinationLocationCode)
                         .and("departureDate", departureDate)
+                        .and("nonStop",false)
                         .and("adults", adults)
                         .and("travelClass", travelClass)
                         .and("children", children)

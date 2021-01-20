@@ -18,7 +18,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -79,11 +78,10 @@ public class MyService implements Serializable {
         List<FlightOfferSearch> flightOfferSearches1 = flightOfferSearches.get();
 
 
-
         List<String> collect = flightOfferSearches1.stream()
                 .map(e -> new Gson().toJson(e))
                 .collect(Collectors.toList());
-        return new SearchFlightResponse("Zanaleziono",collect );
+        return new SearchFlightResponse("Zanaleziono", collect);
     }
 
 
@@ -102,10 +100,10 @@ public class MyService implements Serializable {
         User user = new User();
         user.setEmail(registerUserRequest.getEmail());
         user.setPassword(registerUserRequest.getPassword());
-        user = userRepository.save(user);
+        User user1 = userRepository.save(user);
 
 
-        return user == null ? new RegisterUserResponse("NIE ZAREJESTROWANO") : new RegisterUserResponse("ZAREJESTROWANO");
+        return user1 == null ? new RegisterUserResponse("NIE ZAREJESTROWANO") : new RegisterUserResponse("ZAREJESTROWANO");
     }
 
 

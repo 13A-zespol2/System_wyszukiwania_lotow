@@ -16,9 +16,6 @@ import org.springframework.stereotype.Controller;
 @Component
 public class TopBar implements FxmlLoader{
     @Autowired
-    private ClientControl clientControl;
-
-    @Autowired
     private SpringFxmlLoader springFxmlLoader;
 
     @FXML

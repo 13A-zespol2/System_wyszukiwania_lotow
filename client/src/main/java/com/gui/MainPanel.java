@@ -4,20 +4,13 @@ import com.client.ClientControl;
 import com.observer.LoginListener;
 import com.observer.UserLoginObserver;
 import com.repository.model.database.User;
-import com.gluonhq.charm.glisten.control.Icon;
-import com.sun.xml.bind.v2.model.core.NonElementRef;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-
-import java.awt.*;
 
 @Controller
 @Component
@@ -35,7 +28,7 @@ public class MainPanel implements FxmlLoader, LoginListener {
     @FXML
     private AnchorPane mainLoad;
 
-    public void searchFlights(MouseEvent mouseEvent) {
+    public void searchFlights() {
         if (!mainLoad.getChildren().isEmpty()) {
             mainLoad.getChildren().clear();
         }
@@ -44,7 +37,7 @@ public class MainPanel implements FxmlLoader, LoginListener {
 
     }
 
-    public void exit_btn(MouseEvent mouseEvent) {
+    public void exit_btn() {
         System.exit(0);
     }
 
@@ -53,7 +46,7 @@ public class MainPanel implements FxmlLoader, LoginListener {
         topbar.minimize_btn(event);
     }
 
-    public void register(MouseEvent mouseEvent) {
+    public void register() {
         if (!mainLoad.getChildren().isEmpty()) {
             mainLoad.getChildren().clear();
         }
@@ -61,7 +54,7 @@ public class MainPanel implements FxmlLoader, LoginListener {
         mainLoad.getChildren().add(root);
     }
 
-    public void login(MouseEvent mouseEvent) {
+    public void login() {
 
         if (!mainLoad.getChildren().isEmpty()) {
             mainLoad.getChildren().clear();
