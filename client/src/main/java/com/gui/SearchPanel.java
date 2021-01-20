@@ -23,6 +23,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -74,22 +75,22 @@ public class SearchPanel implements FxmlLoader, Initializable {
     private TableColumn<FlightOfferSearch, String> col1;
 
     @FXML
-    private TableColumn<?, ?> col2;
+    private TableColumn<FlightOfferSearch, String> col2;
 
     @FXML
-    private TableColumn<?, ?> col3;
+    private TableColumn<FlightOfferSearch, String> col3;
 
     @FXML
-    private TableColumn<?, ?> col4;
+    private TableColumn<FlightOfferSearch, String> col4;
 
     @FXML
-    private TableColumn<?, ?> col5;
+    private TableColumn<FlightOfferSearch, String> col5;
 
     @FXML
-    private TableColumn<?, ?> col6;
+    private TableColumn<FlightOfferSearch, String> col6;
 
     @FXML
-    private TableColumn<?, ?> col7;
+    private TableColumn<FlightOfferSearch, String> col7;
 
 
     public void homeFunc(MouseEvent event) {
@@ -115,19 +116,22 @@ public class SearchPanel implements FxmlLoader, Initializable {
         SearchFlightRequest createSearchFlightRequest = new SearchFlightRequest();
         createSearchFlightRequest.setDestinationLocationCode(destinationLocationCode.getValue());
         createSearchFlightRequest.setOriginLocationCode(originLocationCode.getValue());
-        createSearchFlightRequest.setReturnDate(String.valueOf(departureDate.getValue()));
-        if (returnCheckbox.isSelected())
+        createSearchFlightRequest.setDepartureDate(String.valueOf(departureDate.getValue()));
+        if (returnCheckbox.isSelected()) {
             createSearchFlightRequest.setReturnDate(String.valueOf(returnDate.getValue()));
+        }
+        else{
+            createSearchFlightRequest.setReturnDate("");
+        }
         if (isNumeric(children.getText()))
             createSearchFlightRequest.setChildren(children.getText());
         if (isNumeric(adults.getText()))
             createSearchFlightRequest.setAdults(adults.getText());
         createSearchFlightRequest.setTravelClass(travelClass.getValue());
 
-        SearchFlightRequest createUserRequest = new SearchFlightRequest("PAR", "NYC", "2021-01-21", "1", "ECONOMY", "0", false, "");
-
-
+        SearchFlightRequest createUserRequest = new SearchFlightRequest("BER", "LIS", "2021-02-21", "1", "ECONOMY", "0", false, "");
         SearchFlightResponse searchFlightResponse = clientControl.searchFlight(createUserRequest);
+
 
         if (searchFlightResponse != null) {
             List<String> tList = searchFlightResponse.getTList();
@@ -149,7 +153,7 @@ public class SearchPanel implements FxmlLoader, Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<String> listCity = FXCollections.observableArrayList();
         for (Map.Entry<String, AirportCode> entry : AirportCode.getByIata().entrySet()) {
-            listCity.add(entry.getKey());
+            listCity.add(entry.getValue().IATACode);
         }
 
         originLocationCode.setItems(listCity);
@@ -176,15 +180,61 @@ public class SearchPanel implements FxmlLoader, Initializable {
         ObservableList<FlightOfferSearch> list = FXCollections.observableArrayList();
         list.addAll(tList);
 
-        col1.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FlightOfferSearch, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<FlightOfferSearch, String> param) {
-                return new ReadOnlyStringWrapper(String.valueOf(param.getValue().getPrice().getTotal()));
-            }
-        });
+            col1.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FlightOfferSearch, String>, ObservableValue<String>>() {
+                @Override
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<FlightOfferSearch, String> param) {
+                    return new ReadOnlyStringWrapper(param.getValue().getId());
+                }
+            });
+
+            col2.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FlightOfferSearch, String>, ObservableValue<String>>() {
+                @Override
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<FlightOfferSearch, String> param) {
+                    return new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getIataCode()));
+                }
+            });
+
+            col3.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FlightOfferSearch, String>, ObservableValue<String>>() {
+                @Override
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<FlightOfferSearch, String> param) {
+                    return new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getIataCode()));
+                }
+            });
+
+            col4.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FlightOfferSearch, String>, ObservableValue<String>>() {
+                @Override
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<FlightOfferSearch, String> param) {
+                    return new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getAt()));
+                }
+            });
+
+            col5.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FlightOfferSearch, String>, ObservableValue<String>>() {
+                @Override
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<FlightOfferSearch, String> param) {
+                    return new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getAt()));
+                }
+            });
+
+            col6.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FlightOfferSearch, String>, ObservableValue<String>>() {
+                @Override
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<FlightOfferSearch, String> param) {
+                    return new ReadOnlyStringWrapper(String.valueOf(param.getValue().getPrice().getTotal()));
+                }
+            });
+
+            col7.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FlightOfferSearch, String>, ObservableValue<String>>() {
+                @Override
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<FlightOfferSearch, String> param) {
+                    return new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getTravelerPricings()).findFirst().get().getFareDetailsBySegment()).findFirst().get().getCabin()));
+                }
+            });
 
 
-        System.out.println("dsa");
+
+
+
+
+
 
         tableView.setItems(list);
 

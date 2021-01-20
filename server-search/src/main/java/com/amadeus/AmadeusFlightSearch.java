@@ -27,7 +27,8 @@ class AmadeusFlightSearch {
                         .and("adults", adults)
                         .and("travelClass", travelClass)
                         .and("children", children)
-                        .and("max", 20));
+                        .and("max", 20)
+                        .and("nonStop",true));
     }
 
 

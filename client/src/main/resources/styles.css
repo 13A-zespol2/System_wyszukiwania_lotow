@@ -54,7 +54,7 @@
 
 
 .reg_input{
-	-fx-background-color: #ffffff;
+	-fx-background-color: #dedede;
 	-fx-background-radius: 5px;
 	-fx-opacity:0.85;
 }
@@ -151,7 +151,10 @@
 	-fx-opacity:0.65;
 }
 
-
+.client_main2{
+	-fx-background-color: #000;
+	-fx-opacity:0.15;
+}
 
 
 .left_panel{
