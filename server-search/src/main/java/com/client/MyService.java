@@ -3,6 +3,7 @@ package com.client;
 
 import com.amadeus.AmadeusFacade;
 import com.amadeus.resources.FlightOfferSearch;
+import com.google.gson.Gson;
 import com.repository.ReservationRepository;
 import com.repository.UserRepository;
 import com.repository.model.communication.*;
@@ -17,8 +18,10 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Slf4j
@@ -73,8 +76,12 @@ public class MyService implements Serializable {
         if (flightOfferSearches.isEmpty())
             return new SearchFlightResponse("Nie znaleziono lotu");
 
+        List<FlightOfferSearch> flightOfferSearches1 = flightOfferSearches.get();
 
-        return new SearchFlightResponse("Zanaleziono",null );
+
+
+        List<String> collect = flightOfferSearches1.stream().map(e -> new Gson().toJson(e)).collect(Collectors.toList());
+        return new SearchFlightResponse("Zanaleziono",collect );
     }
 
 

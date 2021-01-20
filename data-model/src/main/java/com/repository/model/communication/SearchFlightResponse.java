@@ -12,10 +12,10 @@ import java.util.List;
 public class SearchFlightResponse implements Serializable {
 
     private String status;
-    private List<FlightOfferSearch> tList;
+    private List<String> tList;
 
 
-    public SearchFlightResponse(String status, List<FlightOfferSearch> tList) {
+    public SearchFlightResponse(String status, List<String> tList) {
         this.status = status;
         this.tList = tList;
     }

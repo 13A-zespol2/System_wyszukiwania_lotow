@@ -3,6 +3,7 @@ package com.gui;
 import com.amadeus.resources.FlightOfferSearch;
 import com.client.ClientControl;
 import com.gluonhq.charm.glisten.control.Icon;
+import com.google.gson.Gson;
 import com.repository.model.communication.SearchFlightRequest;
 import com.repository.model.communication.SearchFlightResponse;
 import com.repository.model.data.AirportCode;
@@ -25,6 +26,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
@@ -127,8 +129,12 @@ public class SearchPanel implements FxmlLoader, Initializable {
         SearchFlightResponse searchFlightResponse = clientControl.searchFlight(createUserRequest);
 
         if (searchFlightResponse != null) {
-            List<FlightOfferSearch> tList = searchFlightResponse.getTList();
-            showFlights(tList);
+            List<String> tList = searchFlightResponse.getTList();
+            List<FlightOfferSearch> collect = tList.stream()
+                    .map(e -> new Gson().fromJson(e, FlightOfferSearch.class))
+                    .collect(Collectors.toList());
+            System.out.println("dsa");
+
         }
 
         System.out.println("Sad");
