@@ -1,6 +1,8 @@
 package com.gui;
 
+
 import com.client.ClientControl;
+import com.observer.UserLoginObserver;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -13,14 +15,15 @@ import org.springframework.stereotype.Controller;
 @Slf4j
 @Controller
 @Component
-public class ClientPanel implements FxmlLoader{
-
+public class Traveler implements FxmlLoader {
     @Autowired
     private ClientControl clientControl;
 
     @Autowired
-    private MainPanel mainPanel;
+    private UserLoginObserver userLoginObserver;
 
+    @Autowired
+    private MainPanel mainPanel;
     @Autowired
     private SpringFxmlLoader springFxmlLoader;
 
@@ -30,6 +33,7 @@ public class ClientPanel implements FxmlLoader{
     private Label clientTickets;
     @FXML
     private Label clientEdit;
+
 
     public void homeFunc() {
         mainPanel.getMainLoad().getChildren().clear();
@@ -48,20 +52,5 @@ public class ClientPanel implements FxmlLoader{
     @Override
     public AnchorPane loadUi(String ui) {
         return (AnchorPane) springFxmlLoader.load(ui + ".fxml");
-    }
-
-    public void toClientData() {
-        mainPanel.getMainLoad().getChildren().clear();
-        mainPanel.getMainLoad().getChildren().add(loadUi("/clientPanel"));
-    }
-
-    public void toClientTickets() {
-        mainPanel.getMainLoad().getChildren().clear();
-        mainPanel.getMainLoad().getChildren().add(loadUi("/tickets"));
-    }
-
-    public void toClientEdit() {
-        mainPanel.getMainLoad().getChildren().clear();
-        mainPanel.getMainLoad().getChildren().add(loadUi("/editData"));
     }
 }

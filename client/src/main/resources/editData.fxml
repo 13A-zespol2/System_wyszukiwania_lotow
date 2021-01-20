@@ -1,46 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.gluonhq.charm.glisten.layout.Layer?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane disable="true" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="panel_bg" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.ClientPanel">
+<?import java.lang.String?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="panel_bg"
+            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.gui.ClientPanel">
    <children>
-      <HBox alignment="CENTER" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="960.0" styleClass="top_hbox" />
-      <Layer accessibleRole="IMAGE_VIEW" layoutX="24.0" layoutY="44.0" prefHeight="45.0" prefWidth="130.0" styleClass="hbox_logo" />
+      <HBox alignment="CENTER" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="70.0" prefWidth="960.0" styleClass="top_hbox"/>
+      <Layer accessibleRole="IMAGE_VIEW" layoutX="24.0" layoutY="44.0" prefHeight="45.0" prefWidth="130.0"
+             styleClass="hbox_logo"/>
       <Separator layoutX="888.0" layoutY="30.0" orientation="VERTICAL" prefHeight="64.0">
          <opaqueInsets>
-            <Insets />
+            <Insets/>
          </opaqueInsets>
       </Separator>
-      <Label layoutX="200.0" layoutY="30.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label" text="Panel Klienta">
+      <Label layoutX="200.0" layoutY="30.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity"
+             minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label" text="Panel Klienta">
          <font>
             <Font name="Bell MT Bold" size="13.0" />
             </font>
          </Label>
          <VBox layoutX="80.0" layoutY="100.0" prefHeight="540.0" prefWidth="200.0" styleClass="data_vbox">
             <children>
-               <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="thin_label" text="Dane" textAlignment="CENTER">
+               <Label fx:id="clientData" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
+                      minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#toClientData" prefHeight="50.0"
+                      prefWidth="200.0" styleClass="thin_label" text="Dane" textAlignment="CENTER">
                   <VBox.margin>
-                     <Insets />
+                     <Insets/>
                   </VBox.margin>
                </Label>
-               <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="thin_label" text="Bilety" textAlignment="CENTER" />
-               <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" text="Edycja" textAlignment="CENTER">
-               <styleClass>
-                  <String fx:value="thin_label" />
-                  <String fx:value="activated" />
-               </styleClass></Label>
+               <Label fx:id="clientTickets" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
+                      minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#toClientTickets" prefHeight="50.0"
+                      prefWidth="200.0" styleClass="thin_label" text="Bilety" textAlignment="CENTER"/>
+               <Label fx:id="clientEdit" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
+                      minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#toClientEdit" prefHeight="50.0"
+                      prefWidth="200.0" text="Edycja" textAlignment="CENTER">
+                  <styleClass>
+                     <String fx:value="thin_label"/>
+                     <String fx:value="activated"/>
+                  </styleClass>
+               </Label>
             </children>
             <padding>
                <Insets right="1.0" />
