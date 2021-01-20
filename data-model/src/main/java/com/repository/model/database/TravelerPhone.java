@@ -26,4 +26,8 @@ public class TravelerPhone implements Serializable {
         this.phoneNumber = phoneNumber;
         this.deviceType = deviceType;
     }
+
+    public TravelerPhone() {
+
+    }
 }

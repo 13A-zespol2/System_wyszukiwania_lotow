@@ -32,4 +32,8 @@ public class TravelerDocument implements Serializable {
         this.nationality = nationality;
         this.myTraveler = myTraveler;
     }
+
+    public TravelerDocument() {
+
+    }
 }

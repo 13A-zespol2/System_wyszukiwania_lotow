@@ -175,13 +175,23 @@
 
 .data_vbox{
 	-fx-background-color: rgba(255,255,255,0.4);
-	-fx-border-style: hidden solid hidden hidden;
-	-fx-border-color: #00AEEF;;
-	-fx-border-width: 1;
+    -fx-border-style: hidden solid hidden hidden;
+    -fx-border-color: #00AEEF;;
+    -fx-border-width: 1;
 }
 
-.activated{
-	-fx-background-color: #00AEEF;
+.activated {
+    -fx-background-color: #00AEEF;
+}
+
+
+.greenLabel {
+    -fx-text-fill: green;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-font-family: Monsterrat;
+    -fx-text-align: center;
+    -fx-text-alignment: center;
 }
 
 

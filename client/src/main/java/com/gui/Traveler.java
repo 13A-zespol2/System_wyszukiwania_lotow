@@ -22,6 +22,8 @@ public class Traveler extends GuiPanel {
     @FXML
     private Label clientEdit;
 
+    @FXML
+    private Label loggedname;
 
     @Override
     public void update(User user) {
@@ -30,6 +32,7 @@ public class Traveler extends GuiPanel {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        userLoginObserver.addObserver(this);
+        loggedname.setText(userLoginObserver.getUser().getEmail());
     }
 }

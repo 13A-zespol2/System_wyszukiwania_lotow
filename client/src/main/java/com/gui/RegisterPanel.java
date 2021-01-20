@@ -26,18 +26,28 @@ public class RegisterPanel extends GuiPanel {
     private TextField emailInput;
     @FXML
     private Label registerError;
+    @FXML
+    private Label loginAfterReg;
 
 
     public boolean validPassword() {
         String passRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!^&*().]).{8,20}$";
 
-        if (passwordInput.getText().matches(passRegEx)) {
-            if (repeatpasswordInput.getText().equals(passwordInput.getText())) {
-                log.info("HASLO PRAWIDLOWE");
-                return true;
-            }
+        if ((passwordInput.getText().matches(passRegEx)) && (repeatpasswordInput.getText().equals(passwordInput.getText()))) {
+            return true;
+        } else {
+            registerError.setText("Nieprawidłowe hasło!");
         }
-        log.info("HASLO NIEPRAWIDLOWE");
+
+        if (passwordInput.getText().isEmpty() || repeatpasswordInput.getText().isEmpty()) {
+            registerError.setText("Wypełnij puste pola!");
+            return false;
+        }
+
+        if (!repeatpasswordInput.getText().equals(passwordInput.getText())) {
+            registerError.setText("Hasła są niezgodne!");
+            return false;
+        }
         return false;
     }
 
@@ -50,20 +60,22 @@ public class RegisterPanel extends GuiPanel {
         }
 
         if (emailInput.getText().isEmpty()) {
-            registerError.setText("Pole e-mail nie może być puste!");
+            registerError.setText("Wypełnij puste pola!");
+
             return false;
         }
         return false;
     }
 
-    public void regButton() {
+    public void regButton() throws InterruptedException {
 
         if (validPassword() && validEmail()) {
+/*            registerError.setVisible(false);
+            loginAfterReg.setText("Rejestracja przebiegła pomyślnie. Zaloguj się.");*/
             RegisterUserRequest registerUserRequest = new RegisterUserRequest(emailInput.getText(), passwordInput.getText());
             RegisterUserResponse registerUserResponse = clientControl.registerUserCommunication(registerUserRequest);
-            log.info(registerUserResponse.getStatus());
-        } else {
-            log.info("NIEPRAWIDLOWE DANE");
+
+            toLoginPanel();
         }
     }
 

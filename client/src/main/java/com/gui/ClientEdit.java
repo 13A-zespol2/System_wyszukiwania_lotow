@@ -2,6 +2,8 @@ package com.gui;
 
 
 import com.repository.model.database.User;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -14,21 +16,8 @@ import java.util.ResourceBundle;
 @Component
 public class ClientEdit extends GuiPanel {
 
-
-    public void toClientData() {
-        mainPanel.getMainLoad().getChildren().clear();
-        mainPanel.getMainLoad().getChildren().add(loadUi("/clientPanel"));
-    }
-
-    public void toClientTickets() {
-        mainPanel.getMainLoad().getChildren().clear();
-        mainPanel.getMainLoad().getChildren().add(loadUi("/tickets"));
-    }
-
-    public void toClientEdit() {
-        mainPanel.getMainLoad().getChildren().clear();
-        mainPanel.getMainLoad().getChildren().add(loadUi("/editData"));
-    }
+    @FXML
+    private Label loggedname;
 
     @Override
     public void update(User user) {
@@ -37,6 +26,7 @@ public class ClientEdit extends GuiPanel {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        userLoginObserver.addObserver(this);
+        loggedname.setText(userLoginObserver.getUser().getEmail());
     }
 }

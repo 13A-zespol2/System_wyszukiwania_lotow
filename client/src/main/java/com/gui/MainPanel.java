@@ -17,7 +17,12 @@ public class MainPanel extends GuiPanel {
 
     public Button login_button;
 
+    public Button register_button;
+
+    public Button clientPanelBtn;
+
     @Getter
+
     @FXML
     private AnchorPane mainLoad;
     private User user;
@@ -29,12 +34,6 @@ public class MainPanel extends GuiPanel {
         }
         AnchorPane root = loadUi("/searchPanel");
         mainLoad.getChildren().add(root);
-
-
-    }
-
-    public void exit_btn() {
-        System.exit(0);
     }
 
 
@@ -46,6 +45,7 @@ public class MainPanel extends GuiPanel {
         mainLoad.getChildren().add(root);
     }
 
+
     public void login() {
 
         if (user == null) {
@@ -55,9 +55,7 @@ public class MainPanel extends GuiPanel {
             AnchorPane root = loadUi("/LogIn");
             mainLoad.getChildren().add(root);
             userLoginObserver.deleteObserver(this);
-
         }
-
     }
 
 
@@ -69,9 +67,10 @@ public class MainPanel extends GuiPanel {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         userLoginObserver.addObserver(this);
-        if (userLoginObserver.getUser() != null)
+        if (userLoginObserver.getUser() != null) {
             login_button.setVisible(false);
+            register_button.setVisible(false);
+            clientPanelBtn.setVisible(true);
+        }
     }
-
-
 }

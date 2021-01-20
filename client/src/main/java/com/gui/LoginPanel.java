@@ -26,6 +26,8 @@ public class LoginPanel extends GuiPanel {
     private TextField emailLabel;
     @FXML
     private Label loginError;
+    @FXML
+    public Label loginAfterReg;
 
     public LoginPanel() {
         super();

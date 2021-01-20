@@ -2,16 +2,12 @@
 
 <?import com.gluonhq.charm.glisten.layout.Layer?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.BoxBlur?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
-
 <AnchorPane prefHeight="640.0" prefWidth="960.0" styleClass="panel_bg" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.LoginPanel">
    <HBox fx:id="parent" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="960.0" style="-fx-background-color: #393939;">
       <children>
@@ -39,20 +35,31 @@
    <FontAwesomeIcon fill="WHITE" glyphName="HOME" layoutX="10.0" layoutY="22.0" onMouseClicked="#homeFunc" size="20px" wrappingWidth="11.142857551574707" />
    <Layer autoHide="false" layoutX="256.0" layoutY="100.0" opacity="0.4" prefHeight="400.0" prefWidth="450.0" styleClass="login_blur">
       <effect>
-         <BoxBlur height="10.0" iterations="3" width="10.0" />
+         <BoxBlur height="10.0" iterations="3" width="10.0"/>
       </effect>
    </Layer>
-   <Layer layoutX="255.0" layoutY="80.0" prefHeight="150.0" prefWidth="450.0" styleClass="logo_view" />
-   <TextField fx:id="emailLabel" alignment="CENTER" layoutX="380.0" layoutY="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" promptText="E-Mail" styleClass="log_input">
+   <Layer layoutX="255.0" layoutY="80.0" prefHeight="150.0" prefWidth="450.0" styleClass="logo_view"/>
+   <TextField fx:id="emailLabel" alignment="CENTER" layoutX="380.0" layoutY="270.0" maxHeight="-Infinity"
+              maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0"
+              promptText="E-Mail" styleClass="log_input">
       <cursor>
-         <Cursor fx:constant="DEFAULT" />
+         <Cursor fx:constant="DEFAULT"/>
       </cursor>
    </TextField>
-   <PasswordField fx:id="logPassw" alignment="CENTER" layoutX="380.0" layoutY="320.0" prefHeight="50.0" prefWidth="200.0" promptText="Password" styleClass="log_input" />
-   <Button defaultButton="true" layoutX="380.0" layoutY="380.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#logButton" prefHeight="50.0" prefWidth="200.0" styleClass="_button" text="Log In" textAlignment="CENTER" textFill="WHITE">
+   <PasswordField fx:id="logPassw" alignment="CENTER" layoutX="380.0" layoutY="330.0" prefHeight="50.0"
+                  prefWidth="200.0" promptText="Password" styleClass="log_input"/>
+   <Button defaultButton="true" layoutX="380.0" layoutY="390.0" maxHeight="-Infinity" maxWidth="-Infinity"
+           minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#logButton"
+           prefHeight="50.0" prefWidth="200.0" styleClass="_button" text="Log In" textAlignment="CENTER"
+           textFill="WHITE">
       <font>
-         <Font name="Berlin Sans FB Bold" size="14.0" />
+         <Font name="Berlin Sans FB Bold" size="14.0"/>
       </font>
    </Button>
-   <Label fx:id="loginError" alignment="CENTER" contentDisplay="CENTER" layoutX="364.0" layoutY="445.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="230.0" styleClass="errorLabel" textAlignment="CENTER" wrapText="true" />
+   <Label fx:id="loginError" alignment="CENTER" contentDisplay="CENTER" layoutX="365.0" layoutY="455.0"
+          maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0"
+          prefWidth="230.0" styleClass="errorLabel" textAlignment="CENTER" wrapText="true"/>
+   <Label fx:id="loginAfterReg" alignment="CENTER" contentDisplay="CENTER" layoutX="365.0" layoutY="225.0"
+          maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0"
+          prefWidth="230.0" styleClass="greenLabel" textAlignment="CENTER" wrapText="true"/>
 </AnchorPane>

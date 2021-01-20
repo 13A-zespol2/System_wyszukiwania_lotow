@@ -2,16 +2,12 @@
 
 <?import com.gluonhq.charm.glisten.layout.Layer?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.BoxBlur?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
-
 <AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="login_bg" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.RegisterPanel">
    <children>
       <Layer autoHide="false" layoutX="180.0" layoutY="70.0" opacity="0.4" prefHeight="500.0" prefWidth="600.0" styleClass="login_blur">
@@ -43,15 +39,21 @@
                   <Font name="System Bold" size="18.0" />
                </font>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="HAND"/>
                </cursor>
             </Label>
          </children>
          <cursor>
-            <Cursor fx:constant="MOVE" />
+            <Cursor fx:constant="MOVE"/>
          </cursor>
       </HBox>
-      <FontAwesomeIcon fill="WHITE" glyphName="HOME" layoutX="10.0" layoutY="22.0" onMouseClicked="#homeFunc" size="20px" wrappingWidth="11.142857551574707" />
-      <Label fx:id="registerError" alignment="CENTER" contentDisplay="CENTER" layoutX="354.0" layoutY="514.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" styleClass="errorLabel" textAlignment="CENTER" wrapText="true" />
-      </children>
+      <FontAwesomeIcon fill="WHITE" glyphName="HOME" layoutX="10.0" layoutY="22.0" onMouseClicked="#homeFunc"
+                       size="20px" wrappingWidth="11.142857551574707"/>
+      <Label fx:id="registerError" alignment="CENTER" contentDisplay="CENTER" layoutX="355.0" layoutY="515.0"
+             maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0"
+             prefWidth="250.0" styleClass="errorLabel" textAlignment="CENTER" wrapText="true"/>
+      <Label fx:id="loginAfterReg" alignment="CENTER" contentDisplay="CENTER" layoutX="355.0" layoutY="515.0"
+             maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0"
+             prefWidth="230.0" styleClass="greenLabel" textAlignment="CENTER" wrapText="true"/>
+   </children>
    </AnchorPane>
