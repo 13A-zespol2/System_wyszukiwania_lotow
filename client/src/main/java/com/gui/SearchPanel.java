@@ -192,6 +192,7 @@ public class SearchPanel implements FxmlLoader, Initializable {
         col6.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(param.getValue().getPrice().getTotal())));
 
 
+
         System.out.println("dsa");
 
         tableView.setItems(list);

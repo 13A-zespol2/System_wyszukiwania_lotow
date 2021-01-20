@@ -41,6 +41,7 @@ public class ClientApplication extends Application {
     public void start(Stage primaryStage) {
         Scene scene = new Scene(rootNode, 960, 640);
 //        primaryStage.initStyle(StageStyle.UNDECORATED);
+        scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.sizeToScene();

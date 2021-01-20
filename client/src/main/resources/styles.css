@@ -201,3 +201,12 @@
 
 
 
+
+.errorLabel{
+	-fx-text-fill: red;
+	-fx-font-size:14px;
+	-fx-font-weight:700;
+	-fx-font-family: Monsterrat;
+	-fx-text-align: center;
+	-fx-text-alignment: center;
+}

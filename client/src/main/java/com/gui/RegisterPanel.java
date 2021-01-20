@@ -4,6 +4,7 @@ import com.client.ClientControl;
 import com.repository.model.communication.RegisterUserRequest;
 import com.repository.model.communication.RegisterUserResponse;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -33,6 +34,8 @@ public class RegisterPanel implements FxmlLoader{
     private PasswordField repeatpasswordInput;
     @FXML
     private TextField emailInput;
+    @FXML
+    private Label registerError;
 
     public void homeFunc() {
         mainPanel.getMainLoad().getChildren().clear();
@@ -69,18 +72,20 @@ public class RegisterPanel implements FxmlLoader{
 
    public boolean validEmail(){
         String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
-        if(emailInput.getText().matches(regex)) {
-            log.info("EMAIL PRAWIDLOWY");
+        if(emailInput.getText().matches(regex)){
             return true;
+        }else {
+            registerError.setText("Nieprawidłowy e-mail!");
         }
 
-            log.info("EMAIL NIEPRAWIDLOWY");
+        if(emailInput.getText().isEmpty()){
+            registerError.setText("Pole e-mail nie może być puste!");
             return false;
-
+        }
+       return false;
     }
 
     public void regButton(){
-
 
         if(validPassword() && validEmail()){
             RegisterUserRequest registerUserRequest = new RegisterUserRequest(emailInput.getText(), passwordInput.getText());
@@ -88,14 +93,7 @@ public class RegisterPanel implements FxmlLoader{
             log.info(registerUserResponse.getStatus());
         }
         else{
-
             log.info("NIEPRAWIDLOWE DANE");
-
         }
-
-
-
-
-
     }
 }

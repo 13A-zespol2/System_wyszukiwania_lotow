@@ -14,29 +14,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane disable="true" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="panel_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.ClientPanel">
+<AnchorPane disable="true" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="panel_bg" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.ClientPanel">
    <children>
-      <HBox alignment="CENTER" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="960.0" styleClass="top_hbox" stylesheets="@styles.css" />
-      <Layer accessibleRole="IMAGE_VIEW" layoutX="24.0" layoutY="44.0" prefHeight="45.0" prefWidth="130.0" styleClass="hbox_logo" stylesheets="@styles.css" />
-      <Separator layoutX="888.0" layoutY="30.0" orientation="VERTICAL" prefHeight="64.0" stylesheets="@styles.css">
+      <HBox alignment="CENTER" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="960.0" styleClass="top_hbox" />
+      <Layer accessibleRole="IMAGE_VIEW" layoutX="24.0" layoutY="44.0" prefHeight="45.0" prefWidth="130.0" styleClass="hbox_logo" />
+      <Separator layoutX="888.0" layoutY="30.0" orientation="VERTICAL" prefHeight="64.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </Separator>
-      <Label layoutX="200.0" layoutY="30.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label" stylesheets="@styles.css" text="Panel Klienta">
+      <Label layoutX="200.0" layoutY="30.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label" text="Panel Klienta">
          <font>
             <Font name="Bell MT Bold" size="13.0" />
             </font>
          </Label>
-         <VBox layoutX="80.0" layoutY="100.0" prefHeight="540.0" prefWidth="200.0" styleClass="data_vbox" stylesheets="@styles.css">
+         <VBox layoutX="80.0" layoutY="100.0" prefHeight="540.0" prefWidth="200.0" styleClass="data_vbox">
             <children>
-               <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="thin_label" stylesheets="@styles.css" text="Dane" textAlignment="CENTER">
+               <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="thin_label" text="Dane" textAlignment="CENTER">
                   <VBox.margin>
                      <Insets />
                   </VBox.margin>
                </Label>
-               <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="thin_label" stylesheets="@styles.css" text="Bilety" textAlignment="CENTER" />
-               <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" stylesheets="@styles.css" text="Edycja" textAlignment="CENTER">
+               <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="thin_label" text="Bilety" textAlignment="CENTER" />
+               <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" text="Edycja" textAlignment="CENTER">
                <styleClass>
                   <String fx:value="thin_label" />
                   <String fx:value="activated" />
@@ -71,7 +71,7 @@
       </HBox>
       <FontAwesomeIcon fill="WHITE" glyphName="HOME" layoutX="10.0" layoutY="22.0" onMouseClicked="#homeFunc" size="20px" wrappingWidth="11.142857551574707" />
       <FontAwesomeIcon glyphName="POWER_OFF" layoutX="910.0" layoutY="70.0" selectionFill="BLACK" size="30px" />
-      <VBox layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="75.0" styleClass="left_panel" stylesheets="@styles.css">
+      <VBox layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="75.0" styleClass="left_panel">
          <children>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #00AEEF;">
                <children>
@@ -101,15 +101,15 @@
       </VBox>
       <AnchorPane layoutX="283.0" layoutY="100.0" prefHeight="540.0" prefWidth="679.0">
          <children>
-            <TextField layoutX="131.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="reg_input" stylesheets="@styles.css" />
-            <TextField layoutX="348.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="reg_input" stylesheets="@styles.css" />
+            <TextField layoutX="131.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="reg_input" />
+            <TextField layoutX="348.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="reg_input" />
             <TextField layoutX="348.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="reg_input" />
             <TextField layoutX="131.0" layoutY="179.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="reg_input" />
             <TextField layoutX="348.0" layoutY="179.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="reg_input" />
             <TextField layoutX="131.0" layoutY="265.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="reg_input" />
             <TextField layoutX="348.0" layoutY="265.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="reg_input" />
             <TextField layoutX="131.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" styleClass="reg_input" />
-            <Button layoutX="248.0" layoutY="438.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="_button" stylesheets="@styles.css" text="Dodaj" />
+            <Button layoutX="248.0" layoutY="438.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="_button" text="Dodaj" />
          </children>
       </AnchorPane>
       </children>

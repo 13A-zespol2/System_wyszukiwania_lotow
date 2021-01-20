@@ -20,21 +20,21 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.SearchPanel">
-   <AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="panel_bg" stylesheets="@styles.css">
+   <AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="panel_bg">
       <children>
-         <HBox alignment="CENTER" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="960.0" styleClass="top_hbox" stylesheets="@styles.css" />
-         <Layer accessibleRole="IMAGE_VIEW" layoutX="24.0" layoutY="34.0" prefHeight="45.0" prefWidth="130.0" styleClass="hbox_logo" stylesheets="@styles.css" />
-         <Separator layoutX="888.0" layoutY="23.0" orientation="VERTICAL" prefHeight="64.0" stylesheets="@styles.css">
+         <HBox alignment="CENTER" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="960.0" styleClass="top_hbox" />
+         <Layer accessibleRole="IMAGE_VIEW" layoutX="24.0" layoutY="34.0" prefHeight="45.0" prefWidth="130.0" styleClass="hbox_logo" />
+         <Separator layoutX="888.0" layoutY="23.0" orientation="VERTICAL" prefHeight="64.0">
             <opaqueInsets>
                <Insets />
             </opaqueInsets>
          </Separator>
-         <Label layoutX="200.0" layoutY="20.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label" stylesheets="@styles.css" text="Wyszukaj lot">
+         <Label layoutX="200.0" layoutY="20.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label" text="Wyszukaj lot">
                <font>
                   <Font name="Bell MT Bold" size="13.0" />
                </font>
             </Label>
-            <HBox layoutX="75.0" layoutY="190.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="885.0" styleClass="client_main" stylesheets="@styles.css">
+            <HBox layoutX="75.0" layoutY="190.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="885.0" styleClass="client_main">
                <padding>
                   <Insets left="40.0" right="40.0" />
                </padding>
@@ -55,7 +55,7 @@
                   </content>
                   </ScrollPane>
                </children></HBox>
-            <HBox fillHeight="false" layoutX="75.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="99.0" prefWidth="885.0" styleClass="search_box_top" stylesheets="@styles.css" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0">
+            <HBox fillHeight="false" layoutX="75.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="99.0" prefWidth="885.0" styleClass="search_box_top" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0">
                <padding>
                   <Insets left="40.0" right="40.0" />
                </padding>
@@ -102,7 +102,7 @@
       </cursor>
    </HBox>
    <FontAwesomeIcon fill="WHITE" glyphName="HOME" layoutX="10.0" layoutY="22.0" onMouseClicked="#homeFunc" size="20px" wrappingWidth="11.142857551574707" />
-   <VBox layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="75.0" styleClass="left_panel" stylesheets="@styles.css">
+   <VBox layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="75.0" styleClass="left_panel">
       <children>
          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #00AEEF;">
             <children>

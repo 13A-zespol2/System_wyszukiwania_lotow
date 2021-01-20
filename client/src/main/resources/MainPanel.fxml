@@ -9,24 +9,24 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainLoad" prefHeight="640.0" prefWidth="960.0" styleClass="login_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.MainPanel">
-   <Layer autoHide="false" layoutX="230.0" layoutY="95.0" opacity="0.4" prefHeight="450.0" prefWidth="500.0" styleClass="login_blur" stylesheets="@styles.css">
+<AnchorPane fx:id="mainLoad" prefHeight="640.0" prefWidth="960.0" styleClass="login_bg" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.MainPanel">
+   <Layer autoHide="false" layoutX="230.0" layoutY="95.0" opacity="0.4" prefHeight="450.0" prefWidth="500.0" styleClass="login_blur">
       <effect>
          <BoxBlur height="10.0" iterations="3" width="10.0" />
       </effect>
    </Layer>
-   <Layer layoutX="255.0" layoutY="80.0" prefHeight="150.0" prefWidth="450.0" styleClass="logo_view" stylesheets="@styles.css" />
-   <Button fx:id="login_button" defaultButton="true" layoutX="380.0" layoutY="400.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#login" prefHeight="50.0" prefWidth="200.0" styleClass="_button" stylesheets="@styles.css" text="Log In" textAlignment="CENTER" textFill="WHITE">
+   <Layer layoutX="255.0" layoutY="80.0" prefHeight="150.0" prefWidth="450.0" styleClass="logo_view" />
+   <Button fx:id="login_button" defaultButton="true" layoutX="380.0" layoutY="400.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#login" prefHeight="50.0" prefWidth="200.0" styleClass="_button" text="Log In" textAlignment="CENTER" textFill="WHITE">
       <font>
          <Font name="Berlin Sans FB Bold" size="14.0" />
       </font>
    </Button>
-   <Button fx:id="register_button" defaultButton="true" layoutX="380.0" layoutY="330.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#register" prefHeight="50.0" prefWidth="200.0" styleClass="_button" stylesheets="@styles.css" text="Register" textAlignment="CENTER" textFill="WHITE">
+   <Button fx:id="register_button" defaultButton="true" layoutX="380.0" layoutY="330.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#register" prefHeight="50.0" prefWidth="200.0" styleClass="_button" text="Register" textAlignment="CENTER" textFill="WHITE">
       <font>
          <Font name="Berlin Sans FB Bold" size="14.0" />
       </font>
    </Button>
-   <Button fx:id="search_button" layoutX="380.0" layoutY="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#searchFlights" prefHeight="50.0" prefWidth="200.0" styleClass="_button" stylesheets="@styles.css" text="Search Flights" />
+   <Button fx:id="search_button" layoutX="380.0" layoutY="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#searchFlights" prefHeight="50.0" prefWidth="200.0" styleClass="_button" text="Search Flights" />
    <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="960.0" style="-fx-background-color: #393939;">
       <children>
          <Label fx:id="minimize_btn" alignment="TOP_CENTER" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#minimize_btn" prefHeight="30.0" prefWidth="30.0" styleClass="min_btn" text="_" textAlignment="RIGHT" textFill="WHITE">
