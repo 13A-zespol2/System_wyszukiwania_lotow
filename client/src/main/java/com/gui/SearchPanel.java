@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 @Component
 public class SearchPanel extends GuiPanel {
 
+
     @FXML
     public TableView<FlightOfferSearch> tableView;
 
@@ -82,29 +83,79 @@ public class SearchPanel extends GuiPanel {
     @FXML
     private Label lias;
 
+    String originToSend;
+    String destToSend;
+
     private User user;
+    String originValue;
+    String destValue;
+    @FXML
+    private Label loginError;
+    @FXML
+    private Button search_SB;
+
+    public boolean searchFlights() {
+
+        ObservableList<String> listByName = FXCollections.observableArrayList();
+        ObservableList<String> listByIata = FXCollections.observableArrayList();
+        for (Map.Entry<String, AirportCode> entry : AirportCode.getByIata().entrySet()) {
+            listByName.add(entry.getValue().name());
+            listByIata.add(entry.getValue().IATACode);
+        }
+
+        originValue = originLocationCode.getValue();
+        destValue = destinationLocationCode.getValue();
+
+        for (Integer a = 0; a < listByName.size(); a++) {
+            if (originValue != null) {
+                if (originValue.equals(listByName.get(a))) {
+                    originToSend = listByIata.get(a);
+                }
+            }
+
+            if (destValue != null) {
+                if (destValue.equals(listByName.get(a))) {
+                    destToSend = listByIata.get(a);
+                }
+            }
+        }
 
 
-    public void searchFlights() {
         SearchFlightRequest createSearchFlightRequest = new SearchFlightRequest();
-        createSearchFlightRequest.setDestinationLocationCode(destinationLocationCode.getValue());
-        createSearchFlightRequest.setOriginLocationCode(originLocationCode.getValue());
+        createSearchFlightRequest.setOriginLocationCode(originToSend);
+        createSearchFlightRequest.setDestinationLocationCode(destToSend);
         createSearchFlightRequest.setDepartureDate(String.valueOf(departureDate.getValue()));
         if (isNumeric(adults.getText()))
             createSearchFlightRequest.setAdults(adults.getText());
         createSearchFlightRequest.setTravelClass(travelClass.getValue());
 
-        /*SearchFlightRequest createUserRequest = new SearchFlightRequest("BER", "LIS", "2021-02-21", "1", "ECONOMY", "0", false, "");*/
-        SearchFlightResponse searchFlightResponse = clientControl.searchFlight(createSearchFlightRequest);
 
-
-        if (searchFlightResponse != null) {
-            List<String> tList = searchFlightResponse.getTList();
-            List<FlightOfferSearch> collect = tList.stream()
-                    .map(e -> new Gson().fromJson(e, FlightOfferSearch.class))
-                    .collect(Collectors.toList());
-            showFlights(collect);
+        if ((originToSend == null) ||
+                (destToSend == null) ||
+                (departureDate.getValue() == null) ||
+                (adults.getText().isEmpty()) ||
+                (travelClass.getValue() == null)) {
+            loginError.setText("Complete required fields!");
+            return false;
+        } else {
+            if (Integer.parseInt(adults.getText()) > 5) {
+                loginError.setText("Maximum number of tickets is 5!");
+                return false;
+            }
+            loginError.setText("");
+            SearchFlightResponse searchFlightResponse = clientControl.searchFlight(createSearchFlightRequest);
+            if (searchFlightResponse != null) {
+                List<String> tList = searchFlightResponse.getTList();
+                if (tList.isEmpty()) {
+                    loginError.setText("No flights found.");
+                }
+                List<FlightOfferSearch> collect = tList.stream()
+                        .map(e -> new Gson().fromJson(e, FlightOfferSearch.class))
+                        .collect(Collectors.toList());
+                showFlights(collect);
+            }
         }
+        return true;
     }
 
 
@@ -120,7 +171,7 @@ public class SearchPanel extends GuiPanel {
 
         ObservableList<String> listCity = FXCollections.observableArrayList();
         for (Map.Entry<String, AirportCode> entry : AirportCode.getByIata().entrySet()) {
-            listCity.add(entry.getValue().IATACode);
+            listCity.add(entry.getValue().name());
         }
 
         originLocationCode.setItems(listCity);
@@ -129,7 +180,6 @@ public class SearchPanel extends GuiPanel {
 
         ObservableList<String> classList = FXCollections.observableArrayList(List.of("ECONOMY", "PREMIUM_ECONOMY", "BUSINESS", "FIRST"));
         travelClass.setItems(classList);
-
 
     }
 
@@ -151,13 +201,13 @@ public class SearchPanel extends GuiPanel {
 
         col1.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getId()));
 
-        col2.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getIataCode())));
+        col2.setCellValueFactory(param -> new ReadOnlyStringWrapper(originValue + " (" + String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getIataCode()) + ")"));
 
-        col3.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getIataCode())));
+        col3.setCellValueFactory(param -> new ReadOnlyStringWrapper(destValue + " (" + String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getIataCode()) + ")"));
 
-        col4.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getAt())));
+        col4.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getAt()).substring(11)));
 
-        col5.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getAt())));
+        col5.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getAt()).substring(11)));
 
         col6.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(param.getValue().getPrice().getTotal() + " €")));
 

@@ -36,30 +36,26 @@ public class LoginPanel extends GuiPanel {
 
     public void logButton() {
         if (emailLabel.getText().isEmpty()) {
-            loginError.setText("Proszę wypełnić pole e-mail!");
+            loginError.setText("Complete e-mail field!");
         }
         if (logPassw.getText().isEmpty()) {
-            loginError.setText("Proszę wypełnić hasło!");
+            loginError.setText("Complete password field!");
         }
         if (logPassw.getText().isEmpty() && emailLabel.getText().isEmpty()) {
-            loginError.setText("Pola nie mogą być puste!");
+            loginError.setText("Complete required fields!");
         }
-
-        //TODO dodanie labela do wyswietlania informacji o bledzie lub
 
         LoginUserRequest loginUserRequest = new LoginUserRequest(emailLabel.getText(), logPassw.getText());
         LoginUserResponse loginUserResponse = clientControl.loginUserCommunication(loginUserRequest);
         log.info(loginUserResponse.getStatus());
         if ((loginUserResponse.getUser() == null) && (!emailLabel.getText().isEmpty()) && (!logPassw.getText().isEmpty())) {
-            loginError.setText("Błędne dane. Spróbuj jeszcze raz.");
+            loginError.setText("Incorrect data. Try again!");
         }
         if (loginUserResponse.getUser() != null) {
             update(loginUserResponse.getUser());
             userLoginObserver.loginNotify(loginUserResponse.getUser());
             mainPanel.getMainLoad().getChildren().add(loadUi("/clientPanel"));
 
-            loginError.setText("ZALOGOWANO JAKO: " + loginUserResponse.getUser().getEmail());
-            //TODO Jestes zalogowany jako:
         }
 
     }

@@ -7,6 +7,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import java.lang.*?>
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.SearchPanel">
    <AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="panel_bg">
       <children>
@@ -55,16 +56,17 @@
                <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
                            prefHeight="395.0" prefWidth="805.0">
                   <content>
-                     <TableView fx:id="tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                                minWidth="-Infinity" prefHeight="390.0" prefWidth="805.0">
+                     <TableView fx:id="tableView" editable="true" maxHeight="-Infinity" maxWidth="-Infinity"
+                                minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="803.0"
+                                styleClass="_table">
                         <columns>
-                           <TableColumn fx:id="col1" prefWidth="40.0" text="ID"/>
-                           <TableColumn fx:id="col2" prefWidth="120.0" text="Departure"/>
-                           <TableColumn fx:id="col3" prefWidth="120.0" text="Destination"/>
-                           <TableColumn fx:id="col4" prefWidth="120.0" text="Departure date"/>
-                           <TableColumn fx:id="col5" prefWidth="120.0" text="Arrival date"/>
-                           <TableColumn fx:id="col6" prefWidth="100.0" text="Ticket price"/>
-                           <TableColumn fx:id="col7" prefWidth="120.0" text="Flight class"/>
+                           <TableColumn fx:id="col1" prefWidth="25.0" text="ID"/>
+                           <TableColumn fx:id="col2" prefWidth="135.0" text="Departure"/>
+                           <TableColumn fx:id="col3" prefWidth="135.0" text="Destination"/>
+                           <TableColumn fx:id="col4" prefWidth="145.0" text="Departure time"/>
+                           <TableColumn fx:id="col5" prefWidth="142.0" text="Arrival time"/>
+                           <TableColumn fx:id="col6" prefWidth="96.0" text="Ticket price"/>
+                           <TableColumn fx:id="col7" prefWidth="110.0" text="Flight class"/>
                         </columns>
                      </TableView>
                   </content>
@@ -77,7 +79,7 @@
                <Insets left="40.0" right="40.0"/>
             </padding>
             <children>
-               <AnchorPane prefHeight="161.0" prefWidth="805.0">
+               <AnchorPane prefHeight="160.0" prefWidth="805.0">
                   <children>
                      <ComboBox fx:id="originLocationCode" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity"
                                minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="150.0"
@@ -94,9 +96,26 @@
                      <TextField fx:id="adults" layoutY="78.0" maxHeight="-Infinity" maxWidth="-Infinity"
                                 minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="150.0"
                                 promptText="Ticket quantity" styleClass="clientPanelLabel"/>
-                     <Button fx:id="search_SB" layoutX="340.0" layoutY="78.0" mnemonicParsing="false"
-                             onMouseClicked="#searchFlights" prefHeight="45.0" prefWidth="150.0" styleClass="data_label"
-                             text="Search"/>
+                     <Button fx:id="search_SB" layoutX="341.0" layoutY="78.0" mnemonicParsing="false"
+                             onMouseClicked="#searchFlights" prefHeight="45.0" prefWidth="150.0" text="Search">
+                        <styleClass>
+                           <String fx:value="data_label"/>
+                           <String fx:value="buttonH"/>
+                        </styleClass>
+                     </Button>
+                     <Label fx:id="loginError" alignment="CENTER" contentDisplay="CENTER" layoutX="300.0"
+                            layoutY="124.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                            minWidth="-Infinity" prefHeight="30.0" prefWidth="230.0" styleClass="errorLabel"
+                            textAlignment="CENTER" wrapText="true"/>
+                     <AnchorPane layoutX="550.0" layoutY="20.0" prefHeight="110.0" prefWidth="3.0"
+                                 style="-fx-background-color: #aaa;"/>
+                     <Button fx:id="search_SB1" layoutX="603.0" layoutY="78.0" mnemonicParsing="false"
+                             onMouseClicked="#searchFlights" prefHeight="45.0" prefWidth="186.0" text="Book ticket">
+                        <styleClass>
+                           <String fx:value="data_label"/>
+                           <String fx:value="buttonH"/>
+                        </styleClass>
+                     </Button>
 
                   </children>
                </AnchorPane>
@@ -131,8 +150,7 @@
    <VBox layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="75.0" styleClass="left_panel">
       <children>
          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                     onMouseClicked="#homeFunc" prefHeight="50.0" prefWidth="50.0"
-                     style="-fx-background-color: #00AEEF;">
+                     onMouseClicked="#homeFunc" prefHeight="50.0" prefWidth="50.0">
             <children>
                <FontAwesomeIcon glyphName="HOME" layoutX="8.0" layoutY="38.0" size="35px" stroke="BLACK"
                                 strokeWidth="0.0" wrappingWidth="40.0"/>
@@ -140,10 +158,13 @@
             <VBox.margin>
                <Insets left="10.0" top="50.0"/>
             </VBox.margin>
+            <styleClass>
+               <String fx:value="data_label"/>
+               <String fx:value="buttonH"/>
+            </styleClass>
          </AnchorPane>
          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                     onMouseClicked="#toClientData" prefHeight="50.0" prefWidth="50.0"
-                     style="-fx-background-color: #00AEEF;">
+                     onMouseClicked="#toClientData" prefHeight="50.0" prefWidth="50.0">
             <children>
                <FontAwesomeIcon glyphName="USER" layoutX="11.0" layoutY="38.0" size="35px" stroke="BLACK"
                                 strokeWidth="0.0" wrappingWidth="40.0"/>
@@ -151,10 +172,13 @@
             <VBox.margin>
                <Insets left="10.0" top="20.0"/>
             </VBox.margin>
+            <styleClass>
+               <String fx:value="data_label"/>
+               <String fx:value="buttonH"/>
+            </styleClass>
          </AnchorPane>
          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                     onMouseClicked="#toSearch" prefHeight="50.0" prefWidth="50.0"
-                     style="-fx-background-color: #00AEEF;">
+                     onMouseClicked="#toSearch" prefHeight="50.0" prefWidth="50.0">
             <children>
                <FontAwesomeIcon glyphName="SEARCH" layoutX="8.0" layoutY="37.0" size="35px" stroke="BLACK"
                                 strokeWidth="0.0" wrappingWidth="40.0"/>
@@ -162,9 +186,17 @@
             <VBox.margin>
                <Insets left="10.0" top="20.0"/>
             </VBox.margin>
+            <styleClass>
+               <String fx:value="data_label"/>
+               <String fx:value="buttonH"/>
+            </styleClass>
          </AnchorPane>
       </children>
    </VBox>
    <FontAwesomeIcon glyphName="POWER_OFF" layoutX="910.0" layoutY="70.0" onMouseClicked="#logOut" selectionFill="BLACK"
-                    size="30px"/>
+                    size="30px">
+      <cursor>
+         <Cursor fx:constant="HAND"/>
+      </cursor>
+   </FontAwesomeIcon>
 </AnchorPane>

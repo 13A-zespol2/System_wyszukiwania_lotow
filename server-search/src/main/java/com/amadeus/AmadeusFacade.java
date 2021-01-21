@@ -57,7 +57,6 @@ public class AmadeusFacade {
         /*amadeusFlightSearch.setChildren(String.valueOf(searchFlightRequest.getChildren()));*/
         try {
             flightOfferSearches = amadeusFlightSearch.searchFlight();
-            System.out.println("Dsa");
 
         } catch (ResponseException e) {
             return null;

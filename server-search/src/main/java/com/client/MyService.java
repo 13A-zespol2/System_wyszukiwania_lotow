@@ -85,8 +85,13 @@ public class MyService implements Serializable {
 
     private SearchFlightResponse findSearch(SearchFlightRequest request) {
         Optional<List<FlightOfferSearch>> flightOfferSearches = Optional.ofNullable(amadeusFacade.searchFlight(request));
-        if (flightOfferSearches.isEmpty())
-            return new SearchFlightResponse("Nie znaleziono lotu");
+        if (flightOfferSearches.isEmpty()) {
+            try {
+
+            } catch (Exception e) {
+                return new SearchFlightResponse("Nie znaleziono lotu");
+            }
+        }
 
         List<FlightOfferSearch> flightOfferSearches1 = flightOfferSearches.get();
 
@@ -94,7 +99,7 @@ public class MyService implements Serializable {
         List<String> collect = flightOfferSearches1.stream()
                 .map(e -> new Gson().toJson(e))
                 .collect(Collectors.toList());
-        return new SearchFlightResponse("Zanaleziono", collect);
+        return new SearchFlightResponse("Znaleziono", collect);
     }
 
 

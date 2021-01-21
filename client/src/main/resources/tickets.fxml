@@ -7,7 +7,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import java.lang.String?>
+<?import java.lang.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity"
             minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="panel_bg"
             xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.gui.ClientTickets">
@@ -47,7 +47,7 @@
             <Font name="Bell MT Bold" size="13.0"/>
          </font>
       </Label>
-         <HBox layoutX="280.0" layoutY="100.0" prefHeight="540.0" prefWidth="681.0" styleClass="client_main" />
+      <HBox layoutX="280.0" layoutY="100.0" prefHeight="540.0" prefWidth="681.0"/>
          <VBox layoutX="80.0" layoutY="100.0" prefHeight="540.0" prefWidth="200.0" styleClass="data_vbox">
             <children>
                <Label fx:id="clientData" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
@@ -88,22 +88,27 @@
                   <Font name="System Bold" size="18.0" />
                </font>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="HAND"/>
                </cursor>
             </Label>
          </children>
          <cursor>
-            <Cursor fx:constant="MOVE" />
+            <Cursor fx:constant="MOVE"/>
          </cursor>
       </HBox>
-      <FontAwesomeIcon fill="WHITE" glyphName="HOME" layoutX="10.0" layoutY="22.0" onMouseClicked="#homeFunc" size="20px" wrappingWidth="11.142857551574707" />
+      <FontAwesomeIcon fill="WHITE" glyphName="HOME" layoutX="10.0" layoutY="22.0" onMouseClicked="#homeFunc"
+                       size="20px" wrappingWidth="11.142857551574707"/>
       <FontAwesomeIcon glyphName="POWER_OFF" layoutX="910.0" layoutY="70.0" onMouseClicked="#logOut"
-                       selectionFill="BLACK" size="30px"/>
-      <VBox layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="75.0" styleClass="left_panel">
+                       selectionFill="BLACK" size="30px">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND"/>
+         </cursor>
+      </FontAwesomeIcon>
+      <VBox layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="540.0" prefWidth="75.0" styleClass="left_panel">
          <children>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                        onMouseClicked="#homeFunc" prefHeight="50.0" prefWidth="50.0"
-                        style="-fx-background-color: #00AEEF;">
+                        onMouseClicked="#homeFunc" prefHeight="50.0" prefWidth="50.0">
                <children>
                   <FontAwesomeIcon glyphName="HOME" layoutX="8.0" layoutY="38.0" size="35px" stroke="BLACK"
                                    strokeWidth="0.0" wrappingWidth="40.0"/>
@@ -111,10 +116,13 @@
                <VBox.margin>
                   <Insets left="10.0" top="50.0"/>
                </VBox.margin>
+               <styleClass>
+                  <String fx:value="data_label"/>
+                  <String fx:value="buttonH"/>
+               </styleClass>
             </AnchorPane>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                        onMouseClicked="#toClientData" prefHeight="50.0" prefWidth="50.0"
-                        style="-fx-background-color: #00AEEF;">
+                        onMouseClicked="#toClientData" prefHeight="50.0" prefWidth="50.0">
                <children>
                   <FontAwesomeIcon glyphName="USER" layoutX="11.0" layoutY="38.0" size="35px" stroke="BLACK"
                                    strokeWidth="0.0" wrappingWidth="40.0"/>
@@ -122,10 +130,13 @@
                <VBox.margin>
                   <Insets left="10.0" top="20.0"/>
                </VBox.margin>
+               <styleClass>
+                  <String fx:value="data_label"/>
+                  <String fx:value="buttonH"/>
+               </styleClass>
             </AnchorPane>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                        onMouseClicked="#toSearch" prefHeight="50.0" prefWidth="50.0"
-                        style="-fx-background-color: #00AEEF;">
+                        onMouseClicked="#toSearch" prefHeight="50.0" prefWidth="50.0">
                <children>
                   <FontAwesomeIcon glyphName="SEARCH" layoutX="8.0" layoutY="37.0" onMouseClicked="#toSearch"
                                    size="35px" stroke="BLACK" strokeWidth="0.0" wrappingWidth="40.0"/>
@@ -133,6 +144,10 @@
                <VBox.margin>
                   <Insets left="10.0" top="20.0"/>
                </VBox.margin>
+               <styleClass>
+                  <String fx:value="data_label"/>
+                  <String fx:value="buttonH"/>
+               </styleClass>
             </AnchorPane>
          </children>
       </VBox>

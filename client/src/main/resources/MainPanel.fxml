@@ -14,7 +14,9 @@
       </effect>
    </Layer>
    <Layer layoutX="255.0" layoutY="80.0" prefHeight="150.0" prefWidth="450.0" styleClass="logo_view" />
-   <Button fx:id="login_button" defaultButton="true" layoutX="380.0" layoutY="400.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#login" prefHeight="50.0" prefWidth="200.0" styleClass="_button" text="Log In" textAlignment="CENTER" textFill="WHITE">
+   <Button fx:id="login_button" layoutX="380.0" layoutY="400.0" maxHeight="-Infinity" maxWidth="-Infinity"
+           minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#login" prefHeight="50.0"
+           prefWidth="200.0" styleClass="_button" text="Log In" textAlignment="CENTER" textFill="WHITE">
       <font>
          <Font name="Berlin Sans FB Bold" size="14.0"/>
       </font>
@@ -55,10 +57,10 @@
                 onMouseClicked="#exit_btn" prefHeight="30.0" prefWidth="30.0" styleClass="exit_btn" text="x"
                 textFill="WHITE">
             <font>
-               <Font name="System Bold" size="18.0" />
+               <Font name="System Bold" size="18.0"/>
             </font>
             <cursor>
-               <Cursor fx:constant="HAND" />
+               <Cursor fx:constant="HAND"/>
             </cursor>
          </Label>
       </children>

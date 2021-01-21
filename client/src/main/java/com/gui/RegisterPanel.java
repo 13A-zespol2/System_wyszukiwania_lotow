@@ -36,16 +36,16 @@ public class RegisterPanel extends GuiPanel {
         if ((passwordInput.getText().matches(passRegEx)) && (repeatpasswordInput.getText().equals(passwordInput.getText()))) {
             return true;
         } else {
-            registerError.setText("Nieprawidłowe hasło!");
+            registerError.setText("Wrong password!");
         }
 
         if (passwordInput.getText().isEmpty() || repeatpasswordInput.getText().isEmpty()) {
-            registerError.setText("Wypełnij puste pola!");
+            registerError.setText("Complete required fields!");
             return false;
         }
 
         if (!repeatpasswordInput.getText().equals(passwordInput.getText())) {
-            registerError.setText("Hasła są niezgodne!");
+            registerError.setText("Passwords are different!");
             return false;
         }
         return false;
@@ -56,11 +56,11 @@ public class RegisterPanel extends GuiPanel {
         if (emailInput.getText().matches(regex)) {
             return true;
         } else {
-            registerError.setText("Nieprawidłowy e-mail!");
+            registerError.setText("Wrong e-mail!");
         }
 
         if (emailInput.getText().isEmpty()) {
-            registerError.setText("Wypełnij puste pola!");
+            registerError.setText("Complete required fields!");
 
             return false;
         }
@@ -75,7 +75,7 @@ public class RegisterPanel extends GuiPanel {
             RegisterUserRequest registerUserRequest = new RegisterUserRequest(emailInput.getText(), passwordInput.getText());
             RegisterUserResponse registerUserResponse = clientControl.registerUserCommunication(registerUserRequest);
             if (!registerUserResponse.isRegister()) {
-                registerError.setText("Podany e-mail istnieje w bazie!");
+                registerError.setText("This email already exists in the database!");
                 return false;
             }
             toLoginPanel();
