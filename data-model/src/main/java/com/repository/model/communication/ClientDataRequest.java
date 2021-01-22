@@ -1,8 +1,5 @@
 package com.repository.model.communication;
 
-import com.repository.model.database.MyTraveler;
-import com.repository.model.database.TravelerDocument;
-import com.repository.model.database.TravelerPhone;
 import com.repository.model.database.User;
 import lombok.Getter;
 import lombok.Setter;

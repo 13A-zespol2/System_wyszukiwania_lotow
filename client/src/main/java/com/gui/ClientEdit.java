@@ -20,7 +20,6 @@ import java.util.ResourceBundle;
 @Component
 public class ClientEdit extends GuiPanel {
 
-    private User user;
     @FXML
     private TextField name;
 

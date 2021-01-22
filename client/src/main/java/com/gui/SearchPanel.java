@@ -2,6 +2,7 @@ package com.gui;
 
 import com.amadeus.resources.FlightOfferSearch;
 import com.google.gson.Gson;
+import com.repository.model.communication.ReservationFlightRequest;
 import com.repository.model.communication.SearchFlightRequest;
 import com.repository.model.communication.SearchFlightResponse;
 import com.repository.model.data.AirportCode;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -96,6 +98,7 @@ public class SearchPanel extends GuiPanel {
             listByName.add(entry.getValue().name());
             listByIata.add(entry.getValue().IATACode);
         }
+
         originValue = originLocationCode.getValue();
         destValue = destinationLocationCode.getValue();
 
@@ -145,8 +148,15 @@ public class SearchPanel extends GuiPanel {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        departureDate.setDayCellFactory(param -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                setDisable(empty || date.compareTo(LocalDate.now()) < 0);
+            }
+        });
 
-        SpinnerValueFactory<Integer> adultsFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,5,1);
+        SpinnerValueFactory<Integer> adultsFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 1);
         adults.setValueFactory(adultsFactory);
         adults.setEditable(false);
 
@@ -159,35 +169,34 @@ public class SearchPanel extends GuiPanel {
         }
 
 
-        ObservableList<String> listCity = FXCollections.observableArrayList();
-        for (Map.Entry<String, AirportCode> entry : AirportCode.getByIata().entrySet()) {
-            listCity.add(entry.getValue().name());
-        }
+        ObservableList<String> listCity = FXCollections.observableArrayList(AirportCode
+                .getByIata()
+                .values()
+                .stream()
+                .map(Enum::name)
+                .collect(Collectors.toList())
+        );
 
         originLocationCode.setItems(listCity);
         destinationLocationCode.setItems(listCity);
-
-
-        ObservableList<String> classList = FXCollections.observableArrayList(List.of("ECONOMY", "PREMIUM_ECONOMY", "BUSINESS", "FIRST"));
-        travelClass.setItems(classList);
+        travelClass.setItems(FXCollections.observableArrayList(List.of("ECONOMY", "PREMIUM_ECONOMY", "BUSINESS", "FIRST")));
 
     }
 
     private void showFlights(List<FlightOfferSearch> tList) {
-        ObservableList<FlightOfferSearch> list = FXCollections.observableArrayList();
-        list.addAll(tList);
+        ObservableList<FlightOfferSearch> list = FXCollections.observableArrayList(tList);
 
         col1.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getId()));
 
-        col2.setCellValueFactory(param -> new ReadOnlyStringWrapper(originValue + " (" + String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getIataCode()) + ")"));
+        col2.setCellValueFactory(param -> new ReadOnlyStringWrapper(originValue + " (" + Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getIataCode() + ")"));
 
-        col3.setCellValueFactory(param -> new ReadOnlyStringWrapper(destValue + " (" + String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getIataCode()) + ")"));
+        col3.setCellValueFactory(param -> new ReadOnlyStringWrapper(destValue + " (" + Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getIataCode() + ")"));
 
         col4.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getAt()).substring(11)));
 
         col5.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getAt()).substring(11)));
 
-        col6.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(param.getValue().getPrice().getTotal() + " €")));
+        col6.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getPrice().getTotal() + " €"));
 
         col7.setCellValueFactory(param -> new ReadOnlyStringWrapper(Arrays.stream(Arrays.stream(param.getValue().getTravelerPricings()).findFirst().get().getFareDetailsBySegment()).findFirst().get().getCabin()));
 
@@ -198,5 +207,10 @@ public class SearchPanel extends GuiPanel {
     @Override
     public void update(User user) {
         this.user = user;
+    }
+
+    public void bookTicket() {
+        ;
+        ReservationFlightRequest reservationFlightRequest = new ReservationFlightRequest(new Gson().toJson(tableView.getSelectionModel().getSelectedItem()));
     }
 }

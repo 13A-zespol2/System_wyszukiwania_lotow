@@ -44,14 +44,7 @@ public class MyService implements Serializable {
     public void start(int port) throws IOException, ClassNotFoundException {
         ServerSocket serverSocket = new ServerSocket(port);
         log.info("START SERVER");
-        //TODO obsluga enuma
-  /*      for (Map.Entry<String, AirportCode> entry : AirportCode.getByIata().entrySet())
-        {
-            log.info(entry.getKey());
-            log.info(entry.getValue().name());
-        }
-        AirportCode warsaw = AirportCode.valueOf("WARSAW");
-     */
+
         while (true) {
             Socket clientSocket = serverSocket.accept();
             ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
@@ -78,7 +71,6 @@ public class MyService implements Serializable {
                 ClientDataResponse clientDataResponse = dataToShow((ClientDataRequest) request);
                 out.writeObject(clientDataResponse);
             }
-
             close(clientSocket, out, in);
         }
     }

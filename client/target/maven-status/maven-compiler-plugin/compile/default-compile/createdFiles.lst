@@ -1,2 +1,15 @@
+com\gui\ClientEdit.class
+com\gui\SpringFxmlLoader.class
+com\gui\MainPanel.class
+com\gui\SearchPanel$1.class
+com\observer\UserLoginObserver.class
+com\observer\LoginObserver.class
+com\gui\Traveler.class
+com\gui\ClientPanel.class
 com\client\ClientControl.class
+com\gui\RegisterPanel.class
+com\gui\SearchPanel.class
+com\gui\ClientTickets.class
+com\gui\GuiPanel.class
+com\gui\LoginPanel.class
 com\ClientApplication.class

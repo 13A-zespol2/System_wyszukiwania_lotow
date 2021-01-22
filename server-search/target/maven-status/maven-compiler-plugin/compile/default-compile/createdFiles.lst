@@ -7,6 +7,7 @@ com\strategy\UserBasedTravelerCreationStrategy.class
 com\repository\MyTravelerRepository.class
 com\repository\TravelerDocumentRepository.class
 com\repository\ReservationRepository.class
+com\repository\TravelerPhoneRepository.class
 com\amadeus\AmadeusOrderManagement.class
 com\strategy\TravelerCreationStrategy.class
 com\amadeus\AmadeusCreateOrder.class
