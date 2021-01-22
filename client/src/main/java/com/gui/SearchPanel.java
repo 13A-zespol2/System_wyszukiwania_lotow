@@ -92,7 +92,9 @@ public class SearchPanel extends GuiPanel {
     @FXML
     private Label loginError;
     @FXML
-    private Button search_SB;
+    private Label loginError1;
+    @FXML
+    private Button search_SB1;
 
     public boolean searchFlights() {
 
@@ -106,7 +108,7 @@ public class SearchPanel extends GuiPanel {
         originValue = originLocationCode.getValue();
         destValue = destinationLocationCode.getValue();
 
-        for (Integer a = 0; a < listByName.size(); a++) {
+        for (int a = 0; a < listByName.size(); a++) {
             if (originValue != null) {
                 if (originValue.equals(listByName.get(a))) {
                     originToSend = listByIata.get(a);
@@ -128,7 +130,6 @@ public class SearchPanel extends GuiPanel {
         if (isNumeric(adults.getText()))
             createSearchFlightRequest.setAdults(adults.getText());
         createSearchFlightRequest.setTravelClass(travelClass.getValue());
-
 
         if ((originToSend == null) ||
                 (destToSend == null) ||
@@ -162,10 +163,13 @@ public class SearchPanel extends GuiPanel {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+
         if (userLoginObserver.getUser() != null) {
             loggedname.setText(userLoginObserver.getUser().getEmail());
         } else {
             lias.setText("Not logged in");
+            search_SB1.setVisible(false);
+            loginError1.setText("Register or LogIn if you want to buy a ticket.");
         }
 
 
