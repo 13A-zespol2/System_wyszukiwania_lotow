@@ -2,7 +2,6 @@ package com.gui;
 
 import com.repository.model.communication.ClientDataRequest;
 import com.repository.model.communication.ClientDataResponse;
-import com.repository.model.database.MyTraveler;
 import com.repository.model.database.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -19,7 +18,6 @@ import java.util.ResourceBundle;
 public class ClientPanel extends GuiPanel {
 
     private User user;
-    private MyTraveler myTraveler;
 
 
     @FXML
@@ -51,25 +49,25 @@ public class ClientPanel extends GuiPanel {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        userLoginObserver.addObserver(this);
+
         loggedname.setText(userLoginObserver.getUser().getEmail());
         email.setText(userLoginObserver.getUser().getEmail());
 
 
         ClientDataResponse clientDataResponse = clientControl.clientDataComunication(new ClientDataRequest(userLoginObserver.getUser()));
 
-        if(clientDataResponse.getMyTraveler()!=null){
+        if (clientDataResponse.getMyTraveler() != null) {
             String name = clientDataResponse.getMyTraveler().getName();
             String surname = clientDataResponse.getMyTraveler().getSurname();
-            nameSurname.setText(name  + " " + surname);
+            nameSurname.setText(name + " " + surname);
             phoneNumber.setText(String.valueOf(clientDataResponse.getMyTraveler().getTravelerPhone().getPhoneNumber()));
             birthDate.setText(clientDataResponse.getMyTraveler().getDateOfBirth());
-            if (clientDataResponse.getTravelerDocument() != null) {
-                docType.setText(clientDataResponse.getTravelerDocument().getDocumentType());
-                nationality.setText(clientDataResponse.getTravelerDocument().getNationality());
-                expiryDate.setText(clientDataResponse.getTravelerDocument().getExpireDate());
-                docNumber.setText(clientDataResponse.getTravelerDocument().getNumberDocument());
-            }
+            docType.setText(clientDataResponse.getTravelerDocument().getDocumentType());
+            nationality.setText(clientDataResponse.getTravelerDocument().getNationality());
+            expiryDate.setText(clientDataResponse.getTravelerDocument().getExpireDate());
+            docNumber.setText(clientDataResponse.getTravelerDocument().getNumberDocument());
+
+
         }
     }
 

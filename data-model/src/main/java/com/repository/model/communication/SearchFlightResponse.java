@@ -1,5 +1,6 @@
 package com.repository.model.communication;
 
+import com.repository.model.data.FlightOfferSearchDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,10 +12,10 @@ import java.util.List;
 public class SearchFlightResponse implements Serializable {
 
     private String status;
-    private List<String> tList;
+    private List<FlightOfferSearchDTO> tList;
 
 
-    public SearchFlightResponse(String status, List<String> tList) {
+    public SearchFlightResponse(String status, List<FlightOfferSearchDTO> tList) {
         this.status = status;
         this.tList = tList;
     }

@@ -18,12 +18,12 @@ public class Reservation implements Serializable {
     @ManyToOne
     @JoinColumn(name = "myTraveler", referencedColumnName = "id")
     private MyTraveler myTraveler;
+    private int quantityOfTickets;
 
-
-    public Reservation(int id, String reservationApiCode, MyTraveler myTraveler) {
-        this.id = id;
+    public Reservation(String reservationApiCode, MyTraveler myTraveler, int quantityOfTickets) {
         this.reservationApiCode = reservationApiCode;
         this.myTraveler = myTraveler;
+        this.quantityOfTickets = quantityOfTickets;
     }
 
     public Reservation() {

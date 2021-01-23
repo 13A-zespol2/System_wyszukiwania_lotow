@@ -1,11 +1,9 @@
 package com.amadeus;
 
-import com.ServerException;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightOfferSearch;
+import com.amadeus.resources.FlightOrder;
 import com.amadeus.resources.Traveler;
-import com.repository.model.communication.CreateFlightReservationRequest;
-import com.repository.model.communication.SearchFlightRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,39 +26,41 @@ public class AmadeusFacade {
     }
 
 
-    public Optional<String> createOrderFlight(CreateFlightReservationRequest createFlightReservation) {
-        String flightOrder;
+    public Optional<String> createOrderFlight(Traveler[] travelers, FlightOfferSearch flightOfferSearch) {
+
         try {
-
-            flightOrder = amadeusCreateOrder.createFlightOrder((Traveler[]) createFlightReservation.getTravelers().toArray(), createFlightReservation.getFlightOfferSearch());
-        } catch (ResponseException e) {
-            throw new ServerException("Api error create order flight: " + e);
-        }
-
-        return flightOrder == null ? Optional.empty() : Optional.of(flightOrder);
-    }
-    //TODO !!!!
-    public Optional<Object> getOrderedFlight(String idOrder) {
-        return Optional.empty();
-    }
-
-
-    public List<FlightOfferSearch> searchFlight(SearchFlightRequest searchFlightRequest) {
-        FlightOfferSearch[] flightOfferSearches;
-        amadeusFlightSearch.setOriginLocationCode(searchFlightRequest.getOriginLocationCode());
-        amadeusFlightSearch.setDestinationLocationCode(searchFlightRequest.getDestinationLocationCode());
-        amadeusFlightSearch.setDepartureDate(searchFlightRequest.getDepartureDate());
-//        if (searchFlightRequest.getReturnDate().isEmpty())
-//            amadeusFlightSearch.setReturnDate(searchFlightRequest.getReturnDate());
-        amadeusFlightSearch.setAdults(String.valueOf(searchFlightRequest.getAdults()));
-        amadeusFlightSearch.setTravelClass(searchFlightRequest.getTravelClass());
-        /*amadeusFlightSearch.setChildren(String.valueOf(searchFlightRequest.getChildren()));*/
-        try {
-            flightOfferSearches = amadeusFlightSearch.searchFlight();
+            return Optional.of(amadeusCreateOrder.createFlightOrder(travelers, flightOfferSearch));
 
         } catch (ResponseException e) {
-            return null;
+            return Optional.empty();
         }
-        return List.of(flightOfferSearches);
+
+    }
+
+    public Optional<FlightOrder> getOrderedFlight(String idOrder) {
+
+        try {
+            return Optional.of(amadeusOrderManagement.getOrder(idOrder));
+        } catch (ResponseException e) {
+            return Optional.empty();
+        }
+
+
+    }
+
+
+    public Optional<List<FlightOfferSearch>> searchFlight(String originLocationCode, String destinationLocationCode, String departureDate, String travelerClass) {
+        amadeusFlightSearch.setOriginLocationCode(originLocationCode);
+        amadeusFlightSearch.setDestinationLocationCode(destinationLocationCode);
+        amadeusFlightSearch.setDepartureDate(departureDate);
+        amadeusFlightSearch.setTravelClass(travelerClass);
+
+        try {
+            return Optional.of(List.of(amadeusFlightSearch.searchFlight()));
+
+        } catch (ResponseException e) {
+            return Optional.empty();
+        }
+
     }
 }

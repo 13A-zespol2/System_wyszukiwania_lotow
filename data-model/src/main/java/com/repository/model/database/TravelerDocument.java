@@ -23,21 +23,18 @@ public class TravelerDocument implements Serializable {
     @JoinColumn(name = "myTraveler", referencedColumnName = "id")
     private MyTraveler myTraveler;
 
-/*    public TravelerDocument(int id, String documentType, String numberDocument, String expireDate, String issuanceCountry, String nationality, MyTraveler myTraveler) {
-        this.id = id;
-        this.documentType = documentType;
-        this.numberDocument = numberDocument;
-        this.expireDate = expireDate;
-        this.issuanceCountry = issuanceCountry;
-        this.nationality = nationality;
-        this.myTraveler = myTraveler;
+
+    private TravelerDocument(Builder b) {
+        this.documentType = b.documentType;
+        this.numberDocument = b.numberDocument;
+        this.expireDate = b.expireDate;
+        this.issuanceCountry = b.issuanceCountry;
+        this.nationality = b.nationality;
     }
 
-    public TravelerDocument(String numberDocument, String documentType) {
-        this.documentType = documentType;
-        this.numberDocument = numberDocument;
+    public TravelerDocument() {
 
-    }*/
+    }
 
     public String getDocumentType() {
         return documentType;
@@ -59,14 +56,12 @@ public class TravelerDocument implements Serializable {
         return nationality;
     }
 
-
     public static class Builder {
         private String documentType;
         private String numberDocument;
         private String expireDate;
         private String issuanceCountry;
         private String nationality;
-
 
 
         public Builder documentType(String documentType) {
@@ -78,15 +73,18 @@ public class TravelerDocument implements Serializable {
             this.numberDocument = numberDocument;
             return this;
         }
-        public Builder expireDate(String expireDate){
+
+        public Builder expireDate(String expireDate) {
             this.expireDate = expireDate;
             return this;
         }
-        public Builder issuanceCountry(String issuanceCountry){
+
+        public Builder issuanceCountry(String issuanceCountry) {
             this.issuanceCountry = issuanceCountry;
             return this;
         }
-        public Builder nationality(String nationality){
+
+        public Builder nationality(String nationality) {
             this.nationality = nationality;
             return this;
         }
@@ -94,17 +92,5 @@ public class TravelerDocument implements Serializable {
         public TravelerDocument build() {
             return new TravelerDocument(this);
         }
-    }
-
-    private TravelerDocument(Builder b){
-        this.documentType = b.documentType;
-        this.numberDocument = b.numberDocument;
-        this.expireDate = b.expireDate;
-        this.issuanceCountry = b.issuanceCountry;
-        this.nationality = b.nationality;
-    }
-
-    public TravelerDocument() {
-
     }
 }

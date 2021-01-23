@@ -4,7 +4,6 @@ import com.repository.model.database.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import lombok.Getter;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
@@ -21,7 +20,6 @@ public class MainPanel extends GuiPanel {
 
     public Button clientPanelBtn;
 
-    @Getter
 
     @FXML
     private AnchorPane mainLoad;
@@ -60,7 +58,6 @@ public class MainPanel extends GuiPanel {
             }
             AnchorPane root = loadUi("/LogIn");
             mainLoad.getChildren().add(root);
-            userLoginObserver.deleteObserver(this);
 
         }
 

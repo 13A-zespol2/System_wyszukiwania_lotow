@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -24,6 +23,7 @@ import java.util.ResourceBundle;
 @Controller
 @Component
 public class ClientEdit extends GuiPanel {
+
 
     @FXML
     private TextField name;
@@ -62,7 +62,7 @@ public class ClientEdit extends GuiPanel {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        userLoginObserver.addObserver(this);
+
         loggedname.setText(userLoginObserver.getUser().getEmail());
 
         new ClientDataRequest(userLoginObserver.getUser());
@@ -82,7 +82,7 @@ public class ClientEdit extends GuiPanel {
         }
     }
 
-    public void editData(MouseEvent mouseEvent) {
+    public void editData() {
 
         MyTraveler myTraveler = new MyTraveler.Builder().name(name.getText()).surname(surname.getText()).dateOfBirth(birthDate.getText()).build();
         TravelerDocument travelerDocument = new TravelerDocument.Builder().documentType(docType.getText()).numberDocument(docNumber.getText()).expireDate(expDate.getText()).build();
@@ -92,5 +92,6 @@ public class ClientEdit extends GuiPanel {
         clientDataRequestEdit.getUser().setPassword(password.getText());
 
         clientControl.clientEditCommunication(clientDataRequestEdit);
+
     }
 }

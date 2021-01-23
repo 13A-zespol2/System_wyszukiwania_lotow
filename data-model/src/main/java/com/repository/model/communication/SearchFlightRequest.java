@@ -1,5 +1,6 @@
 package com.repository.model.communication;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,6 +8,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+@Builder
 public class SearchFlightRequest implements Serializable {
 
     private String originLocationCode;
@@ -14,22 +16,16 @@ public class SearchFlightRequest implements Serializable {
     private String departureDate;
     private String adults;
     private String travelClass;
-    private String children;
-    private boolean returnFlight;
-    private String returnDate;
 
 
     public SearchFlightRequest() {
     }
 
-    public SearchFlightRequest(String originLocationCode, String destinationLocationCode, String departureDate, String adults, String travelClass,String children, boolean returnFlight, String returnDate) {
+    public SearchFlightRequest(String originLocationCode, String destinationLocationCode, String departureDate, String adults, String travelClass) {
         this.originLocationCode = originLocationCode;
         this.destinationLocationCode = destinationLocationCode;
         this.departureDate = departureDate;
         this.adults = adults;
         this.travelClass = travelClass;
-        this.children = children;
-        this.returnFlight = returnFlight;
-        this.returnDate = returnDate;
     }
 }

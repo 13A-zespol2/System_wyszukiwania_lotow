@@ -2,6 +2,7 @@ package com.repository.model.data;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public enum AirportCode {
     WARSAW("WAW"),
@@ -9,7 +10,7 @@ public enum AirportCode {
     ZURICH("ZRH"),
     BERLIN("BER"),
     CRACOW("KRK"),
-    LONDON("LON"),
+    LONDON("LGW"),
     RADOM("RDO"),
     GDANSK("GDN"),
     NEW_YORK("NYC"),
@@ -37,4 +38,16 @@ public enum AirportCode {
     public static Map<String, AirportCode> getByIata() {
         return BY_IATA;
     }
+
+
+    public static <T, E> String getKeyByValue(String value) {
+        for (Map.Entry<String, AirportCode> entry : BY_IATA.entrySet()) {
+            if (Objects.equals(value, entry.getValue().name())) {
+                return entry.getKey();
+            }
+        }
+        return null;
+    }
+
+
 }

@@ -48,9 +48,6 @@ public class TravelerPhone implements Serializable {
         private int phoneNumber;
         private String deviceType;
 
-
-
-
         public Builder countryCallingCode(int countryCallingCode) {
             this.countryCallingCode = countryCallingCode;
             return this;

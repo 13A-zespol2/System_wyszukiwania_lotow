@@ -10,7 +10,6 @@ class AmadeusFlightSearch {
     private String originLocationCode;
     private String destinationLocationCode;
     private String departureDate;
-    private String adults;
     private String travelClass;
 
     public AmadeusFlightSearch(Amadeus amadeus) {
@@ -22,10 +21,10 @@ class AmadeusFlightSearch {
                 Params.with("originLocationCode", originLocationCode)
                         .and("destinationLocationCode", destinationLocationCode)
                         .and("departureDate", departureDate)
-                        .and("adults", adults)
+                        .and("adults", "1")
                         .and("travelClass", travelClass)
                         .and("max", 20)
-                        .and("nonStop",true));
+                        .and("nonStop", true));
     }
 
 

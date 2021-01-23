@@ -32,7 +32,6 @@ public class Traveler extends GuiPanel {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        userLoginObserver.addObserver(this);
         loggedname.setText(userLoginObserver.getUser().getEmail());
     }
 }

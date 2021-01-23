@@ -35,6 +35,10 @@ public class ClientControl {
     }
 
 
+    public ReservationFlightResponse flightReservation(ReservationFlightRequest reservationFlightRequest) {
+        return (ReservationFlightResponse) send(reservationFlightRequest);
+    }
+
     private Object send(Object request) {
         Socket clientSocket = null;
         ObjectOutputStream out = null;

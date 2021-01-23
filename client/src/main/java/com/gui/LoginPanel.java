@@ -1,5 +1,6 @@
 package com.gui;
 
+import com.observer.LoginObserver;
 import com.repository.model.communication.LoginUserRequest;
 import com.repository.model.communication.LoginUserResponse;
 import com.repository.model.database.User;
@@ -8,10 +9,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -28,11 +31,13 @@ public class LoginPanel extends GuiPanel {
     private TextField emailLabel;
     @FXML
     private Label loginError;
+    private User user;
+    @Autowired
+    private List<LoginObserver> loginObserverList;
 
     public LoginPanel() {
         super();
     }
-
 
     public void logButton() {
         if (emailLabel.getText().isEmpty()) {
@@ -52,18 +57,20 @@ public class LoginPanel extends GuiPanel {
             loginError.setText("Incorrect data. Try again!");
         }
         if (loginUserResponse.getUser() != null) {
-            update(loginUserResponse.getUser());
-            userLoginObserver.loginNotify(loginUserResponse.getUser());
+            notifyGui(loginUserResponse.getUser());
             mainPanel.getMainLoad().getChildren().add(loadUi("/clientPanel"));
 
         }
 
     }
 
+    private void notifyGui(User user) {
+        loginObserverList.forEach(e -> e.update(user));
+    }
 
     @Override
     public void update(User user) {
-        userLoginObserver.loginNotify(user);
+        this.user = user;
     }
 
 

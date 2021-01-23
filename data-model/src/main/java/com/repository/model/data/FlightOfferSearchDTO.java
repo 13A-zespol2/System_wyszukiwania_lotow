@@ -1,18 +1,27 @@
-package com.repository.model.adapter;
+package com.repository.model.data;
 
 import com.amadeus.resources.FlightOfferSearch;
-import com.repository.model.data.Flight;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class FlightOfferSearchAdapter extends Flight {
-    private final FlightOfferSearch flightOfferSearch;
+@Getter
+@Setter
 
-    public FlightOfferSearchAdapter(FlightOfferSearch flightOfferSearch) {
-        this.flightOfferSearch = flightOfferSearch;
-    }
+public class FlightOfferSearchDTO implements Serializable {
+    private String id;
+    private String departureIATA;
+    private String destinationIATA;
+    private String departureTime;
+    private String arrivalTime;
+    private double ticketPrice;
+    private String currency;
+    private String flightClass;
 
-    public void initialize() {
+
+    public FlightOfferSearchDTO(FlightOfferSearch flightOfferSearch) {
         id = flightOfferSearch.getId();
         departureIATA = Arrays.stream(Arrays.stream(flightOfferSearch.getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getIataCode();
         destinationIATA = Arrays.stream(Arrays.stream(flightOfferSearch.getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getIataCode();
@@ -20,7 +29,9 @@ public class FlightOfferSearchAdapter extends Flight {
         arrivalTime = Arrays.stream(Arrays.stream(flightOfferSearch.getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getAt();
         ticketPrice = flightOfferSearch.getPrice().getTotal();
         currency = flightOfferSearch.getPrice().getCurrency();
-        flightClass = flightOfferSearch.getPrice().getClass().getName();
+        flightClass = Arrays.stream(Arrays.stream(flightOfferSearch.getTravelerPricings()).findFirst().get().getFareDetailsBySegment()).findFirst().get().getCabin();
     }
+
+
 
 }

@@ -1,11 +1,10 @@
 package com.gui;
 
-import com.amadeus.resources.FlightOfferSearch;
-import com.google.gson.Gson;
 import com.repository.model.communication.ReservationFlightRequest;
 import com.repository.model.communication.SearchFlightRequest;
 import com.repository.model.communication.SearchFlightResponse;
 import com.repository.model.data.AirportCode;
+import com.repository.model.data.FlightOfferSearchDTO;
 import com.repository.model.database.User;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -18,9 +17,7 @@ import org.springframework.stereotype.Controller;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -29,58 +26,38 @@ import java.util.stream.Collectors;
 @Component
 public class SearchPanel extends GuiPanel {
 
-
     @FXML
-    public TableView<FlightOfferSearch> tableView;
-
+    public TableView<FlightOfferSearchDTO> tableView;
+    private User user;
     @FXML
     private ComboBox<String> originLocationCode;
-
     @FXML
     private ComboBox<String> destinationLocationCode;
-
     @FXML
     private DatePicker departureDate;
-
     @FXML
     private ComboBox<String> travelClass;
-
     @FXML
-    private Spinner adults;
-
+    private Spinner<Integer> adults;
     @FXML
-    private TableColumn<FlightOfferSearch, String> col1;
-
+    private TableColumn<FlightOfferSearchDTO, String> col1;
     @FXML
-    private TableColumn<FlightOfferSearch, String> col2;
-
+    private TableColumn<FlightOfferSearchDTO, String> col2;
     @FXML
-    private TableColumn<FlightOfferSearch, String> col3;
-
+    private TableColumn<FlightOfferSearchDTO, String> col3;
     @FXML
-    private TableColumn<FlightOfferSearch, String> col4;
-
+    private TableColumn<FlightOfferSearchDTO, String> col4;
     @FXML
-    private TableColumn<FlightOfferSearch, String> col5;
-
+    private TableColumn<FlightOfferSearchDTO, String> col5;
     @FXML
-    private TableColumn<FlightOfferSearch, String> col6;
-
+    private TableColumn<FlightOfferSearchDTO, String> col6;
     @FXML
-    private TableColumn<FlightOfferSearch, String> col7;
-
+    private TableColumn<FlightOfferSearchDTO, String> col7;
     @FXML
     private Label loggedname;
-
     @FXML
     private Label lias;
 
-    String originToSend;
-    String destToSend;
-
-    private User user;
-    String originValue;
-    String destValue;
     @FXML
     private Label loginError;
     @FXML
@@ -89,64 +66,35 @@ public class SearchPanel extends GuiPanel {
     private Button search_SB1;
 
 
-
     public void searchFlights() {
 
-        ObservableList<String> listByName = FXCollections.observableArrayList();
-        ObservableList<String> listByIata = FXCollections.observableArrayList();
-        for (Map.Entry<String, AirportCode> entry : AirportCode.getByIata().entrySet()) {
-            listByName.add(entry.getValue().name());
-            listByIata.add(entry.getValue().IATACode);
-        }
-        originValue = originLocationCode.getValue();
-        destValue = destinationLocationCode.getValue();
-
-        for (int a = 0; a < listByName.size(); a++) {
-            if (originValue != null) {
-                if (originValue.equals(listByName.get(a))) {
-                    originToSend = listByIata.get(a);
-                }
-            }
-            if (destValue != null) {
-                if (destValue.equals(listByName.get(a))) {
-                    destToSend = listByIata.get(a);
-                }
-            }
-        }
-
-        if ((originToSend == null) || (destToSend == null) ||
-           (departureDate.getValue() == null) || (adults.getValue() == null) ||
-           (travelClass.getValue() == null)) {
+        if ((originLocationCode.getValue() == null) || (destinationLocationCode.getValue() == null) ||
+                (departureDate.getValue() == null) || (adults.getValue() == null) ||
+                (travelClass.getValue() == null)) {
             loginError.setText("Complete required fields!");
-        }else{
+        } else {
             loginError.setText("");
-
             SearchFlightRequest createSearchFlightRequest = new SearchFlightRequest();
-
-            createSearchFlightRequest.setOriginLocationCode(originToSend);
-            createSearchFlightRequest.setDestinationLocationCode(destToSend);
+            createSearchFlightRequest.setOriginLocationCode(AirportCode.getKeyByValue(originLocationCode.getValue()));
+            createSearchFlightRequest.setDestinationLocationCode(AirportCode.getKeyByValue(destinationLocationCode.getValue()));
             createSearchFlightRequest.setDepartureDate(String.valueOf(departureDate.getValue()));
             createSearchFlightRequest.setAdults(String.valueOf(adults.getValue()));
             createSearchFlightRequest.setTravelClass(travelClass.getValue());
 
             SearchFlightResponse searchFlightResponse = clientControl.searchFlight(createSearchFlightRequest);
 
-            if (searchFlightResponse != null) {
-                List<String> tList = searchFlightResponse.getTList();
-                if (tList.isEmpty()) {
-                    loginError.setText("No flights found.");
-                }
-                List<FlightOfferSearch> collect = tList.stream()
-                        .map(e -> new Gson().fromJson(e, FlightOfferSearch.class))
-                        .collect(Collectors.toList());
-                showFlights(collect);
-            }
+            if (searchFlightResponse.getTList() == null)
+                loginError.setText("No flights found.");
+
+            showFlights(searchFlightResponse.getTList());
+
         }
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         departureDate.setDayCellFactory(param -> new DateCell() {
             @Override
             public void updateItem(LocalDate date, boolean empty) {
@@ -155,8 +103,8 @@ public class SearchPanel extends GuiPanel {
             }
         });
 
-        SpinnerValueFactory<Integer> adultsFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 1);
-        adults.setValueFactory(adultsFactory);
+
+        adults.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 1));
         adults.setEditable(false);
 
         if (userLoginObserver.getUser() != null) {
@@ -182,22 +130,22 @@ public class SearchPanel extends GuiPanel {
 
     }
 
-    private void showFlights(List<FlightOfferSearch> tList) {
-        ObservableList<FlightOfferSearch> list = FXCollections.observableArrayList(tList);
+    private void showFlights(List<FlightOfferSearchDTO> tList) {
+        ObservableList<FlightOfferSearchDTO> list = FXCollections.observableArrayList(tList);
 
         col1.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getId()));
 
-        col2.setCellValueFactory(param -> new ReadOnlyStringWrapper(originValue + " (" + Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getIataCode() + ")"));
+        col2.setCellValueFactory(param -> new ReadOnlyStringWrapper(AirportCode.getByIata().get(param.getValue().getDepartureIATA()) + " (" + param.getValue().getDepartureIATA() + ")"));
 
-        col3.setCellValueFactory(param -> new ReadOnlyStringWrapper(destValue + " (" + Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getIataCode() + ")"));
+        col3.setCellValueFactory(param -> new ReadOnlyStringWrapper(AirportCode.getByIata().get(param.getValue().getDestinationIATA()) + " (" + param.getValue().getDestinationIATA() + ")"));
 
-        col4.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getAt()).substring(11)));
+        col4.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getDepartureTime().substring(11)));
 
-        col5.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getAt()).substring(11)));
+        col5.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getArrivalTime().substring(11)));
 
-        col6.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getPrice().getTotal() + " €"));
+        col6.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getTicketPrice() + param.getValue().getCurrency()));
 
-        col7.setCellValueFactory(param -> new ReadOnlyStringWrapper(Arrays.stream(Arrays.stream(param.getValue().getTravelerPricings()).findFirst().get().getFareDetailsBySegment()).findFirst().get().getCabin()));
+        col7.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getFlightClass()));
 
         tableView.setItems(list);
     }
@@ -209,7 +157,9 @@ public class SearchPanel extends GuiPanel {
     }
 
     public void bookTicket() {
-        ;
-        ReservationFlightRequest reservationFlightRequest = new ReservationFlightRequest(new Gson().toJson(tableView.getSelectionModel().getSelectedItem()));
+
+        ReservationFlightRequest reservationFlightRequest = new ReservationFlightRequest(tableView.getSelectionModel().getSelectedItem(), userLoginObserver.getUser(), adults.getValue());
+        clientControl.flightReservation(reservationFlightRequest);
+
     }
 }

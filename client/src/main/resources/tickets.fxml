@@ -11,145 +11,177 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity"
             minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="panel_bg"
             xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.gui.ClientTickets">
-   <children>
-      <HBox alignment="CENTER" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="70.0" prefWidth="960.0" styleClass="top_hbox">
-         <children>
-            <Label lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                   minWidth="-Infinity" prefHeight="40.0" styleClass="data_label" text="Logged in as:">
-               <font>
-                  <Font name="Bell MT Bold" size="13.0"/>
-               </font>
-               <HBox.margin>
-                  <Insets left="450.0"/>
-               </HBox.margin>
-            </Label>
-            <Label fx:id="loggedname" style="-fx-color: #000;">
-               <font>
-                  <Font name="Verdana Bold" size="11.0"/>
-               </font>
-               <HBox.margin>
-                  <Insets left="10.0"/>
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
-      <Layer accessibleRole="IMAGE_VIEW" layoutX="24.0" layoutY="44.0" prefHeight="45.0" prefWidth="130.0"
-             styleClass="hbox_logo"/>
-      <Separator layoutX="888.0" layoutY="30.0" orientation="VERTICAL" prefHeight="64.0">
-         <opaqueInsets>
-            <Insets/>
-         </opaqueInsets>
-      </Separator>
-      <Label layoutX="200.0" layoutY="30.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity"
-             minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label" text="Client Panel">
-         <font>
-            <Font name="Bell MT Bold" size="13.0"/>
-         </font>
-      </Label>
-      <HBox layoutX="280.0" layoutY="100.0" prefHeight="540.0" prefWidth="681.0"/>
-         <VBox layoutX="80.0" layoutY="100.0" prefHeight="540.0" prefWidth="200.0" styleClass="data_vbox">
+    <children>
+        <HBox alignment="CENTER" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+              minWidth="-Infinity" prefHeight="70.0" prefWidth="960.0" styleClass="top_hbox">
             <children>
-               <Label fx:id="clientData" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
-                      minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#toClientData" prefHeight="50.0"
-                      prefWidth="200.0" styleClass="thin_label" text="User data" textAlignment="CENTER">
-                  <VBox.margin>
-                     <Insets/>
-                  </VBox.margin>
-               </Label>
-               <Label fx:id="clientTickets" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
-                      minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" text="Tickets"
-                      textAlignment="CENTER">
-                  <styleClass>
-                     <String fx:value="thin_label"/>
-                     <String fx:value="activated"/>
-                  </styleClass>
-               </Label>
-               <Label fx:id="clientEdit" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
-                      minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#toClientEdit" prefHeight="50.0"
-                      prefWidth="200.0" styleClass="thin_label" text="Edit" textAlignment="CENTER"/>
+                <Label lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                       minWidth="-Infinity" prefHeight="40.0" styleClass="data_label" text="Logged in as:">
+                    <font>
+                        <Font name="Bell MT Bold" size="13.0"/>
+                    </font>
+                    <HBox.margin>
+                        <Insets left="450.0"/>
+                    </HBox.margin>
+                </Label>
+                <Label fx:id="loggedname" style="-fx-color: #000;">
+                    <font>
+                        <Font name="Verdana Bold" size="11.0"/>
+                    </font>
+                    <HBox.margin>
+                        <Insets left="10.0"/>
+                    </HBox.margin>
+                </Label>
+            </children>
+        </HBox>
+        <Layer accessibleRole="IMAGE_VIEW" layoutX="24.0" layoutY="44.0" prefHeight="45.0" prefWidth="130.0"
+               styleClass="hbox_logo"/>
+        <Separator layoutX="888.0" layoutY="30.0" orientation="VERTICAL" prefHeight="64.0">
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+        </Separator>
+        <Label layoutX="200.0" layoutY="30.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity"
+               minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label" text="Client Panel">
+            <font>
+                <Font name="Bell MT Bold" size="13.0"/>
+            </font>
+        </Label>
+        <HBox fx:id="hbox" layoutX="280.0" layoutY="100.0" prefHeight="540.0" prefWidth="681.0">
+            <padding>
+                <Insets left="40.0" right="40.0"/>
+            </padding>
+            <children>
+                <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                            prefHeight="395.0" prefWidth="630.0">
+                    <content>
+                        <TableView fx:id="tableView" editable="true" maxHeight="-Infinity" maxWidth="-Infinity"
+                                   minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="709.0"
+                                   styleClass="_table">
+                            <columns>
+                                <TableColumn fx:id="col1" prefWidth="25.0" text="ID"/>
+                                <TableColumn fx:id="col2" prefWidth="135.0" text="Departure"/>
+                                <TableColumn fx:id="col3" prefWidth="135.0" text="Destination"/>
+                                <TableColumn fx:id="col4" prefWidth="145.0" text="Departure time"/>
+                                <TableColumn fx:id="col5" prefWidth="142.0" text="Arrival time"/>
+                                <TableColumn fx:id="col6" prefWidth="96.0" text="Ticket price"/>
+                                <TableColumn fx:id="col7" prefWidth="110.0" text="Flight class"/>
+                            </columns>
+                        </TableView>
+                    </content>
+                </ScrollPane>
+            </children>
+
+
+        </HBox>
+        <VBox layoutX="80.0" layoutY="100.0" prefHeight="540.0" prefWidth="200.0" styleClass="data_vbox">
+            <children>
+                <Label fx:id="clientData" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
+                       minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#toClientData" prefHeight="50.0"
+                       prefWidth="200.0" styleClass="thin_label" text="User data" textAlignment="CENTER">
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </Label>
+                <Label fx:id="clientTickets" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
+                       minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" text="Tickets"
+                       textAlignment="CENTER">
+                    <styleClass>
+                        <String fx:value="thin_label"/>
+                        <String fx:value="activated"/>
+                    </styleClass>
+                </Label>
+                <Label fx:id="clientEdit" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
+                       minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#toClientEdit" prefHeight="50.0"
+                       prefWidth="200.0" styleClass="thin_label" text="Edit" textAlignment="CENTER"/>
             </children>
             <padding>
-               <Insets right="1.0" />
+                <Insets right="1.0"/>
             </padding>
-         </VBox>
-      <HBox fx:id="parent" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="960.0" style="-fx-background-color: #393939;">
-         <children>
-            <Label fx:id="minimize_btn" alignment="TOP_CENTER" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#minimize_btn" prefHeight="30.0" prefWidth="30.0" styleClass="min_btn" text="_" textAlignment="RIGHT" textFill="WHITE">
-               <font>
-                  <Font name="Agency FB Bold" size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Label>
-            <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#exit_btn" prefHeight="30.0" prefWidth="30.0" styleClass="exit_btn" text="x" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND"/>
-               </cursor>
-            </Label>
-         </children>
-         <cursor>
-            <Cursor fx:constant="MOVE"/>
-         </cursor>
-      </HBox>
-      <FontAwesomeIcon fill="WHITE" glyphName="HOME" layoutX="10.0" layoutY="22.0" onMouseClicked="#homeFunc"
-                       size="20px" wrappingWidth="11.142857551574707"/>
-      <FontAwesomeIcon glyphName="POWER_OFF" layoutX="910.0" layoutY="70.0" onMouseClicked="#logOut"
-                       selectionFill="BLACK" size="30px">
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND"/>
-         </cursor>
-      </FontAwesomeIcon>
-      <VBox layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="540.0" prefWidth="75.0" styleClass="left_panel">
-         <children>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                        onMouseClicked="#homeFunc" prefHeight="50.0" prefWidth="50.0">
-               <children>
-                  <FontAwesomeIcon glyphName="HOME" layoutX="8.0" layoutY="38.0" size="35px" stroke="BLACK"
-                                   strokeWidth="0.0" wrappingWidth="40.0"/>
-               </children>
-               <VBox.margin>
-                  <Insets left="10.0" top="50.0"/>
-               </VBox.margin>
-               <styleClass>
-                  <String fx:value="data_label"/>
-                  <String fx:value="buttonH"/>
-               </styleClass>
-            </AnchorPane>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                        onMouseClicked="#toClientData" prefHeight="50.0" prefWidth="50.0">
-               <children>
-                  <FontAwesomeIcon glyphName="USER" layoutX="11.0" layoutY="38.0" size="35px" stroke="BLACK"
-                                   strokeWidth="0.0" wrappingWidth="40.0"/>
-               </children>
-               <VBox.margin>
-                  <Insets left="10.0" top="20.0"/>
-               </VBox.margin>
-               <styleClass>
-                  <String fx:value="data_label"/>
-                  <String fx:value="buttonH"/>
-               </styleClass>
-            </AnchorPane>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                        onMouseClicked="#toSearch" prefHeight="50.0" prefWidth="50.0">
-               <children>
-                  <FontAwesomeIcon glyphName="SEARCH" layoutX="8.0" layoutY="37.0" onMouseClicked="#toSearch"
-                                   size="35px" stroke="BLACK" strokeWidth="0.0" wrappingWidth="40.0"/>
-               </children>
-               <VBox.margin>
-                  <Insets left="10.0" top="20.0"/>
-               </VBox.margin>
-               <styleClass>
-                  <String fx:value="data_label"/>
-                  <String fx:value="buttonH"/>
-               </styleClass>
-            </AnchorPane>
-         </children>
-      </VBox>
-      </children>
-   </AnchorPane>
+        </VBox>
+        <HBox fx:id="parent" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+              minWidth="-Infinity" prefHeight="30.0" prefWidth="960.0" style="-fx-background-color: #393939;">
+            <children>
+                <Label fx:id="minimize_btn" alignment="TOP_CENTER" contentDisplay="RIGHT" maxHeight="-Infinity"
+                       maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#minimize_btn"
+                       prefHeight="30.0" prefWidth="30.0" styleClass="min_btn" text="_" textAlignment="RIGHT"
+                       textFill="WHITE">
+                    <font>
+                        <Font name="Agency FB Bold" size="18.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Label>
+                <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                       minWidth="-Infinity" onMouseClicked="#exit_btn" prefHeight="30.0" prefWidth="30.0"
+                       styleClass="exit_btn" text="x" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="18.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Label>
+            </children>
+            <cursor>
+                <Cursor fx:constant="MOVE"/>
+            </cursor>
+        </HBox>
+        <FontAwesomeIcon fill="WHITE" glyphName="HOME" layoutX="10.0" layoutY="22.0" onMouseClicked="#homeFunc"
+                         size="20px" wrappingWidth="11.142857551574707"/>
+        <FontAwesomeIcon glyphName="POWER_OFF" layoutX="910.0" layoutY="70.0" onMouseClicked="#logOut"
+                         selectionFill="BLACK" size="30px">
+            <cursor>
+                <Cursor fx:constant="OPEN_HAND"/>
+            </cursor>
+        </FontAwesomeIcon>
+        <VBox layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+              prefHeight="540.0" prefWidth="75.0" styleClass="left_panel">
+            <children>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                            onMouseClicked="#homeFunc" prefHeight="50.0" prefWidth="50.0">
+                    <children>
+                        <FontAwesomeIcon glyphName="HOME" layoutX="8.0" layoutY="38.0" size="35px" stroke="BLACK"
+                                         strokeWidth="0.0" wrappingWidth="40.0"/>
+                    </children>
+                    <VBox.margin>
+                        <Insets left="10.0" top="50.0"/>
+                    </VBox.margin>
+                    <styleClass>
+                        <String fx:value="data_label"/>
+                        <String fx:value="buttonH"/>
+                    </styleClass>
+                </AnchorPane>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                            onMouseClicked="#toClientData" prefHeight="50.0" prefWidth="50.0">
+                    <children>
+                        <FontAwesomeIcon glyphName="USER" layoutX="11.0" layoutY="38.0" size="35px" stroke="BLACK"
+                                         strokeWidth="0.0" wrappingWidth="40.0"/>
+                    </children>
+                    <VBox.margin>
+                        <Insets left="10.0" top="20.0"/>
+                    </VBox.margin>
+                    <styleClass>
+                        <String fx:value="data_label"/>
+                        <String fx:value="buttonH"/>
+                    </styleClass>
+                </AnchorPane>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                            onMouseClicked="#toSearch" prefHeight="50.0" prefWidth="50.0">
+                    <children>
+                        <FontAwesomeIcon glyphName="SEARCH" layoutX="8.0" layoutY="37.0" onMouseClicked="#toSearch"
+                                         size="35px" stroke="BLACK" strokeWidth="0.0" wrappingWidth="40.0"/>
+                    </children>
+                    <VBox.margin>
+                        <Insets left="10.0" top="20.0"/>
+                    </VBox.margin>
+                    <styleClass>
+                        <String fx:value="data_label"/>
+                        <String fx:value="buttonH"/>
+                    </styleClass>
+                </AnchorPane>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

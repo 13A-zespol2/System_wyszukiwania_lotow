@@ -2,7 +2,7 @@ package com.gui;
 
 import com.client.ClientControl;
 import com.observer.LoginObserver;
-import com.observer.UserLoginObserver;
+import com.observer.UserStoringObserver;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
@@ -15,14 +15,13 @@ public abstract class GuiPanel implements Initializable, LoginObserver {
     protected ClientControl clientControl;
 
     @Autowired
-    protected UserLoginObserver userLoginObserver;
+    protected UserStoringObserver userLoginObserver;
 
     @Autowired
     protected MainPanel mainPanel;
 
     @Autowired
     protected SpringFxmlLoader springFxmlLoader;
-
 
     protected GuiPanel() {
     }
@@ -42,6 +41,7 @@ public abstract class GuiPanel implements Initializable, LoginObserver {
     }
 
     public void homeFunc() {
+
         mainPanel.getMainLoad().getChildren().clear();
         mainPanel.getMainLoad().getChildren().add(loadUi("/MainPanel"));
     }
@@ -77,8 +77,10 @@ public abstract class GuiPanel implements Initializable, LoginObserver {
 
     public void logOut() {
         if (userLoginObserver.getUser() != null) {
-            userLoginObserver.loginNotify(null);
+
         }
         homeFunc();
     }
+
+
 }
