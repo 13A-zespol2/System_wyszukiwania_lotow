@@ -41,20 +41,10 @@ public class SearchPanel extends GuiPanel {
     private DatePicker departureDate;
 
     @FXML
-    private DatePicker returnDate;
-
-    @FXML
-    private CheckBox returnCheckbox;
-
-    @FXML
     private ComboBox<String> travelClass;
 
     @FXML
-    private TextField children;
-
-    @FXML
-    private TextField adults;
-
+    private Spinner adults;
 
     @FXML
     private TableColumn<FlightOfferSearch, String> col1;
@@ -96,7 +86,9 @@ public class SearchPanel extends GuiPanel {
     @FXML
     private Button search_SB1;
 
-    public boolean searchFlights() {
+
+
+    public void searchFlights() {
 
         ObservableList<String> listByName = FXCollections.observableArrayList();
         ObservableList<String> listByIata = FXCollections.observableArrayList();
@@ -104,7 +96,6 @@ public class SearchPanel extends GuiPanel {
             listByName.add(entry.getValue().name());
             listByIata.add(entry.getValue().IATACode);
         }
-
         originValue = originLocationCode.getValue();
         destValue = destinationLocationCode.getValue();
 
@@ -114,7 +105,6 @@ public class SearchPanel extends GuiPanel {
                     originToSend = listByIata.get(a);
                 }
             }
-
             if (destValue != null) {
                 if (destValue.equals(listByName.get(a))) {
                     destToSend = listByIata.get(a);
@@ -122,29 +112,23 @@ public class SearchPanel extends GuiPanel {
             }
         }
 
-
-        SearchFlightRequest createSearchFlightRequest = new SearchFlightRequest();
-        createSearchFlightRequest.setOriginLocationCode(originToSend);
-        createSearchFlightRequest.setDestinationLocationCode(destToSend);
-        createSearchFlightRequest.setDepartureDate(String.valueOf(departureDate.getValue()));
-        if (isNumeric(adults.getText()))
-            createSearchFlightRequest.setAdults(adults.getText());
-        createSearchFlightRequest.setTravelClass(travelClass.getValue());
-
-        if ((originToSend == null) ||
-                (destToSend == null) ||
-                (departureDate.getValue() == null) ||
-                (adults.getText().isEmpty()) ||
-                (travelClass.getValue() == null)) {
+        if ((originToSend == null) || (destToSend == null) ||
+           (departureDate.getValue() == null) || (adults.getValue() == null) ||
+           (travelClass.getValue() == null)) {
             loginError.setText("Complete required fields!");
-            return false;
-        } else {
-            if (Integer.parseInt(adults.getText()) > 5) {
-                loginError.setText("Maximum number of tickets is 5!");
-                return false;
-            }
+        }else{
             loginError.setText("");
+
+            SearchFlightRequest createSearchFlightRequest = new SearchFlightRequest();
+
+            createSearchFlightRequest.setOriginLocationCode(originToSend);
+            createSearchFlightRequest.setDestinationLocationCode(destToSend);
+            createSearchFlightRequest.setDepartureDate(String.valueOf(departureDate.getValue()));
+            createSearchFlightRequest.setAdults(String.valueOf(adults.getValue()));
+            createSearchFlightRequest.setTravelClass(travelClass.getValue());
+
             SearchFlightResponse searchFlightResponse = clientControl.searchFlight(createSearchFlightRequest);
+
             if (searchFlightResponse != null) {
                 List<String> tList = searchFlightResponse.getTList();
                 if (tList.isEmpty()) {
@@ -156,13 +140,15 @@ public class SearchPanel extends GuiPanel {
                 showFlights(collect);
             }
         }
-        return true;
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        SpinnerValueFactory<Integer> adultsFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,5,1);
+        adults.setValueFactory(adultsFactory);
+        adults.setEditable(false);
 
         if (userLoginObserver.getUser() != null) {
             loggedname.setText(userLoginObserver.getUser().getEmail());
@@ -185,18 +171,6 @@ public class SearchPanel extends GuiPanel {
         ObservableList<String> classList = FXCollections.observableArrayList(List.of("ECONOMY", "PREMIUM_ECONOMY", "BUSINESS", "FIRST"));
         travelClass.setItems(classList);
 
-    }
-
-    private boolean isNumeric(String strNum) {
-        if (strNum == null) {
-            return false;
-        }
-        try {
-            Double.parseDouble(strNum);
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-        return true;
     }
 
     private void showFlights(List<FlightOfferSearch> tList) {

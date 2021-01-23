@@ -66,6 +66,9 @@ public class MainPanel extends GuiPanel {
 
     }
 
+    public AnchorPane getMainLoad() {
+        return mainLoad;
+    }
 
     @Override
     public void update(User user) {
