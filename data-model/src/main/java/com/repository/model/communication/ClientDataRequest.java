@@ -13,10 +13,21 @@ import java.io.Serializable;
 @Setter
 public class ClientDataRequest implements Serializable {
     private User user;
-
+    private MyTraveler myTraveler;
+    private TravelerDocument travelerDocument;
+    private TravelerPhone travelerPhone;
 
     public ClientDataRequest(User user) {
         this.user = user;
 
     }
+
+    public ClientDataRequest(User user, MyTraveler myTraveler, TravelerDocument travelerDocument, TravelerPhone travelerPhone) {
+        this.user = user;
+        this.myTraveler = myTraveler;
+        this.travelerDocument = travelerDocument;
+        this.travelerPhone = travelerPhone;
+
+    }
+
 }

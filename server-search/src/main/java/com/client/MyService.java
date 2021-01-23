@@ -3,6 +3,7 @@ package com.client;
 
 import com.amadeus.AmadeusFacade;
 import com.amadeus.resources.FlightOfferSearch;
+import com.amadeus.resources.Traveler;
 import com.google.gson.Gson;
 import com.repository.*;
 import com.repository.model.communication.*;
@@ -79,6 +80,9 @@ public class MyService implements Serializable {
                 out.writeObject(clientDataResponse);
             }
 
+
+
+
             close(clientSocket, out, in);
         }
     }
@@ -106,8 +110,6 @@ public class MyService implements Serializable {
     private LoginUserResponse findUserToLogin(LoginUserRequest loginUserRequest) {
         User user = userRepository.findUserByEmailAndPassword(loginUserRequest.getEmail(), loginUserRequest.getPassword());
 
-
-
         if (user != null) {
             log.info("znaleziono");
             //System.out.println(myTraveler.getDateOfBirth());
@@ -118,8 +120,6 @@ public class MyService implements Serializable {
         return new LoginUserResponse("BLEDNY LOGIN LUB HASLO");
 
     }
-
-
 
     private RegisterUserResponse userToRegister(RegisterUserRequest registerUserRequest) {
         User user = new User();
@@ -135,10 +135,13 @@ public class MyService implements Serializable {
         return new RegisterUserResponse("ZAREJESTROWANO", true);
     }
 
+
     private ClientDataResponse dataToShow(ClientDataRequest clientDataRequest) {
         User user = clientDataRequest.getUser();
 
         MyTraveler myTraveler = myTravelerRepository.findByUserId(user.getId());
+
+
         if (myTraveler == null) {
             return new ClientDataResponse("NIE DZIALA");
         }
@@ -154,6 +157,8 @@ public class MyService implements Serializable {
         }
         return new ClientDataResponse("DZIALA", user, myTraveler, travelerDocument, travelerPhone.get());
     }
+
+
 
 
     private void close(Socket clientSocket, ObjectOutputStream out, ObjectInputStream in) throws IOException {
