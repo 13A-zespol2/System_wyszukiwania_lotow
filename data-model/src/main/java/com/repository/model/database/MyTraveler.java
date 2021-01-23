@@ -24,20 +24,50 @@ public class MyTraveler implements Serializable {
     @JoinColumn(name = "travelerPhone", referencedColumnName = "id")
     private TravelerPhone travelerPhone;
 
-    public MyTraveler(int idMyTraveler, String name, String surname, String dateOfBirth) {
-        this.id = idMyTraveler;
-        this.name = name;
-        this.surname = surname;
-        this.dateOfBirth = dateOfBirth;
+
+    public String getName(){
+        return name;
+    }
+    public String getSurname(){
+        return surname;
+    }
+    public String getDateOfBirth(){
+        return dateOfBirth;
     }
 
-    public MyTraveler(int idMyTraveler, String name, String surname, User user) {
-        this.id = idMyTraveler;
-        this.name = name;
-        this.surname = surname;
-        this.user = user;
+    public static class Builder {
+        private String name;
+        private String surname;
+        private String dateOfBirth;
+
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder surname(String surname){
+            this.surname=surname;
+            return this;
+        }
+
+        public Builder dateOfBirth(String dateOfBirth){
+            this.dateOfBirth=dateOfBirth;
+            return this;
+        }
+
+        public MyTraveler build(){
+            return new MyTraveler(this);
+        }
+    }
+
+    private MyTraveler(Builder b){
+        this.name = b.name;
+        this.surname = b.surname;
+        this.dateOfBirth = b.dateOfBirth;
     }
 
     public MyTraveler() {
     }
+
 }

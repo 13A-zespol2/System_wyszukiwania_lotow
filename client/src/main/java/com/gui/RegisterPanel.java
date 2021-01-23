@@ -1,5 +1,6 @@
 package com.gui;
 
+import com.repository.model.communication.ClientDataRequest;
 import com.repository.model.communication.RegisterUserRequest;
 import com.repository.model.communication.RegisterUserResponse;
 import com.repository.model.database.User;
@@ -74,6 +75,7 @@ public class RegisterPanel extends GuiPanel {
             loginAfterReg.setText("Rejestracja przebiegła pomyślnie. Zaloguj się.");*/
             RegisterUserRequest registerUserRequest = new RegisterUserRequest(emailInput.getText(), passwordInput.getText());
             RegisterUserResponse registerUserResponse = clientControl.registerUserCommunication(registerUserRequest);
+
             if (!registerUserResponse.isRegister()) {
                 registerError.setText("This email already exists in the database!");
                 return false;

@@ -3,6 +3,7 @@ package com.client;
 
 import com.amadeus.AmadeusFacade;
 import com.amadeus.resources.FlightOfferSearch;
+import com.amadeus.resources.Traveler;
 import com.google.gson.Gson;
 import com.repository.*;
 import com.repository.model.communication.*;
@@ -71,6 +72,7 @@ public class MyService implements Serializable {
                 ClientDataResponse clientDataResponse = dataToShow((ClientDataRequest) request);
                 out.writeObject(clientDataResponse);
             }
+
             close(clientSocket, out, in);
         }
     }
