@@ -14,9 +14,13 @@ public class ClientDataRequest implements Serializable {
     private TravelerDocument travelerDocument;
     private TravelerPhone travelerPhone;
 
+    public ClientDataRequest() {
+
+    }
+
+
     public ClientDataRequest(User user) {
         this.user = user;
-
     }
 
     public ClientDataRequest(User user, MyTraveler myTraveler, TravelerDocument travelerDocument, TravelerPhone travelerPhone) {
@@ -24,7 +28,6 @@ public class ClientDataRequest implements Serializable {
         this.myTraveler = myTraveler;
         this.travelerDocument = travelerDocument;
         this.travelerPhone = travelerPhone;
-
     }
 
 }

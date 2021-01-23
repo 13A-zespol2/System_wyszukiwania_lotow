@@ -11,23 +11,30 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class ClientDataResponse implements Serializable {
-    private String status;
+public class ClientEditRequest implements Serializable {
+
     private User user;
     private MyTraveler myTraveler;
     private TravelerDocument travelerDocument;
     private TravelerPhone travelerPhone;
 
-    public ClientDataResponse(String status, User user, MyTraveler myTraveler, TravelerDocument travelerDocument, TravelerPhone travelerPhone) {
-        this.status = status;
+    public ClientEditRequest(User user, MyTraveler myTraveler) {
+        this.user = user;
+        this.myTraveler = myTraveler;
+    }
+
+    public ClientEditRequest(User user, MyTraveler myTraveler, TravelerDocument travelerDocument, TravelerPhone travelerPhone) {
         this.user = user;
         this.myTraveler = myTraveler;
         this.travelerDocument = travelerDocument;
         this.travelerPhone = travelerPhone;
     }
-    public ClientDataResponse(String status) {
-        this.status = status;
+
+    public ClientEditRequest(User user) {
+        this.user = user;
     }
 
+    public ClientEditRequest() {
 
+    }
 }

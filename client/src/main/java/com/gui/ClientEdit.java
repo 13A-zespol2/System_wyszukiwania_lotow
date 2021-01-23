@@ -3,8 +3,7 @@ package com.gui;
 
 import com.repository.model.communication.ClientDataRequest;
 import com.repository.model.communication.ClientDataResponse;
-import com.repository.model.communication.RegisterUserRequest;
-import com.repository.model.communication.RegisterUserResponse;
+import com.repository.model.communication.ClientEditRequest;
 import com.repository.model.database.MyTraveler;
 import com.repository.model.database.TravelerDocument;
 import com.repository.model.database.TravelerPhone;
@@ -26,10 +25,6 @@ import java.util.ResourceBundle;
 @Component
 public class ClientEdit extends GuiPanel {
 
-    private User user;
-    private MyTraveler myTraveler;
-    private TravelerDocument travelerDocument;
-    private TravelerPhone travelerPhone;
     @FXML
     private TextField name;
 
@@ -46,14 +41,16 @@ public class ClientEdit extends GuiPanel {
     private TextField docNumber;
 
     @FXML
+    private TextField expDate;
+    @FXML
+    private TextField birthDate;
+    @FXML
     private PasswordField password;
 
     @FXML
     private PasswordField repeatPassword;
     @FXML
     private Label loggedname;
-
-
 
 
     @Override
@@ -65,43 +62,35 @@ public class ClientEdit extends GuiPanel {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
- /*       userLoginObserver.addObserver(this);
+        userLoginObserver.addObserver(this);
         loggedname.setText(userLoginObserver.getUser().getEmail());
 
         new ClientDataRequest(userLoginObserver.getUser());
         ClientDataResponse clientDataResponse = clientControl.clientDataComunication(new ClientDataRequest(userLoginObserver.getUser()));
 
-        name.setText(clientDataResponse.getMyTraveler().getName());
-        surname.setText(clientDataResponse.getMyTraveler().getSurname());
-        phoneNumber.setText(String.valueOf(clientDataResponse.getMyTraveler().getTravelerPhone().getPhoneNumber()));
-        docType.setText(clientDataResponse.getTravelerDocument().getDocumentType());
-        docNumber.setText(clientDataResponse.getTravelerDocument().getNumberDocument());*/
-
-
-     }
+        if (clientDataResponse.getMyTraveler() != null) {
+            name.setText(clientDataResponse.getMyTraveler().getName());
+            surname.setText(clientDataResponse.getMyTraveler().getSurname());
+            phoneNumber.setText(String.valueOf(clientDataResponse.getMyTraveler().getTravelerPhone().getPhoneNumber()));
+            password.setText(clientDataResponse.getUser().getPassword());
+            if (clientDataResponse.getTravelerDocument() != null) {
+                docType.setText(clientDataResponse.getTravelerDocument().getDocumentType());
+                docNumber.setText(clientDataResponse.getTravelerDocument().getNumberDocument());
+                birthDate.setText(clientDataResponse.getMyTraveler().getDateOfBirth());
+                expDate.setText(clientDataResponse.getTravelerDocument().getExpireDate());
+            }
+        }
+    }
 
     public void editData(MouseEvent mouseEvent) {
 
+        MyTraveler myTraveler = new MyTraveler.Builder().name(name.getText()).surname(surname.getText()).dateOfBirth(birthDate.getText()).build();
+        TravelerDocument travelerDocument = new TravelerDocument.Builder().documentType(docType.getText()).numberDocument(docNumber.getText()).expireDate(expDate.getText()).build();
+        TravelerPhone travelerPhone = new TravelerPhone.Builder().phoneNumber(Integer.parseInt(phoneNumber.getText())).build();
 
-        name.getText();
-        surname.getText();
-        phoneNumber.getText();
-        docType.getText();
-        docNumber.getText();
-        password.getText();
-        repeatPassword.getText();
+        ClientEditRequest clientDataRequestEdit = new ClientEditRequest(userLoginObserver.getUser(), myTraveler, travelerDocument, travelerPhone);
+        clientDataRequestEdit.getUser().setPassword(password.getText());
 
-        System.out.println(name.getText());
-
-/*        ClientDataRequest clientDataRequestEdit = new ClientDataRequest(user, myTraveler, travelerDocument, travelerPhone);
-        ClientDataResponse clientDataResponseEdit = clientControl.clientDataComunication(clientDataRequestEdit);*/
-
-        /*user = new User(password.getText());
-        myTraveler = new MyTraveler(name.getText(), surname.getText());
-        travelerDocument = new TravelerDocument(docNumber.getText(), docType.getText());
-        travelerPhone = new TravelerPhone(Integer.parseInt(phoneNumber.getText()));
-        System.out.println(myTraveler.getName() + myTraveler.getSurname());
-        ClientDataRequest clientDataRequestEdit = new ClientDataRequest(user, myTraveler, travelerDocument, travelerPhone);
-        ClientDataResponse clientDataResponse1 = clientControl.clientDataComunication(clientDataRequestEdit);*/
+        clientControl.clientEditCommunication(clientDataRequestEdit);
     }
 }

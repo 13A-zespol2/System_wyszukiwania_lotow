@@ -3,7 +3,6 @@ package com.client;
 
 import com.amadeus.AmadeusFacade;
 import com.amadeus.resources.FlightOfferSearch;
-import com.amadeus.resources.Traveler;
 import com.google.gson.Gson;
 import com.repository.*;
 import com.repository.model.communication.*;
@@ -73,6 +72,9 @@ public class MyService implements Serializable {
                 out.writeObject(clientDataResponse);
             }
 
+
+
+
             close(clientSocket, out, in);
         }
     }
@@ -100,8 +102,6 @@ public class MyService implements Serializable {
     private LoginUserResponse findUserToLogin(LoginUserRequest loginUserRequest) {
         User user = userRepository.findUserByEmailAndPassword(loginUserRequest.getEmail(), loginUserRequest.getPassword());
 
-
-
         if (user != null) {
             log.info("znaleziono");
             //System.out.println(myTraveler.getDateOfBirth());
@@ -112,8 +112,6 @@ public class MyService implements Serializable {
         return new LoginUserResponse("BLEDNY LOGIN LUB HASLO");
 
     }
-
-
 
     private RegisterUserResponse userToRegister(RegisterUserRequest registerUserRequest) {
         User user = new User();
@@ -129,24 +127,61 @@ public class MyService implements Serializable {
         return new RegisterUserResponse("ZAREJESTROWANO", true);
     }
 
+
+    private ClientEditResponse editData(ClientEditRequest clientEditRequest) {
+
+        User user = clientEditRequest.getUser();
+        MyTraveler myTravelerRequest = clientEditRequest.getMyTraveler();
+        TravelerDocument travelerDocumentRequest = clientEditRequest.getTravelerDocument();
+        TravelerPhone travelerPhoneRequest = clientEditRequest.getTravelerPhone();
+
+        MyTraveler myTraveler = myTravelerRepository.findByUserId(user.getId());
+        TravelerDocument travelerDocument = travelerDocumentRepository.findByMyTravelerId(myTraveler.getId());
+        Optional<TravelerPhone> travelerPhone = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId());
+
+        myTraveler.setName(myTravelerRequest.getName());
+        myTraveler.setSurname(myTravelerRequest.getSurname());
+        myTraveler.setDateOfBirth(myTravelerRequest.getDateOfBirth());
+
+        travelerDocument.setDocumentType(travelerDocumentRequest.getDocumentType());
+        travelerDocument.setNumberDocument(travelerDocumentRequest.getNumberDocument());
+        travelerDocument.setExpireDate(travelerDocumentRequest.getExpireDate());
+
+        travelerPhone.get().setPhoneNumber(travelerPhoneRequest.getPhoneNumber());
+
+        user.setPassword(user.getPassword());
+
+        userRepository.save(user);
+        myTravelerRepository.save(myTraveler);
+        travelerDocumentRepository.save(travelerDocument);
+        travelerPhoneRepository.save(travelerPhone.get());
+
+        return new ClientEditResponse("EDYTOWANO DANE");
+    }
+
+
     private ClientDataResponse dataToShow(ClientDataRequest clientDataRequest) {
+
+
         User user = clientDataRequest.getUser();
 
         MyTraveler myTraveler = myTravelerRepository.findByUserId(user.getId());
+
+
         if (myTraveler == null) {
-            return new ClientDataResponse("NIE DZIALA");
+            return new ClientDataResponse("TRAVELER NULL");
         }
         TravelerDocument travelerDocument = travelerDocumentRepository.findByMyTravelerId(myTraveler.getId());
 
         if(travelerDocument==null){
-            return new ClientDataResponse("NIE DZIALA");
+            return new ClientDataResponse("DOCUMENT NULL");
         }
 
         Optional<TravelerPhone> travelerPhone = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId());
         if(travelerPhone==null){
-            return new ClientDataResponse("NIE DZIALA");
+            return new ClientDataResponse("PHONE NULL");
         }
-        return new ClientDataResponse("DZIALA", user, myTraveler, travelerDocument, travelerPhone.get());
+        return new ClientDataResponse("WYSWIETLONO DANE", user, myTraveler, travelerDocument, travelerPhone.get());
     }
 
 

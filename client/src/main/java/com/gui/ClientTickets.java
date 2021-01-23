@@ -17,7 +17,6 @@ import java.util.ResourceBundle;
 @Component
 public class ClientTickets extends GuiPanel {
 
-
     @FXML
     private Label clientData;
     @FXML

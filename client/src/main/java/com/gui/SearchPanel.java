@@ -98,7 +98,6 @@ public class SearchPanel extends GuiPanel {
             listByName.add(entry.getValue().name());
             listByIata.add(entry.getValue().IATACode);
         }
-
         originValue = originLocationCode.getValue();
         destValue = destinationLocationCode.getValue();
 
