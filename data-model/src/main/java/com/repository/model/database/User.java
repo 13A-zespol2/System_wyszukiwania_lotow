@@ -30,7 +30,6 @@ public class User implements Serializable {
     public String getEmail() {
         return email;
     }
-
     public String getPassword() {
         return password;
     }
@@ -58,12 +57,9 @@ public class User implements Serializable {
     private User(Builder b){
         this.email = b.email;
         this.password = b.password;
-
     }
 
     public User() {
 
     }
-
-
 }

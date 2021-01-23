@@ -26,9 +26,14 @@ public class ClientControl {
         return (SearchFlightResponse) send(searchFlightRequest);
     }
 
-    public ClientDataResponse clientDataComunication(ClientDataRequest clientDataRequest){
-        return (ClientDataResponse)  send(clientDataRequest);
+    public ClientDataResponse clientDataComunication(ClientDataRequest clientDataRequest) {
+        return (ClientDataResponse) send(clientDataRequest);
     }
+
+    public ClientEditResponse clientEditCommunication(ClientEditRequest clientEditRequest) {
+        return (ClientEditResponse) send(clientEditRequest);
+    }
+
 
     private Object send(Object request) {
         Socket clientSocket = null;

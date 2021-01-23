@@ -64,13 +64,12 @@ public class ClientPanel extends GuiPanel {
             nameSurname.setText(name  + " " + surname);
             phoneNumber.setText(String.valueOf(clientDataResponse.getMyTraveler().getTravelerPhone().getPhoneNumber()));
             birthDate.setText(clientDataResponse.getMyTraveler().getDateOfBirth());
-            docType.setText(clientDataResponse.getTravelerDocument().getDocumentType());
-            nationality.setText(clientDataResponse.getTravelerDocument().getNationality());
-            expiryDate.setText(clientDataResponse.getTravelerDocument().getExpireDate());
-            docNumber.setText(clientDataResponse.getTravelerDocument().getNumberDocument());
-
-
-
+            if (clientDataResponse.getTravelerDocument() != null) {
+                docType.setText(clientDataResponse.getTravelerDocument().getDocumentType());
+                nationality.setText(clientDataResponse.getTravelerDocument().getNationality());
+                expiryDate.setText(clientDataResponse.getTravelerDocument().getExpireDate());
+                docNumber.setText(clientDataResponse.getTravelerDocument().getNumberDocument());
+            }
         }
     }
 

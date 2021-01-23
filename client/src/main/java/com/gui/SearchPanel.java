@@ -179,15 +179,15 @@ public class SearchPanel extends GuiPanel {
 
         col1.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getId()));
 
-        col2.setCellValueFactory(param -> new ReadOnlyStringWrapper(originValue + " (" + String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getIataCode()) + ")"));
+        col2.setCellValueFactory(param -> new ReadOnlyStringWrapper(originValue + " (" + (Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getIataCode()) + ")"));
 
-        col3.setCellValueFactory(param -> new ReadOnlyStringWrapper(destValue + " (" + String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getIataCode()) + ")"));
+        col3.setCellValueFactory(param -> new ReadOnlyStringWrapper(destValue + " (" + (Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getIataCode()) + ")"));
 
         col4.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getAt()).substring(11)));
 
         col5.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(Arrays.stream(Arrays.stream(param.getValue().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getAt()).substring(11)));
 
-        col6.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(param.getValue().getPrice().getTotal() + " €")));
+        col6.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getPrice().getTotal() + " €"));
 
         col7.setCellValueFactory(param -> new ReadOnlyStringWrapper(Arrays.stream(Arrays.stream(param.getValue().getTravelerPricings()).findFirst().get().getFareDetailsBySegment()).findFirst().get().getCabin()));
 

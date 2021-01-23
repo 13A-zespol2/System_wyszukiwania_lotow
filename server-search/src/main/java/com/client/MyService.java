@@ -3,7 +3,6 @@ package com.client;
 
 import com.amadeus.AmadeusFacade;
 import com.amadeus.resources.FlightOfferSearch;
-import com.amadeus.resources.Traveler;
 import com.google.gson.Gson;
 import com.repository.*;
 import com.repository.model.communication.*;
@@ -75,13 +74,14 @@ public class MyService implements Serializable {
                 out.writeObject(registerUserResponse);
             }
 
-            if(request instanceof ClientDataRequest){
+            if (request instanceof ClientDataRequest) {
                 ClientDataResponse clientDataResponse = dataToShow((ClientDataRequest) request);
                 out.writeObject(clientDataResponse);
             }
-
-
-
+            if (request instanceof ClientEditRequest) {
+                ClientEditResponse clientEditResponse = editData((ClientEditRequest) request);
+                out.writeObject(clientEditResponse);
+            }
 
             close(clientSocket, out, in);
         }
@@ -129,36 +129,67 @@ public class MyService implements Serializable {
         try {
             user1 = userRepository.save(user);
         } catch (Exception e) {
-            return new RegisterUserResponse("TAKI EMAIL JEST JUZ UZYWANY", false );
+            return new RegisterUserResponse("TAKI EMAIL JEST JUZ UZYWANY", false);
         }
 
         return new RegisterUserResponse("ZAREJESTROWANO", true);
     }
 
 
+    private ClientEditResponse editData(ClientEditRequest clientEditRequest) {
+
+        User user = clientEditRequest.getUser();
+        MyTraveler myTravelerRequest = clientEditRequest.getMyTraveler();
+        TravelerDocument travelerDocumentRequest = clientEditRequest.getTravelerDocument();
+        TravelerPhone travelerPhoneRequest = clientEditRequest.getTravelerPhone();
+
+        MyTraveler myTraveler = myTravelerRepository.findByUserId(user.getId());
+        TravelerDocument travelerDocument = travelerDocumentRepository.findByMyTravelerId(myTraveler.getId());
+        Optional<TravelerPhone> travelerPhone = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId());
+
+        myTraveler.setName(myTravelerRequest.getName());
+        myTraveler.setSurname(myTravelerRequest.getSurname());
+        myTraveler.setDateOfBirth(myTravelerRequest.getDateOfBirth());
+
+        travelerDocument.setDocumentType(travelerDocumentRequest.getDocumentType());
+        travelerDocument.setNumberDocument(travelerDocumentRequest.getNumberDocument());
+        travelerDocument.setExpireDate(travelerDocumentRequest.getExpireDate());
+
+        travelerPhone.get().setPhoneNumber(travelerPhoneRequest.getPhoneNumber());
+
+        user.setPassword(user.getPassword());
+
+        userRepository.save(user);
+        myTravelerRepository.save(myTraveler);
+        travelerDocumentRepository.save(travelerDocument);
+        travelerPhoneRepository.save(travelerPhone.get());
+
+        return new ClientEditResponse("EDYTOWANO DANE");
+    }
+
+
     private ClientDataResponse dataToShow(ClientDataRequest clientDataRequest) {
+
+
         User user = clientDataRequest.getUser();
 
         MyTraveler myTraveler = myTravelerRepository.findByUserId(user.getId());
 
-
         if (myTraveler == null) {
-            return new ClientDataResponse("NIE DZIALA");
+            return new ClientDataResponse("TRAVELER NULL");
         }
         TravelerDocument travelerDocument = travelerDocumentRepository.findByMyTravelerId(myTraveler.getId());
 
         if(travelerDocument==null){
-            return new ClientDataResponse("NIE DZIALA");
+            return new ClientDataResponse("DOCUMENT NULL");
         }
 
         Optional<TravelerPhone> travelerPhone = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId());
         if(travelerPhone==null){
-            return new ClientDataResponse("NIE DZIALA");
+            return new ClientDataResponse("PHONE NULL");
         }
-        return new ClientDataResponse("DZIALA", user, myTraveler, travelerDocument, travelerPhone.get());
+        return new ClientDataResponse("WYSWIETLONO DANE", user, myTraveler, travelerDocument, travelerPhone.get());
     }
-
-
 
 
     private void close(Socket clientSocket, ObjectOutputStream out, ObjectInputStream in) throws IOException {

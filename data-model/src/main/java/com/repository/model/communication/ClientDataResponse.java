@@ -29,4 +29,5 @@ public class ClientDataResponse implements Serializable {
         this.status = status;
     }
 
+
 }
