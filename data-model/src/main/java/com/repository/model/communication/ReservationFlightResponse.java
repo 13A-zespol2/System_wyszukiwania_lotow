@@ -1,6 +1,13 @@
 package com.repository.model.communication;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
+
+
+@Getter
+@Setter
 
 public class ReservationFlightResponse implements Serializable {
     private final String status;

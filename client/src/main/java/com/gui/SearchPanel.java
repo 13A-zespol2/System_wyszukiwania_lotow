@@ -1,6 +1,7 @@
 package com.gui;
 
 import com.repository.model.communication.ReservationFlightRequest;
+import com.repository.model.communication.ReservationFlightResponse;
 import com.repository.model.communication.SearchFlightRequest;
 import com.repository.model.communication.SearchFlightResponse;
 import com.repository.model.data.AirportCode;
@@ -83,7 +84,7 @@ public class SearchPanel extends GuiPanel {
 
             SearchFlightResponse searchFlightResponse = clientControl.searchFlight(createSearchFlightRequest);
 
-            if (searchFlightResponse.getTList() == null)
+            if (searchFlightResponse.getTList().size() == 0)
                 loginError.setText("No flights found.");
 
             showFlights(searchFlightResponse.getTList());
@@ -158,9 +159,10 @@ public class SearchPanel extends GuiPanel {
 
     public void bookTicket() {
 
-        ReservationFlightRequest reservationFlightRequest = new ReservationFlightRequest(tableView.getSelectionModel().getSelectedItem(), userLoginObserver.getUser(), adults.getValue());
-        clientControl.flightReservation(reservationFlightRequest);
+            ReservationFlightRequest reservationFlightRequest = new ReservationFlightRequest(tableView.getSelectionModel().getSelectedItem(), userLoginObserver.getUser(), adults.getValue());
+            ReservationFlightResponse reservationFlightResponse = clientControl.flightReservation(reservationFlightRequest);
 
+            loginError.setText(reservationFlightResponse.getStatus());
 
     }
 }

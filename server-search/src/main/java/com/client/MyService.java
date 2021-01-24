@@ -130,7 +130,7 @@ public class MyService implements Serializable {
                 flightToReservation.getDepartureIATA(), parse, flightToReservation.getFlightClass()).orElse(null);
         User user = request.getUser();
         MyTraveler myTraveler = myTravelerRepository.findByUserId(user.getId());
-        TravelerPhone byId = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId()).get();
+        TravelerPhone byId = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId());
         TravelerDocument byMyTravelerId = travelerDocumentRepository.findByMyTravelerId(myTraveler.getId());
         Traveler travlerFromBase = new UserBasedTravelerCreationStrategy(myTraveler, byMyTravelerId, byId).createTraveler();
 
@@ -217,9 +217,21 @@ public class MyService implements Serializable {
         TravelerDocument travelerDocumentRequest = clientEditRequest.getTravelerDocument();
         TravelerPhone travelerPhoneRequest = clientEditRequest.getTravelerPhone();
 
+        TravelerDocument travelerDocument = null;
+        TravelerPhone travelerPhone = null;
+
+
         MyTraveler myTraveler = myTravelerRepository.findByUserId(user.getId());
-        TravelerDocument travelerDocument = travelerDocumentRepository.findByMyTravelerId(myTraveler.getId());
-        Optional<TravelerPhone> travelerPhone = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId());
+        if(myTraveler!=null){
+            travelerDocument = travelerDocumentRepository.findByMyTravelerId(myTraveler.getId());
+            travelerPhone = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId());
+        }
+
+        if(myTraveler == null && travelerDocument == null && travelerPhone == null){
+            myTraveler = new MyTraveler();
+            travelerDocument = new TravelerDocument();
+            travelerPhone = new TravelerPhone();
+        }
 
         myTraveler.setName(myTravelerRequest.getName());
         myTraveler.setSurname(myTravelerRequest.getSurname());
@@ -228,15 +240,27 @@ public class MyService implements Serializable {
         travelerDocument.setDocumentType(travelerDocumentRequest.getDocumentType());
         travelerDocument.setNumberDocument(travelerDocumentRequest.getNumberDocument());
         travelerDocument.setExpireDate(travelerDocumentRequest.getExpireDate());
+        travelerDocument.setIssuanceCountry("PL");
+        travelerDocument.setNationality("PL");
 
-        travelerPhone.get().setPhoneNumber(travelerPhoneRequest.getPhoneNumber());
+
+        travelerPhone.setDeviceType("MOBILE");
+        travelerPhone.setCountryCallingCode(48);
+
+        travelerPhone.setPhoneNumber(travelerPhoneRequest.getPhoneNumber());
 
         user.setPassword(user.getPassword());
 
+        myTraveler.setUser(user);
+
+
+
         userRepository.save(user);
-        myTravelerRepository.save(myTraveler);
+        TravelerPhone travelerPhoneSave = travelerPhoneRepository.save(travelerPhone);
+        myTraveler.setTravelerPhone(travelerPhoneSave);
+        MyTraveler myTravelerSave = myTravelerRepository.save(myTraveler);
+        travelerDocument.setMyTraveler(myTravelerSave);
         travelerDocumentRepository.save(travelerDocument);
-        travelerPhoneRepository.save(travelerPhone.get());
 
         return new ClientEditResponse("EDYTOWANO DANE");
     }
@@ -259,11 +283,11 @@ public class MyService implements Serializable {
             return new ClientDataResponse("DOCUMENT NULL");
         }
 
-        Optional<TravelerPhone> travelerPhone = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId());
+        TravelerPhone travelerPhone = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId());
         if (travelerPhone == null) {
             return new ClientDataResponse("PHONE NULL");
         }
-        return new ClientDataResponse("WYSWIETLONO DANE", user, myTraveler, travelerDocument, travelerPhone.get());
+        return new ClientDataResponse("WYSWIETLONO DANE", user, myTraveler, travelerDocument, travelerPhone);
     }
 
 

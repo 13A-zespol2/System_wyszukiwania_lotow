@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.gluonhq.charm.glisten.layout.Layer?>
-<?import de.jensd.fx.glyphs.fontawesome.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
 <AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="panel_bg" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.ClientEdit">
    <children>
       <HBox alignment="CENTER" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="960.0" styleClass="top_hbox">
@@ -131,69 +138,32 @@
       </VBox>
       <AnchorPane layoutX="283.0" layoutY="100.0" prefHeight="540.0" prefWidth="679.0">
          <children>
-            <Button layoutX="240.0" layoutY="432.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                    minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#editData" prefHeight="50.0"
-                    prefWidth="200.0" styleClass="_button" text="Edit"/>
-            <Label layoutX="243.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                   minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label" text="Edit user data">
+            <Button layoutX="240.0" layoutY="432.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#editData" prefHeight="50.0" prefWidth="200.0" styleClass="_button" text="Edit" />
+            <Label layoutX="243.0" lineSpacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" styleClass="pane_label" text="Edit user data">
                <font>
-                  <Font name="Bell MT Bold" size="13.0"/>
+                  <Font name="Bell MT Bold" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="90.0" maxHeight="-Infinity"
-                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
-                   styleClass="data_label" text="Name" textAlignment="CENTER"/>
-            <TextField fx:id="name" alignment="CENTER" layoutX="177.0" layoutY="90.0" maxHeight="-Infinity"
-                       maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0"
-                       prefWidth="150.0" styleClass="clientPanelLabel"/>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="352.0" layoutY="90.0" maxHeight="-Infinity"
-                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
-                   styleClass="data_label" text="Surname" textAlignment="CENTER"/>
-            <TextField fx:id="surname" alignment="CENTER" layoutX="513.0" layoutY="90.0" maxHeight="-Infinity"
-                       maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0"
-                       prefWidth="150.0" styleClass="clientPanelLabel"/>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="352.0" layoutY="140.0" maxHeight="-Infinity"
-                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
-                   styleClass="data_label" text="Phone number" textAlignment="CENTER"/>
-            <TextField fx:id="phoneNumber" alignment="CENTER" layoutX="513.0" layoutY="140.0" maxHeight="-Infinity"
-                       maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0"
-                       prefWidth="150.0" styleClass="clientPanelLabel"/>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="190.0" maxHeight="-Infinity"
-                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
-                   styleClass="data_label" text="Document type" textAlignment="CENTER"/>
-            <TextField fx:id="docType" alignment="CENTER" layoutX="177.0" layoutY="190.0" maxHeight="-Infinity"
-                       maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0"
-                       prefWidth="150.0" styleClass="clientPanelLabel"/>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="352.0" layoutY="190.0" maxHeight="-Infinity"
-                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
-                   styleClass="data_label" text="Document number" textAlignment="CENTER"/>
-            <TextField fx:id="docNumber" alignment="CENTER" layoutX="513.0" layoutY="190.0" maxHeight="-Infinity"
-                       maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0"
-                       prefWidth="150.0" styleClass="clientPanelLabel"/>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="290.0" maxHeight="-Infinity"
-                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
-                   styleClass="data_label" text="Password" textAlignment="CENTER"/>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="340.0" maxHeight="-Infinity"
-                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
-                   styleClass="data_label" text="Repeat password" textAlignment="CENTER"/>
-            <PasswordField fx:id="password" alignment="CENTER" layoutX="177.0" layoutY="290.0" maxHeight="-Infinity"
-                           maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0"
-                           prefWidth="150.0" styleClass="clientPanelLabel"/>
-            <PasswordField fx:id="repeatPassword" alignment="CENTER" layoutX="177.0" layoutY="340.0"
-                           maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                           prefHeight="35.0" prefWidth="150.0" styleClass="clientPanelLabel"/>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="140.0" maxHeight="-Infinity"
-                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
-                   styleClass="data_label" text="Date of birth" textAlignment="CENTER"/>
-            <TextField fx:id="birthDate" alignment="CENTER" layoutX="177.0" layoutY="140.0" maxHeight="-Infinity"
-                       maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0"
-                       prefWidth="150.0" styleClass="clientPanelLabel"/>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="240.0" maxHeight="-Infinity"
-                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
-                   styleClass="data_label" text="Expiry Date" textAlignment="CENTER"/>
-            <TextField fx:id="expDate" alignment="CENTER" layoutX="177.0" layoutY="240.0" maxHeight="-Infinity"
-                       maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0"
-                       prefWidth="150.0" styleClass="clientPanelLabel"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" styleClass="data_label" text="Name" textAlignment="CENTER" />
+            <TextField fx:id="name" alignment="CENTER" layoutX="177.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" styleClass="clientPanelLabel" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="352.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" styleClass="data_label" text="Surname" textAlignment="CENTER" />
+            <TextField fx:id="surname" alignment="CENTER" layoutX="513.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" styleClass="clientPanelLabel" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="352.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" styleClass="data_label" text="Phone number" textAlignment="CENTER" />
+            <TextField fx:id="phoneNumber" alignment="CENTER" layoutX="513.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" styleClass="clientPanelLabel" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="190.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" styleClass="data_label" text="Document type" textAlignment="CENTER" />
+            <TextField fx:id="docType" alignment="CENTER" layoutX="177.0" layoutY="190.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" styleClass="clientPanelLabel" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="352.0" layoutY="190.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" styleClass="data_label" text="Document number" textAlignment="CENTER" />
+            <TextField fx:id="docNumber" alignment="CENTER" layoutX="513.0" layoutY="190.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" styleClass="clientPanelLabel" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="290.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" styleClass="data_label" text="Password" textAlignment="CENTER" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="340.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" styleClass="data_label" text="Repeat password" textAlignment="CENTER" />
+            <PasswordField fx:id="password" alignment="CENTER" layoutX="177.0" layoutY="290.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" styleClass="clientPanelLabel" />
+            <PasswordField fx:id="repeatPassword" alignment="CENTER" layoutX="177.0" layoutY="340.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" styleClass="clientPanelLabel" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" styleClass="data_label" text="Date of birth" textAlignment="CENTER" />
+            <TextField fx:id="birthDate" alignment="CENTER" layoutX="177.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" styleClass="clientPanelLabel" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="240.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" styleClass="data_label" text="Expiry Date" textAlignment="CENTER" />
+            <TextField fx:id="expDate" alignment="CENTER" layoutX="177.0" layoutY="240.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" styleClass="clientPanelLabel" />
+            <Label fx:id="validError" layoutX="214.0" layoutY="382.0" prefHeight="35.0" prefWidth="348.0" styleClass="errorLabel" textAlignment="CENTER" />
+            <Label fx:id="validError1" layoutX="220.0" layoutY="392.0" prefHeight="35.0" prefWidth="348.0" styleClass="greenLabel" textAlignment="CENTER" />
          </children>
       </AnchorPane>
       </children>
