@@ -36,9 +36,6 @@ public class TravelerDocument implements Serializable {
 
     }
 
-    public String getDocumentType() {
-        return documentType;
-    }
 
     public String getNumberDocument() {
         return numberDocument;

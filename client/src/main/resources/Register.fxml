@@ -2,67 +2,110 @@
 
 <?import com.gluonhq.charm.glisten.layout.Layer?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
-
+<?import java.lang.String?>
 <AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" styleClass="login_bg" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.RegisterPanel">
    <children>
-      <Layer autoHide="false" layoutX="180.0" layoutY="70.0" opacity="0.4" prefHeight="500.0" prefWidth="600.0" styleClass="login_blur">
+      <Layer autoHide="false" layoutX="299.0" layoutY="76.0" opacity="0.4" prefHeight="500.0" prefWidth="462.0"
+             styleClass="login_blur">
          <effect>
-            <BoxBlur height="10.0" iterations="3" width="10.0" />
+            <BoxBlur height="10.0" iterations="3" width="10.0"/>
          </effect>
-         <children>
-            <Label text="Label" />
-         </children>
       </Layer>
-      <Layer layoutX="255.0" layoutY="35.0" prefHeight="150.0" prefWidth="450.0" styleClass="logo_view" />
-         <TextField fx:id="emailInput" layoutX="235.0" layoutY="205.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="250.0" promptText="E-mail" styleClass="log_input" />
-      <TextArea editable="false" layoutX="489.0" layoutY="251.0" opacity="0.99" prefHeight="111.0" prefWidth="289.0" styleClass="greenLabel" text="Passowrd requirements:&#10;-At least 8 characters, max 20&#10;-At least one uppercase letter&#10;-At least special character(@#$%!^&amp;*().)&#10;-At least one numeric character">
+      <Layer layoutX="305.0" layoutY="44.0" prefHeight="150.0" prefWidth="450.0" styleClass="logo_view"/>
+      <TextField fx:id="emailInput" layoutX="405.0" layoutY="206.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                 minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="250.0" promptText="E-mail"
+                 styleClass="log_input"/>
+      <Label text="Label"/>
+      <PasswordField fx:id="passwordInput" layoutX="405.0" layoutY="286.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                     minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="250.0"
+                     promptText="Password" styleClass="log_input"/>
+      <PasswordField fx:id="repeatpasswordInput" layoutX="405.0" layoutY="366.0" maxHeight="-Infinity"
+                     maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="250.0"
+                     promptText="Repeat Password" styleClass="log_input"/>
+      <Button id="register_button" layoutX="430.0" layoutY="453.0" maxHeight="-Infinity" maxWidth="-Infinity"
+              minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#regButton"
+              prefHeight="60.0" prefWidth="200.0" styleClass="_button" text="Register" textAlignment="CENTER"
+              textFill="WHITE">
          <font>
-            <Font size="4.0" />
+            <Font name="Berlin Sans FB Bold" size="14.0"/>
          </font>
-      </TextArea>
-      <Label text="Label" />
-      <PasswordField fx:id="passwordInput" layoutX="235.0" layoutY="280.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="250.0" promptText="Password" styleClass="log_input" />
-      <PasswordField fx:id="repeatpasswordInput" layoutX="235.0" layoutY="355.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="250.0" promptText="Repeat Password" styleClass="log_input" />
-      <Button id="register_button" layoutX="380.0" layoutY="455.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#regButton" prefHeight="60.0" prefWidth="200.0" styleClass="_button" text="Register" textAlignment="CENTER" textFill="WHITE">
-         <font>
-               <Font name="Berlin Sans FB Bold" size="14.0" />
-            </font>
-         </Button>
-      <HBox fx:id="parent" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="960.0" style="-fx-background-color: #393939;">
+      </Button>
+      <HBox fx:id="parent" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="30.0" prefWidth="960.0" style="-fx-background-color: #393939;">
          <children>
-            <Label fx:id="minimize_btn" alignment="TOP_CENTER" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#minimize_btn" prefHeight="30.0" prefWidth="30.0" styleClass="min_btn" text="_" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="minimize_btn" alignment="TOP_CENTER" contentDisplay="RIGHT" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#minimize_btn"
+                   prefHeight="30.0" prefWidth="30.0" styleClass="min_btn" text="_" textAlignment="RIGHT"
+                   textFill="WHITE">
                <font>
-                  <Font name="Agency FB Bold" size="18.0" />
+                  <Font name="Agency FB Bold" size="18.0"/>
                </font>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="HAND"/>
                </cursor>
             </Label>
-            <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#exit_btn" prefHeight="30.0" prefWidth="30.0" styleClass="exit_btn" text="x" textFill="WHITE">
+            <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                   minWidth="-Infinity" onMouseClicked="#exit_btn" prefHeight="30.0" prefWidth="30.0"
+                   styleClass="exit_btn" text="x" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="18.0"/>
                </font>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="HAND"/>
                </cursor>
             </Label>
          </children>
          <cursor>
-            <Cursor fx:constant="MOVE" />
+            <Cursor fx:constant="MOVE"/>
          </cursor>
       </HBox>
-      <FontAwesomeIcon fill="WHITE" glyphName="HOME" layoutX="10.0" layoutY="22.0" onMouseClicked="#homeFunc" size="20px" wrappingWidth="11.142857551574707" />
-      <Label fx:id="registerError" alignment="CENTER" contentDisplay="CENTER" layoutX="355.0" layoutY="515.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" styleClass="errorLabel" textAlignment="CENTER" wrapText="true" />
-      <Label fx:id="loginAfterReg" alignment="CENTER" contentDisplay="CENTER" layoutX="355.0" layoutY="515.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="230.0" styleClass="greenLabel" textAlignment="CENTER" wrapText="true" />
+      <FontAwesomeIcon fill="WHITE" glyphName="HOME" layoutX="10.0" layoutY="22.0" onMouseClicked="#homeFunc"
+                       size="20px" wrappingWidth="11.142857551574707"/>
+      <Label fx:id="registerError" alignment="CENTER" contentDisplay="CENTER" layoutX="355.0" layoutY="515.0"
+             maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0"
+             prefWidth="250.0" styleClass="errorLabel" textAlignment="CENTER" wrapText="true"/>
+      <Label fx:id="loginAfterReg" alignment="CENTER" contentDisplay="CENTER" layoutX="415.0" layoutY="524.0"
+             maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0"
+             prefWidth="230.0" styleClass="greenLabel" textAlignment="CENTER" wrapText="true"/>
+      <Label layoutX="28.0" layoutY="367.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+             minWidth="-Infinity" prefWidth="220.0" text="Password requirements:">
+         <styleClass>
+            <String fx:value="passReq"/>
+            <String fx:value="radiusTop"/>
+         </styleClass>
+         <effect>
+            <DropShadow color="WHITE" height="255.0" radius="127.0" spread="0.06" width="255.0"/>
+         </effect>
+      </Label>
+      <Label layoutX="28.0" layoutY="417.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+             minWidth="-Infinity" prefWidth="220.0" styleClass="passReq" text="- At least 8 characters, max 20"
+             wrapText="true"/>
+      <Label layoutX="28.0" layoutY="457.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+             minWidth="-Infinity" prefWidth="220.0" styleClass="passReq" text="- At least one uppercase letter"
+             wrapText="true">
+         <effect>
+            <DropShadow height="255.0" radius="127.0" width="255.0"/>
+         </effect>
+      </Label>
+      <Label layoutX="28.0" layoutY="497.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+             minWidth="-Infinity" prefWidth="220.0" styleClass="passReq"
+             text="- At least one special character(@#$%!^&amp;*().)" wrapText="true"/>
+      <Label layoutX="28.0" layoutY="557.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+             minWidth="-Infinity" prefWidth="220.0" text="- At least one numeric character" wrapText="true">
+         <styleClass>
+            <String fx:value="passReq"/>
+            <String fx:value="radiusBottom"/>
+         </styleClass>
+         <effect>
+            <DropShadow height="255.0" radius="127.0" spread="0.05" width="255.0"/>
+         </effect>
+      </Label>
    </children>
    </AnchorPane>

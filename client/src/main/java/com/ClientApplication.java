@@ -19,10 +19,6 @@ public class ClientApplication extends Application {
     private ConfigurableApplicationContext springContext;
     private AnchorPane rootNode;
 
-    private double xOffset = 0;
-    private double yOffset = 0;
-
-
     public static void main(String[] args) {
         launch(args);
     }

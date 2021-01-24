@@ -165,7 +165,7 @@ public class SearchPanel extends GuiPanel {
             ReservationFlightRequest reservationFlightRequest = new ReservationFlightRequest(tableView.getSelectionModel().getSelectedItem(), userLoginObserver.getUser(), adults.getValue());
             ReservationFlightResponse reservationFlightResponse = clientControl.flightReservation(reservationFlightRequest);
 
-            loginError.setText(reservationFlightResponse.getStatus());
+            loginError1.setText(reservationFlightResponse.getStatus());
         }
 
     }

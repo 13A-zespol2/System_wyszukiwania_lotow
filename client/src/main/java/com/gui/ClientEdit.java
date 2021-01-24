@@ -10,6 +10,7 @@ import com.repository.model.database.TravelerDocument;
 import com.repository.model.database.TravelerPhone;
 import com.repository.model.database.User;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -39,15 +40,17 @@ public class ClientEdit extends GuiPanel {
     private TextField phoneNumber;
 
     @FXML
-    private TextField docType;
+    private ComboBox<String> docType;
 
     @FXML
     private TextField docNumber;
 
     @FXML
     private TextField expDate;
+
     @FXML
     private TextField birthDate;
+
     @FXML
     private PasswordField password;
 
@@ -57,6 +60,7 @@ public class ClientEdit extends GuiPanel {
     private Label loggedname;
     @FXML
     private Label validError;
+
     @FXML
     private Label validError1;
 
@@ -83,7 +87,7 @@ public class ClientEdit extends GuiPanel {
             password.setText(clientDataResponse.getUser().getPassword());
             repeatPassword.setText(clientDataResponse.getUser().getPassword());
             if (clientDataResponse.getTravelerDocument() != null) {
-                docType.setText(clientDataResponse.getTravelerDocument().getDocumentType());
+                docType.setValue(clientDataResponse.getTravelerDocument().getDocumentType().toString());
                 docNumber.setText(clientDataResponse.getTravelerDocument().getNumberDocument());
                 birthDate.setText(clientDataResponse.getMyTraveler().getDateOfBirth());
                 expDate.setText(clientDataResponse.getTravelerDocument().getExpireDate());
@@ -110,7 +114,7 @@ public class ClientEdit extends GuiPanel {
     private boolean validEmpty() {
 
         if (password.getText().isEmpty() || repeatPassword.getText().isEmpty() || name.getText().isEmpty() || surname.getText().isEmpty() ||
-                birthDate.getText().isEmpty() || docType.getText().isEmpty() || docNumber.getText().isEmpty() || expDate.getText().isEmpty() || phoneNumber.getText().isEmpty()) {
+                birthDate.getText().isEmpty() || docType.getValue().isEmpty() || docNumber.getText().isEmpty() || expDate.getText().isEmpty() || phoneNumber.getText().isEmpty()) {
             validError.setText("Fill all fields");
             return false;
 
@@ -160,7 +164,7 @@ public class ClientEdit extends GuiPanel {
 
         if (validPassword() && validEmpty() && validDate(birthDate.getText()) && validDate(expDate.getText()) && validPhone(phoneNumber.getText()) && validDocumentNumber()) {
             MyTraveler myTraveler = new MyTraveler.Builder().name(name.getText()).surname(surname.getText()).dateOfBirth(birthDate.getText()).build();
-            TravelerDocument travelerDocument = new TravelerDocument.Builder().documentType(docType.getText()).numberDocument(docNumber.getText()).expireDate(expDate.getText()).build();
+            TravelerDocument travelerDocument = new TravelerDocument.Builder().documentType(docType.getValue()).numberDocument(docNumber.getText()).expireDate(expDate.getText()).build();
             TravelerPhone travelerPhone = new TravelerPhone.Builder().phoneNumber(Integer.parseInt(phoneNumber.getText())).build();
 
             ClientEditRequest clientDataRequestEdit = new ClientEditRequest(userLoginObserver.getUser(), myTraveler, travelerDocument, travelerPhone);

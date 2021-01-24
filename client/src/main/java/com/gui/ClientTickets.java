@@ -3,7 +3,6 @@ package com.gui;
 
 import com.repository.model.communication.ReservedFlightsRequest;
 import com.repository.model.communication.ReservedFlightsResponse;
-import com.repository.model.data.AirportCode;
 import com.repository.model.data.FlightOrderDTO;
 import com.repository.model.database.User;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -81,9 +80,9 @@ public class ClientTickets extends GuiPanel {
 
             col1.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(param.getValue().getId())));
 
-            col2.setCellValueFactory(param -> new ReadOnlyStringWrapper(AirportCode.getByIata().get(param.getValue().getDepartureIATA()) + " (" + param.getValue().getDepartureIATA() + ")"));
+            col2.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getDepartureIATA()));
 
-            col3.setCellValueFactory(param -> new ReadOnlyStringWrapper(AirportCode.getByIata().get(param.getValue().getDestinationIATA()) + " (" + param.getValue().getDestinationIATA() + ")"));
+            col3.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getDestinationIATA()));
 
             col4.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getDepartureTime()));
 
