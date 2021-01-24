@@ -3,12 +3,15 @@ package com.gui;
 import com.client.ClientControl;
 import com.observer.LoginObserver;
 import com.observer.UserStoringObserver;
+import com.repository.model.database.User;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 public abstract class GuiPanel implements Initializable, LoginObserver {
     @Autowired
@@ -22,6 +25,8 @@ public abstract class GuiPanel implements Initializable, LoginObserver {
 
     @Autowired
     protected SpringFxmlLoader springFxmlLoader;
+    @Autowired
+    private List<LoginObserver> loginObserverList;
 
     protected GuiPanel() {
     }
@@ -77,9 +82,13 @@ public abstract class GuiPanel implements Initializable, LoginObserver {
 
     public void logOut() {
         if (userLoginObserver.getUser() != null) {
-
+            notifyGui(null);
         }
         homeFunc();
+    }
+
+    protected void notifyGui(User user) {
+        loginObserverList.forEach(e -> e.update(user));
     }
 
 

@@ -43,7 +43,12 @@
             <artifactId>hibernate-core</artifactId>
             <version>6.0.0.Alpha6</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
+        </dependency>
 
         <!-- loombook -->
         <dependency>

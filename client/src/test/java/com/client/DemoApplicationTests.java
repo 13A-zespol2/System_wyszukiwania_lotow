@@ -1,7 +1,12 @@
 package com.client;
 
 
-class DemoApplicationTests {
+import org.junit.jupiter.api.Test;
 
+class DemoApplicationTests {
+    @Test
+    public void testEditPanel() {
+
+    }
 
 }
