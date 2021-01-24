@@ -25,7 +25,7 @@ public class UserBasedTravelerCreationStrategy implements TravelerCreationStrate
     public Traveler createTraveler() {
         Traveler traveler = new Traveler();
 
-        traveler.setId(String.valueOf(myTraveler.getId()));
+        traveler.setId(String.valueOf(1));
         traveler.setDateOfBirth(myTraveler.getDateOfBirth());
         traveler.setName(traveler.new Name(myTraveler.getName(), myTraveler.getSurname()));
 

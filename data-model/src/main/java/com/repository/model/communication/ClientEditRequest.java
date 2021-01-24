@@ -18,10 +18,6 @@ public class ClientEditRequest implements Serializable {
     private TravelerDocument travelerDocument;
     private TravelerPhone travelerPhone;
 
-    public ClientEditRequest(User user, MyTraveler myTraveler) {
-        this.user = user;
-        this.myTraveler = myTraveler;
-    }
 
     public ClientEditRequest(User user, MyTraveler myTraveler, TravelerDocument travelerDocument, TravelerPhone travelerPhone) {
         this.user = user;
@@ -30,11 +26,4 @@ public class ClientEditRequest implements Serializable {
         this.travelerPhone = travelerPhone;
     }
 
-    public ClientEditRequest(User user) {
-        this.user = user;
-    }
-
-    public ClientEditRequest() {
-
-    }
 }

@@ -4,11 +4,11 @@ package com.gui;
 import com.repository.model.communication.ClientDataRequest;
 import com.repository.model.communication.ClientDataResponse;
 import com.repository.model.communication.ClientEditRequest;
+import com.repository.model.communication.ClientEditResponse;
 import com.repository.model.database.MyTraveler;
 import com.repository.model.database.TravelerDocument;
 import com.repository.model.database.TravelerPhone;
 import com.repository.model.database.User;
-import com.sun.xml.bind.v2.TODO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -28,7 +28,6 @@ import java.util.regex.Pattern;
 @Controller
 @Component
 public class ClientEdit extends GuiPanel {
-
 
     @FXML
     private TextField name;
@@ -60,7 +59,6 @@ public class ClientEdit extends GuiPanel {
     private Label validError;
     @FXML
     private Label validError1;
-
 
 
     @Override
@@ -109,9 +107,9 @@ public class ClientEdit extends GuiPanel {
         return false;
     }
 
-    private boolean validEmpty(){
+    private boolean validEmpty() {
 
-        if(password.getText().isEmpty() || repeatPassword.getText().isEmpty() || name.getText().isEmpty() || surname.getText().isEmpty() ||
+        if (password.getText().isEmpty() || repeatPassword.getText().isEmpty() || name.getText().isEmpty() || surname.getText().isEmpty() ||
                 birthDate.getText().isEmpty() || docType.getText().isEmpty() || docNumber.getText().isEmpty() || expDate.getText().isEmpty() || phoneNumber.getText().isEmpty()) {
             validError.setText("Fill all fields");
             return false;
@@ -121,14 +119,13 @@ public class ClientEdit extends GuiPanel {
         return true;
     }
 
-    private boolean validDate(String strDate){
+    private boolean validDate(String strDate) {
         SimpleDateFormat sdfrmt = new SimpleDateFormat("yyyy-MM-dd");
         sdfrmt.setLenient(false);
         try {
 
             sdfrmt.parse(strDate);
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
 
             validError.setText("Enter correct Birth or Expire date");
 
@@ -138,7 +135,7 @@ public class ClientEdit extends GuiPanel {
 
     }
 
-    private boolean validPhone(String number){
+    private boolean validPhone(String number) {
 
         Pattern p = Pattern.compile("^\\d{9}$");
 
@@ -147,10 +144,10 @@ public class ClientEdit extends GuiPanel {
 
     }
 
-    private boolean validDocumentNumber(){
+    private boolean validDocumentNumber() {
         String passRegEx = "^(?=.*\\d)(?=.*[A-Z]).{9}+$";
 
-        if(docNumber.getText().matches(passRegEx)) {
+        if (docNumber.getText().matches(passRegEx)) {
             return true;
         }
         validError.setText("Enter correct document number");
@@ -159,16 +156,9 @@ public class ClientEdit extends GuiPanel {
     }
 
 
-
-
-
-
-
     public void editData() {
 
-        if(validPassword() && validEmpty() && validDate(birthDate.getText()) && validDate(expDate.getText()) && validPhone(phoneNumber.getText()) && validDocumentNumber()){
-            validError.setText("");
-            validError1.setText("Data changed");
+        if (validPassword() && validEmpty() && validDate(birthDate.getText()) && validDate(expDate.getText()) && validPhone(phoneNumber.getText()) && validDocumentNumber()) {
             MyTraveler myTraveler = new MyTraveler.Builder().name(name.getText()).surname(surname.getText()).dateOfBirth(birthDate.getText()).build();
             TravelerDocument travelerDocument = new TravelerDocument.Builder().documentType(docType.getText()).numberDocument(docNumber.getText()).expireDate(expDate.getText()).build();
             TravelerPhone travelerPhone = new TravelerPhone.Builder().phoneNumber(Integer.parseInt(phoneNumber.getText())).build();
@@ -176,24 +166,16 @@ public class ClientEdit extends GuiPanel {
             ClientEditRequest clientDataRequestEdit = new ClientEditRequest(userLoginObserver.getUser(), myTraveler, travelerDocument, travelerPhone);
             clientDataRequestEdit.getUser().setPassword(password.getText());
 
-            clientControl.clientEditCommunication(clientDataRequestEdit);
+            ClientEditResponse clientEditResponse = clientControl.clientEditCommunication(clientDataRequestEdit);
+            validError.setText("");
+            validError1.setText(clientEditResponse.getStatus());
+        } else {
+            validError.setText("Enter correct data");
         }
-        else
-        {
-            //validError.setText("Enter correct data");
-        }
-        if(!validPhone(phoneNumber.getText())) {
+        if (!validPhone(phoneNumber.getText())) {
             validError.setText("Enter correct phone number");
 
         }
 
-/*        MyTraveler myTraveler = new MyTraveler.Builder().name(name.getText()).surname(surname.getText()).dateOfBirth(birthDate.getText()).build();
-        TravelerDocument travelerDocument = new TravelerDocument.Builder().documentType(docType.getText()).numberDocument(docNumber.getText()).expireDate(expDate.getText()).build();
-        TravelerPhone travelerPhone = new TravelerPhone.Builder().phoneNumber(Integer.parseInt(phoneNumber.getText())).build();
-
-        ClientEditRequest clientDataRequestEdit = new ClientEditRequest(userLoginObserver.getUser(), myTraveler, travelerDocument, travelerPhone);
-        clientDataRequestEdit.getUser().setPassword(password.getText());
-
-        clientControl.clientEditCommunication(clientDataRequestEdit);*/
     }
 }

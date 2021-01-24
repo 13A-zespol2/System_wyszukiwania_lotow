@@ -32,8 +32,6 @@ public class ClientEditResponse implements Serializable {
         this.travelerPhone = travelerPhone;
     }
 
-    public ClientEditResponse() {
 
-    }
 }
 

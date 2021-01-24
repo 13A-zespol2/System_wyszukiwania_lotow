@@ -24,7 +24,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -98,6 +97,9 @@ public class MyService implements Serializable {
     private ReservedFlightsResponse findReservedFlight(ReservedFlightsRequest request) {
         User user = request.getUser();
         MyTraveler byUserId = myTravelerRepository.findByUserId(user.getId());
+        if (byUserId == null)
+            return new ReservedFlightsResponse(null);
+
         List<Reservation> byMyTravelerId = reservationRepository.findByMyTravelerId(byUserId.getId());
 
         List<FlightOrderDTO> collect1 = new ArrayList<>();
@@ -123,13 +125,17 @@ public class MyService implements Serializable {
 
         FlightOfferSearchDTO flightToReservation = request.getFlightToReservation();
 
+        User user = request.getUser();
+        MyTraveler myTraveler = myTravelerRepository.findByUserId(user.getId());
+        if (myTraveler == null)
+            return new ReservationFlightResponse("FILL ALL TRAVELER DATA", false);
+
+
         String parse = flightToReservation.getArrivalTime().substring(0, 10);
 
 
         List<FlightOfferSearch> flightOfferSearches = amadeusFacade.searchFlight(flightToReservation.getDestinationIATA(),
                 flightToReservation.getDepartureIATA(), parse, flightToReservation.getFlightClass()).orElse(null);
-        User user = request.getUser();
-        MyTraveler myTraveler = myTravelerRepository.findByUserId(user.getId());
         TravelerPhone byId = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId());
         TravelerDocument byMyTravelerId = travelerDocumentRepository.findByMyTravelerId(myTraveler.getId());
         Traveler travlerFromBase = new UserBasedTravelerCreationStrategy(myTraveler, byMyTravelerId, byId).createTraveler();
@@ -150,16 +156,16 @@ public class MyService implements Serializable {
                 orderFlight = amadeusFacade.createOrderFlight(travelers, flightOfferSearch).orElse(null);
 
             } catch (ServerException e) {
-                new ReservationFlightResponse("NIE MOŻNA ZAREZEROWAC LOTU", false);
+                new ReservationFlightResponse("CANT BOOK FLIGHT", false);
 
             }
 
         Reservation save = reservationRepository.save(new Reservation(orderFlight, myTraveler, request.getQuantityOfTickets()));
         if (save != null)
-            return new ReservationFlightResponse("ZAREZERWOWANO", true);
+            return new ReservationFlightResponse("BOOKED FLIGHT", true);
 
 
-        return new ReservationFlightResponse("NIE MOŻNA ZAREZEROWAC LOTU", false);
+        return new ReservationFlightResponse("CANT BOOK FLIGHT", false);
     }
 
     private SearchFlightResponse findSearch(SearchFlightRequest request) {
@@ -168,14 +174,14 @@ public class MyService implements Serializable {
         ).orElse(null);
 
         if (flightOfferSearches == null)
-            return new SearchFlightResponse("Nie znaleziono lotu");
+            return new SearchFlightResponse("FLIGHT NOT FOUND");
 
         List<FlightOfferSearchDTO> collect = flightOfferSearches.stream()
                 .map(FlightOfferSearchDTO::new)
                 .collect(Collectors.toList());
 
 
-        return new SearchFlightResponse("Znaleziono", collect);
+        return new SearchFlightResponse("FOUND", collect);
     }
 
 
@@ -186,27 +192,25 @@ public class MyService implements Serializable {
         if (user != null) {
             log.info("znaleziono");
             //System.out.println(myTraveler.getDateOfBirth());
-            return new LoginUserResponse("Zalogowano", user);
+            return new LoginUserResponse("LOGIN", user);
 
         }
 
-        return new LoginUserResponse("BLEDNY LOGIN LUB HASLO");
+        return new LoginUserResponse("WRONG LOGIN OR PASSWORD");
 
     }
 
 
     private RegisterUserResponse userToRegister(RegisterUserRequest registerUserRequest) {
-        User user = new User();
-        user.setEmail(registerUserRequest.getEmail());
-        user.setPassword(registerUserRequest.getPassword());
-        User user1 = null;
+        User user = new User.Builder().email(registerUserRequest.getEmail()).password(registerUserRequest.getPassword()).build();
+
         try {
-            user1 = userRepository.save(user);
+            userRepository.save(user);
         } catch (Exception e) {
-            return new RegisterUserResponse("TAKI EMAIL JEST JUZ UZYWANY", false);
+            return new RegisterUserResponse("THIS EMAIL ALREADY IN USE", false);
         }
 
-        return new RegisterUserResponse("ZAREJESTROWANO", true);
+        return new RegisterUserResponse("USER REGISTERED", true);
     }
 
 
@@ -222,12 +226,12 @@ public class MyService implements Serializable {
 
 
         MyTraveler myTraveler = myTravelerRepository.findByUserId(user.getId());
-        if(myTraveler!=null){
+        if (myTraveler != null) {
             travelerDocument = travelerDocumentRepository.findByMyTravelerId(myTraveler.getId());
             travelerPhone = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId());
         }
 
-        if(myTraveler == null && travelerDocument == null && travelerPhone == null){
+        if (myTraveler == null || travelerDocument == null || travelerPhone == null) {
             myTraveler = new MyTraveler();
             travelerDocument = new TravelerDocument();
             travelerPhone = new TravelerPhone();
@@ -254,7 +258,6 @@ public class MyService implements Serializable {
         myTraveler.setUser(user);
 
 
-
         userRepository.save(user);
         TravelerPhone travelerPhoneSave = travelerPhoneRepository.save(travelerPhone);
         myTraveler.setTravelerPhone(travelerPhoneSave);
@@ -262,7 +265,7 @@ public class MyService implements Serializable {
         travelerDocument.setMyTraveler(myTravelerSave);
         travelerDocumentRepository.save(travelerDocument);
 
-        return new ClientEditResponse("EDYTOWANO DANE");
+        return new ClientEditResponse("DATA CHANGED");
     }
 
 
@@ -287,7 +290,7 @@ public class MyService implements Serializable {
         if (travelerPhone == null) {
             return new ClientDataResponse("PHONE NULL");
         }
-        return new ClientDataResponse("WYSWIETLONO DANE", user, myTraveler, travelerDocument, travelerPhone);
+        return new ClientDataResponse("USER DATA", user, myTraveler, travelerDocument, travelerPhone);
     }
 
 

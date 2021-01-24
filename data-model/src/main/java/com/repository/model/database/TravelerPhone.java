@@ -20,16 +20,6 @@ public class TravelerPhone implements Serializable {
     private int phoneNumber;
     private String deviceType;
 
-/*    public TravelerPhone(int id, int countryCallingCode, int phoneNumber, String deviceType) {
-        this.id = id;
-        this.countryCallingCode = countryCallingCode;
-        this.phoneNumber = phoneNumber;
-        this.deviceType = deviceType;
-    }*/
-
-/*    public TravelerPhone(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }*/
 
     public int getCountryCallingCode() {
         return countryCallingCode;

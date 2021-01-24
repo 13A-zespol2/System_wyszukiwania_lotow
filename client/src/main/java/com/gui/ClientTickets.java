@@ -41,12 +41,7 @@ public class ClientTickets extends GuiPanel {
     public TableColumn<FlightOrderDTO, String> col6;
     @FXML
     public TableColumn<FlightOrderDTO, String> col7;
-    @FXML
-    private Label clientData;
-    @FXML
-    private Label clientTickets;
-    @FXML
-    private Label clientEdit;
+
     @FXML
     private Label loggedname;
 
@@ -90,11 +85,11 @@ public class ClientTickets extends GuiPanel {
 
         col3.setCellValueFactory(param -> new ReadOnlyStringWrapper(AirportCode.getByIata().get(param.getValue().getDestinationIATA()) + " (" + param.getValue().getDestinationIATA() + ")"));
 
-        col4.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getDepartureTime().substring(11)));
+        col4.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getDepartureTime()));
 
-        col5.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getArrivalTime().substring(11)));
+        col5.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getArrivalTime()));
 
-        col6.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getTicketPrice() + param.getValue().getCurrency()));
+        col6.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getTicketPrice() * param.getValue().getQuantityOfTickets() + " " + param.getValue().getCurrency()));
 
         col7.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getFlightClass()));
 

@@ -17,9 +17,6 @@ public class ClientDataRequest implements Serializable {
     private TravelerDocument travelerDocument;
     private TravelerPhone travelerPhone;
 
-    public ClientDataRequest() {
-
-    }
 
 
     public ClientDataRequest(User user) {
