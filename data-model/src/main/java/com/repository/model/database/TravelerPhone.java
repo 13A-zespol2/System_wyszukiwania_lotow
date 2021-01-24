@@ -5,8 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 
 @Entity
@@ -14,7 +14,8 @@ import java.io.Serializable;
 @Setter
 public class TravelerPhone implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "travelerPhoneGenerator", sequenceName = "myPhTrSeq", initialValue = 1, allocationSize = 1000)
+    @GeneratedValue(generator = "travelerPhoneGenerator")
     private int id;
     private int countryCallingCode;
     private int phoneNumber;
