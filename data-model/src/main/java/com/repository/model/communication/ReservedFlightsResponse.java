@@ -11,8 +11,10 @@ import java.util.List;
 @Setter
 public class ReservedFlightsResponse implements Serializable {
     private final List<FlightOrderDTO> flightOfferSearchDTOList;
+    private final String status;
 
-    public ReservedFlightsResponse(List<FlightOrderDTO> flightOfferSearchDTOList) {
+    public ReservedFlightsResponse(String status, List<FlightOrderDTO> flightOfferSearchDTOList) {
+        this.status = status;
         this.flightOfferSearchDTOList = flightOfferSearchDTOList;
     }
 }

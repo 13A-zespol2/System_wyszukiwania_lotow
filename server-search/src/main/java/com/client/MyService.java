@@ -98,8 +98,7 @@ public class MyService implements Serializable {
         User user = request.getUser();
         MyTraveler byUserId = myTravelerRepository.findByUserId(user.getId());
         if (byUserId == null)
-            return new ReservedFlightsResponse(null);
-
+            return new ReservedFlightsResponse("TRAVELER NOT FOUND", null);
         List<Reservation> byMyTravelerId = reservationRepository.findByMyTravelerId(byUserId.getId());
 
         List<FlightOrderDTO> collect1 = new ArrayList<>();
@@ -117,7 +116,7 @@ public class MyService implements Serializable {
         }
 
 
-        return new ReservedFlightsResponse(collect1);
+        return new ReservedFlightsResponse("FOUND", collect1);
     }
 
     private ReservationFlightResponse flightReservation(ReservationFlightRequest request) {

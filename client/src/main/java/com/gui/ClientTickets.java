@@ -75,27 +75,27 @@ public class ClientTickets extends GuiPanel {
     public void initialize(URL location, ResourceBundle resources) {
         ReservedFlightsRequest reservedFlightsRequest = new ReservedFlightsRequest(userLoginObserver.getUser());
         ReservedFlightsResponse reservedFlight = clientControl.getReservedFlight(reservedFlightsRequest);
+        if (reservedFlight.getFlightOfferSearchDTOList() != null) {
 
+            ObservableList<FlightOrderDTO> list = FXCollections.observableArrayList(reservedFlight.getFlightOfferSearchDTOList());
 
-        ObservableList<FlightOrderDTO> list = FXCollections.observableArrayList(reservedFlight.getFlightOfferSearchDTOList());
+            col1.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(param.getValue().getId())));
 
-        col1.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(param.getValue().getId())));
+            col2.setCellValueFactory(param -> new ReadOnlyStringWrapper(AirportCode.getByIata().get(param.getValue().getDepartureIATA()) + " (" + param.getValue().getDepartureIATA() + ")"));
 
-        col2.setCellValueFactory(param -> new ReadOnlyStringWrapper(AirportCode.getByIata().get(param.getValue().getDepartureIATA()) + " (" + param.getValue().getDepartureIATA() + ")"));
+            col3.setCellValueFactory(param -> new ReadOnlyStringWrapper(AirportCode.getByIata().get(param.getValue().getDestinationIATA()) + " (" + param.getValue().getDestinationIATA() + ")"));
 
-        col3.setCellValueFactory(param -> new ReadOnlyStringWrapper(AirportCode.getByIata().get(param.getValue().getDestinationIATA()) + " (" + param.getValue().getDestinationIATA() + ")"));
+            col4.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getDepartureTime()));
 
-        col4.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getDepartureTime()));
+            col5.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getArrivalTime()));
 
-        col5.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getArrivalTime()));
+            col6.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getTicketPrice() * param.getValue().getQuantityOfTickets() + " " + param.getValue().getCurrency()));
 
-        col6.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getTicketPrice() * param.getValue().getQuantityOfTickets() + " " + param.getValue().getCurrency()));
+            col7.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getFlightClass()));
 
-        col7.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getFlightClass()));
+            tableView.setItems(list);
 
-        tableView.setItems(list);
-
-
+        }
         loggedname.setText(userLoginObserver.getUser().getEmail());
     }
 }
