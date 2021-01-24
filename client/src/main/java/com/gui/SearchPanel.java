@@ -132,13 +132,15 @@ public class SearchPanel extends GuiPanel {
     }
 
     private void showFlights(List<FlightOfferSearchDTO> tList) {
-        ObservableList<FlightOfferSearchDTO> list = FXCollections.observableArrayList(tList);
 
+
+        ObservableList<FlightOfferSearchDTO> list = FXCollections.observableArrayList(tList);
+        destinationLocationCode.getValue();
         col1.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getId()));
 
-        col2.setCellValueFactory(param -> new ReadOnlyStringWrapper(AirportCode.getByIata().get(param.getValue().getDepartureIATA()) + " (" + param.getValue().getDepartureIATA() + ")"));
+        col2.setCellValueFactory(param -> new ReadOnlyStringWrapper(originLocationCode.getValue() + " (" + param.getValue().getDepartureIATA() + ")"));
 
-        col3.setCellValueFactory(param -> new ReadOnlyStringWrapper(AirportCode.getByIata().get(param.getValue().getDestinationIATA()) + " (" + param.getValue().getDestinationIATA() + ")"));
+        col3.setCellValueFactory(param -> new ReadOnlyStringWrapper(destinationLocationCode.getValue() + " (" + param.getValue().getDestinationIATA() + ")"));
 
         col4.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getDepartureTime().substring(11)));
 
