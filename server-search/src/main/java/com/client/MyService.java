@@ -1,6 +1,7 @@
 package com.client;
 
 
+import com.ServerException;
 import com.amadeus.AmadeusFacade;
 import com.amadeus.resources.FlightOfferSearch;
 import com.amadeus.resources.Traveler;
@@ -123,18 +124,22 @@ public class MyService implements Serializable {
 
         FlightOfferSearch flightOfferSearch = null;
         for (FlightOfferSearch elem : flightOfferSearches) {
-            if (elem.getId().equals(flightToReservation.getId()))
+            if (elem.getId().equals(flightToReservation.getId())) {
                 flightOfferSearch = elem;
+                break;
+            }
         }
         String orderFlight = null;
         Traveler[] travelers = {travlerFromBase};
-        if (flightOfferSearch != null) {
-            orderFlight = amadeusFacade.createOrderFlight(travelers, flightOfferSearch).orElse(null);
 
-        }
-        if (orderFlight == null)
-            new ReservationFlightResponse("NIE MOŻNA ZAREZEROWAC LOTU", false);
+        if (flightOfferSearch != null)
+            try {
+                orderFlight = amadeusFacade.createOrderFlight(travelers, flightOfferSearch).orElse(null);
 
+            } catch (ServerException e) {
+                new ReservationFlightResponse("NIE MOŻNA ZAREZEROWAC LOTU", false);
+
+            }
 
         Reservation save = reservationRepository.save(new Reservation(orderFlight, myTraveler, request.getQuantityOfTickets()));
         if (save != null)
