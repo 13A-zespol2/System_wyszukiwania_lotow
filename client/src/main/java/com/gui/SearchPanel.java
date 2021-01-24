@@ -161,10 +161,12 @@ public class SearchPanel extends GuiPanel {
 
     public void bookTicket() {
 
+        if (tableView.getItems().size() != 0) {
             ReservationFlightRequest reservationFlightRequest = new ReservationFlightRequest(tableView.getSelectionModel().getSelectedItem(), userLoginObserver.getUser(), adults.getValue());
             ReservationFlightResponse reservationFlightResponse = clientControl.flightReservation(reservationFlightRequest);
 
             loginError.setText(reservationFlightResponse.getStatus());
+        }
 
     }
 }
