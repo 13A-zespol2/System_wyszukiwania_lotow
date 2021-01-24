@@ -1,13 +1,14 @@
 package com.repository.model.data;
 
 import com.amadeus.resources.FlightOrder;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.Arrays;
 
-
+@Getter
 public class FlightOrderDTO implements Serializable {
-    private final String id;
+    private final int id;
     private final String departureIATA;
     private final String destinationIATA;
     private final String departureTime;
@@ -17,9 +18,9 @@ public class FlightOrderDTO implements Serializable {
     private final String flightClass;
     private final int quantityOfTickets;
 
-    public FlightOrderDTO(FlightOrder flightOrder, int quantityOfTickets) {
+    public FlightOrderDTO(FlightOrder flightOrder, int quantityOfTickets, int id) {
 
-        id = flightOrder.getId();
+        this.id = id;
         departureIATA = Arrays.stream(Arrays.stream(Arrays.stream(flightOrder.getFlightOffers()).findFirst().get().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getIataCode();
         destinationIATA = Arrays.stream(Arrays.stream(Arrays.stream(flightOrder.getFlightOffers()).findFirst().get().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getIataCode();
         departureTime = Arrays.stream(Arrays.stream(Arrays.stream(flightOrder.getFlightOffers()).findFirst().get().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getAt();

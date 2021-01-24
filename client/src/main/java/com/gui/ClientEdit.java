@@ -92,6 +92,5 @@ public class ClientEdit extends GuiPanel {
         clientDataRequestEdit.getUser().setPassword(password.getText());
 
         clientControl.clientEditCommunication(clientDataRequestEdit);
-
     }
 }

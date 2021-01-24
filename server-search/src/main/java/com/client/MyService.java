@@ -4,6 +4,7 @@ package com.client;
 import com.ServerException;
 import com.amadeus.AmadeusFacade;
 import com.amadeus.resources.FlightOfferSearch;
+import com.amadeus.resources.FlightOrder;
 import com.amadeus.resources.Traveler;
 import com.repository.*;
 import com.repository.model.communication.*;
@@ -21,6 +22,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -98,9 +100,20 @@ public class MyService implements Serializable {
         MyTraveler byUserId = myTravelerRepository.findByUserId(user.getId());
         List<Reservation> byMyTravelerId = reservationRepository.findByMyTravelerId(byUserId.getId());
 
-        List<FlightOrderDTO> collect1 = byMyTravelerId.stream()
-                .map(e -> new FlightOrderDTO(amadeusFacade.getOrderedFlight(e.getReservationApiCode()).get(), e.getQuantityOfTickets()))
-                .collect(Collectors.toList());
+        List<FlightOrderDTO> collect1 = new ArrayList<>();
+        FlightOrderDTO flightOrderDTO = null;
+        int i = 1;
+        for (Reservation elemRes : byMyTravelerId) {
+            FlightOrder flightOrder = amadeusFacade.getOrderedFlight(elemRes.getReservationApiCode()).orElse(null);
+            if (flightOrder != null)
+                flightOrderDTO = new FlightOrderDTO(flightOrder, elemRes.getQuantityOfTickets(), i);
+            if (flightOrderDTO != null) {
+                collect1.add(flightOrderDTO);
+                i++;
+            }
+
+        }
+
 
         return new ReservedFlightsResponse(collect1);
     }
