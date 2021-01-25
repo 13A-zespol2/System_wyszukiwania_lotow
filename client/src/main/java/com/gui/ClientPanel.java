@@ -66,8 +66,6 @@ public class ClientPanel extends GuiPanel {
             nationality.setText(clientDataResponse.getTravelerDocument().getNationality());
             expiryDate.setText(clientDataResponse.getTravelerDocument().getExpireDate());
             docNumber.setText(clientDataResponse.getTravelerDocument().getNumberDocument());
-
-
         }
     }
 

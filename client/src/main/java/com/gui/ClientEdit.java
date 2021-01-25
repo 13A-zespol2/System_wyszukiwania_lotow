@@ -73,18 +73,17 @@ public class ClientEdit extends GuiPanel {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        ClientDataResponse clientDataResponse = clientControl.clientDataComunication(new ClientDataRequest(userLoginObserver.getUser()));
 
         loggedname.setText(userLoginObserver.getUser().getEmail());
-
-        new ClientDataRequest(userLoginObserver.getUser());
-        ClientDataResponse clientDataResponse = clientControl.clientDataComunication(new ClientDataRequest(userLoginObserver.getUser()));
+        password.setText(userLoginObserver.getUser().getPassword());
+        repeatPassword.setText(userLoginObserver.getUser().getPassword());
 
         if (clientDataResponse.getMyTraveler() != null) {
             name.setText(clientDataResponse.getMyTraveler().getName());
             surname.setText(clientDataResponse.getMyTraveler().getSurname());
             phoneNumber.setText(String.valueOf(clientDataResponse.getMyTraveler().getTravelerPhone().getPhoneNumber()));
-            password.setText(clientDataResponse.getUser().getPassword());
-            repeatPassword.setText(clientDataResponse.getUser().getPassword());
+
             if (clientDataResponse.getTravelerDocument() != null) {
                 docType.setText(clientDataResponse.getTravelerDocument().getDocumentType());
                 docNumber.setText(clientDataResponse.getTravelerDocument().getNumberDocument());
