@@ -24,6 +24,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 
@@ -175,7 +176,7 @@ public class MyService implements Serializable {
         if (flightOfferSearches == null)
             return new SearchFlightResponse("FLIGHT NOT FOUND");
 
-        List<FlightOfferSearchDTO> collect = flightOfferSearches.stream()
+        List<FlightOfferSearchDTO> collect = flightOfferSearches.stream().filter(Objects::nonNull)
                 .map(FlightOfferSearchDTO::new)
                 .collect(Collectors.toList());
 
@@ -190,7 +191,6 @@ public class MyService implements Serializable {
 
         if (user != null) {
             log.info("znaleziono");
-            //System.out.println(myTraveler.getDateOfBirth());
             return new LoginUserResponse("LOGIN", user);
 
         }
