@@ -53,9 +53,9 @@
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
 
-        <!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api -->
+
+        <!--  -->
         <dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>javax.persistence-api</artifactId>
@@ -76,12 +76,9 @@
             <artifactId>amadeus-java</artifactId>
             <version>5.6.0</version>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
 
+
+        <!-- java meil -->
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
@@ -89,17 +86,20 @@
         </dependency>
 
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-test -->
+        <!-- testy -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <version>5.4.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
         <!-- autoryzacja telefon -->
-
-
-        <!-- https://mvnrepository.com/artifact/com.nexmo/client -->
         <dependency>
             <groupId>com.nexmo</groupId>
             <artifactId>client</artifactId>

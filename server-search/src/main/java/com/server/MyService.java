@@ -204,7 +204,7 @@ public class MyService implements Serializable {
         User user = new User.Builder().email(registerUserRequest.getEmail()).password(registerUserRequest.getPassword()).build();
 
         try {
-             userRepository.save(user);
+            userRepository.save(user);
         } catch (Exception e) {
             return new RegisterUserResponse("THIS EMAIL ALREADY IN USE", false);
         }

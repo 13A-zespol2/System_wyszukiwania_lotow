@@ -26,7 +26,7 @@ public class FlightOrderDTO implements Serializable {
         departureIATA = Objects.requireNonNull(Objects.requireNonNull(Arrays.stream(flightOrder.getFlightOffers())
                 .map(e -> Arrays.stream(e.getItineraries())
                         .map(q -> Arrays.stream(q.getSegments())
-                                .map(s -> s.getDeparture().getAt())))
+                                .map(s -> s.getDeparture().getIataCode())))
                 .findFirst().orElse(null)).findFirst().orElse(null)).findFirst().orElse("");
 
         destinationIATA = Objects.requireNonNull(Objects.requireNonNull(Arrays.stream(flightOrder.getFlightOffers())
