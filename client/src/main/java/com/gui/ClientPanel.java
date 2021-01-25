@@ -17,9 +17,6 @@ import java.util.ResourceBundle;
 @Component
 public class ClientPanel extends GuiPanel {
 
-    private User user;
-
-
     @FXML
     private Label loggedname;
 
@@ -77,7 +74,7 @@ public class ClientPanel extends GuiPanel {
 
     @Override
     public void update(User user) {
-        this.user = user;
+
     }
 
 

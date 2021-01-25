@@ -28,7 +28,7 @@ public class LoginPanel extends GuiPanel {
     private TextField emailLabel;
     @FXML
     private Label loginError;
-    private User user;
+
 
     public LoginPanel() {
         super();
@@ -62,7 +62,7 @@ public class LoginPanel extends GuiPanel {
 
     @Override
     public void update(User user) {
-        this.user = user;
+
     }
 
 

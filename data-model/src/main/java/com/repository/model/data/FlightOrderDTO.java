@@ -1,10 +1,12 @@
 package com.repository.model.data;
 
+import com.amadeus.resources.FlightOfferSearch;
 import com.amadeus.resources.FlightOrder;
 import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Objects;
 
 @Getter
 public class FlightOrderDTO implements Serializable {
@@ -21,13 +23,49 @@ public class FlightOrderDTO implements Serializable {
     public FlightOrderDTO(FlightOrder flightOrder, int quantityOfTickets, int id) {
 
         this.id = id;
-        departureIATA = Arrays.stream(Arrays.stream(Arrays.stream(flightOrder.getFlightOffers()).findFirst().get().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getIataCode();
-        destinationIATA = Arrays.stream(Arrays.stream(Arrays.stream(flightOrder.getFlightOffers()).findFirst().get().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getIataCode();
-        departureTime = Arrays.stream(Arrays.stream(Arrays.stream(flightOrder.getFlightOffers()).findFirst().get().getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getAt();
-        arrivalTime = Arrays.stream(Arrays.stream(Arrays.stream(flightOrder.getFlightOffers()).findFirst().get().getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getAt();
-        ticketPrice = Arrays.stream(flightOrder.getFlightOffers()).findFirst().get().getPrice().getTotal();
-        currency = Arrays.stream(flightOrder.getFlightOffers()).findFirst().get().getPrice().getCurrency();
-        flightClass = Arrays.stream(Arrays.stream(Arrays.stream(flightOrder.getFlightOffers()).findFirst().get().getTravelerPricings()).findFirst().get().getFareDetailsBySegment()).findFirst().get().getCabin();
+        departureIATA = Objects.requireNonNull(Objects.requireNonNull(Arrays.stream(flightOrder.getFlightOffers())
+                .map(e -> Arrays.stream(e.getItineraries())
+                        .map(q -> Arrays.stream(q.getSegments())
+                                .map(s -> s.getDeparture().getAt())))
+                .findFirst().orElse(null)).findFirst().orElse(null)).findFirst().orElse("");
+
+        destinationIATA = Objects.requireNonNull(Objects.requireNonNull(Arrays.stream(flightOrder.getFlightOffers())
+                .map(e -> Arrays.stream(e.getItineraries())
+                        .map(q -> Arrays.stream(q.getSegments())
+                                .map(s -> s.getArrival().getIataCode())))
+                .findFirst().orElse(null)).findFirst().orElse(null)).findFirst().orElse("");
+
+        departureTime = Objects.requireNonNull(Objects.requireNonNull(Arrays.stream(flightOrder.getFlightOffers())
+                .map(e -> Arrays.stream(e.getItineraries())
+                        .map(q -> Arrays.stream(q.getSegments())
+                                .map(s -> s.getDeparture().getAt())))
+                .findFirst().orElse(null)).findFirst().orElse(null)).findFirst().orElse("");
+
+
+        arrivalTime = Objects.requireNonNull(Objects.requireNonNull(Arrays.stream(flightOrder.getFlightOffers())
+                .map(e -> Arrays.stream(e.getItineraries())
+                        .map(q -> Arrays.stream(q.getSegments())
+                                .map(s -> s.getArrival().getAt())))
+                .findFirst().orElse(null)).findFirst().orElse(null)).findFirst().orElse("");
+
+        ticketPrice = Arrays.stream(flightOrder.getFlightOffers())
+                .map(e -> e.getPrice().getTotal())
+                .findFirst().orElse(0.0);
+
+        currency = Arrays.stream(flightOrder.getFlightOffers())
+                .map(e -> e.getPrice().getCurrency())
+                .findFirst().orElse(null);
+
+        flightClass = Objects.requireNonNull(Arrays.stream(flightOrder.getFlightOffers())
+                .map(e -> Arrays.stream(e.getTravelerPricings())
+                        .map(d -> Arrays.stream(d.getFareDetailsBySegment())
+                                .map(FlightOfferSearch.FareDetailsBySegment::getCabin))
+                        .findFirst()
+                        .orElse(null))
+                .findFirst().orElse(null))
+                .findFirst().orElse(null);
+
+
         this.quantityOfTickets = quantityOfTickets;
     }
 

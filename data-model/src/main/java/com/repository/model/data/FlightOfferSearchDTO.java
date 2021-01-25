@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -23,15 +24,38 @@ public class FlightOfferSearchDTO implements Serializable {
 
     public FlightOfferSearchDTO(FlightOfferSearch flightOfferSearch) {
         id = flightOfferSearch.getId();
-        departureIATA = Arrays.stream(Arrays.stream(flightOfferSearch.getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getIataCode();
-        destinationIATA = Arrays.stream(Arrays.stream(flightOfferSearch.getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getIataCode();
-        departureTime = Arrays.stream(Arrays.stream(flightOfferSearch.getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getAt();
-        arrivalTime = Arrays.stream(Arrays.stream(flightOfferSearch.getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getAt();
-        ticketPrice = flightOfferSearch.getPrice().getTotal();
-        currency = flightOfferSearch.getPrice().getCurrency();
-        flightClass = Arrays.stream(Arrays.stream(flightOfferSearch.getTravelerPricings()).findFirst().get().getFareDetailsBySegment()).findFirst().get().getCabin();
-    }
 
+        departureIATA = Objects.requireNonNull(Arrays.stream(flightOfferSearch.getItineraries())
+                .map(e -> Arrays.stream(e.getSegments())
+                        .map(q -> q.getDeparture().getIataCode()))
+                .findFirst().orElse(null)).findFirst().orElse("");
+
+        destinationIATA = Objects.requireNonNull(Arrays.stream(flightOfferSearch.getItineraries())
+                .map(e -> Arrays.stream(e.getSegments())
+                        .map(q -> q.getArrival().getIataCode()))
+                .findFirst().orElse(null)).findFirst().orElse("");
+
+
+        departureTime = Objects.requireNonNull(Arrays.stream(flightOfferSearch.getItineraries())
+                .map(e -> Arrays.stream(e.getSegments())
+                        .map(q -> q.getDeparture().getAt())).findFirst()
+                .orElse(null)).findFirst().orElse("");
+
+        arrivalTime = Objects.requireNonNull(Arrays.stream(flightOfferSearch.getItineraries())
+                .map(e -> Arrays.stream(e.getSegments())
+                        .map(q -> q.getArrival().getAt())).findFirst()
+                .orElse(null)).findFirst().orElse("");
+
+        ticketPrice = flightOfferSearch.getPrice().getTotal();
+
+        currency = flightOfferSearch.getPrice().getCurrency();
+
+        flightClass = Objects.requireNonNull(Arrays.stream(flightOfferSearch.getTravelerPricings())
+                .map(e -> Arrays.stream(e.getFareDetailsBySegment())
+                        .map(FlightOfferSearch.FareDetailsBySegment::getCabin)).findFirst().orElse(null)).findFirst().orElse("Sda");
+
+
+    }
 
 
 }
