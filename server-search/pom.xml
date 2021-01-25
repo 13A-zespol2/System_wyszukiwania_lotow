@@ -27,16 +27,35 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <version>2.4.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.7.0</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.5.0-b01</version>
         </dependency>
 
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <version>5.4.2</version>
+            <scope>test</scope>
         </dependency>
         <!-- loombook -->
         <dependency>
@@ -53,9 +72,9 @@
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
 
-
-        <!--  -->
+        <!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api -->
         <dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>javax.persistence-api</artifactId>
@@ -76,30 +95,17 @@
             <artifactId>amadeus-java</artifactId>
             <version>5.6.0</version>
         </dependency>
-
-
-        <!-- java meil -->
-        <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>mail</artifactId>
-            <version>1.5.0-b01</version>
-        </dependency>
-
-
-        <!-- testy -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
-            <version>5.4.2</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-test -->
 
         <!-- autoryzacja telefon -->
+
+
+        <!-- https://mvnrepository.com/artifact/com.nexmo/client -->
         <dependency>
             <groupId>com.nexmo</groupId>
             <artifactId>client</artifactId>

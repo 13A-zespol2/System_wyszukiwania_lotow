@@ -38,21 +38,22 @@ public class RegisterPanel extends GuiPanel implements LoginObserver {
      *
      * @return Zwraca true w przypadku gdy hasło spełnia wymagania i gdy oba hasła są takie same. Zwraca false w przypadku gdy hasła nie spełniają wymagań.
      */
-    public boolean validPassword() {
+
+    public boolean validPassword(String password, String repeatPassword) {
         String passRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!^&*().]).{8,20}$";
 
-        if ((passwordInput.getText().matches(passRegEx)) && (repeatpasswordInput.getText().equals(passwordInput.getText()))) {
+        if ((password.matches(passRegEx)) && (repeatPassword.equals(password))) {
             return true;
         } else {
             registerError.setText("Wrong password!");
         }
 
-        if (passwordInput.getText().isEmpty() || repeatpasswordInput.getText().isEmpty()) {
+        if (password.isEmpty() || repeatPassword.isEmpty()) {
             registerError.setText("Complete required fields!");
             return false;
         }
 
-        if (!repeatpasswordInput.getText().equals(passwordInput.getText())) {
+        if (!repeatPassword.equals(password)) {
             registerError.setText("Passwords are different!");
             return false;
         }
@@ -65,15 +66,16 @@ public class RegisterPanel extends GuiPanel implements LoginObserver {
      *
      * @return Zwraca true w przypadku gdy e-mail spełnia wymagania.
      */
-    public boolean validEmail() {
+
+    public boolean validEmail(String email) {
         String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
-        if (emailInput.getText().matches(regex)) {
+        if (email.matches(regex)) {
             return true;
         } else {
             registerError.setText("Wrong e-mail!");
         }
 
-        if (emailInput.getText().isEmpty()) {
+        if (email.isEmpty()) {
             registerError.setText("Complete required fields!");
 
             return false;
@@ -89,7 +91,8 @@ public class RegisterPanel extends GuiPanel implements LoginObserver {
      */
     public boolean regButton() {
 
-        if (validPassword() && validEmail()) {
+        if (validPassword(passwordInput.getText(), repeatpasswordInput.getText()) && validEmail(emailInput.getText())) {
+
             RegisterUserRequest registerUserRequest = new RegisterUserRequest(emailInput.getText(), passwordInput.getText());
             RegisterUserResponse registerUserResponse = clientControl.registerUserCommunication(registerUserRequest);
 
