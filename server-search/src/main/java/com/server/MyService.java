@@ -134,8 +134,8 @@ public class MyService implements Serializable {
         String parse = flightToReservation.getArrivalTime().substring(0, 10);
 
 
-        List<FlightOfferSearch> flightOfferSearches = amadeusFacade.searchFlight(flightToReservation.getDestinationIATA(),
-                flightToReservation.getDepartureIATA(), parse, flightToReservation.getFlightClass()).orElse(null);
+        List<FlightOfferSearch> flightOfferSearches = amadeusFacade.searchFlight(flightToReservation.getDepartureIATA(),
+                flightToReservation.getDestinationIATA(), parse, flightToReservation.getFlightClass()).orElse(null);
         TravelerPhone byId = travelerPhoneRepository.findById(myTraveler.getTravelerPhone().getId());
         TravelerDocument byMyTravelerId = travelerDocumentRepository.findByMyTravelerId(myTraveler.getId());
         Traveler travlerFromBase = new UserBasedTravelerCreationStrategy(myTraveler, byMyTravelerId, byId).createTraveler();

@@ -16,7 +16,6 @@ public enum AirportCode {
     PARIS("PAR"),
     MADRID("MAD"),
     MOSCOW("MOW"),
-    VENICE("VCE"),
     ROMA("FCO"),
     OSLO("OSL"),
     HAMBURG("HAM"),
