@@ -163,12 +163,12 @@
             <TextField fx:id="phoneNumber" alignment="CENTER" layoutX="340.0" layoutY="178.0" maxHeight="-Infinity"
                        maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0"
                        prefWidth="150.0" styleClass="clientPanelLabel"/>
+            <TextField fx:id="docType" alignment="CENTER" layoutX="339.0" layoutY="224.0" maxHeight="-Infinity"
+                       maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0"
+                       prefWidth="150.0" styleClass="clientPanelLabel"/>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="223.0" maxHeight="-Infinity"
                    maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
                    styleClass="data_label" text="Document type" textAlignment="CENTER"/>
-            <ComboBox fx:id="docType" layoutX="340.0" layoutY="226.0" maxHeight="-Infinity" maxWidth="-Infinity"
-                      minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0"
-                      styleClass="clientPanelLabel"/>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="268.0" maxHeight="-Infinity"
                    maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0"
                    styleClass="data_label" text="Document number" textAlignment="CENTER"/>

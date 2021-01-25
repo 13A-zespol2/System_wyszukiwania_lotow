@@ -1,10 +1,7 @@
 package com.client;
 
 
-import com.amadeus.resources.FlightOfferSearch;
 import com.gui.ClientEdit;
-import com.gui.RegisterPanel;
-import com.gui.SearchPanel;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class DemoApplicationTests {
 
     @Test
-    public void ifPhoneGood(){
+    public void ifPhoneGood() {
         ClientEdit clientEdit = new ClientEdit();
         clientEdit.validPhone("123432123");
 
@@ -20,7 +17,7 @@ class DemoApplicationTests {
     }
 
     @Test
-    public void ifDateGood(){
+    public void ifDateGood() {
         ClientEdit clientEdit = new ClientEdit();
         clientEdit.validDate("1991-11-11");
 
@@ -28,14 +25,15 @@ class DemoApplicationTests {
     }
 
     @Test
-    public void ifPasswordGood(){
+    public void ifPasswordGood() {
         ClientEdit clientEdit = new ClientEdit();
         clientEdit.validPassword("!QAZ2wsx", "!QAZ2wsx");
 
         Assert.assertTrue(clientEdit.validPassword("!QAZ2wsx", "!QAZ2wsx"));
     }
+
     @Test
-    public void ifDocNumberGood(){
+    public void ifDocNumberGood() {
         ClientEdit clientEdit = new ClientEdit();
         clientEdit.validDocumentNumber("CYA123123");
 

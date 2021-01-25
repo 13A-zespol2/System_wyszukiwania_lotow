@@ -54,7 +54,7 @@
                            minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="617.0"
                            styleClass="_table">
                     <columns>
-                        <TableColumn fx:id="col1" prefWidth="25.0" text="ID"/>
+                        <TableColumn fx:id="col1" prefWidth="25.0" text="Quantity"/>
                         <TableColumn fx:id="col2" prefWidth="60.0" text="Departure"/>
                         <TableColumn fx:id="col3" prefWidth="60.0" text="Destination"/>
                         <TableColumn fx:id="col4" prefWidth="145.0" text="Departure time"/>

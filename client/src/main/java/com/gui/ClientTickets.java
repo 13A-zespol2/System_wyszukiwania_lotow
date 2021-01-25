@@ -78,7 +78,7 @@ public class ClientTickets extends GuiPanel {
 
             ObservableList<FlightOrderDTO> list = FXCollections.observableArrayList(reservedFlight.getFlightOfferSearchDTOList());
 
-            col1.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(param.getValue().getId())));
+            col1.setCellValueFactory(param -> new ReadOnlyStringWrapper(String.valueOf(param.getValue().getQuantityOfTickets())));
 
             col2.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getDepartureIATA()));
 
