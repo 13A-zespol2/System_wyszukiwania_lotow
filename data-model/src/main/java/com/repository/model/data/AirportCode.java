@@ -18,7 +18,6 @@ public enum AirportCode {
     MOSCOW("MOW"),
     ROMA("FCO"),
     OSLO("OSL"),
-    HAMBURG("HAM"),
     BUDAPEST("BUD"),
     BARCELONA("BCN");
 
