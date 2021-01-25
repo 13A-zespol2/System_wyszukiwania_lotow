@@ -73,6 +73,7 @@ public class ClientEdit extends GuiPanel {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        docType.setText("PASSPORT");
         ClientDataResponse clientDataResponse = clientControl.clientDataComunication(new ClientDataRequest(userLoginObserver.getUser()));
 
         loggedname.setText(userLoginObserver.getUser().getEmail());
@@ -99,11 +100,11 @@ public class ClientEdit extends GuiPanel {
         if ((password.matches(passRegEx)) && (repeatPassword.equals(password))) {
             return true;
         } else {
-            validError.setText("password does not meet the requirements");
+            validError.setText("Password does not meet the requirements!");
         }
 
         if (!password.equals(repeatPassword)) {
-            validError.setText("Password not equal");
+            validError.setText("Passwords are not equal!");
             return false;
         }
         return false;
@@ -125,12 +126,9 @@ public class ClientEdit extends GuiPanel {
         SimpleDateFormat sdfrmt = new SimpleDateFormat("yyyy-MM-dd");
         sdfrmt.setLenient(false);
         try {
-
             sdfrmt.parse(strDate);
         } catch (ParseException e) {
-
             validError.setText("Enter correct Birth or Expire date");
-
             return false;
         }
         return true;
@@ -160,9 +158,9 @@ public class ClientEdit extends GuiPanel {
 
     public void editData() {
 
-        if (validPassword(password.getText(), repeatPassword.getText()) && validEmpty() && validDate(birthDate.getText()) && validDate(expDate.getText()) && validPhone(phoneNumber.getText()) && validDocumentNumber(docNumber.getText())) {
+        if (validPassword(password.getText(), repeatPassword.getText()) && validEmpty() && validDate(birthDate.getText()) && validDate(expDate.getText()) && validPhone(phoneNumber.getText())) {
             MyTraveler myTraveler = new MyTraveler.Builder().name(name.getText()).surname(surname.getText()).dateOfBirth(birthDate.getText()).build();
-            TravelerDocument travelerDocument = new TravelerDocument.Builder().documentType(docType.getText()).numberDocument(docNumber.getText()).expireDate(expDate.getText()).build();
+            TravelerDocument travelerDocument = new TravelerDocument.Builder().documentType("PASSPORT").numberDocument(docNumber.getText()).expireDate(expDate.getText()).build();
             TravelerPhone travelerPhone = new TravelerPhone.Builder().phoneNumber(Integer.parseInt(phoneNumber.getText())).build();
 
             ClientEditRequest clientDataRequestEdit = new ClientEditRequest(userLoginObserver.getUser(), myTraveler, travelerDocument, travelerPhone);
@@ -171,9 +169,9 @@ public class ClientEdit extends GuiPanel {
             ClientEditResponse clientEditResponse = clientControl.clientEditCommunication(clientDataRequestEdit);
             validError.setText("");
             validError1.setText(clientEditResponse.getStatus());
-        } else {
-            validError.setText("Enter correct data");
         }
+
+
         if (!validPhone(phoneNumber.getText())) {
             validError.setText("Enter correct phone number");
 

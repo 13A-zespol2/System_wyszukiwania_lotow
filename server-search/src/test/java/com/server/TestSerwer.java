@@ -82,14 +82,14 @@ class TestSerwer {
     @Test
     void sendEmail() {
 
-        Runnable runnable = () -> {
 
             String username = "apitestpipprojekt2021@gmail.com";
             String password = " Qweasdzxc!1";
             final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
             Properties properties = new Properties();
             properties.setProperty("mail.smtp.host", "smtp.gmail.com");
-            properties.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
+        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        properties.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
             properties.setProperty("mail.smtp.socketFactory.fallback", "false");
             properties.setProperty("mail.smtp.port", "465");
             properties.setProperty("mail.smtp.socketFactory.port", "465");
@@ -106,11 +106,11 @@ class TestSerwer {
             try {
                 msg.setFrom(new InternetAddress(username));
                 msg.setRecipients(Message.RecipientType.TO,
-                        InternetAddress.parse("wojtekgrelewicz@gmail.com", false));
+                        InternetAddress.parse("jusdomall@gmail.com", false));
 
                 msg.setSubject("System_Rezerwacji_Lotow");
                 msg.getMessageNumber();
-                msg.setText("Zarezerowano bilet");
+                msg.setText("Zarezerwowano bilet");
 
                 msg.saveChanges();
                 msg.setSentDate(new Date());
@@ -119,11 +119,6 @@ class TestSerwer {
             } catch (MessagingException e) {
                 e.printStackTrace();
             }
-
-
-        };
-        Thread t = new Thread(runnable);
-        t.start();
     }
 
     @Test

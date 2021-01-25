@@ -53,17 +53,22 @@
                <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
                            prefHeight="380.0" prefWidth="805.0" styleClass="radiusTable">
                   <content>
-                     <TableView fx:id="tableView" editable="true" maxHeight="-Infinity" maxWidth="-Infinity"
-                                minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="803.0"
-                                styleClass="_table">
+                     <TableView fx:id="tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                                minWidth="-Infinity" prefHeight="378.0" prefWidth="803.0" styleClass="_table">
                         <columns>
-                           <TableColumn fx:id="col1" prefWidth="25.0" text="ID"/>
-                           <TableColumn fx:id="col2" prefWidth="135.0" text="Departure"/>
-                           <TableColumn fx:id="col3" prefWidth="135.0" text="Destination"/>
-                           <TableColumn fx:id="col4" prefWidth="145.0" text="Departure time"/>
-                           <TableColumn fx:id="col5" prefWidth="142.0" text="Arrival time"/>
-                           <TableColumn fx:id="col6" prefWidth="96.0" text="Ticket price"/>
-                           <TableColumn fx:id="col7" prefWidth="110.0" text="Flight class"/>
+                           <TableColumn fx:id="col1" editable="false" prefWidth="25.0" resizable="false" text="ID"/>
+                           <TableColumn fx:id="col2" editable="false" prefWidth="135.0" resizable="false"
+                                        text="Departure"/>
+                           <TableColumn fx:id="col3" editable="false" prefWidth="135.0" resizable="false"
+                                        text="Destination"/>
+                           <TableColumn fx:id="col4" editable="false" prefWidth="145.0" resizable="false"
+                                        text="Departure time"/>
+                           <TableColumn fx:id="col5" editable="false" prefWidth="142.0" resizable="false"
+                                        text="Arrival time"/>
+                           <TableColumn fx:id="col6" editable="false" prefWidth="96.0" resizable="false"
+                                        text="Ticket price"/>
+                           <TableColumn fx:id="col7" editable="false" prefWidth="110.0" resizable="false"
+                                        text="Flight class"/>
                         </columns>
                      </TableView>
                   </content>
@@ -76,43 +81,47 @@
             <children>
                <AnchorPane prefHeight="160.0" prefWidth="805.0">
                   <children>
-                     <Spinner fx:id="adults" editable="true" layoutX="-1.0" layoutY="79.0" prefHeight="45.0"
+                     <Spinner fx:id="adults" editable="true" layoutX="-1.0" layoutY="69.0" prefHeight="45.0"
                               prefWidth="150.0" styleClass="clientPanelLabel"/>
-                     <ComboBox fx:id="originLocationCode" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                     <ComboBox fx:id="originLocationCode" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity"
                                minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="150.0"
                                promptText="Departure" styleClass="clientPanelLabel"/>
-                     <ComboBox fx:id="destinationLocationCode" layoutX="170.0" layoutY="23.0" maxHeight="-Infinity"
+                     <ComboBox fx:id="destinationLocationCode" layoutX="170.0" layoutY="13.0" maxHeight="-Infinity"
                                maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0"
                                prefWidth="150.0" promptText="Destination" styleClass="clientPanelLabel"/>
-                     <DatePicker fx:id="departureDate" layoutX="340.0" layoutY="23.0" maxHeight="-Infinity"
+                     <DatePicker fx:id="departureDate" layoutX="340.0" layoutY="13.0" maxHeight="-Infinity"
                                  maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0"
                                  prefWidth="150.0" promptText="Departure date" styleClass="clientPanelLabel"/>
-                     <ComboBox fx:id="travelClass" layoutX="170.0" layoutY="78.0" maxHeight="-Infinity"
+                     <ComboBox fx:id="travelClass" layoutX="170.0" layoutY="68.0" maxHeight="-Infinity"
                                maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0"
                                prefWidth="150.0" promptText="Flight class" styleClass="clientPanelLabel"/>
-                     <Button fx:id="search_SB" layoutX="341.0" layoutY="78.0" mnemonicParsing="false"
+                     <Button fx:id="search_SB" layoutX="341.0" layoutY="68.0" mnemonicParsing="false"
                              onMouseClicked="#searchFlights" prefHeight="45.0" prefWidth="150.0" text="Search">
                         <styleClass>
                            <String fx:value="data_label"/>
                            <String fx:value="buttonH"/>
                         </styleClass>
                      </Button>
-                     <Label fx:id="loginError" alignment="CENTER" contentDisplay="CENTER" layoutX="300.0"
-                            layoutY="124.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                            minWidth="-Infinity" prefHeight="30.0" prefWidth="230.0" styleClass="errorLabel"
+                     <Label fx:id="loginError" alignment="CENTER" contentDisplay="CENTER" layoutX="281.0"
+                            layoutY="114.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                            minWidth="-Infinity" prefHeight="40.0" prefWidth="270.0" styleClass="errorLabel"
                             textAlignment="CENTER" textFill="#f20101" wrapText="true"/>
                      <AnchorPane layoutX="550.0" layoutY="20.0" prefHeight="110.0" prefWidth="3.0"
                                  style="-fx-background-color: #aaa;"/>
-                     <Button fx:id="search_SB1" layoutX="603.0" layoutY="78.0" mnemonicParsing="false"
+                     <Button fx:id="search_SB1" layoutX="603.0" layoutY="98.0" mnemonicParsing="false"
                              onMouseClicked="#bookTicket" prefHeight="45.0" prefWidth="186.0" text="Book ticket">
                         <styleClass>
                            <String fx:value="data_label"/>
-                           <String fx:value="buttonH" />
+                           <String fx:value="buttonH"/>
                         </styleClass>
                      </Button>
-                     <Label fx:id="loginError1" alignment="CENTER" contentDisplay="CENTER" layoutX="603.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="186.0" styleClass="greenLabel" textAlignment="CENTER" wrapText="true" />
-                     <CheckBox fx:id="checkBoxSms" layoutX="600.0" layoutY="130.0" mnemonicParsing="false"
-                               prefHeight="26.0" prefWidth="193.0" text="SMS Notification"/>
+                     <Label fx:id="loginError1" alignment="CENTER" contentDisplay="CENTER" layoutX="603.0"
+                            layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                            minWidth="-Infinity" prefHeight="45.0" prefWidth="186.0" styleClass="greenLabel"
+                            textAlignment="CENTER" wrapText="true"/>
+                     <CheckBox fx:id="checkBoxSms" layoutX="602.0" layoutY="54.0" mnemonicParsing="false"
+                               prefHeight="20.0" prefWidth="186.0" styleClass="clientPanelLabel"
+                               text="SMS Notification"/>
 
                   </children>
                </AnchorPane>

@@ -50,20 +50,6 @@ public class ClientTickets extends GuiPanel {
         return (AnchorPane) springFxmlLoader.load(ui + ".fxml");
     }
 
-    public void toClientData() {
-        mainPanel.getMainLoad().getChildren().clear();
-        mainPanel.getMainLoad().getChildren().add(loadUi("/clientPanel"));
-    }
-
-    public void toClientTickets() {
-        mainPanel.getMainLoad().getChildren().clear();
-        mainPanel.getMainLoad().getChildren().add(loadUi("/tickets"));
-    }
-
-    public void toClientEdit() {
-        mainPanel.getMainLoad().getChildren().clear();
-        mainPanel.getMainLoad().getChildren().add(loadUi("/editData"));
-    }
 
     @Override
     public void update(User user) {
@@ -72,6 +58,7 @@ public class ClientTickets extends GuiPanel {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        tableView.getColumns().forEach(e -> e.setReorderable(false));
         ReservedFlightsRequest reservedFlightsRequest = new ReservedFlightsRequest(userLoginObserver.getUser());
         ReservedFlightsResponse reservedFlight = clientControl.getReservedFlight(reservedFlightsRequest);
         if (reservedFlight.getFlightOfferSearchDTOList() != null) {
