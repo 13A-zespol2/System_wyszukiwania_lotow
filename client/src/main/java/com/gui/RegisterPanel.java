@@ -29,36 +29,36 @@ public class RegisterPanel extends GuiPanel implements LoginObserver {
     private Label registerError;
 
 
-    public boolean validPassword() {
+    public boolean validPassword(String password, String repeatPassword) {
         String passRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!^&*().]).{8,20}$";
 
-        if ((passwordInput.getText().matches(passRegEx)) && (repeatpasswordInput.getText().equals(passwordInput.getText()))) {
+        if ((password.matches(passRegEx)) && (repeatPassword.equals(password))) {
             return true;
         } else {
             registerError.setText("Wrong password!");
         }
 
-        if (passwordInput.getText().isEmpty() || repeatpasswordInput.getText().isEmpty()) {
+        if (password.isEmpty() || repeatPassword.isEmpty()) {
             registerError.setText("Complete required fields!");
             return false;
         }
 
-        if (!repeatpasswordInput.getText().equals(passwordInput.getText())) {
+        if (!repeatPassword.equals(password)) {
             registerError.setText("Passwords are different!");
             return false;
         }
         return false;
     }
 
-    public boolean validEmail() {
+    public boolean validEmail(String email) {
         String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
-        if (emailInput.getText().matches(regex)) {
+        if (email.matches(regex)) {
             return true;
         } else {
             registerError.setText("Wrong e-mail!");
         }
 
-        if (emailInput.getText().isEmpty()) {
+        if (email.isEmpty()) {
             registerError.setText("Complete required fields!");
 
             return false;
@@ -68,7 +68,7 @@ public class RegisterPanel extends GuiPanel implements LoginObserver {
 
     public boolean regButton() {
 
-        if (validPassword() && validEmail()) {
+        if (validPassword(passwordInput.getText(), repeatpasswordInput.getText()) && validEmail(emailInput.getText())) {
 /*            registerError.setVisible(false);
             loginAfterReg.setText("Rejestracja przebiegła pomyślnie. Zaloguj się.");*/
             RegisterUserRequest registerUserRequest = new RegisterUserRequest(emailInput.getText(), passwordInput.getText());

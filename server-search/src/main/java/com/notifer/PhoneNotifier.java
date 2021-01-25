@@ -10,12 +10,12 @@ public class PhoneNotifier implements Notifier {
     @Override
     public void sendNotification(String contact, String message) {
         NexmoClient client = new NexmoClient.Builder()
-                .apiKey("e1e3cb72")
-                .apiSecret("QEkj04elbaBuc3YR")
+                .apiKey("b9f4b030")
+                .apiSecret("4cTDs71dcmgpyE1T")
                 .build();
 
         String messageText = "ZAREZERWOWANO BILET";
-        TextMessage messagePhone = new TextMessage("Vonage APIs", "48721625701", message);
+        TextMessage messagePhone = new TextMessage("Vonage APIs", "48696886115", message);
 
         SmsSubmissionResponse response = client.getSmsClient().submitMessage(messagePhone);
 
