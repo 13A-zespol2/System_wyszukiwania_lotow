@@ -158,7 +158,7 @@ public class ClientEdit extends GuiPanel {
 
     public void editData() {
 
-        if (validPassword(password.getText(), repeatPassword.getText()) && validEmpty() && validDate(birthDate.getText()) && validDate(expDate.getText()) && validPhone(phoneNumber.getText())) {
+        if (validPassword(password.getText(), repeatPassword.getText()) && validPhone(phoneNumber.getText()) && validDocumentNumber(docNumber.getText()) && validEmpty() && validDate(birthDate.getText()) && validDate(expDate.getText()) && validPhone(phoneNumber.getText())) {
             MyTraveler myTraveler = new MyTraveler.Builder().name(name.getText()).surname(surname.getText()).dateOfBirth(birthDate.getText()).build();
             TravelerDocument travelerDocument = new TravelerDocument.Builder().documentType("PASSPORT").numberDocument(docNumber.getText()).expireDate(expDate.getText()).build();
             TravelerPhone travelerPhone = new TravelerPhone.Builder().phoneNumber(Integer.parseInt(phoneNumber.getText())).build();
@@ -173,8 +173,7 @@ public class ClientEdit extends GuiPanel {
 
 
         if (!validPhone(phoneNumber.getText())) {
-            validError.setText("Enter correct phone number");
-
+            validError.setText("Enter correct phone number.");
         }
 
     }
