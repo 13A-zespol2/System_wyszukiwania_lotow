@@ -95,16 +95,16 @@ public class ClientEdit extends GuiPanel {
         }
     }
 
-    private boolean validPassword() {
+    public boolean validPassword(String password, String repeatPassword) {
         String passRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!^&*().]).{8,20}$";
 
-        if ((password.getText().matches(passRegEx)) && (repeatPassword.getText().equals(password.getText()))) {
+        if ((password.matches(passRegEx)) && (repeatPassword.equals(password))) {
             return true;
         } else {
             validError.setText("password does not meet the requirements");
         }
 
-        if (!password.getText().equals(repeatPassword.getText())) {
+        if (!password.equals(repeatPassword)) {
             validError.setText("Password not equal");
             return false;
         }
@@ -123,7 +123,7 @@ public class ClientEdit extends GuiPanel {
         return true;
     }
 
-    private boolean validDate(String strDate) {
+    public boolean validDate(String strDate) {
         SimpleDateFormat sdfrmt = new SimpleDateFormat("yyyy-MM-dd");
         sdfrmt.setLenient(false);
         try {
@@ -139,7 +139,7 @@ public class ClientEdit extends GuiPanel {
 
     }
 
-    private boolean validPhone(String number) {
+    public boolean validPhone(String number) {
 
         Pattern p = Pattern.compile("^\\d{9}$");
 
@@ -148,10 +148,10 @@ public class ClientEdit extends GuiPanel {
 
     }
 
-    private boolean validDocumentNumber() {
+    public boolean validDocumentNumber(String docNumber) {
         String passRegEx = "^(?=.*\\d)(?=.*[A-Z]).{9}+$";
 
-        if (docNumber.getText().matches(passRegEx)) {
+        if (docNumber.matches(passRegEx)) {
             return true;
         }
         validError.setText("Enter correct document number");
@@ -162,7 +162,7 @@ public class ClientEdit extends GuiPanel {
 
     public void editData() {
 
-        if (validPassword() && validEmpty() && validDate(birthDate.getText()) && validDate(expDate.getText()) && validPhone(phoneNumber.getText()) && validDocumentNumber()) {
+        if (validPassword(password.getText(), repeatPassword.getText()) && validEmpty() && validDate(birthDate.getText()) && validDate(expDate.getText()) && validPhone(phoneNumber.getText()) && validDocumentNumber(docNumber.getText())) {
             MyTraveler myTraveler = new MyTraveler.Builder().name(name.getText()).surname(surname.getText()).dateOfBirth(birthDate.getText()).build();
             TravelerDocument travelerDocument = new TravelerDocument.Builder().documentType(docType.getValue()).numberDocument(docNumber.getText()).expireDate(expDate.getText()).build();
             TravelerPhone travelerPhone = new TravelerPhone.Builder().phoneNumber(Integer.parseInt(phoneNumber.getText())).build();

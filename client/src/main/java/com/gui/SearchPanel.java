@@ -131,7 +131,7 @@ public class SearchPanel extends GuiPanel {
 
     }
 
-    private void showFlights(List<FlightOfferSearchDTO> tList) {
+    public void showFlights(List<FlightOfferSearchDTO> tList) {
 
 
         ObservableList<FlightOfferSearchDTO> list = FXCollections.observableArrayList(tList);

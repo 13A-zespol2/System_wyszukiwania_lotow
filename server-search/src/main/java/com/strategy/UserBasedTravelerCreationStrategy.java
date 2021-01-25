@@ -4,11 +4,13 @@ import com.amadeus.resources.Traveler;
 import com.repository.model.database.MyTraveler;
 import com.repository.model.database.TravelerDocument;
 import com.repository.model.database.TravelerPhone;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
+
 public class UserBasedTravelerCreationStrategy implements TravelerCreationStrategy {
     private final MyTraveler myTraveler;
     private final TravelerDocument travelerDocument;
