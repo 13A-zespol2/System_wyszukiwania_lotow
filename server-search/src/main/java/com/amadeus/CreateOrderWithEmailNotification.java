@@ -27,7 +27,10 @@ public class CreateOrderWithEmailNotification implements CreateOrder {
 
         String flightOrder = createOrder.createFlightOrder(travelers, flightOfferSearch, phone, user);
         if (flightOrder != null) {
-            String message = "";
+            String message = "ZAREZERWOWANO BILET Z: " + Arrays.stream(Arrays.stream(flightOfferSearch.getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getIataCode()
+                    + " \nDO: " + Arrays.stream(Arrays.stream(flightOfferSearch.getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getIataCode()
+                    + " \nKOSZT BILETU TO: " + flightOfferSearch.getPrice().getTotal() + " " + flightOfferSearch.getPrice().getCurrency()
+                    + " \nDATA WYLOTU: " + Arrays.stream(Arrays.stream(flightOfferSearch.getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getAt().replace("T", "  ");
             String emailAddress = user.getEmail();
             try {
                 emailNotifier.sendNotification(emailAddress, message);

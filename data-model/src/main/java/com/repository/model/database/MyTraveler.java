@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Setter
 public class MyTraveler implements Serializable {
     @Id
-    @SequenceGenerator(name = "travelerMyGenerator", sequenceName = "travSeq", initialValue = 1, allocationSize = 1000)
+    @SequenceGenerator(name = "travelerMyGenerator", sequenceName = "travSeq", initialValue = 1)
     @GeneratedValue(generator = "travelerMyGenerator")
     private int id;
     private String name;
