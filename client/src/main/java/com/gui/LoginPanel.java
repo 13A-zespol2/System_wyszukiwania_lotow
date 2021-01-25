@@ -1,6 +1,5 @@
 package com.gui;
 
-import com.observer.LoginObserver;
 import com.repository.model.communication.LoginUserRequest;
 import com.repository.model.communication.LoginUserResponse;
 import com.repository.model.database.User;
@@ -9,12 +8,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -32,8 +29,6 @@ public class LoginPanel extends GuiPanel {
     @FXML
     private Label loginError;
     private User user;
-    @Autowired
-    private List<LoginObserver> loginObserverList;
 
     public LoginPanel() {
         super();
@@ -64,9 +59,6 @@ public class LoginPanel extends GuiPanel {
 
     }
 
-    private void notifyGui(User user) {
-        loginObserverList.forEach(e -> e.update(user));
-    }
 
     @Override
     public void update(User user) {

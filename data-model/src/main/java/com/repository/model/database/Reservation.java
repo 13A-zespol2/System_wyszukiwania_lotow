@@ -12,7 +12,8 @@ import java.io.Serializable;
 @Setter
 public class Reservation implements Serializable {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "travelerReservGenerator", sequenceName = "resSeq", initialValue = 1, allocationSize = 1000)
+    @GeneratedValue(generator = "travelerReservGenerator")
     private int id;
     private String reservationApiCode;
     @ManyToOne
