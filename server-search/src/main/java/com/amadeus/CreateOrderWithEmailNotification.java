@@ -28,11 +28,14 @@ public class CreateOrderWithEmailNotification implements CreateOrder {
         String flightOrder = createOrder.createFlightOrder(travelers, flightOfferSearch, phone, user);
         if (flightOrder != null) {
             String emailAddress = user.getEmail();
-            String phoneNumber = Arrays.stream(travelers[0].getContact().getPhones()).findFirst().get().getNumber();
             try {
                 emailNotifier.sendNotification(emailAddress, flightOfferSearch);
             } catch (MessagingException e) {
                 log.info("Cannot send email: " + e);
+            }
+            if (phone) {
+                String phoneNumber = Arrays.stream(travelers[0].getContact().getPhones()).findFirst().get().getNumber();
+                phoneNotifier.sendNotification("", flightOfferSearch);
             }
 
         }
