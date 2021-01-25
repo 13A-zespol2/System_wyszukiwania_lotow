@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Entity
 public class User implements Serializable {
     @Id
-    @SequenceGenerator(name = "userGenerator", sequenceName = "myUserSeq", initialValue = 1, allocationSize = 1000)
+    @SequenceGenerator(name = "userGenerator", sequenceName = "myUserSeq", initialValue = 1)
     @GeneratedValue(generator = "userGenerator")
     private int id;
     @Column(unique = true)

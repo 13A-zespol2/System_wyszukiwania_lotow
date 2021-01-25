@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Entity
 public class TravelerDocument implements Serializable {
     @Id
-    @SequenceGenerator(name = "travelerDocGenerator", sequenceName = "myDoTrSeq", initialValue = 1, allocationSize = 1000)
+    @SequenceGenerator(name = "travelerDocGenerator", sequenceName = "myDoTrSeq", initialValue = 1)
     @GeneratedValue(generator = "travelerPhoneGenerator")
     private int id;
     private String documentType;

@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Setter
 public class TravelerPhone implements Serializable {
     @Id
-    @SequenceGenerator(name = "travelerPhoneGenerator", sequenceName = "myPhTrSeq", initialValue = 1, allocationSize = 1000)
+    @SequenceGenerator(name = "travelerPhoneGenerator", sequenceName = "myPhTrSeq", initialValue = 1)
     @GeneratedValue(generator = "travelerPhoneGenerator")
     private int id;
     private int countryCallingCode;
