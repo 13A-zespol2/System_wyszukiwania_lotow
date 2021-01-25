@@ -1,4 +1,4 @@
-package com.server;
+package com.client;
 
 
 import com.amadeus.resources.Traveler;

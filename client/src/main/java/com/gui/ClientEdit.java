@@ -27,6 +27,8 @@ import java.util.regex.Pattern;
 @Slf4j
 @Controller
 @Component
+
+/** Kontroler zarządzający widokiem edycji danych osobistych i zmiany hasła użytkownika. */
 public class ClientEdit extends GuiPanel {
 
     @FXML
@@ -69,7 +71,12 @@ public class ClientEdit extends GuiPanel {
 
     }
 
-
+    /**
+     * Metoda pobierająca i ładująca dane z bazy danych do formatki edycji.
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -94,6 +101,14 @@ public class ClientEdit extends GuiPanel {
         }
     }
 
+    /**
+     * Metoda służąca do walidacji hasła. Przyjmuje parametry stringów ,,hasło" i ,,powtórzone hasło".
+     * Walidacja wymaga aby hasło zawierało od 8 do 20 znaków, minimum jedną dużą literę, jeden znak specjalny i jedną cyfrę. (np. zaq1@WSX).
+     *
+     * @param password       Hasło
+     * @param repeatPassword Powtórzone hasło
+     * @return Metoda ta zwraca true w przypadku gdy walidacja się powiedzie, i false w przypadku błędu.
+     */
     public boolean validPassword(String password, String repeatPassword) {
         String passRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!^&*().]).{8,20}$";
 
@@ -110,18 +125,28 @@ public class ClientEdit extends GuiPanel {
         return false;
     }
 
+    /**
+     * Metoda sprawdzająca, czy pola do wypełnienia przez użytkownika nie pozostały puste.
+     *
+     * @return Zwraca false, w przypadku gdy któreś pole nie zostało wypełnione. W innym przypadku zwraca true.
+     */
     private boolean validEmpty() {
 
         if (password.getText().isEmpty() || repeatPassword.getText().isEmpty() || name.getText().isEmpty() || surname.getText().isEmpty() ||
                 birthDate.getText().isEmpty() || docType.getText().isEmpty() || docNumber.getText().isEmpty() || expDate.getText().isEmpty() || phoneNumber.getText().isEmpty()) {
             validError.setText("Fill all fields");
             return false;
-
         }
-
         return true;
     }
 
+
+    /**
+     * Metoda walidująca poprawność wpisanej daty, aby była w formacie wymaganym przez API Amadeus. (Prawidłowo np.: 2000-08-08).
+     *
+     * @param strDate Wartość uzupełnionego przez użytkownika inputa.
+     * @return Zwraca false w przypadku, gdy data jest wpisana w nieprawidłowej kolejności. W innym przypadku zwraca true.
+     */
     public boolean validDate(String strDate) {
         SimpleDateFormat sdfrmt = new SimpleDateFormat("yyyy-MM-dd");
         sdfrmt.setLenient(false);
@@ -132,18 +157,30 @@ public class ClientEdit extends GuiPanel {
             return false;
         }
         return true;
-
     }
 
+
+    /**
+     * Metoda sprawdza czy numer telefonu wpisany przez użytkownika zawiera dokładnie 9 znaków numerycznych.
+     *
+     * @param number Wartość uzupełnionego przez użytkownika inputa.
+     * @return
+     */
     public boolean validPhone(String number) {
 
         Pattern p = Pattern.compile("^\\d{9}$");
 
         Matcher m = p.matcher(number);
         return (m.find() && m.group().equals(number));
-
     }
 
+
+    /**
+     * Metoda sprawdzająca czy numer dokumentu jest wypełniony prawidłowo (9 znaków, minimum jedna cyfra i minimum jedna duża litera, np: AAABBBCC1).
+     *
+     * @param docNumber Wartość uzupełnionego przez użytkownika inputa.
+     * @return
+     */
     public boolean validDocumentNumber(String docNumber) {
         String passRegEx = "^(?=.*\\d)(?=.*[A-Z]).{9}+$";
 
@@ -156,6 +193,10 @@ public class ClientEdit extends GuiPanel {
     }
 
 
+    /**
+     * Metoda wywołana po naciśnięciu przycisku ,,Edit". Wywołuje ona po kolei walidację wszystkich wymaganych pól.
+     * W przypadku gdy wszystkie zwrócą true, dane w bazie są nadpisywane.
+     */
     public void editData() {
 
         if (validPassword(password.getText(), repeatPassword.getText()) && validPhone(phoneNumber.getText()) && validDocumentNumber(docNumber.getText()) && validEmpty() && validDate(birthDate.getText()) && validDate(expDate.getText()) && validPhone(phoneNumber.getText())) {

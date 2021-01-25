@@ -4,13 +4,15 @@ import com.amadeus.resources.Traveler;
 import com.repository.model.database.MyTraveler;
 import com.repository.model.database.TravelerDocument;
 import com.repository.model.database.TravelerPhone;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
 
+/**
+ * Klasa wykorzystywana we wzorcu ,,Strategy" służąca do tworzenia API travelera, na podstawie danych z bazy.
+ */
 public class UserBasedTravelerCreationStrategy implements TravelerCreationStrategy {
     private final MyTraveler myTraveler;
     private final TravelerDocument travelerDocument;
@@ -22,7 +24,11 @@ public class UserBasedTravelerCreationStrategy implements TravelerCreationStrate
         this.travelerPhone = travelerPhone;
     }
 
-
+    /**
+     * Metoda zwracająca API travelera.
+     *
+     * @return
+     */
     @Override
     public Traveler createTraveler() {
         Traveler traveler = new Traveler();
@@ -49,7 +55,6 @@ public class UserBasedTravelerCreationStrategy implements TravelerCreationStrate
         documents[0].setNationality(travelerDocument.getNationality());
         documents[0].setHolder(true);
         traveler.setDocuments(documents);
-
 
         return traveler;
     }

@@ -12,6 +12,10 @@ import javax.mail.MessagingException;
 import java.util.Arrays;
 
 @Slf4j
+
+/**
+ * Klasa wykorzystująca wzorzec projektowy ,,Facade". Obsługuje ona API Amadeus.
+ */
 public class CreateOrderWithEmailNotification implements CreateOrder {
 
     private final EmailNotifier emailNotifier = new EmailNotifier();
@@ -22,6 +26,17 @@ public class CreateOrderWithEmailNotification implements CreateOrder {
         this.createOrder = createOrder;
     }
 
+
+    /**
+     * Metoda do tworzenia rezerwacji w API Amadeus.
+     *
+     * @param travelers         Tablica pasażerów.
+     * @param flightOfferSearch Lot wybrany przez użytkownika.
+     * @param phone             Informacja o wysłaniu powiadomienia SMS (tak lub nie).
+     * @param user              Obiekt zawierający dane użytkownika.
+     * @return
+     * @throws ResponseException
+     */
     @Override
     public String createFlightOrder(Traveler[] travelers, FlightOfferSearch flightOfferSearch, boolean phone, User user) throws ResponseException {
 
@@ -42,10 +57,7 @@ public class CreateOrderWithEmailNotification implements CreateOrder {
                 String phoneNumber = Arrays.stream(travelers[0].getContact().getPhones()).findFirst().get().getNumber();
                 phoneNotifier.sendNotification("", message);
             }
-
         }
-
         return flightOrder;
-
     }
 }

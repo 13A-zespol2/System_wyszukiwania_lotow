@@ -6,6 +6,10 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @Component
+
+/**
+ * Klasa przechowująca obiekt klasy User. Wykorzystywana we wzorcu projektowym ,,Observer".
+ */
 public class UserStoringObserver implements LoginObserver {
     private User user;
 

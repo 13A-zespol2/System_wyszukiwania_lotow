@@ -9,8 +9,11 @@ import com.repository.model.database.User;
 import java.util.List;
 import java.util.Optional;
 
-public class AmadeusFacade {
 
+/**
+ * Klasa wykorzystująca wzorzec projektowy ,,Facade".
+ */
+public class AmadeusFacade {
 
     private final AmadeusFlightSearch amadeusFlightSearch;
     private final AmadeusOrderManagement amadeusOrderManagement;
@@ -31,11 +34,9 @@ public class AmadeusFacade {
 
         try {
             return Optional.of(amadeusCreateOrder.createFlightOrder(travelers, flightOfferSearch, phone, user));
-
         } catch (ResponseException e) {
             return Optional.empty();
         }
-
     }
 
     public Optional<FlightOrder> getOrderedFlight(String idOrder) {
@@ -45,8 +46,6 @@ public class AmadeusFacade {
         } catch (ResponseException e) {
             return Optional.empty();
         }
-
-
     }
 
 
@@ -62,6 +61,5 @@ public class AmadeusFacade {
         } catch (ResponseException e) {
             return Optional.empty();
         }
-
     }
 }

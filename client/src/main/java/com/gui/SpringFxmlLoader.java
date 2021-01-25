@@ -9,12 +9,21 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @Component
+/**
+ * Klasa odpowiadająca za prawidłowe ładowanie plików FXML.
+ */
 public class SpringFxmlLoader {
 
     @Autowired
     ApplicationContext applicationContext;
 
-
+    /**
+     * Metoda ładująca pliki FXML do kontrolera głównego
+     *
+     * @param url
+     * @param params
+     * @return
+     */
     public Object load(String url, Object... params) {
         try (InputStream fxmlStream = SpringFxmlLoader.class.getResourceAsStream(url)) {
             FXMLLoader loader = new FXMLLoader();

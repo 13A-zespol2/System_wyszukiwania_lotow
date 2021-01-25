@@ -5,7 +5,10 @@ import com.nexmo.client.sms.SmsSubmissionResponse;
 import com.nexmo.client.sms.SmsSubmissionResponseMessage;
 import com.nexmo.client.sms.messages.TextMessage;
 
-
+/**
+ * Klasa wykorzystywana we wzorcu ,,Decorator".
+ * Służy ona do wysłania użytkownikowi powiadomienia SMS z danymi dotyczącymi zarezerwowanego lotu.
+ */
 public class PhoneNotifier implements Notifier {
     @Override
     public void sendNotification(String contact, String message) {
@@ -14,7 +17,6 @@ public class PhoneNotifier implements Notifier {
                 .apiSecret("QEkj04elbaBuc3YR")
                 .build();
 
-        String messageText = "ZAREZERWOWANO BILET";
         TextMessage messagePhone = new TextMessage("Vonage APIs", "48721625701", message);
 
         SmsSubmissionResponse response = client.getSmsClient().submitMessage(messagePhone);

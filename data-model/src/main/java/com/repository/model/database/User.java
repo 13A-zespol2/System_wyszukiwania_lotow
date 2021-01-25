@@ -9,6 +9,10 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
+/**
+ * Klasa odpowiadająca za tabelę ,,User". Zastosowany jest w niej wzorzec projektowy ,,Builder".
+ * Deklaracja ,,@Entity" konwertuje tą klasę na klasę bazodanową i tworzy połączenie z innymi tabelami (klasami).
+ */
 public class User implements Serializable {
     @Id
     @SequenceGenerator(name = "userGenerator", sequenceName = "myUserSeq", initialValue = 1)
@@ -18,13 +22,6 @@ public class User implements Serializable {
     private String email;
     private String password;
 
-
-    public String getEmail() {
-        return email;
-    }
-    public String getPassword() {
-        return password;
-    }
 
     public static class Builder {
         private String email;

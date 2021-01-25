@@ -8,7 +8,10 @@ import lombok.Setter;
 @Setter
 @Getter
 @Builder
-
+/**
+ * Klasa wykorzystywana we wzorcu projektowym ,,Strategy". Odpowiedzialna jest za tworzenie API travelera.
+ * Tworzy je na podstawie danych podanych w konstruktorze.
+ */
 public class CustomTravelerCreationStrategy implements TravelerCreationStrategy {
     private int countryCallingCode;
     private int phoneNumber;
@@ -38,6 +41,11 @@ public class CustomTravelerCreationStrategy implements TravelerCreationStrategy 
         this.dateOfBirth = dateOfBirth;
     }
 
+    /**
+     * Metoda zwracająca API.
+     *
+     * @return
+     */
     @Override
     public Traveler createTraveler() {
 

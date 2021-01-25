@@ -10,6 +10,10 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
+/**
+ * Klasa odpowiadająca za tabelę ,,Rezerwacje".
+ * Deklaracja ,,@Entity" konwertuje tą klasę na klasę bazodanową i tworzy połączenie z innymi tabelami (klasami).
+ */
 public class Reservation implements Serializable {
     @Id
     @SequenceGenerator(name = "travelerReservGenerator", sequenceName = "resSeq", initialValue = 1)

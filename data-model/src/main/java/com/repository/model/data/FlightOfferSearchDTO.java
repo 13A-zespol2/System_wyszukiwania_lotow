@@ -11,6 +11,9 @@ import java.util.Objects;
 @Getter
 @Setter
 
+/**
+ * Wzorzec projektowy należący do grupy wzorców dystrybucji. Do niego przepisywanie są dane dotyczące lotów zwrócone z API Amadeus.
+ */
 public class FlightOfferSearchDTO implements Serializable {
     private String id;
     private String departureIATA;
@@ -52,10 +55,7 @@ public class FlightOfferSearchDTO implements Serializable {
 
         flightClass = Objects.requireNonNull(Arrays.stream(flightOfferSearch.getTravelerPricings())
                 .map(e -> Arrays.stream(e.getFareDetailsBySegment())
-                        .map(FlightOfferSearch.FareDetailsBySegment::getCabin)).findFirst().orElse(null)).findFirst().orElse("Sda");
-
+                        .map(FlightOfferSearch.FareDetailsBySegment::getCabin)).findFirst().orElse(null)).findFirst().orElse("");
 
     }
-
-
 }

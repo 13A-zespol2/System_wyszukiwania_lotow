@@ -5,6 +5,9 @@ import com.amadeus.resources.FlightOfferSearch;
 import lombok.Setter;
 
 @Setter
+/**
+ *Klasa odpowiedzialna za wyszukiwanie lotów.
+ */
 class AmadeusFlightSearch {
     private final Amadeus amadeus;
     private String originLocationCode;
@@ -26,6 +29,4 @@ class AmadeusFlightSearch {
                         .and("max", 20)
                         .and("nonStop", true));
     }
-
-
 }

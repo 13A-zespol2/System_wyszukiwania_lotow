@@ -9,6 +9,10 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
+/**
+ * Klasa odpowiadająca za tabelę ,,Traveler Document". Zastosowany jest w niej wzorzec projektowy ,,Builder".
+ * Deklaracja ,,@Entity" konwertuje tą klasę na klasę bazodanową i tworzy połączenie z innymi tabelami (klasami).
+ */
 public class TravelerDocument implements Serializable {
     @Id
     @SequenceGenerator(name = "travelerDocGenerator", sequenceName = "myDoTrSeq", initialValue = 1)
@@ -37,22 +41,6 @@ public class TravelerDocument implements Serializable {
 
     }
 
-
-    public String getNumberDocument() {
-        return numberDocument;
-    }
-
-    public String getExpireDate() {
-        return expireDate;
-    }
-
-    public String getIssuanceCountry() {
-        return issuanceCountry;
-    }
-
-    public String getNationality() {
-        return nationality;
-    }
 
     public static class Builder {
         private String documentType;

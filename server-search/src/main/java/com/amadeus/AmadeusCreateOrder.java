@@ -7,6 +7,10 @@ import com.amadeus.resources.FlightPrice;
 import com.amadeus.resources.Traveler;
 import com.repository.model.database.User;
 
+
+/**
+ * Klasa odpowiedzialna za rezerwację biletu po stronie API.
+ */
 class AmadeusCreateOrder implements CreateOrder {
     private final Amadeus amadeus;
 
@@ -14,6 +18,13 @@ class AmadeusCreateOrder implements CreateOrder {
         this.amadeus = amadeus;
     }
 
+
+    /**
+     * Sprawdza czy jest dostępna podana liczba biletów dla danego lotu.
+     *
+     * @param flightOfferSearch
+     * @return
+     */
     private FlightPrice checkAvailability(FlightOfferSearch flightOfferSearch) {
         try {
             return amadeus.shopping.flightOffersSearch.pricing.post(flightOfferSearch);
@@ -23,6 +34,16 @@ class AmadeusCreateOrder implements CreateOrder {
     }
 
 
+    /**
+     * Metoda odpowiedzialna za tworzenie rezerwacji.
+     *
+     * @param travelers
+     * @param flightOfferSearch
+     * @param phone
+     * @param user
+     * @return
+     * @throws ResponseException
+     */
     @Override
     public String createFlightOrder(Traveler[] travelers, FlightOfferSearch flightOfferSearch, boolean phone, User user) throws ResponseException {
         FlightPrice flightPrice = checkAvailability(flightOfferSearch);

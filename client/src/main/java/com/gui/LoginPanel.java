@@ -18,6 +18,10 @@ import java.util.ResourceBundle;
 @Slf4j
 @Controller
 @Component
+
+/**
+ * Kontroler wyświetlający ekran logowania użytkownika i zarządzający nim.
+ */
 public class LoginPanel extends GuiPanel {
 
     @FXML
@@ -34,6 +38,11 @@ public class LoginPanel extends GuiPanel {
         super();
     }
 
+
+    /**
+     * Metoda wywołana po naciśnięciu przycisku logowania. Wykonuje się w niej walidacja wprowadzonych przez użytkownika danych.
+     * W przypadku gdy dane są wprowadzone prawidłowo, przenosi nas do ekranu panelu klienta.
+     */
     public void logButton() {
         if (emailLabel.getText().isEmpty()) {
             loginError.setText("Complete e-mail field!");
@@ -54,17 +63,13 @@ public class LoginPanel extends GuiPanel {
         if (loginUserResponse.getUser() != null) {
             notifyGui(loginUserResponse.getUser());
             mainPanel.getMainLoad().getChildren().add(loadUi("/clientPanel"));
-
         }
-
     }
-
 
     @Override
     public void update(User user) {
 
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

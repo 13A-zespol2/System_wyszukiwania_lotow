@@ -12,6 +12,10 @@ import java.util.ResourceBundle;
 
 @Controller
 @Component
+
+/**
+ * Kontroler zarządzający głównym ekranem aplikacji widoczny zaraz po jej uruchomieniu.
+ */
 public class MainPanel extends GuiPanel {
 
     public Button login_button;
@@ -25,6 +29,10 @@ public class MainPanel extends GuiPanel {
     private AnchorPane mainLoad;
     private User user;
 
+
+    /**
+     * Metoda wywołana po wciśnięciu przycisku ,,Search flight". Przenosi nas do ekranu wyszukiwania lotów.
+     */
     public void searchFlights() {
 
         if (!mainLoad.getChildren().isEmpty()) {
@@ -32,15 +40,12 @@ public class MainPanel extends GuiPanel {
         }
         AnchorPane root = loadUi("/searchPanel");
         mainLoad.getChildren().add(root);
-
-
-    }
-
-    public void exit_btn() {
-        System.exit(0);
     }
 
 
+    /**
+     * Metoda wywołana po wciśnięciu przycisku ,,Register". Przenosi nas do ekranu rejestracji użytkownika.
+     */
     public void register() {
         if (!mainLoad.getChildren().isEmpty()) {
             mainLoad.getChildren().clear();
@@ -49,7 +54,9 @@ public class MainPanel extends GuiPanel {
         mainLoad.getChildren().add(root);
     }
 
-
+    /**
+     * Metoda wywołana po wciśnięciu przycisku ,,LogIn". Przenosi nas do ekranu logowania użytkownika.
+     */
     public void login() {
 
         if (user == null) {
@@ -72,6 +79,12 @@ public class MainPanel extends GuiPanel {
         this.user = user;
     }
 
+    /**
+     * Metoda służąca do ukrycia przycisku rejestracji i logowania w momencie, gdy użytkownik jest już zalogowany.
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (userLoginObserver.getUser() != null) {

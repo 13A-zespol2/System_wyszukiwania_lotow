@@ -2,6 +2,11 @@ package com.notifer;
 
 import javax.mail.MessagingException;
 
+
+/**
+ * Klasa wykorzystywana we wzorcu ,,Decorator".
+ * Służy ona do wysłania użytkownikowi powiadomienia E-Mail z danymi dotyczącymi zarezerwowanego lotu.
+ */
 public class EmailNotifier implements Notifier {
     private final EmailSender emailSender;
 

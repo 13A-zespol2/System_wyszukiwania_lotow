@@ -15,6 +15,9 @@ import java.util.ResourceBundle;
 @Slf4j
 @Controller
 @Component
+/**
+ * Kontroler zarządzający widokiem panelu klienta. Wyświetla jego dane osobiste. Przechodzimy do niego bezpośrednio po bezbłędnym zalogowaniu.
+ */
 public class ClientPanel extends GuiPanel {
 
     @FXML
@@ -44,12 +47,18 @@ public class ClientPanel extends GuiPanel {
     @FXML
     private Label docNumber;
 
+
+    /**
+     * Metoda uzupelnia wszystkie pola zawarte w widoku danymi pobranymi z bazy danych przypisanymi do danego użytkownika.
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         loggedname.setText(userLoginObserver.getUser().getEmail());
         email.setText(userLoginObserver.getUser().getEmail());
-
 
         ClientDataResponse clientDataResponse = clientControl.clientDataComunication(new ClientDataRequest(userLoginObserver.getUser()));
 
@@ -66,16 +75,9 @@ public class ClientPanel extends GuiPanel {
         }
     }
 
-    public void toClientData() {
-        mainPanel.getMainLoad().getChildren().clear();
-        mainPanel.getMainLoad().getChildren().add(loadUi("/clientPanel"));
-    }
-
 
     @Override
     public void update(User user) {
 
     }
-
-
 }

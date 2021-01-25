@@ -25,6 +25,10 @@ import java.util.stream.Collectors;
 @Slf4j
 @Controller
 @Component
+
+/**
+ *Kontroler zarządzający widokiem wyszukiwania lotów.
+ */
 public class SearchPanel extends GuiPanel {
 
     @FXML
@@ -67,6 +71,9 @@ public class SearchPanel extends GuiPanel {
     private Button search_SB1;
 
 
+    /**
+     * Metoda pobierająca dane wypełnione przez użytkownika. W przypadku gdy dane są wypełnione prawidłowo, wysyła do serwera zapytanie z wybranymi lotami.
+     */
     public void searchFlights() {
 
         if ((originLocationCode.getValue() == null) || (destinationLocationCode.getValue() == null) ||
@@ -96,6 +103,12 @@ public class SearchPanel extends GuiPanel {
     }
 
 
+    /**
+     * Metoda wywołana bezpośrednio po uruchomieniu widoku. Między innymi uzupełnia ona dane dotyczące lotnisk do wyboru.
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -137,6 +150,13 @@ public class SearchPanel extends GuiPanel {
 
     }
 
+
+    /**
+     * Metoda służąca do wypełnienia tabeli danymi pobranymi z API Amadeus, dotyczącymi lotów.
+     * Wypisuje ona wszystkie niezbędne informacje dotyczące lotów.
+     *
+     * @param tList Lista z lotami zwróconymi z serwera.
+     */
     public void showFlights(List<FlightOfferSearchDTO> tList) {
 
 
@@ -165,6 +185,10 @@ public class SearchPanel extends GuiPanel {
 
     }
 
+
+    /**
+     * Metoda odpowiadająca za wykonanie rezerwacji biletu wybranego przez użytkownika. Jej wywołanie następuje po kliknięciu przycisku ,,Book ticket".
+     */
     public void bookTicket() {
 
         if (tableView.getItems().size() != 0) {

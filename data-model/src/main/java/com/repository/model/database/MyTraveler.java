@@ -9,6 +9,10 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
+/**
+ * Klasa odpowiadająca za tabelę ,,My traveler". Zastosowany jest w niej wzorzec projektowy ,,Builder".
+ * Deklaracja ,,@Entity" konwertuje tą klasę na klasę bazodanową i tworzy połączenie z innymi tabelami (klasami).
+ */
 public class MyTraveler implements Serializable {
     @Id
     @SequenceGenerator(name = "travelerMyGenerator", sequenceName = "travSeq", initialValue = 1)
@@ -25,16 +29,6 @@ public class MyTraveler implements Serializable {
     @JoinColumn(name = "travelerPhone", referencedColumnName = "id")
     private TravelerPhone travelerPhone;
 
-
-    public String getName(){
-        return name;
-    }
-    public String getSurname(){
-        return surname;
-    }
-    public String getDateOfBirth(){
-        return dateOfBirth;
-    }
 
     public static class Builder {
         private String name;

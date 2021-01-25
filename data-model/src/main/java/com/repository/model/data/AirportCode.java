@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+
+/**
+ * ENUM przechowujący listę dostępnych do wyszukania miast i kody przypisanych do nich lotnisk.
+ */
 public enum AirportCode {
     WARSAW("WAW"),
     LISBON("LIS"),
@@ -37,11 +41,23 @@ public enum AirportCode {
         this.IATACode = IATACode;
     }
 
+    /**
+     * Zwraca mapę kodów lotnisk.
+     *
+     * @return
+     */
     public static Map<String, AirportCode> getByIata() {
         return BY_IATA;
     }
 
-
+    /**
+     * Metoda do wyszukania klucza po wartości.
+     *
+     * @param value
+     * @param <T>
+     * @param <E>
+     * @return
+     */
     public static <T, E> String getKeyByValue(String value) {
         for (Map.Entry<String, AirportCode> entry : BY_IATA.entrySet()) {
             if (Objects.equals(value, entry.getValue().name())) {
@@ -50,6 +66,4 @@ public enum AirportCode {
         }
         return null;
     }
-
-
 }

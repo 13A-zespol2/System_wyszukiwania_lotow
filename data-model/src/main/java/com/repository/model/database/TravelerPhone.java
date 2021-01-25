@@ -12,6 +12,10 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
+/**
+ * Klasa odpowiadająca za tabelę ,,Traveler Phone". Zastosowany jest w niej wzorzec projektowy ,,Builder".
+ * Deklaracja ,,@Entity" konwertuje tą klasę na klasę bazodanową i tworzy połączenie z innymi tabelami (klasami).
+ */
 public class TravelerPhone implements Serializable {
     @Id
     @SequenceGenerator(name = "travelerPhoneGenerator", sequenceName = "myPhTrSeq", initialValue = 1)
@@ -22,17 +26,6 @@ public class TravelerPhone implements Serializable {
     private String deviceType;
 
 
-    public int getCountryCallingCode() {
-        return countryCallingCode;
-    }
-
-    public int getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getDeviceType() {
-        return deviceType;
-    }
 
     public static class Builder {
         private int countryCallingCode;

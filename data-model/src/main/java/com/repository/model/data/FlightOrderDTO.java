@@ -9,6 +9,9 @@ import java.util.Arrays;
 import java.util.Objects;
 
 @Getter
+/**
+ * Wzorzec projektowy należący do grupy wzorców dystrybucji. Do niego przepisywanie są dane dotyczące zarezerwowanych lotów.
+ */
 public class FlightOrderDTO implements Serializable {
     private final int id;
     private final String departureIATA;

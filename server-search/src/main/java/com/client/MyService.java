@@ -1,4 +1,4 @@
-package com.server;
+package com.client;
 
 
 import com.ServerException;
@@ -30,7 +30,9 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-
+/**
+ * Klasa odpowiedzialna za kontrolę nad serwerem. Tworzy oraz udostępnia socket, dzięki któremu możliwa jest komunikacja między klientem i serwerem.
+ */
 public class MyService implements Serializable {
     private final AmadeusFacade amadeusFacade = new AmadeusFacade();
     @Autowired
@@ -44,6 +46,15 @@ public class MyService implements Serializable {
     @Autowired
     private ReservationRepository reservationRepository;
 
+    /**
+     * Metoda do uruchomienia  serwerem.
+     * Tworzy socket na danym poracie oraz otwiera strumienie do obierania danych od klienta.
+     * Metoda czeka na nadchodzące żadania(Request) i odpowida na nie (response)
+     *
+     * @param port port na którym serwer komunikuje się z aplikacją kliencka
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public void start(int port) throws IOException, ClassNotFoundException {
         ServerSocket serverSocket = new ServerSocket(port);
         log.info("START SERVER");
@@ -95,6 +106,13 @@ public class MyService implements Serializable {
         }
     }
 
+
+    /**
+     * Metoda wykorzystywana do wyszukania zarezerwowanych lotów.
+     *
+     * @param request Przyjmuje żądanie od klienta.
+     * @return Zwraca odpowiedź która zawiera listę zarezerwowanych lotów.
+     */
     private ReservedFlightsResponse findReservedFlight(ReservedFlightsRequest request) {
         User user = request.getUser();
         MyTraveler byUserId = myTravelerRepository.findByUserId(user.getId());
@@ -113,13 +131,17 @@ public class MyService implements Serializable {
                 collect1.add(flightOrderDTO);
                 i++;
             }
-
         }
-
-
         return new ReservedFlightsResponse("FOUND", collect1);
     }
 
+
+    /**
+     * Metoda odpowiedzialna za rezerwację lotu.
+     *
+     * @param request Przyjmuje żądanie od klienta.
+     * @return Zwraca odpowiedź zawierającą informacje dotyczące zarezerwowanego lotu.
+     */
     private ReservationFlightResponse flightReservation(ReservationFlightRequest request) {
 
 
@@ -157,17 +179,21 @@ public class MyService implements Serializable {
 
             } catch (ServerException e) {
                 new ReservationFlightResponse("CANT BOOK FLIGHT", false);
-
             }
 
         Reservation save = reservationRepository.save(new Reservation(orderFlight, myTraveler, request.getQuantityOfTickets()));
         if (save != null)
             return new ReservationFlightResponse("BOOKED FLIGHT", true);
-
-
         return new ReservationFlightResponse("CANT BOOK FLIGHT", false);
     }
 
+
+    /**
+     * Metoda służąca do wyszukiwania lotów na podstawie danych podanych przez klienta.
+     *
+     * @param request Przyjmuje żądanie od klienta.
+     * @return Zwraca odpowiedź zawierającą informacje dotyczące znalezionych lotów.
+     */
     private SearchFlightResponse findSearch(SearchFlightRequest request) {
         List<FlightOfferSearch> flightOfferSearches = amadeusFacade.searchFlight(
                 request.getOriginLocationCode(), request.getDestinationLocationCode(), request.getDepartureDate(), request.getTravelClass()
@@ -184,22 +210,29 @@ public class MyService implements Serializable {
         return new SearchFlightResponse("FOUND", collect);
     }
 
-
+    /**
+     * Metoda służąca do sprawdzenia poprawności danych przesłanych przez użytkownika.
+     *
+     * @param loginUserRequest Przyjmuje żądanie od klienta.
+     * @return Zwraca odpowiedź zawierającą dane użytkownika (o ile wprowadzone dane są poprawne).
+     */
     private LoginUserResponse findUserToLogin(LoginUserRequest loginUserRequest) {
         User user = userRepository.findUserByEmailAndPassword(loginUserRequest.getEmail(), loginUserRequest.getPassword());
-
 
         if (user != null) {
             log.info("znaleziono");
             return new LoginUserResponse("LOGIN", user);
-
         }
-
         return new LoginUserResponse("WRONG LOGIN OR PASSWORD");
-
     }
 
 
+    /**
+     * Metoda służąca do rejestracji użytkownika. Po otrzymaniu poprawnych danych rejestracji zapisuje je do bazy.
+     *
+     * @param registerUserRequest Żądanie zaweierające dane użytkownika podane w procesie rejestracji.
+     * @return Zwraca true w przypadku, gdy użytkownik został zarejestrowany prawidłowo. Zwraca false, gdy użytkownik o podanym mailu jest już w bazie danych.
+     */
     private RegisterUserResponse userToRegister(RegisterUserRequest registerUserRequest) {
         User user = new User.Builder().email(registerUserRequest.getEmail()).password(registerUserRequest.getPassword()).build();
 
@@ -213,6 +246,12 @@ public class MyService implements Serializable {
     }
 
 
+    /**
+     * Metoda służąca do edycji danych personalnych użytkownika.
+     *
+     * @param clientEditRequest Żądanie zawierające dane użytkownika.
+     * @return Zwraca informację o wykonaniu operacji edycji.
+     */
     private ClientEditResponse editData(ClientEditRequest clientEditRequest) {
 
         User user = clientEditRequest.getUser();
@@ -256,7 +295,6 @@ public class MyService implements Serializable {
 
         myTraveler.setUser(user);
 
-
         userRepository.save(user);
         TravelerPhone travelerPhoneSave = travelerPhoneRepository.save(travelerPhone);
         myTraveler.setTravelerPhone(travelerPhoneSave);
@@ -268,13 +306,17 @@ public class MyService implements Serializable {
     }
 
 
+    /**
+     * Metoda obsługująca żądanie wyświetlania danych użytkownika w widoku panelu klienta po zalogowaniu.
+     * Przetwarza żądanie otrzymane od klienta.
+     *
+     * @param clientDataRequest Żądanie klienta zawierające dane o użytkowniku.
+     * @return Zwraca pobrane dane dotyczące danego użytkownika.
+     */
     private ClientDataResponse dataToShow(ClientDataRequest clientDataRequest) {
 
-
         User user = clientDataRequest.getUser();
-
         MyTraveler myTraveler = myTravelerRepository.findByUserId(user.getId());
-
 
         if (myTraveler == null) {
             return new ClientDataResponse("TRAVELER NULL");
@@ -293,6 +335,14 @@ public class MyService implements Serializable {
     }
 
 
+    /**
+     * Zamyka połączenie klienta z serwerem.
+     *
+     * @param clientSocket
+     * @param out
+     * @param in
+     * @throws IOException
+     */
     private void close(Socket clientSocket, ObjectOutputStream out, ObjectInputStream in) throws IOException {
         out.close();
         in.close();

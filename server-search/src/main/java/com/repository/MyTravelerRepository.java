@@ -5,6 +5,10 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
+
+/**
+ * Interfejs pozwalający na tworzenie zapytań do bazy na podstawie nazw metod do tabeli ,,My_traveler".
+ */
 public interface MyTravelerRepository extends CrudRepository<MyTraveler, Integer> {
     MyTraveler findByUserId(Integer id);
 

@@ -1,4 +1,4 @@
-package com.server;
+package com.client;
 
 
 import com.repository.model.communication.*;
@@ -10,6 +10,11 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 @Service
+
+/**
+ * Metoda odpowiadająca za połączenie aplikacji klienckiej z serwerem. Posiada metody wysyłające do serwera odpowiednie żądania
+ * i oczekują na ich odebranie.
+ */
 public class ClientControl {
     private final static String IP_ADDRESS = "127.0.0.1";
     private final static int SERVER_PORT = 8892;
@@ -43,6 +48,14 @@ public class ClientControl {
         return (ReservedFlightsResponse) send(reservedFlightsRequest);
     }
 
+
+    /**
+     * Metoda do połączenia z serwerem. Wysyła zserializowany obiekt który jest odebrany po stronie serwera a następnie przetworzony.
+     * Po tej czynności oczekujemy na odpowiedź w aplikacji klienta.
+     *
+     * @param request Parametrem jest obiekt zawierający żądanie do serwera.
+     * @return
+     */
     private Object send(Object request) {
         Socket clientSocket = null;
         ObjectOutputStream out = null;
@@ -66,7 +79,13 @@ public class ClientControl {
         return null;
     }
 
-
+    /**
+     * Zamyka połączenie z serwerem.
+     *
+     * @param clientSocket
+     * @param out
+     * @param in
+     */
     private void closeConnection(Socket clientSocket, ObjectOutputStream out, ObjectInputStream in) {
         try {
             if (in != null) {

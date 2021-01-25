@@ -6,6 +6,10 @@ import javax.mail.internet.MimeMessage;
 import java.util.Date;
 import java.util.Properties;
 
+
+/**
+ * Klasa ta służy do wysłania użytkownikowi powiadomienia E-Mail z danymi dotyczącymi zarezerwowanego lotu.
+ */
 public class EmailSender {
     private final String username = "apitestpipprojekt2021@gmail.com";
     private final String password = " Qweasdzxc!1";

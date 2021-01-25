@@ -15,6 +15,10 @@ import java.io.IOException;
 
 @Configuration
 @SpringBootApplication
+
+/**
+ * Główna klasa uruchamiająca aplikację klienta. Zawiera wszystkie parametry startowe aplikacji.
+ */
 public class ClientApplication extends Application {
     private ConfigurableApplicationContext springContext;
     private AnchorPane rootNode;
@@ -23,7 +27,11 @@ public class ClientApplication extends Application {
         launch(args);
     }
 
-
+    /**
+     * Metoda ładująca główny ekran aplikacji. Tworzy obiekt klasy FXMLLoader odpowiadający za ładowanie ekranu głównego.
+     *
+     * @throws IOException
+     */
     @Override
     public void init() throws IOException {
         springContext = SpringApplication.run(ClientApplication.class);
@@ -34,10 +42,14 @@ public class ClientApplication extends Application {
     }
 
 
+    /**
+     * Metoda do ustawiania sceny, rozdzielczości aplikacji, ładująca plik ze stylami. Umożliwia ona również poruszanie oknem aplikacji.
+     *
+     * @param primaryStage
+     */
     @Override
     public void start(final Stage primaryStage) {
         primaryStage.initStyle(StageStyle.UNDECORATED);
-
 
         Scene scene = new Scene(rootNode, 960, 640);
         scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
@@ -53,6 +65,9 @@ public class ClientApplication extends Application {
         });
     }
 
+    /**
+     * Metoda zatrzymująca aplikację.
+     */
     @Override
     public void stop() {
         springContext.stop();

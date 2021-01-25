@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.AnchorPane;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -23,6 +22,10 @@ import java.util.ResourceBundle;
 @Slf4j
 @Controller
 @Component
+
+/**
+ * Kontroler do wyświetlania biletów w panelu użytkownika. Zawiera tabelkę wyświetlającą zarezerwowane bilety przypisane do danego klienta.
+ */
 public class ClientTickets extends GuiPanel {
     @FXML
     public TableView<FlightOrderDTO> tableView;
@@ -46,16 +49,18 @@ public class ClientTickets extends GuiPanel {
 
 
     @Override
-    public AnchorPane loadUi(String ui) {
-        return (AnchorPane) springFxmlLoader.load(ui + ".fxml");
-    }
-
-
-    @Override
     public void update(User user) {
 
     }
 
+
+    /**
+     * Metoda pobierająca dane z bazy i uzupełniająca tabelkę. Wyświetla wszystkie zarezerwowane przez użytkownika bilety.
+     * Jest stworzona w takim samym formacie, jak tabelka służąca do wyszukiwania lotów.
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tableView.getColumns().forEach(e -> e.setReorderable(false));
@@ -80,7 +85,6 @@ public class ClientTickets extends GuiPanel {
             col7.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getFlightClass()));
 
             tableView.setItems(list);
-
         }
         loggedname.setText(userLoginObserver.getUser().getEmail());
     }
