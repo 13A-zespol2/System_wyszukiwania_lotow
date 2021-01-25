@@ -1,4 +1,4 @@
-package com.client;
+package com.server;
 
 
 import com.ServerException;
@@ -121,7 +121,7 @@ public class MyService implements Serializable {
 
     private ReservationFlightResponse flightReservation(ReservationFlightRequest request) {
 
-        boolean phone = true;
+
         FlightOfferSearchDTO flightToReservation = request.getFlightToReservation();
 
         User user = request.getUser();
@@ -152,7 +152,7 @@ public class MyService implements Serializable {
 
         if (flightOfferSearch != null)
             try {
-                orderFlight = amadeusFacade.createOrderFlight(travelers, flightOfferSearch, user, phone).orElse(null);
+                orderFlight = amadeusFacade.createOrderFlight(travelers, flightOfferSearch, user, request.isPhoneNotifaction()).orElse(null);
 
             } catch (ServerException e) {
                 new ReservationFlightResponse("CANT BOOK FLIGHT", false);

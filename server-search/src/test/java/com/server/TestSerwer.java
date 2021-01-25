@@ -1,4 +1,4 @@
-package com.client;
+package com.server;
 
 
 import com.amadeus.resources.Traveler;
@@ -12,6 +12,7 @@ import com.repository.model.database.TravelerPhone;
 import com.strategy.CustomTravelerCreationStrategy;
 import com.strategy.UserBasedTravelerCreationStrategy;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import javax.mail.*;
@@ -22,6 +23,7 @@ import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Slf4j
 class TestSerwer {
 
 
@@ -80,37 +82,48 @@ class TestSerwer {
     @Test
     void sendEmail() {
 
-        String username = "apitestpipprojekt2021@gmail.com";
-        String password = " Qweasdzxc!1";
-        final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
-        Properties properties = new Properties();
-        properties.setProperty("mail.smtp.host", "smtp.gmail.com");
-        properties.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
-        properties.setProperty("mail.smtp.socketFactory.fallback", "false");
-        properties.setProperty("mail.smtp.port", "465");
-        properties.setProperty("mail.smtp.socketFactory.port", "465");
-        properties.put("mail.smtp.auth", "true");
-        Session session = Session.getDefaultInstance(properties, new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("apitestpipprojekt2021", password);
+        Runnable runnable = () -> {
+
+            String username = "apitestpipprojekt2021@gmail.com";
+            String password = " Qweasdzxc!1";
+            final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+            Properties properties = new Properties();
+            properties.setProperty("mail.smtp.host", "smtp.gmail.com");
+            properties.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
+            properties.setProperty("mail.smtp.socketFactory.fallback", "false");
+            properties.setProperty("mail.smtp.port", "465");
+            properties.setProperty("mail.smtp.socketFactory.port", "465");
+            properties.put("mail.smtp.auth", "true");
+            Session session = Session.getDefaultInstance(properties, new Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication("apitestpipprojekt2021", password);
+                }
+            });
+
+
+            MimeMessage msg = new MimeMessage(session);
+
+            try {
+                msg.setFrom(new InternetAddress(username));
+                msg.setRecipients(Message.RecipientType.TO,
+                        InternetAddress.parse("wojtekgrelewicz@gmail.com", false));
+
+                msg.setSubject("System_Rezerwacji_Lotow");
+                msg.getMessageNumber();
+                msg.setText("Zarezerowano bilet");
+
+                msg.saveChanges();
+                msg.setSentDate(new Date());
+                Transport.send(msg);
+                log.info("dsa");
+            } catch (MessagingException e) {
+                e.printStackTrace();
             }
-        });
 
 
-        MimeMessage msg = new MimeMessage(session);
-
-        msg.setFrom(new InternetAddress(username));
-        msg.setRecipients(Message.RecipientType.TO,
-                InternetAddress.parse("wojtekgrelewicz@gmail.com", false));
-
-        msg.setSubject("System_Rezerwacji_Lotow");
-        msg.getMessageNumber();
-        msg.setText("Zarezerowano bilet");
-
-        msg.saveChanges();
-        msg.setSentDate(new Date());
-        Transport.send(msg);
-
+        };
+        Thread t = new Thread(runnable);
+        t.start();
     }
 
     @Test

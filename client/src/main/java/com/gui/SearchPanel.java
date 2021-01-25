@@ -29,7 +29,7 @@ public class SearchPanel extends GuiPanel {
 
     @FXML
     public TableView<FlightOfferSearchDTO> tableView;
-    private User user;
+    public CheckBox checkBoxSms;
     @FXML
     private ComboBox<String> originLocationCode;
     @FXML
@@ -113,6 +113,7 @@ public class SearchPanel extends GuiPanel {
         } else {
             lias.setText("Not logged in");
             search_SB1.setVisible(false);
+            checkBoxSms.setVisible(false);
             loginError1.setText("Register or LogIn if you want to buy a ticket.");
         }
 
@@ -156,13 +157,13 @@ public class SearchPanel extends GuiPanel {
 
     @Override
     public void update(User user) {
-        this.user = user;
+
     }
 
     public void bookTicket() {
 
         if (tableView.getItems().size() != 0) {
-            ReservationFlightRequest reservationFlightRequest = new ReservationFlightRequest(tableView.getSelectionModel().getSelectedItem(), userLoginObserver.getUser(), adults.getValue());
+            ReservationFlightRequest reservationFlightRequest = new ReservationFlightRequest(tableView.getSelectionModel().getSelectedItem(), userLoginObserver.getUser(), adults.getValue(), checkBoxSms.isSelected());
             ReservationFlightResponse reservationFlightResponse = clientControl.flightReservation(reservationFlightRequest);
 
             loginError1.setText(reservationFlightResponse.getStatus());

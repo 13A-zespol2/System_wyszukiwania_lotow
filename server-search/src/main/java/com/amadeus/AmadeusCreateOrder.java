@@ -22,7 +22,9 @@ class AmadeusCreateOrder implements CreateOrder {
         }
     }
 
-    public String createFlightOrder(Traveler[] travelers, FlightOfferSearch flightOfferSearch, User user) throws ResponseException {
+
+    @Override
+    public String createFlightOrder(Traveler[] travelers, FlightOfferSearch flightOfferSearch, boolean phone, User user) throws ResponseException {
         FlightPrice flightPrice = checkAvailability(flightOfferSearch);
         if (flightPrice == null)
             return null;

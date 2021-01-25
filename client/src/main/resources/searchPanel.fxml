@@ -97,15 +97,22 @@
                            <String fx:value="buttonH"/>
                         </styleClass>
                      </Button>
-                     <Label fx:id="loginError" alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" layoutY="124.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="230.0" styleClass="errorLabel" textAlignment="CENTER" textFill="#f20101" wrapText="true" />
-                     <AnchorPane layoutX="550.0" layoutY="20.0" prefHeight="110.0" prefWidth="3.0" style="-fx-background-color: #aaa;" />
-                     <Button fx:id="search_SB1" layoutX="603.0" layoutY="78.0" mnemonicParsing="false" onMouseClicked="#bookTicket" prefHeight="45.0" prefWidth="186.0" text="Book ticket">
+                     <Label fx:id="loginError" alignment="CENTER" contentDisplay="CENTER" layoutX="300.0"
+                            layoutY="124.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                            minWidth="-Infinity" prefHeight="30.0" prefWidth="230.0" styleClass="errorLabel"
+                            textAlignment="CENTER" textFill="#f20101" wrapText="true"/>
+                     <AnchorPane layoutX="550.0" layoutY="20.0" prefHeight="110.0" prefWidth="3.0"
+                                 style="-fx-background-color: #aaa;"/>
+                     <Button fx:id="search_SB1" layoutX="603.0" layoutY="78.0" mnemonicParsing="false"
+                             onMouseClicked="#bookTicket" prefHeight="45.0" prefWidth="186.0" text="Book ticket">
                         <styleClass>
-                           <String fx:value="data_label" />
+                           <String fx:value="data_label"/>
                            <String fx:value="buttonH" />
                         </styleClass>
                      </Button>
                      <Label fx:id="loginError1" alignment="CENTER" contentDisplay="CENTER" layoutX="603.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="186.0" styleClass="greenLabel" textAlignment="CENTER" wrapText="true" />
+                     <CheckBox fx:id="checkBoxSms" layoutX="600.0" layoutY="130.0" mnemonicParsing="false"
+                               prefHeight="26.0" prefWidth="193.0" text="SMS Notification"/>
 
                   </children>
                </AnchorPane>

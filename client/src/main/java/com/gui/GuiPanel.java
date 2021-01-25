@@ -1,9 +1,9 @@
 package com.gui;
 
-import com.client.ClientControl;
 import com.observer.LoginObserver;
 import com.observer.UserStoringObserver;
 import com.repository.model.database.User;
+import com.server.ClientControl;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
