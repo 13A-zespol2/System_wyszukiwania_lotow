@@ -173,9 +173,11 @@ public class ClientEdit extends GuiPanel {
 
 
         if (!validPhone(phoneNumber.getText())) {
-            validError.setText("Enter correct phone number");
-
+            validError.setText("Enter correct phone number.");
         }
 
+        if (!validDocumentNumber(docNumber.getText())) {
+            validError.setText("Enter correct document number.");
+        }
     }
 }
