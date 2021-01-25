@@ -4,6 +4,7 @@ import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightOfferSearch;
 import com.amadeus.resources.FlightOrder;
 import com.amadeus.resources.Traveler;
+import com.repository.model.database.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +14,7 @@ public class AmadeusFacade {
 
     private final AmadeusFlightSearch amadeusFlightSearch;
     private final AmadeusOrderManagement amadeusOrderManagement;
-    private final AmadeusCreateOrder amadeusCreateOrder;
+    private final CreateOrder amadeusCreateOrder;
 
     public AmadeusFacade() {
         Amadeus amadeus = Amadeus
@@ -22,14 +23,14 @@ public class AmadeusFacade {
 
         this.amadeusFlightSearch = new AmadeusFlightSearch(amadeus);
         this.amadeusOrderManagement = new AmadeusOrderManagement(amadeus);
-        this.amadeusCreateOrder = new AmadeusCreateOrder(amadeus);
+        this.amadeusCreateOrder = new CreateOrderWithEmailNotification(new AmadeusCreateOrder(amadeus));
     }
 
 
-    public Optional<String> createOrderFlight(Traveler[] travelers, FlightOfferSearch flightOfferSearch) {
+    public Optional<String> createOrderFlight(Traveler[] travelers, FlightOfferSearch flightOfferSearch, User user, boolean phone) {
 
         try {
-            return Optional.of(amadeusCreateOrder.createFlightOrder(travelers, flightOfferSearch));
+            return Optional.of(amadeusCreateOrder.createFlightOrder(travelers, flightOfferSearch, phone, user));
 
         } catch (ResponseException e) {
             return Optional.empty();

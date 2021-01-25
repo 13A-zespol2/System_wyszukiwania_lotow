@@ -5,8 +5,9 @@ import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightOfferSearch;
 import com.amadeus.resources.FlightPrice;
 import com.amadeus.resources.Traveler;
+import com.repository.model.database.User;
 
-class AmadeusCreateOrder {
+class AmadeusCreateOrder implements CreateOrder {
     private final Amadeus amadeus;
 
     public AmadeusCreateOrder(Amadeus amadeus) {
@@ -21,7 +22,7 @@ class AmadeusCreateOrder {
         }
     }
 
-    public String createFlightOrder(Traveler[] travelers, FlightOfferSearch flightOfferSearch) throws ResponseException {
+    public String createFlightOrder(Traveler[] travelers, FlightOfferSearch flightOfferSearch, User user) throws ResponseException {
         FlightPrice flightPrice = checkAvailability(flightOfferSearch);
         if (flightPrice == null)
             return null;
