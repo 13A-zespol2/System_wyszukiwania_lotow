@@ -11,13 +11,17 @@ public enum AirportCode {
     BERLIN("BER"),
     CRACOW("KRK"),
     LONDON("LGW"),
-    RADOM("RDO"),
     GDANSK("GDN"),
     NEW_YORK("NYC"),
     PARIS("PAR"),
     MADRID("MAD"),
     MOSCOW("MOW"),
-    LODZ("LCJ");
+    VENICE("VCE"),
+    ROMA("FCO"),
+    OSLO("OSL"),
+    HAMBURG("HAM"),
+    BUDAPEST("BUD"),
+    BARCELONA("BCN");
 
 
     private static final Map<String, AirportCode> BY_IATA = new HashMap<>();

@@ -110,6 +110,7 @@ public class SearchPanel extends GuiPanel {
 
         adults.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 1));
         adults.setEditable(false);
+        tableView.getColumns().forEach(e -> e.setReorderable(false));
 
         if (userLoginObserver.getUser() != null) {
             loggedname.setText(userLoginObserver.getUser().getEmail());
@@ -126,6 +127,7 @@ public class SearchPanel extends GuiPanel {
                 .values()
                 .stream()
                 .map(Enum::name)
+                .sorted()
                 .collect(Collectors.toList())
         );
 

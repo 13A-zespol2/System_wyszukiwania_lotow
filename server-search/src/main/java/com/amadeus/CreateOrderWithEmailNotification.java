@@ -32,18 +32,9 @@ public class CreateOrderWithEmailNotification implements CreateOrder {
                     + " \nKOSZT BILETU TO: " + flightOfferSearch.getPrice().getTotal() + " " + flightOfferSearch.getPrice().getCurrency()
                     + " \nDATA WYLOTU: " + Arrays.stream(Arrays.stream(flightOfferSearch.getItineraries()).findFirst().get().getSegments()).findFirst().get().getDeparture().getAt().replace("T", "  ");
 
-            String msg = "posłuchaj mnie uważnie, jutro o 19:45 masz samolot do " + Arrays.stream(Arrays.stream(flightOfferSearch.getItineraries()).findFirst().get().getSegments()).findFirst().get().getArrival().getIataCode() + "\n" +
-                    "Bilet wyśle Ci zaraz na e mail. Gdy wyjdziesz z lotniska pod czerwoną budką telefoniczną jest skrytka,\n" +
-                    "otwórz ją tajnym hasłem : hajduszoboszlo. W niej znajdziesz nowy dowód osobisty,\n" +
-                    "3000 pesos i kluczyki do mieszkania na przeciwko. Od dziś nazywasz się\n" +
-                    "Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko i jesteś rosyjskim imigrantem z Rumuni.\n" +
-                    "Pracujesz w zakładzie fryzjerskim 2 km od lotniska. Powodzenia,\n" +
-                    "zapomnij o swoim poprzednim życiu i pod żadnym pozorem się nie wychylaj,\n" +
-                    "zerwij wszystkie kontakty, nawet z obsługą klienta z polsatu.";
-
             String emailAddress = user.getEmail();
             try {
-                emailNotifier.sendNotification(emailAddress, msg);
+                emailNotifier.sendNotification(emailAddress, message);
             } catch (MessagingException e) {
                 log.info("Cannot send email: " + e);
             }

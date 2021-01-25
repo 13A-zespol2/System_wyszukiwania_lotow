@@ -68,10 +68,10 @@
       </HBox>
       <FontAwesomeIcon fill="WHITE" glyphName="HOME" layoutX="10.0" layoutY="22.0" onMouseClicked="#homeFunc"
                        size="20px" wrappingWidth="11.142857551574707"/>
-      <Label fx:id="registerError" alignment="CENTER" contentDisplay="CENTER" layoutX="355.0" layoutY="515.0"
+      <Label fx:id="registerError" alignment="CENTER" contentDisplay="CENTER" layoutX="405.0" layoutY="527.0"
              maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0"
              prefWidth="250.0" styleClass="errorLabel" textAlignment="CENTER" wrapText="true"/>
-      <Label fx:id="loginAfterReg" alignment="CENTER" contentDisplay="CENTER" layoutX="415.0" layoutY="524.0"
+      <Label fx:id="loginAfterReg" alignment="CENTER" contentDisplay="CENTER" layoutX="415.0" layoutY="527.0"
              maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0"
              prefWidth="230.0" styleClass="greenLabel" textAlignment="CENTER" wrapText="true"/>
       <Label layoutX="28.0" layoutY="367.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"

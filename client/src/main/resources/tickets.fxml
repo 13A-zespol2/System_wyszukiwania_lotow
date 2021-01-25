@@ -54,13 +54,13 @@
                            minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="617.0"
                            styleClass="_table">
                     <columns>
-                        <TableColumn fx:id="col1" prefWidth="25.0" text="Quantity"/>
-                        <TableColumn fx:id="col2" prefWidth="60.0" text="Departure"/>
-                        <TableColumn fx:id="col3" prefWidth="60.0" text="Destination"/>
-                        <TableColumn fx:id="col4" prefWidth="145.0" text="Departure time"/>
-                        <TableColumn fx:id="col5" prefWidth="145.0" text="Arrival time"/>
-                        <TableColumn fx:id="col6" prefWidth="70.0" text="Ticket price"/>
-                        <TableColumn fx:id="col7" prefWidth="110.0" text="Flight class"/>
+                        <TableColumn fx:id="col1" prefWidth="25.0" resizable="false" text="L.p"/>
+                        <TableColumn fx:id="col2" prefWidth="60.0" resizable="false" text="Departure"/>
+                        <TableColumn fx:id="col3" prefWidth="60.0" resizable="false" text="Destination"/>
+                        <TableColumn fx:id="col4" prefWidth="140.0" resizable="false" text="Departure time"/>
+                        <TableColumn fx:id="col5" prefWidth="140.0" resizable="false" text="Arrival time"/>
+                        <TableColumn fx:id="col6" prefWidth="70.0" resizable="false" text="Ticket price"/>
+                        <TableColumn fx:id="col7" prefWidth="110.0" resizable="false" text="Flight class"/>
                     </columns>
                 </TableView>
             </content>
