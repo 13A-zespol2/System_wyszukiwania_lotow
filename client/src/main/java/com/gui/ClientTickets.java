@@ -84,9 +84,9 @@ public class ClientTickets extends GuiPanel {
 
             col3.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getDestinationIATA()));
 
-            col4.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getDepartureTime()));
+            col4.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getDepartureTime().replace("T", "  ")));
 
-            col5.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getArrivalTime()));
+            col5.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getArrivalTime().replace("T", "  ")));
 
             col6.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getTicketPrice() * param.getValue().getQuantityOfTickets() + " " + param.getValue().getCurrency()));
 

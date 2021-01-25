@@ -73,6 +73,9 @@ public class SearchPanel extends GuiPanel {
                 (departureDate.getValue() == null) || (adults.getValue() == null) ||
                 (travelClass.getValue() == null)) {
             loginError.setText("Complete required fields!");
+
+        } else if (originLocationCode.getValue().equals(destinationLocationCode.getValue())) {
+            loginError.setText("Departure and destination location is the same!");
         } else {
             loginError.setText("");
             SearchFlightRequest createSearchFlightRequest = new SearchFlightRequest();
@@ -171,3 +174,4 @@ public class SearchPanel extends GuiPanel {
 
     }
 }
+
